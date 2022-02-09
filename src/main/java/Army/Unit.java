@@ -3,10 +3,10 @@ package Army;
 public abstract class Unit {
 
 
-    private final String name;
-    private int health;
-    private final int attack;
-    private final int armour;
+    protected final String name;
+    protected int health;
+    protected final int attack;
+    protected final int armour;
 
     public Unit(String name, int health, int attack, int armour) {
         this.name = name;
