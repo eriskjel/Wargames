@@ -6,7 +6,7 @@ public class InfantryUnit extends Unit{
         super(name, health, attack, armour);
     }
     public InfantryUnit(String name, int health){
-        //TODO: finish constructor
+        super(name, health, 15, 10);
     }
 
     @Override
