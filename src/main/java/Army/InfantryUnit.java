@@ -11,7 +11,7 @@ public class InfantryUnit extends Unit{
 
     @Override
     public int getAttackBonus() {
-        return 3;
+        return 2;
     }
 
     @Override
