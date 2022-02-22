@@ -34,6 +34,8 @@ public class WarGamesClient {
         armyOne.add(new CommanderUnit("Mountain King", 1000));
         armyTwo.add(new InfantryUnit("Infanterist", 1000));
         */
+
+        //git merg test
         Battle battle = new Battle(armyOne, armyTwo);
         System.out.println(battle.simulate());
     }
