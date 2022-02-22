@@ -30,6 +30,7 @@ public class WarGamesClient {
             armyOne.add(new CommanderUnit("Mountain King", 180));
             armyTwo.add(new CommanderUnit("Gul'dan", 180));
         }
+        //testing the git
         Battle battle = new Battle(armyOne, armyTwo);
         battle.simulate();
     }
