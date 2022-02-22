@@ -1,4 +1,4 @@
-package Army;
+package edu.ntnu.idatt2001;
 
 public abstract class Unit {
 
@@ -10,7 +10,13 @@ public abstract class Unit {
     protected int numAttacksGiven;
     protected  int numAttacksReceived;
 
-    public Unit(String name, int health, int attack, int armour) {
+    public Unit(String name, int health, int attack, int armour) throws IllegalArgumentException {
+        if (health < 0){
+            throw new IllegalArgumentException("Health must be larger than zero.");
+        }
+        if (attack < 0){
+            throw new IllegalArgumentException("Armour stat must be larger than zero.");
+        }
         this.name = name;
         this.health = health;
         this.attack = attack;

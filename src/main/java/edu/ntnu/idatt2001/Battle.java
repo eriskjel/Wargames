@@ -1,4 +1,4 @@
-package Army;
+package edu.ntnu.idatt2001;
 
 
 public class Battle {
@@ -25,14 +25,14 @@ public class Battle {
             if (randomIndex == 1){
                 battleInfo(attacker1,victim2);
                 attacker1.attack(victim2);
-                if (healthStatus(victim2)){
+                if (isDead(victim2)){
                     armyTwo.remove(victim2);
                 }
             }
             else{
                 battleInfo(attacker2,victim1);
                 attacker2.attack(victim1);
-                if (healthStatus(victim1)){
+                if (isDead(victim1)){
                     armyOne.remove(victim1);
                 }
             }
@@ -62,11 +62,10 @@ public class Battle {
         System.out.println(attacker.getName() + " with " + attacker.getHealth() + " health has a " + (attacker.getAttack() + attacker.getAttackBonus()) + " total attack points, and attacks " + victim.getName() +  " with " + victim.getHealth() + " health who has " + (victim.getResistBonus() + victim.getArmour()) + " total armour points.");
     }
 
-    public static boolean healthStatus(Unit victim){
+    public static boolean isDead(Unit victim){
         if (victim.getHealth() < 1) {
             System.out.println(victim.getName() + " has died in combat.");
             return true;
-            //armyOne.remove(victim);
         } else {
             System.out.println(victim.getName() + " now has " + victim.getHealth() + " health remaining");
             return false;

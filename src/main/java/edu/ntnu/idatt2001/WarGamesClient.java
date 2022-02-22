@@ -1,4 +1,4 @@
-package Army;
+package edu.ntnu.idatt2001;
 
 public class WarGamesClient {
 
@@ -8,8 +8,9 @@ public class WarGamesClient {
         Army armyOne = new Army("Human Army");
         Army armyTwo = new Army("Orcish Horde");
 
+        Battle battle = new Battle(armyOne, armyTwo);
+        battle.simulate();
 
-        /*
         for (int i = 0; i < 500; i++) {
             armyOne.add(new InfantryUnit("Footman", 100));
             armyTwo.add(new InfantryUnit("Grunt", 100));
@@ -31,13 +32,13 @@ public class WarGamesClient {
             armyOne.add(new CommanderUnit("Mountain King", 180));
             armyTwo.add(new CommanderUnit("Gul´dan", 180));
         }
-         */
 
+        /*
         for (int i = 0; i < 1; i++) {
-            armyOne.add(new RangedUnit("Archer", 100));
+            armyOne.add(new RangedUnit("Archer", 50));
             armyTwo.add(new RangedUnit("Spearman", 50));
         }
-        /*
+
         for (int i = 0; i < 5; i++) {
             armyOne.add(new RangedUnit("Archer", 100));
             armyTwo.add(new RangedUnit("Ranged",100));
@@ -56,7 +57,5 @@ public class WarGamesClient {
             armyTwo.add(new CommanderUnit("Gul´dan", 180));
         }
         */
-        Battle battle = new Battle(armyOne, armyTwo);
-        battle.simulate();
     }
 }

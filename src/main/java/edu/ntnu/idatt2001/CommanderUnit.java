@@ -1,12 +1,14 @@
-package Army;
+package edu.ntnu.idatt2001;
 
-public class CavalryUnit extends Unit{
-    private int numAttacksGiven;
-    public CavalryUnit(String name, int health, int attack, int armour){
+public class CommanderUnit extends Unit{
+
+
+    public CommanderUnit(String name, int health, int attack, int armour){
         super(name, health, attack, armour);
+        numAttacksGiven = 0;
     }
-    public CavalryUnit(String name, int health){
-        super(name, health, 20, 12);
+    public CommanderUnit(String name, int health){
+        super(name, health, 25, 15);
         numAttacksGiven = 0;
     }
 

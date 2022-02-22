@@ -1,4 +1,4 @@
-package Army;
+package edu.ntnu.idatt2001;
 
 import java.util.*;
 
