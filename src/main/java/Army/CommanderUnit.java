@@ -2,25 +2,21 @@ package Army;
 
 public class CommanderUnit extends Unit{
 
-    private int numAttacksReceived;
 
     public CommanderUnit(String name, int health, int attack, int armour){
         super(name, health, attack, armour);
-        numAttacksReceived = 0;
     }
     public CommanderUnit(String name, int health){
         super(name, health, 25, 15);
-        numAttacksReceived = 0;
+        numAttacksGiven = 0;
     }
 
     @Override
     public int getAttackBonus() {
-        if (numAttacksReceived == 0){
-            numAttacksReceived++;
+        if (this.numAttacksGiven == 0){
             return 6;
         }
         else{
-            numAttacksReceived++;
             return 2;
         }
     }

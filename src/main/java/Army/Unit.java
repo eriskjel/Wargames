@@ -7,17 +7,20 @@ public abstract class Unit {
     protected int health;
     protected final int attack;
     protected final int armour;
+    protected int numAttacksGiven;
 
     public Unit(String name, int health, int attack, int armour) {
         this.name = name;
         this.health = health;
         this.attack = attack;
         this.armour = armour;
+        this.numAttacksGiven = 0;
     }
 
     public void attack(Unit opponent){
-        int newHealth = opponent.getHealth() - (this.getAttack() + this.getAttackBonus() + (opponent.getArmour() + opponent.getResistBonus()));
+        int newHealth = opponent.getHealth() - (this.getAttack() + this.getAttackBonus()) + (opponent.getArmour() + opponent.getResistBonus());
         opponent.setHealth(newHealth);
+        numAttacksGiven++;
     }
 
     public String getName() {

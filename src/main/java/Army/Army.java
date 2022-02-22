@@ -5,13 +5,14 @@ import java.util.*;
 public class Army {
 
     private final String name;
-    private List<Unit> units;
+    private final ArrayList<Unit> units;
 
     public Army(String name){
         this.name = name;
+        units = new ArrayList<>();
     }
 
-    public Army(String name, List<Unit> units){
+    public Army(String name, ArrayList<Unit> units){
         this.name = name;
         this.units = units;
     }
@@ -20,8 +21,8 @@ public class Army {
         return this.name;
     }
 
-    public void add (Unit unit){
-        units.add(unit);
+    public void add(Unit unit){
+        this.units.add(unit);
     }
 
     public void addAll (List<Unit> list){
@@ -29,11 +30,11 @@ public class Army {
     }
 
     public void remove(Unit unit){
-        units.remove(unit);
+        this.units.remove(unit);
     }
 
     public boolean hasUnits(){
-        return units.isEmpty();
+        return !units.isEmpty();
     }
 
     public Unit getRandom(){
@@ -56,9 +57,10 @@ public class Army {
 
     @Override
     public String toString() {
-        return "Army{" +
-                "name='" + name + '\'' +
-                ", units=" + units +
-                '}';
+        String results = new String("\n");
+        for (Unit unit: units) {
+            results += unit.toString() + "\n";
+        }
+        return results;
     }
 }
