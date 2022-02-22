@@ -5,6 +5,7 @@ public class CommanderUnit extends Unit{
 
     public CommanderUnit(String name, int health, int attack, int armour){
         super(name, health, attack, armour);
+        numAttacksGiven = 0;
     }
     public CommanderUnit(String name, int health){
         super(name, health, 25, 15);

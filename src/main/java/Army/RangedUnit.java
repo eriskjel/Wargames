@@ -2,8 +2,6 @@ package Army;
 
 public class RangedUnit extends Unit{
 
-    private int numAttacksReceived;
-
     public RangedUnit(String name, int health, int attack, int armour){
         super(name, health, attack, armour);
         numAttacksReceived = 0;
@@ -21,15 +19,12 @@ public class RangedUnit extends Unit{
     @Override
     public int getResistBonus() {
         if (numAttacksReceived == 0){
-            numAttacksReceived++;
             return 6;
         }
         else if (numAttacksReceived == 1){
-            numAttacksReceived++;
             return 4;
         }
         else{
-            numAttacksReceived++;
             return 2;
         }
     }

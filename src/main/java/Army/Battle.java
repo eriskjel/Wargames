@@ -1,6 +1,5 @@
 package Army;
 
-import java.util.Random;
 
 public class Battle {
 
@@ -22,24 +21,19 @@ public class Battle {
             Unit victim2 = armyTwo.getRandom();
 
             int randomIndex = Math.random() <= 0.5 ? 1 : 2;
+
             if (randomIndex == 1){
-                System.out.println(attacker1.getName() + " with " + attacker1.getHealth() + " health has a " + (attacker1.getAttack() + attacker1.getAttackBonus()) + " attack strength, and attacks " + victim2.getName() +  " with " + victim2.getHealth() + " health who has " + (victim2.getResistBonus() + victim2.getArmour()) + " total armour points.");
+                battleInfo(attacker1,victim2);
                 attacker1.attack(victim2);
-                if (victim2.getHealth() < 1) {
-                    System.out.println(victim2.getName() + " has died in combat. \n");
+                if (healthStatus(victim2)){
                     armyTwo.remove(victim2);
-                } else {
-                    System.out.println(victim2.getName() + " now has " + victim2.getHealth() + " health remaining \n");
                 }
             }
             else{
-                System.out.println(attacker2.getName() + " with " + attacker2.getHealth() + " health has a " + (attacker2.getAttack() + attacker2.getAttackBonus()) + " attack strength, and attacks " + victim1.getName() +  " with " + victim1.getHealth() + " health who has a " + (victim1.getResistBonus() + victim1.getArmour()) + " total armour points.");
+                battleInfo(attacker2,victim1);
                 attacker2.attack(victim1);
-                if (victim1.getHealth() < 1) {
-                    System.out.println(victim1.getName() + " has died in combat.");
+                if (healthStatus(victim1)){
                     armyOne.remove(victim1);
-                } else {
-                    System.out.println(victim1.getName() + " now has " + victim1.getHealth() + " health remaining");
                 }
             }
             checkWin(armyOne, armyTwo);
@@ -62,5 +56,20 @@ public class Battle {
             result += "Army one has won! Remaining units: " + armyOne.toString();
         }
         System.out.println(result);
+    }
+
+    public static void battleInfo(Unit attacker, Unit victim){
+        System.out.println(attacker.getName() + " with " + attacker.getHealth() + " health has a " + (attacker.getAttack() + attacker.getAttackBonus()) + " total attack points, and attacks " + victim.getName() +  " with " + victim.getHealth() + " health who has " + (victim.getResistBonus() + victim.getArmour()) + " total armour points.");
+    }
+
+    public static boolean healthStatus(Unit victim){
+        if (victim.getHealth() < 1) {
+            System.out.println(victim.getName() + " has died in combat.");
+            return true;
+            //armyOne.remove(victim);
+        } else {
+            System.out.println(victim.getName() + " now has " + victim.getHealth() + " health remaining");
+            return false;
+        }
     }
 }

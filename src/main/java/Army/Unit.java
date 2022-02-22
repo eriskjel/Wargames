@@ -8,6 +8,7 @@ public abstract class Unit {
     protected final int attack;
     protected final int armour;
     protected int numAttacksGiven;
+    protected  int numAttacksReceived;
 
     public Unit(String name, int health, int attack, int armour) {
         this.name = name;
@@ -15,12 +16,14 @@ public abstract class Unit {
         this.attack = attack;
         this.armour = armour;
         this.numAttacksGiven = 0;
+        this.numAttacksReceived = 0;
     }
 
     public void attack(Unit opponent){
         int newHealth = opponent.getHealth() - (this.getAttack() + this.getAttackBonus()) + (opponent.getArmour() + opponent.getResistBonus());
         opponent.setHealth(newHealth);
-        numAttacksGiven++;
+        this.incrementAttacksGiven();
+        opponent.incrementAttacksReceived();
     }
 
     public String getName() {
@@ -41,6 +44,14 @@ public abstract class Unit {
 
     public int getArmour() {
         return armour;
+    }
+
+    public void incrementAttacksGiven(){
+        this.numAttacksGiven++;
+    }
+
+    public void incrementAttacksReceived(){
+        this.numAttacksReceived++;
     }
 
     @Override
