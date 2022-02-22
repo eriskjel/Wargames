@@ -14,7 +14,7 @@ public class WarGamesClient {
             armyTwo.add(new InfantryUnit("Grunt", 100));
         }
         for (int i = 0; i < 500; i++) {
-            armyOne.add(new InfantryUnit("Footman", 100));
+            armyOne.add(new RangedUnit("Archer", 100));
             armyTwo.add(new RangedUnit("Ranged",100));
         }
 
@@ -30,13 +30,9 @@ public class WarGamesClient {
             armyOne.add(new CommanderUnit("Mountain King", 180));
             armyTwo.add(new CommanderUnit("Gul'dan", 180));
         }
-        /*
-        armyOne.add(new CommanderUnit("Mountain King", 1000));
-        armyTwo.add(new InfantryUnit("Infanterist", 1000));
-        */
-
         //git merg test
+        //testing the git
         Battle battle = new Battle(armyOne, armyTwo);
-        System.out.println(battle.simulate());
+        battle.simulate();
     }
 }
