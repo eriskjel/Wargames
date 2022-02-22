@@ -1,7 +1,6 @@
 package edu.ntnu.idatt2001;
 
 public class CavalryUnit extends Unit{
-    private int numAttacksGiven;
     public CavalryUnit(String name, int health, int attack, int armour){
         super(name, health, attack, armour);
     }

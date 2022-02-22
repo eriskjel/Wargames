@@ -28,8 +28,9 @@ public abstract class Unit {
     public void attack(Unit opponent){
         int newHealth = opponent.getHealth() - (this.getAttack() + this.getAttackBonus()) + (opponent.getArmour() + opponent.getResistBonus());
         opponent.setHealth(newHealth);
-        this.incrementAttacksGiven();
         opponent.incrementAttacksReceived();
+        //this.incrementAttacksGiven();
+        this.incrementAttacksGiven();
     }
 
     public String getName() {
