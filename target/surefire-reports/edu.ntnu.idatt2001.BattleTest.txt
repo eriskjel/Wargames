@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: edu.ntnu.idatt2001.BattleTest
+-------------------------------------------------------------------------------
+Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.048 s - in edu.ntnu.idatt2001.BattleTest

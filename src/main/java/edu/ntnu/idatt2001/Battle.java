@@ -5,12 +5,25 @@ public class Battle {
 
     private final Army armyOne;
     private final Army armyTwo;
+    private int numberWins;
 
+    /**
+     * constructor
+     * @param armyOne army one
+     * @param armyTwo army two
+     */
     public Battle(Army armyOne, Army armyTwo) {
         this.armyOne = armyOne;
         this.armyTwo = armyTwo;
     }
 
+    /**
+     * Method that simulates a battle. There are battles until there is only one army remaining.
+     * One random attacker is picked from army one, as well a random victim also from army two. Same for army two.
+     * Then it is random who gets to attack the other unit first. After each battle, the health of the victim unit is checked
+     * and if dead, the unit is removed from battle. At the end of each while-iteration the progra will check if there is a winner
+     * if so, when the program stops and outputs the winners, if not then the battle goes on.
+     */
     public void simulate() {
         while (armyOne.hasUnits() && armyTwo.hasUnits()) {
 
@@ -40,6 +53,10 @@ public class Battle {
         }
     }
 
+    /**
+     *
+     * @return string with army names
+     */
     @Override
     public String toString() {
         return "Battle{" +
@@ -48,6 +65,11 @@ public class Battle {
                 '}';
     }
 
+    /**
+     * Method that checks if one army as one. By checking if the other army has any units left.
+     * @param armyOne army 1
+     * @param armyTwo army 2
+     */
     public static void checkWin(Army armyOne, Army armyTwo){
         String result = "";
         if (!armyOne.hasUnits()) {
@@ -58,10 +80,20 @@ public class Battle {
         System.out.println(result);
     }
 
+    /**
+     * method that outputs battle info. It will display who attacks who, and the stats of the parts involved
+     * @param attacker attacker unit
+     * @param victim victim unit
+     */
     public static void battleInfo(Unit attacker, Unit victim){
         System.out.println(attacker.getName() + " with " + attacker.getHealth() + " health has a " + (attacker.getAttack() + attacker.getAttackBonus()) + " total attack points, and attacks " + victim.getName() +  " with " + victim.getHealth() + " health who has " + (victim.getResistBonus() + victim.getArmour()) + " total armour points.");
     }
 
+    /**
+     * checks if a unit is dead
+     * @param victim unit
+     * @return true if unit is dead, false if alive
+     */
     public static boolean isDead(Unit victim){
         if (victim.getHealth() < 1) {
             System.out.println(victim.getName() + " has died in combat.");

@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: edu.ntnu.idatt2001.BattleTest$CheckObjectInstances
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.017 s - in edu.ntnu.idatt2001.BattleTest$CheckObjectInstances
