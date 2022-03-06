@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="edu.ntnu.idatt2001.BattleTest$ArmyTests" time="0.011" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="edu.ntnu.idatt2001.BattleTest$ArmyTests" time="0.015" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="NO"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-17.0.2\bin"/>
-    <property name="sun.java.command" value="C:\Users\eriks\AppData\Local\Temp\surefire17320540749667993344\surefirebooter9348602865772865037.jar C:\Users\eriks\AppData\Local\Temp\surefire17320540749667993344 2022-03-03T15-16-11_751-jvmRun1 surefire10338664445630141963tmp surefire_08361311986783220413tmp"/>
+    <property name="sun.java.command" value="C:\Users\eriks\AppData\Local\Temp\surefire14593978334377641055\surefirebooter4786113117404221514.jar C:\Users\eriks\AppData\Local\Temp\surefire14593978334377641055 2022-03-06T14-42-01_034-jvmRun1 surefire8055323349661267760tmp surefire_012807112468924787897tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\eriks\OneDrive - NTNU\NTNU\2. Semester\IDATT2001\Prosjekt\target\test-classes;C:\Users\eriks\OneDrive - NTNU\NTNU\2. Semester\IDATT2001\Prosjekt\target\classes;C:\Users\eriks\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.8.2\junit-jupiter-engine-5.8.2.jar;C:\Users\eriks\.m2\repository\org\junit\platform\junit-platform-engine\1.8.2\junit-platform-engine-1.8.2.jar;C:\Users\eriks\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\eriks\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.8.2\junit-jupiter-api-5.8.2.jar;C:\Users\eriks\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\eriks\.m2\repository\org\junit\platform\junit-platform-commons\1.8.2\junit-platform-commons-1.8.2.jar;C:\Users\eriks\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\eriks\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\eriks\AppData\Local\Temp\surefire17320540749667993344\surefirebooter9348602865772865037.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\eriks\AppData\Local\Temp\surefire14593978334377641055\surefirebooter4786113117404221514.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.2+8-LTS-86"/>
@@ -57,12 +57,12 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="addUnit" classname="edu.ntnu.idatt2001.BattleTest$ArmyTests" time="0.001"/>
-  <testcase name="getRandomUnit" classname="edu.ntnu.idatt2001.BattleTest$ArmyTests" time="0.001">
-    <system-out><![CDATA[Name: test2, health: 100, attack: 15, armour: 10
+  <testcase name="addUnit" classname="edu.ntnu.idatt2001.BattleTest$ArmyTests" time="0"/>
+  <testcase name="getRandomUnit" classname="edu.ntnu.idatt2001.BattleTest$ArmyTests" time="0">
+    <system-out><![CDATA[Name: test3, health: 100, attack: 15, armour: 10
 ]]></system-out>
   </testcase>
   <testcase name="hasUnits" classname="edu.ntnu.idatt2001.BattleTest$ArmyTests" time="0"/>
-  <testcase name="addAllUnits" classname="edu.ntnu.idatt2001.BattleTest$ArmyTests" time="0.002"/>
-  <testcase name="removeUnit" classname="edu.ntnu.idatt2001.BattleTest$ArmyTests" time="0.001"/>
+  <testcase name="addAllUnits" classname="edu.ntnu.idatt2001.BattleTest$ArmyTests" time="0"/>
+  <testcase name="removeUnit" classname="edu.ntnu.idatt2001.BattleTest$ArmyTests" time="0"/>
 </testsuite>

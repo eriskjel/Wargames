@@ -5,10 +5,9 @@ public class Battle {
 
     private final Army armyOne;
     private final Army armyTwo;
-    private int numberWins;
 
     /**
-     * constructor
+     * constructor for battle class
      * @param armyOne army one
      * @param armyTwo army two
      */
@@ -19,9 +18,9 @@ public class Battle {
 
     /**
      * Method that simulates a battle. There are battles until there is only one army remaining.
-     * One random attacker is picked from army one, as well a random victim also from army two. Same for army two.
+     * One random attacker is picked from army one, as well a random victim also from army two. Vice Verca for other army.
      * Then it is random who gets to attack the other unit first. After each battle, the health of the victim unit is checked
-     * and if dead, the unit is removed from battle. At the end of each while-iteration the progra will check if there is a winner
+     * and if dead, the unit is removed from battle. At the end of each while-iteration the program will check if there is a winner
      * if so, when the program stops and outputs the winners, if not then the battle goes on.
      */
     public void simulate() {
@@ -54,7 +53,7 @@ public class Battle {
     }
 
     /**
-     *
+     * tostring
      * @return string with army names
      */
     @Override
@@ -73,9 +72,9 @@ public class Battle {
     public static void checkWin(Army armyOne, Army armyTwo){
         String result = "";
         if (!armyOne.hasUnits()) {
-            result += "Army two has won! Remaining units: " + armyTwo.toString();
+            result += "Army two has won! Remaining units: " + armyTwo;
         } else if (!armyTwo.hasUnits()) {
-            result += "Army one has won! Remaining units: " + armyOne.toString();
+            result += "Army one has won! Remaining units: " + armyOne;
         }
         System.out.println(result);
     }
