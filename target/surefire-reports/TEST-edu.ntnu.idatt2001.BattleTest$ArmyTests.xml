@@ -4,7 +4,7 @@
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="C:\Users\eriks\OneDrive - NTNU\NTNU\2. Semester\IDATT2001\Prosjekt\target\test-classes;C:\Users\eriks\OneDrive - NTNU\NTNU\2. Semester\IDATT2001\Prosjekt\target\classes;C:\Users\eriks\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.8.2\junit-jupiter-engine-5.8.2.jar;C:\Users\eriks\.m2\repository\org\junit\platform\junit-platform-engine\1.8.2\junit-platform-engine-1.8.2.jar;C:\Users\eriks\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\eriks\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.8.2\junit-jupiter-api-5.8.2.jar;C:\Users\eriks\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\eriks\.m2\repository\org\junit\platform\junit-platform-commons\1.8.2\junit-platform-commons-1.8.2.jar;C:\Users\eriks\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\eriks\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+    <property name="java.class.path" value="C:\Users\eriks\OneDrive - NTNU\NTNU\2. Semester\IDATT2001\Wargames\target\test-classes;C:\Users\eriks\OneDrive - NTNU\NTNU\2. Semester\IDATT2001\Wargames\target\classes;C:\Users\eriks\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.8.2\junit-jupiter-engine-5.8.2.jar;C:\Users\eriks\.m2\repository\org\junit\platform\junit-platform-engine\1.8.2\junit-platform-engine-1.8.2.jar;C:\Users\eriks\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\eriks\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.8.2\junit-jupiter-api-5.8.2.jar;C:\Users\eriks\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\eriks\.m2\repository\org\junit\platform\junit-platform-commons\1.8.2\junit-platform-commons-1.8.2.jar;C:\Users\eriks\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\eriks\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
@@ -15,9 +15,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="NO"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-17.0.2\bin"/>
-    <property name="sun.java.command" value="C:\Users\eriks\AppData\Local\Temp\surefire14593978334377641055\surefirebooter4786113117404221514.jar C:\Users\eriks\AppData\Local\Temp\surefire14593978334377641055 2022-03-06T14-42-01_034-jvmRun1 surefire8055323349661267760tmp surefire_012807112468924787897tmp"/>
+    <property name="sun.java.command" value="C:\Users\eriks\AppData\Local\Temp\surefire10239597995594294524\surefirebooter8899080534961813580.jar C:\Users\eriks\AppData\Local\Temp\surefire10239597995594294524 2022-03-13T15-09-42_831-jvmRun1 surefire14921434708004735546tmp surefire_09204219634690900605tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="C:\Users\eriks\OneDrive - NTNU\NTNU\2. Semester\IDATT2001\Prosjekt\target\test-classes;C:\Users\eriks\OneDrive - NTNU\NTNU\2. Semester\IDATT2001\Prosjekt\target\classes;C:\Users\eriks\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.8.2\junit-jupiter-engine-5.8.2.jar;C:\Users\eriks\.m2\repository\org\junit\platform\junit-platform-engine\1.8.2\junit-platform-engine-1.8.2.jar;C:\Users\eriks\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\eriks\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.8.2\junit-jupiter-api-5.8.2.jar;C:\Users\eriks\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\eriks\.m2\repository\org\junit\platform\junit-platform-commons\1.8.2\junit-platform-commons-1.8.2.jar;C:\Users\eriks\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\eriks\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+    <property name="surefire.test.class.path" value="C:\Users\eriks\OneDrive - NTNU\NTNU\2. Semester\IDATT2001\Wargames\target\test-classes;C:\Users\eriks\OneDrive - NTNU\NTNU\2. Semester\IDATT2001\Wargames\target\classes;C:\Users\eriks\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.8.2\junit-jupiter-engine-5.8.2.jar;C:\Users\eriks\.m2\repository\org\junit\platform\junit-platform-engine\1.8.2\junit-platform-engine-1.8.2.jar;C:\Users\eriks\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\eriks\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.8.2\junit-jupiter-api-5.8.2.jar;C:\Users\eriks\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\eriks\.m2\repository\org\junit\platform\junit-platform-commons\1.8.2\junit-platform-commons-1.8.2.jar;C:\Users\eriks\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\eriks\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\eriks"/>
     <property name="user.language" value="no"/>
@@ -25,12 +25,12 @@
     <property name="java.version.date" value="2022-01-18"/>
     <property name="java.home" value="C:\Program Files\Java\jdk-17.0.2"/>
     <property name="file.separator" value="\"/>
-    <property name="basedir" value="C:\Users\eriks\OneDrive - NTNU\NTNU\2. Semester\IDATT2001\Prosjekt"/>
+    <property name="basedir" value="C:\Users\eriks\OneDrive - NTNU\NTNU\2. Semester\IDATT2001\Wargames"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\eriks\AppData\Local\Temp\surefire14593978334377641055\surefirebooter4786113117404221514.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\eriks\AppData\Local\Temp\surefire10239597995594294524\surefirebooter8899080534961813580.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.2+8-LTS-86"/>
@@ -45,24 +45,24 @@
     <property name="java.io.tmpdir" value="C:\Users\eriks\AppData\Local\Temp\"/>
     <property name="idea.version" value="2021.2.2"/>
     <property name="java.version" value="17.0.2"/>
-    <property name="user.dir" value="C:\Users\eriks\OneDrive - NTNU\NTNU\2. Semester\IDATT2001\Prosjekt"/>
+    <property name="user.dir" value="C:\Users\eriks\OneDrive - NTNU\NTNU\2. Semester\IDATT2001\Wargames"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="native.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk-17.0.2\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Cloudflare\Cloudflare WARP\;C:\Users\eriks\AppData\Local\Programs\Python\Python39\Scripts\;C:\Users\eriks\AppData\Local\Programs\Python\Python39\;C:\Program Files\Java\jdk-11.0.12\bin;C:\Users\eriks\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2021.2.2\bin;;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-17.0.2\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\apache-maven-3.8.4\bin;C:\Program Files\Cloudflare\Cloudflare WARP\;C:\Users\eriks\AppData\Local\Programs\Python\Python39\Scripts\;C:\Users\eriks\AppData\Local\Programs\Python\Python39\;C:\Program Files\Java\jdk-11.0.12\bin;C:\Users\eriks\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2021.2.2\bin;C:\Program Files\apache-maven-3.8.4;C:\Users\eriks\AppData\Local\gitkraken\bin;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
     <property name="java.vendor" value="Oracle Corporation"/>
     <property name="java.vm.version" value="17.0.2+8-LTS-86"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="addUnit" classname="edu.ntnu.idatt2001.BattleTest$ArmyTests" time="0"/>
-  <testcase name="getRandomUnit" classname="edu.ntnu.idatt2001.BattleTest$ArmyTests" time="0">
-    <system-out><![CDATA[Name: test3, health: 100, attack: 15, armour: 10
+  <testcase name="addUnit" classname="edu.ntnu.idatt2001.BattleTest$ArmyTests" time="0.001"/>
+  <testcase name="getRandomUnit" classname="edu.ntnu.idatt2001.BattleTest$ArmyTests" time="0.001">
+    <system-out><![CDATA[Name: test2, health: 100, attack: 15, armour: 10
 ]]></system-out>
   </testcase>
-  <testcase name="hasUnits" classname="edu.ntnu.idatt2001.BattleTest$ArmyTests" time="0"/>
-  <testcase name="addAllUnits" classname="edu.ntnu.idatt2001.BattleTest$ArmyTests" time="0"/>
-  <testcase name="removeUnit" classname="edu.ntnu.idatt2001.BattleTest$ArmyTests" time="0"/>
+  <testcase name="hasUnits" classname="edu.ntnu.idatt2001.BattleTest$ArmyTests" time="0.001"/>
+  <testcase name="addAllUnits" classname="edu.ntnu.idatt2001.BattleTest$ArmyTests" time="0.001"/>
+  <testcase name="removeUnit" classname="edu.ntnu.idatt2001.BattleTest$ArmyTests" time="0.003"/>
 </testsuite>
