@@ -4,9 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -40,7 +38,7 @@ class BattleTest {
 
         /**
          * These 4 tests, are testing negatively, meaning they're checking for wrong inputs. Solely negative health in this matter
-         * because any other inputs the IDE will count as error. However negative health is not an error per say, but an udesired value.
+         * because any other inputs the IDE will count as error. However, negative health is not an error per se, but an undesired value.
          */
         @Test
         void checkUnit1Invalid(){
@@ -95,8 +93,7 @@ class BattleTest {
             ArrayList<Unit> units = new ArrayList<>();
             units.add( new InfantryUnit("Gunman", 100));
             units.add( new InfantryUnit("Gunman2", 100));
-            Army armyOne = new Army("army one", units
-            );
+            Army armyOne = new Army("army one", units);
             armyOne.add(new InfantryUnit("test", 100));
         }
         @Test
@@ -244,8 +241,6 @@ class BattleTest {
 
     }
 
-
-    /*
     @Nested
     class HealthIsNotSupported{
         @Test
@@ -258,6 +253,5 @@ class BattleTest {
             }
         }
     }
-     */
 
 }

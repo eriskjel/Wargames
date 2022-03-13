@@ -75,6 +75,10 @@ public class Army {
         return units.get(random.nextInt((units.size())));
     }
 
+    public List<Unit> getInfantryUnits(){
+        return units.stream().filter(item -> item instanceof InfantryUnit).toList();
+    }
+
     /**
      * equals method
      * @param o unit
