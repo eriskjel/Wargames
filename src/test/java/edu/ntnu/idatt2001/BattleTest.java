@@ -244,6 +244,8 @@ class BattleTest {
 
     }
 
+
+    /*
     @Nested
     class HealthIsNotSupported{
         @Test
@@ -256,5 +258,6 @@ class BattleTest {
             }
         }
     }
+     */
 
 }
