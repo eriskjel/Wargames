@@ -75,8 +75,28 @@ public class Army {
         return units.get(random.nextInt((units.size())));
     }
 
-    public List<Unit> getInfantryUnits(){
-        return units.stream().filter(item -> item instanceof InfantryUnit).toList();
+    public ArrayList<Unit> getInfantryUnits(){
+        ArrayList<Unit> infantryUnits = new ArrayList<>();
+        units.stream().filter(item -> item instanceof InfantryUnit).forEach(infantryUnits::add);
+        return infantryUnits;
+    }
+
+    public ArrayList<Unit> getRangedUnits(){
+        ArrayList<Unit> rangedUnits = new ArrayList<>();
+        units.stream().filter(item -> item instanceof RangedUnit).forEach(rangedUnits::add);
+        return rangedUnits;
+    }
+
+    public ArrayList<Unit> getCavalryUnits(){
+        ArrayList<Unit> cavalryUnits = new ArrayList<>();
+        units.stream().filter(item -> item instanceof CavalryUnit).forEach(cavalryUnits::add);
+        return cavalryUnits;
+    }
+
+    public ArrayList<Unit> getCommanderUnits(){
+        ArrayList<Unit> commanderUnits = new ArrayList<>();
+        units.stream().filter(item -> item instanceof CommanderUnit).forEach(commanderUnits::add);
+        return commanderUnits;
     }
 
     /**
