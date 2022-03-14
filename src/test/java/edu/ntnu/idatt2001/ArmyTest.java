@@ -2,6 +2,9 @@ package edu.ntnu.idatt2001;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ArmyTest {
@@ -33,5 +36,17 @@ class ArmyTest {
         System.out.println(armyOne.getRangedUnits());
         System.out.println(armyOne.getCavalryUnits());
         System.out.println(armyOne.getCommanderUnits());
+    }
+
+    @Test
+    void writeToFile(){
+        Army armyOne = new Army("Human Army");
+
+        //adds hundreds of different units to both armies
+        for (int i = 0; i < 10; i++) {
+            armyOne.add(new InfantryUnit("Footman", 100));
+        }
+
+        armyOne.writeToFile(armyOne.getUnits());
     }
 }

@@ -1,5 +1,11 @@
 package edu.ntnu.idatt2001;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Objects;
+
 public class WarGamesClient {
 
 
@@ -31,8 +37,10 @@ public class WarGamesClient {
             armyOne.add(new CommanderUnit("Mountain King", 180));
             armyTwo.add(new CommanderUnit("Gul´dan", 180));
         }
+
         //simulates battle
         Battle battle = new Battle(armyOne, armyTwo);
         battle.simulate();
     }
+
 }

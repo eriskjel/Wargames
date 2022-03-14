@@ -111,6 +111,10 @@ public abstract class Unit {
         return "Name: " + this.getName() + ", health: " + this.getHealth() + ", attack: " + this.getAttack() + ", armour: " + this.getArmour();
     }
 
+    public String toCSVFormat() {
+        return this.getClass().getSimpleName() + "," + this.name + "," +this.getHealth() + "\n";
+    }
+
     /**
      *
      * @return attack bonus of unit

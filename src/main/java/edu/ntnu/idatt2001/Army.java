@@ -1,5 +1,13 @@
 package edu.ntnu.idatt2001;
 
+import com.opencsv.CSVWriter;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 
 public class Army {
@@ -75,6 +83,10 @@ public class Army {
         return units.get(random.nextInt((units.size())));
     }
 
+    public ArrayList<Unit> getUnits(){
+        return this.units;
+    }
+
     public ArrayList<Unit> getInfantryUnits(){
         ArrayList<Unit> infantryUnits = new ArrayList<>();
         units.stream().filter(item -> item instanceof InfantryUnit).forEach(infantryUnits::add);
@@ -98,6 +110,22 @@ public class Army {
         units.stream().filter(item -> item instanceof CommanderUnit).forEach(commanderUnits::add);
         return commanderUnits;
     }
+
+    public void writeToFile(ArrayList<Unit> units) {
+        try (FileWriter fileWriter = new FileWriter("C:\\Users\\eriks\\OneDrive - NTNU\\NTNU\\2. Semester\\IDATT2001\\Wargames\\csv\\test.csv")) {
+            fileWriter.write(this.name + "\n");
+            for (Unit unit : units) {
+                fileWriter.write(unit.toCSVFormat());
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
 
     /**
      * equals method
