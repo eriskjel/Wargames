@@ -45,10 +45,10 @@ public class WarGamesClient {
         Army armyOne = new Army("Human Army");
 
         //adds hundreds of different units to both armies
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 7; i++) {
             armyOne.add(new InfantryUnit("Footman", 100));
         }
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 1; i++) {
             armyOne.add(new RangedUnit("Archer", 100));
         }
 
@@ -56,14 +56,11 @@ public class WarGamesClient {
             armyOne.add(new CavalryUnit("Knight", 100));
         }
         for (int i = 0; i < 1; i++) {
-            armyOne.add(new RangedUnit("Archer", 100));
-        }
-        for (int i = 0; i < 1; i++) {
             armyOne.add(new CommanderUnit("Mountain King", 180));
         }
 
         //specifies the path to the csv file containing the army
-        String pathToArmy = "C:\\Users\\eriks\\OneDrive - NTNU\\NTNU\\2. Semester\\IDATT2001\\Wargames\\csv\\test.csv";
+        String pathToArmy = "C:\\Users\\eriks\\OneDrive - NTNU\\NTNU\\2. Semester\\IDATT2001\\Wargames\\csv\\army.csv";
         Army armyFromFile = readFromFile(pathToArmy);
 
         //simulates battle (hardcode army vs. file army)
@@ -77,7 +74,7 @@ public class WarGamesClient {
     /**
      * Method for reading an army from a file. Reads line by line, and splits by comma.
      * Method then creates units and adds them to an army before returning the whole army
-     * @param path| the path of the file containing the army
+     * @param path the path of the file containing the army
      * @return Returns the army as an object containing the information specified in the csv file
      */
     public static Army readFromFile(String path){
