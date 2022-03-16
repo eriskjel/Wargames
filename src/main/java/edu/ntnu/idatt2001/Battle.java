@@ -72,9 +72,9 @@ public class Battle {
     public static void checkWin(Army armyOne, Army armyTwo){
         String result = "";
         if (!armyOne.hasUnits()) {
-            result += "Army two has won! Remaining units: " + armyTwo;
+            result += armyTwo.getName() + " has won! Remaining units: " + armyTwo;
         } else if (!armyTwo.hasUnits()) {
-            result += "Army one has won! Remaining units: " + armyOne;
+            result += armyOne.getName() + " has won! Remaining units: " + armyOne;
         }
         System.out.println(result);
     }
