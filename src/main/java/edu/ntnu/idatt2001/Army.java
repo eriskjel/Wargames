@@ -1,13 +1,9 @@
 package edu.ntnu.idatt2001;
 
-import com.opencsv.CSVWriter;
+import edu.ntnu.idatt2001.units.*;
 
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.*;
 
 public class Army {

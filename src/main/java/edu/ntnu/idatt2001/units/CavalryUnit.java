@@ -1,18 +1,16 @@
-package edu.ntnu.idatt2001;
+package edu.ntnu.idatt2001.units;
 
-public class CommanderUnit extends Unit{
-
+public class CavalryUnit extends Unit{
 
     /**
-     * constructor
+     * Constructor of unit
      * @param name name of unit
      * @param health health of unit
-     * @param attack attack of unit
-     * @param armour armour of unit
+     * @param attack attack stat
+     * @param armour armour stat
      */
-    public CommanderUnit(String name, int health, int attack, int armour){
+    public CavalryUnit(String name, int health, int attack, int armour){
         super(name, health, attack, armour);
-        numAttacksGiven = 0;
     }
 
     /**
@@ -20,14 +18,14 @@ public class CommanderUnit extends Unit{
      * @param name name of unit
      * @param health health of unit
      */
-    public CommanderUnit(String name, int health){
-        super(name, health, 25, 15);
+    public CavalryUnit(String name, int health){
+        super(name, health, 20, 12);
         numAttacksGiven = 0;
     }
 
     /**
      *
-     * @return attack stat of this unit
+     * @return attack bonus of this unit
      */
     @Override
     public int getAttackBonus() {
@@ -41,7 +39,7 @@ public class CommanderUnit extends Unit{
 
     /**
      *
-     * @return armour of this unit
+     * @return armour bonus of this unit
      */
     @Override
     public int getResistBonus() {

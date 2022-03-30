@@ -1,5 +1,10 @@
 package edu.ntnu.idatt2001;
 
+import edu.ntnu.idatt2001.units.CavalryUnit;
+import edu.ntnu.idatt2001.units.CommanderUnit;
+import edu.ntnu.idatt2001.units.InfantryUnit;
+import edu.ntnu.idatt2001.units.RangedUnit;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;

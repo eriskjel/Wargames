@@ -1,6 +1,8 @@
 package edu.ntnu.idatt2001;
 
 
+import edu.ntnu.idatt2001.units.Unit;
+
 public class Battle {
 
     private final Army armyOne;
@@ -48,7 +50,7 @@ public class Battle {
                     armyOne.remove(victim1);
                 }
             }
-            checkWin(armyOne, armyTwo);
+            System.out.println(checkWin(armyOne, armyOne));
         }
     }
 
@@ -65,18 +67,18 @@ public class Battle {
     }
 
     /**
-     * Method that checks if one army as one. By checking if the other army has any units left.
+     * Method that checks if one army has won, by checking if the other army has any units left.
      * @param armyOne army 1
      * @param armyTwo army 2
      */
-    public static void checkWin(Army armyOne, Army armyTwo){
+    public static String checkWin(Army armyOne, Army armyTwo){
         String result = "";
         if (!armyOne.hasUnits()) {
             result += armyTwo.getName() + " has won! Remaining units: " + armyTwo;
         } else if (!armyTwo.hasUnits()) {
             result += armyOne.getName() + " has won! Remaining units: " + armyOne;
         }
-        System.out.println(result);
+        return result;
     }
 
     /**

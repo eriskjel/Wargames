@@ -1,4 +1,6 @@
-package edu.ntnu.idatt2001;
+package edu.ntnu.idatt2001.units;
+
+import java.util.Objects;
 
 public abstract class Unit {
 
@@ -19,14 +21,17 @@ public abstract class Unit {
      * @throws IllegalArgumentException Throws exception if health, attack or armour stat it lower than zero.
      */
     public Unit(String name, int health, int attack, int armour) throws IllegalArgumentException {
-        if (health < 0){
-            throw new IllegalArgumentException("Health must be larger than zero.");
+        if (name.isBlank()){
+            throw new IllegalArgumentException("Name must not be a blank string.");
+        }
+        if (health <= 0){
+            throw new IllegalArgumentException("Health must be an integer larger than zero.");
         }
         if (attack < 0){
-            throw new IllegalArgumentException("Armour stat must be larger than zero.");
+            throw new IllegalArgumentException("Armour stat must be an integer larger than zero.");
         }
         if (armour < 0){
-            throw new IllegalArgumentException("Armour stat must be larger than zero.");
+            throw new IllegalArgumentException("Armour stat must be an integer larger than zero.");
         }
         this.name = name;
         this.health = health;
@@ -126,4 +131,17 @@ public abstract class Unit {
      * @return armour bonus of unit
      */
     public abstract int getResistBonus();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Unit unit = (Unit) o;
+        return health == unit.health && attack == unit.attack && armour == unit.armour && numAttacksGiven == unit.numAttacksGiven && numAttacksReceived == unit.numAttacksReceived && Objects.equals(name, unit.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, health, attack, armour, numAttacksGiven, numAttacksReceived);
+    }
 }

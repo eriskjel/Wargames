@@ -1,4 +1,4 @@
-package edu.ntnu.idatt2001;
+package edu.ntnu.idatt2001.units;
 
 public class InfantryUnit extends Unit{
 
