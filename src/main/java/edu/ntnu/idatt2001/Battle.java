@@ -50,7 +50,7 @@ public class Battle {
                     armyOne.remove(victim1);
                 }
             }
-            System.out.println(checkWin(armyOne, armyOne));
+            System.out.println(checkWin(armyOne, armyTwo));
         }
     }
 
