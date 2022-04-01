@@ -3,7 +3,6 @@ package edu.ntnu.idatt2001.units;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -44,6 +43,10 @@ public class RangedUnitTest {
         assertEquals(3, testunit.getAttackBonus());
 
     }
+
+    /**
+     * test for checking if the atttack and armour stat are as they should be after an attack
+     */
     @Test
     public void bonusAttackDoesExtraDamageAfterOnce(){
         Unit testunit = new RangedUnit("Archer", 25);
@@ -52,6 +55,10 @@ public class RangedUnitTest {
         assertEquals(4, testunit2.getResistBonus());
         assertEquals(3, testunit2.getAttackBonus());
     }
+
+    /**
+     * test for checking if the attack and armour stat are as they should be after two attacks
+     */
     @Test
     public void bonusAttackDoesExtraDamageAfterTwice(){
         Unit testunit = new RangedUnit("Archer", 25);
