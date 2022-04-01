@@ -1,13 +1,15 @@
 package edu.ntnu.idatt2001.units;
 
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CommanderUnitTest {
+/**
+ * junit tests for Commander Unit
+ */
+public class CommanderUnitTest {
 
     /**
      * test that checks every object variable of unit superclass, and for each csv line, with different illegal values, checks
@@ -32,16 +34,22 @@ class CommanderUnitTest {
         });
     }
 
+    /**
+     *checks if the attack and resist bonus stats are as they should be. This is without any attacks beforehand
+     */
     @Test
-    void checkBonusCalculations() {
+    public void checkBonusCalculations() {
         Unit testunit = new CommanderUnit("Mountain", 25);
         assertEquals(1, testunit.getResistBonus());
         assertEquals(6, testunit.getAttackBonus());
 
     }
 
+    /**
+     * checks if the attack and resist bonus stats are as they should be. However after a unit has attacked someone else, meaning attack bonus should be decreased
+     */
     @Test
-    void checkBonusCalculationsOnce() {
+    public void checkBonusCalculationsOnce() {
         Unit testunit = new CommanderUnit("Mountain", 25);
         Unit testunit2 = new CommanderUnit("Wave", 25);
         testunit.attack(testunit2);
