@@ -6,6 +6,9 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * test class for ranged unit
+ */
 public class RangedUnitTest {
 
     /**
@@ -31,6 +34,9 @@ public class RangedUnitTest {
         });
     }
 
+    /**
+     * test for checking if the attack and armour stat are as they should be
+     */
     @Test
     public void BonusAddsArmourStat(){
         Unit testunit = new RangedUnit("Archer", 25);

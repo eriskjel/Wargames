@@ -8,8 +8,10 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
-class CavalryUnitTest {
+/**
+ * junit tests of Cavalry Unit
+ */
+public class CavalryUnitTest {
 
 
     /**
@@ -36,24 +38,28 @@ class CavalryUnitTest {
     }
 
 
-    @Nested
-    class BonusDamage{
-        @Test
-        void bonusAttackDoesExtraDamage(){
-            Unit testunit = new CavalryUnit("Orc", 25);
-            Unit testunit2 = new CavalryUnit("Orc2", 25);
-            assertEquals(1, testunit.getResistBonus());
-            assertEquals(6, testunit.getAttackBonus());
+    /**
+     * checks if the attack and resist bonus stats are as they should be.
+     */
+    @Test
+    void bonusAttackDoesExtraDamage(){
+        Unit testunit = new CavalryUnit("Orc", 25);
+        Unit testunit2 = new CavalryUnit("Orc2", 25);
+        assertEquals(1, testunit.getResistBonus());
+        assertEquals(6, testunit.getAttackBonus());
 
-        }
-        @Test
-        void bonusAttackDoesExtraDamageAfterAttack(){
-            Unit testunit = new CavalryUnit("Orc", 25);
-            Unit testunit2 = new CavalryUnit("Orc2", 25);
-            testunit.attack(testunit2);
-            assertEquals(1, testunit.getResistBonus());
-            assertEquals(2, testunit.getAttackBonus());
+    }
 
-        }
+    /**
+     * checks if the attack and resist bonus stats are as they should be. However after a unit has attacked someone else, meaning attack bonus should be decreased
+     */
+    @Test
+    void bonusAttackDoesExtraDamageAfterAttack(){
+        Unit testunit = new CavalryUnit("Orc", 25);
+        Unit testunit2 = new CavalryUnit("Orc2", 25);
+        testunit.attack(testunit2);
+        assertEquals(1, testunit.getResistBonus());
+        assertEquals(2, testunit.getAttackBonus());
+
     }
 }
