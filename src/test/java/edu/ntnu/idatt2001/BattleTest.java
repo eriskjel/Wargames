@@ -77,6 +77,5 @@ public class BattleTest {
         Unit test = new InfantryUnit("erik", 100);
         test.setHealth(-100);
         assertTrue(Battle.isDead(test));
-
     }
 }
