@@ -16,6 +16,8 @@ public class WarGamesClient {
 
     public static void main(String[] args) {
 
+        //test data for if project wants to hardcoded armies to fight
+        //at the moment, one army is created by code down below, and one by file
         /*
         //creates to armies
         Army armyOne = new Army("Human Army");
@@ -46,7 +48,7 @@ public class WarGamesClient {
 
          */
 
-        //creates to armies
+        //creates hardcoded army one, to fight army from file
         Army armyOne = new Army("Human Army");
 
         //adds hundreds of different units to both armies
