@@ -1,6 +1,8 @@
 package edu.ntnu.idatt2001.units;
 
-public class RangedUnit extends Unit{
+import java.util.ArrayList;
+
+public class RangedUnit extends Unit implements UnitInterface{
 
     /**
      * Constructor of Unit class.
@@ -48,5 +50,19 @@ public class RangedUnit extends Unit{
         else{
             return 2;
         }
+    }
+
+    @Override
+    public Unit createUnit(String name, int health) {
+        return new RangedUnit(name, health);
+    }
+
+    @Override
+    public ArrayList<Unit> getListOfUnits(int n, String name, int health) {
+        ArrayList<Unit> units = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            units.add(new RangedUnit(name, health));
+        }
+        return units;
     }
 }

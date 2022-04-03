@@ -1,6 +1,8 @@
 package edu.ntnu.idatt2001.units;
 
-public class CavalryUnit extends Unit{
+import java.util.ArrayList;
+
+public class CavalryUnit extends Unit implements UnitInterface{
 
     /**
      * Constructor of unit
@@ -44,5 +46,19 @@ public class CavalryUnit extends Unit{
     @Override
     public int getResistBonus() {
         return 1;
+    }
+
+    @Override
+    public Unit createUnit(String name, int health) {
+        return new InfantryUnit(name, health);
+    }
+
+    @Override
+    public ArrayList<Unit> getListOfUnits(int n, String name, int health) {
+        ArrayList<Unit> units = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            units.add(new InfantryUnit(name, health));
+        }
+        return units;
     }
 }
