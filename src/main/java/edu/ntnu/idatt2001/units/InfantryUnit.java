@@ -33,6 +33,11 @@ public class InfantryUnit extends Unit implements UnitInterface{
         return 2;
     }
 
+    @Override
+    public int incrementAttackBonus(int increment) {
+        return increment;
+    }
+
     /**
      *
      * @return armour bonus of this unit
@@ -40,6 +45,11 @@ public class InfantryUnit extends Unit implements UnitInterface{
     @Override
     public int getResistBonus() {
         return 1;
+    }
+
+    @Override
+    public int incrementResistBonus(int increment) {
+        return increment;
     }
 
     @Override

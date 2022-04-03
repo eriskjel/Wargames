@@ -41,7 +41,7 @@ public class BattleTest {
             armyTwo.add(new CommanderUnit("Gul´dan", 180));
         }
 
-        Battle battle = new Battle(armyOne, armyTwo);
+        Battle battle = new Battle(armyOne, armyTwo, Terrain.HILL);
         battle.simulate();
 
         assertTrue(!armyOne.hasUnits() || !armyTwo.hasUnits());

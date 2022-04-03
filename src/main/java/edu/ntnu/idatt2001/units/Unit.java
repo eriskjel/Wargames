@@ -1,5 +1,7 @@
 package edu.ntnu.idatt2001.units;
 
+import edu.ntnu.idatt2001.Terrain;
+
 import java.util.Objects;
 
 public abstract class Unit {
@@ -128,9 +130,22 @@ public abstract class Unit {
 
     /**
      *
+     * @param increment int to raise attack bonus based on terrain
+     */
+    public abstract int incrementAttackBonus(int increment);
+
+
+    /**
+     *
      * @return armour bonus of unit
      */
     public abstract int getResistBonus();
+
+    /**
+     *
+     * @param increment int to raise resist bonus based on terrain
+     */
+    public abstract int incrementResistBonus(int increment);
 
     @Override
     public boolean equals(Object o) {

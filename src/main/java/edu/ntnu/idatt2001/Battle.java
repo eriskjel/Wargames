@@ -7,15 +7,26 @@ public class Battle {
 
     private final Army armyOne;
     private final Army armyTwo;
+    private final Terrain terrain;
 
     /**
      * constructor for battle class
      * @param armyOne army one
      * @param armyTwo army two
+     * @param terrain
      */
-    public Battle(Army armyOne, Army armyTwo) {
+    public Battle(Army armyOne, Army armyTwo, Terrain terrain) {
         this.armyOne = armyOne;
         this.armyTwo = armyTwo;
+        this.terrain = terrain;
+    }
+
+    public void setBonusesOnTerrain(){
+        for (int i = 0; i < armyOne.getUnits().size(); i++) {
+            if (terrain == Terrain.HILL){
+                armyOne.getInfantryUnits().get(i).incrementAttackBonus(2);
+            }
+        }
     }
 
     /**

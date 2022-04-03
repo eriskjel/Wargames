@@ -66,12 +66,14 @@ public class WarGamesClient {
             armyOne.add(new CommanderUnit("Mountain King", 180));
         }
 
+        Terrain terrain = Terrain.HILL;
+
         //specifies the path to the csv file containing the army
         String pathToArmy = "C:\\Users\\eriks\\OneDrive - NTNU\\NTNU\\2. Semester\\IDATT2001\\Wargames\\csv\\army.csv";
         Army armyFromFile = readFromFile(pathToArmy);
 
         //simulates battle (hardcode army vs. file army)
-        Battle battle = new Battle(armyOne, armyFromFile);
+        Battle battle = new Battle(armyOne, armyFromFile, terrain);
 
         //simulates battle (both are hardcoded armies)
         //Battle battle = new Battle(armyOne, armyTwo);
