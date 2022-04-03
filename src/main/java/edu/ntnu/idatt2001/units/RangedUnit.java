@@ -53,16 +53,7 @@ public class RangedUnit extends Unit implements UnitInterface{
     }
 
     @Override
-    public Unit createUnit(String name, int health) {
-        return new RangedUnit(name, health);
-    }
-
-    @Override
-    public ArrayList<Unit> getListOfUnits(int n, String name, int health) {
-        ArrayList<Unit> units = new ArrayList<>();
-        for (int i = 0; i < n; i++) {
-            units.add(new RangedUnit(name, health));
-        }
-        return units;
+    public void draw() {
+        System.out.println("Inside RangedUnit::draw method.");
     }
 }

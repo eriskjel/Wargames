@@ -51,16 +51,7 @@ public class CommanderUnit extends Unit implements UnitInterface{
     }
 
     @Override
-    public Unit createUnit(String name, int health) {
-        return new InfantryUnit(name, health);
-    }
-
-    @Override
-    public ArrayList<Unit> getListOfUnits(int n, String name, int health) {
-        ArrayList<Unit> units = new ArrayList<>();
-        for (int i = 0; i < n; i++) {
-            units.add(new InfantryUnit(name, health));
-        }
-        return units;
+    public void draw() {
+        System.out.println("Inside CommanderUnit::draw method.");
     }
 }

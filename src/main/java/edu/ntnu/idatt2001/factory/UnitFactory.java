@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class UnitFactory {
 
-    public Unit getUnit(String unitType, String name, int health){
+    public UnitInterface getUnit(String unitType, String name, int health){
         if (unitType == null){
             return null;
         }
