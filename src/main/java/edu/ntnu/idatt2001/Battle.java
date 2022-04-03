@@ -7,16 +7,20 @@ public class Battle {
 
     private final Army armyOne;
     private final Army armyTwo;
+    private static Terrain terrain = null;
 
     /**
      * constructor for battle class
      * @param armyOne army one
      * @param armyTwo army two
+     * @param terrain battle terrain
      */
-    public Battle(Army armyOne, Army armyTwo) {
+    public Battle(Army armyOne, Army armyTwo, Terrain terrain) {
         this.armyOne = armyOne;
         this.armyTwo = armyTwo;
+        Battle.terrain = terrain;
     }
+
 
     /**
      * Method that simulates a battle. There are battles until there is only one army remaining.
@@ -38,14 +42,14 @@ public class Battle {
 
             if (randomIndex == 1){
                 battleInfo(attacker1,victim2);
-                attacker1.attack(victim2);
+                attacker1.attack(victim2, terrain);
                 if (isDead(victim2)){
                     armyTwo.remove(victim2);
                 }
             }
             else{
                 battleInfo(attacker2,victim1);
-                attacker2.attack(victim1);
+                attacker2.attack(victim1, terrain);
                 if (isDead(victim1)){
                     armyOne.remove(victim1);
                 }
@@ -87,7 +91,7 @@ public class Battle {
      * @param victim victim unit
      */
     public static void battleInfo(Unit attacker, Unit victim){
-        System.out.println(attacker.getName() + " with " + attacker.getHealth() + " health has a " + (attacker.getAttack() + attacker.getAttackBonus()) + " total attack points, and attacks " + victim.getName() +  " with " + victim.getHealth() + " health who has " + (victim.getResistBonus() + victim.getArmour()) + " total armour points.");
+        System.out.println(attacker.getName() + " with " + attacker.getHealth() + " health has a " + (attacker.getAttack() + attacker.getAttackBonus(terrain)) + " total attack points, and attacks " + victim.getName() +  " with " + victim.getHealth() + " health who has " + (victim.getResistBonus(terrain) + victim.getArmour()) + " total armour points.");
     }
 
     /**

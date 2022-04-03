@@ -126,7 +126,7 @@ public class Army {
     /**
      * equals method
      * @param o unit
-     * @return true if eqal
+     * @return true if equal
      */
     @Override
     public boolean equals(Object o) {
@@ -147,7 +147,7 @@ public class Army {
      */
     @Override
     public String toString() {
-        String results = new String("\n");
+        String results = "\n";
         for (Unit unit: units) {
             results += unit.toString() + "\n";
         }

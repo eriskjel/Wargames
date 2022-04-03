@@ -1,5 +1,6 @@
 package edu.ntnu.idatt2001.units;
 
+import edu.ntnu.idatt2001.Terrain;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -39,27 +40,98 @@ public class CavalryUnitTest {
 
 
     /**
-     * checks if the attack and resist bonus stats are as they should be.
+     * inner test class for when cavalry unit is fighting in forest terrain
      */
-    @Test
-    void bonusAttackDoesExtraDamage(){
-        Unit testunit = new CavalryUnit("Orc", 25);
-        Unit testunit2 = new CavalryUnit("Orc2", 25);
-        assertEquals(1, testunit.getResistBonus());
-        assertEquals(6, testunit.getAttackBonus());
+    @Nested
+    public class BonusesInForest{
 
+        Terrain terrain = Terrain.FOREST;
+
+        /**
+         * checks if the attack and resist bonus stats are as they should be.
+         */
+        @Test
+        public void bonusAttackDoesExtraDamage(){
+            Unit testunit = new CavalryUnit("Orc", 25);
+            assertEquals(0, testunit.getResistBonus(terrain));
+            assertEquals(6, testunit.getAttackBonus(terrain));
+        }
+
+        /**
+         * checks if the attack and resist bonus stats are as they should be. However after a unit has attacked someone else, meaning attack bonus should be decreased
+         */
+        @Test
+        public void bonusAttackDoesExtraDamageAfterAttack(){
+            Unit testunit = new CavalryUnit("Orc", 25);
+            Unit testunit2 = new CavalryUnit("Orc2", 25);
+            testunit.attack(testunit2, terrain);
+            assertEquals(0, testunit.getResistBonus(terrain));
+            assertEquals(2, testunit.getAttackBonus(terrain));
+
+        }
     }
 
     /**
-     * checks if the attack and resist bonus stats are as they should be. However after a unit has attacked someone else, meaning attack bonus should be decreased
+     * inner test class for when cavalry unit is fighting in plains terrain
      */
-    @Test
-    void bonusAttackDoesExtraDamageAfterAttack(){
-        Unit testunit = new CavalryUnit("Orc", 25);
-        Unit testunit2 = new CavalryUnit("Orc2", 25);
-        testunit.attack(testunit2);
-        assertEquals(1, testunit.getResistBonus());
-        assertEquals(2, testunit.getAttackBonus());
+    @Nested
+    public class BonusesInPlains{
 
+        Terrain terrain = Terrain.PLAINS;
+
+        /**
+         * checks if the attack and resist bonus stats are as they should be.
+         */
+        @Test
+        public void bonusAttackDoesExtraDamage(){
+            Unit testunit = new CavalryUnit("Orc", 25);
+            assertEquals(1, testunit.getResistBonus(terrain));
+            assertEquals(8, testunit.getAttackBonus(terrain));
+        }
+
+        /**
+         * checks if the attack and resist bonus stats are as they should be. However after a unit has attacked someone else, meaning attack bonus should be decreased
+         */
+        @Test
+        public void bonusAttackDoesExtraDamageAfterAttack(){
+            Unit testunit = new CavalryUnit("Orc", 25);
+            Unit testunit2 = new CavalryUnit("Orc2", 25);
+            testunit.attack(testunit2, terrain);
+            assertEquals(1, testunit.getResistBonus(terrain));
+            assertEquals(4, testunit.getAttackBonus(terrain));
+
+        }
+    }
+
+    /**
+     * inner test class for when cavalry unit is fighting in hill terrain
+     */
+    @Nested
+    public class BonusesInHill{
+
+        Terrain terrain = Terrain.HILL;
+
+        /**
+         * checks if the attack and resist bonus stats are as they should be.
+         */
+        @Test
+        public void bonusAttackDoesExtraDamage(){
+            Unit testunit = new CavalryUnit("Orc", 25);
+            assertEquals(1, testunit.getResistBonus(terrain));
+            assertEquals(6, testunit.getAttackBonus(terrain));
+        }
+
+        /**
+         * checks if the attack and resist bonus stats are as they should be. However after a unit has attacked someone else, meaning attack bonus should be decreased
+         */
+        @Test
+        public void bonusAttackDoesExtraDamageAfterAttack(){
+            Unit testunit = new CavalryUnit("Orc", 25);
+            Unit testunit2 = new CavalryUnit("Orc2", 25);
+            testunit.attack(testunit2, terrain);
+            assertEquals(1, testunit.getResistBonus(terrain));
+            assertEquals(2, testunit.getAttackBonus(terrain));
+
+        }
     }
 }

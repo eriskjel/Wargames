@@ -1,5 +1,7 @@
 package edu.ntnu.idatt2001.units;
 
+import edu.ntnu.idatt2001.Terrain;
+
 import java.util.Objects;
 
 public abstract class Unit {
@@ -46,8 +48,8 @@ public abstract class Unit {
      * Updates victims health and increment attacks received and attacks given counter.
      * @param opponent Unit
      */
-    public void attack(Unit opponent){
-        int newHealth = opponent.getHealth() - (this.getAttack() + this.getAttackBonus()) + (opponent.getArmour() + opponent.getResistBonus());
+    public void attack(Unit opponent, Terrain terrain){
+        int newHealth = opponent.getHealth() - (this.getAttack() + this.getAttackBonus(terrain)) + (opponent.getArmour() + opponent.getResistBonus(terrain));
         opponent.setHealth(newHealth);
         opponent.incrementAttacksReceived();
         this.incrementAttacksGiven();
@@ -124,13 +126,16 @@ public abstract class Unit {
      *
      * @return attack bonus of unit
      */
-    public abstract int getAttackBonus();
+    public abstract int getAttackBonus(Terrain terrain);
+
 
     /**
      *
      * @return armour bonus of unit
+     * @param terrain battle terrain
      */
-    public abstract int getResistBonus();
+    public abstract int getResistBonus(Terrain terrain);
+
 
     @Override
     public boolean equals(Object o) {

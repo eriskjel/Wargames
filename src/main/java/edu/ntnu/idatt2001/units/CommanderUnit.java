@@ -1,6 +1,6 @@
 package edu.ntnu.idatt2001.units;
 
-import java.util.ArrayList;
+import edu.ntnu.idatt2001.Terrain;
 
 public class CommanderUnit extends Unit implements UnitInterface{
 
@@ -32,7 +32,7 @@ public class CommanderUnit extends Unit implements UnitInterface{
      * @return attack stat of this unit
      */
     @Override
-    public int getAttackBonus() {
+    public int getAttackBonus(Terrain terrain) {
         if (this.numAttacksGiven == 0){
             return 6;
         }
@@ -44,9 +44,10 @@ public class CommanderUnit extends Unit implements UnitInterface{
     /**
      *
      * @return armour of this unit
+     * @param terrain battle terrain
      */
     @Override
-    public int getResistBonus() {
+    public int getResistBonus(Terrain terrain) {
         return 1;
     }
 
