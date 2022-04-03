@@ -1,0 +1,82 @@
+.top-bar{
+    -fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #d02929 0.0%, #0000ff 100.0%);
+}
+
+.vertical-bar{
+    -fx-background-color: #000000;
+}
+
+.p-header{
+    -fx-text-fill: #DCDDCE;
+    -fx-font-size: 20px;
+
+}
+
+.header{
+    -fx-font-size: 35px;
+    -fx-font-weight: bold;
+    -fx-text-fill: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #d02929 0.0%, #0000ff 100.0%);
+}
+
+.h2{
+    -fx-text-fill: black;
+    -fx-font-size: 25px;
+    -fx-padding: 0;
+}
+
+.button:hover{
+    -fx-cursor: hand;
+    -fx-underline: true;
+}
+
+.menuButton:hover{
+    -fx-cursor: hand;
+}
+
+.button-menu{
+    -fx-alignment: center-left;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-background-color: none;
+
+}
+
+.activeBtn{
+    -fx-text-fill: white
+}
+
+.button-logout{
+    -fx-text-fill: #2B78E4;
+    -fx-font-weight: bold;
+    -fx-background-color: white;
+}
+
+.p{
+    -fx-font-size: 15px;
+}
+
+.blueBtn{
+    -fx-background-color: #2B78E4;
+}
+
+.btnHub{
+    -fx-border-color: #2B78E4;
+    -fx-border-width: 3px;
+    -fx-border-radius: 4px;
+    -fx-background-color: white;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2B78E4;
+}
+
+.btnHub:hover{
+    -fx-text-fill: white;
+    -fx-background-color: #2B78E4;
+}
+
+.anchor{
+    -fx-text-fill: blue;
+}
+
+.anchor:hover{
+    -fx-underline: true;
+}
