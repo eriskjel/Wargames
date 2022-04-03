@@ -48,8 +48,8 @@ public abstract class Unit {
      * Updates victims health and increment attacks received and attacks given counter.
      * @param opponent Unit
      */
-    public void attack(Unit opponent){
-        int newHealth = opponent.getHealth() - (this.getAttack() + this.getAttackBonus()) + (opponent.getArmour() + opponent.getResistBonus());
+    public void attack(Unit opponent, Terrain terrain){
+        int newHealth = opponent.getHealth() - (this.getAttack() + this.getAttackBonus(terrain)) + (opponent.getArmour() + opponent.getResistBonus(terrain));
         opponent.setHealth(newHealth);
         opponent.incrementAttacksReceived();
         this.incrementAttacksGiven();
@@ -126,26 +126,16 @@ public abstract class Unit {
      *
      * @return attack bonus of unit
      */
-    public abstract int getAttackBonus();
-
-    /**
-     *
-     * @param increment int to raise attack bonus based on terrain
-     */
-    public abstract int incrementAttackBonus(int increment);
+    public abstract int getAttackBonus(Terrain terrain);
 
 
     /**
      *
      * @return armour bonus of unit
+     * @param terrain battle terrain
      */
-    public abstract int getResistBonus();
+    public abstract int getResistBonus(Terrain terrain);
 
-    /**
-     *
-     * @param increment int to raise resist bonus based on terrain
-     */
-    public abstract int incrementResistBonus(int increment);
 
     @Override
     public boolean equals(Object o) {

@@ -1,5 +1,6 @@
 package edu.ntnu.idatt2001.units;
 
+import edu.ntnu.idatt2001.Terrain;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -32,10 +33,50 @@ class InfantryUnitTest {
         });
     }
 
-    @Test
-    void CheckAttackAndResistBonus(){
-        Unit testunit = new InfantryUnit("the man", 25);
-        assertEquals(1, testunit.getResistBonus());
-        assertEquals(2, testunit.getAttackBonus());
+    /**
+     * inner test class for when infantry unit is fighting in forest terrain
+     */
+    @Nested
+    public class BonusesInForest{
+
+        Terrain terrain = Terrain.FOREST;
+
+        /**
+         * checks if the attack and resist bonus stats are as they should be.
+         */
+        @Test
+        public void checkAttackAndResistStats(){
+            Unit testunit = new InfantryUnit("the man", 25);
+            assertEquals(3, testunit.getResistBonus(terrain));
+            assertEquals(4, testunit.getAttackBonus(terrain));
+        }
+    }
+
+    /**
+     * inner test class for when infantry class is fighting in NOT forest terrain.
+     */
+    @Nested
+    public class BonusesInHillAndPlains{
+        /**
+         * checks if the attack and resist bonus stats are as they should be.
+         */
+        @Test
+        public void checkAttackAndResistStatsInHill(){
+            Terrain terrain = Terrain.HILL;
+            Unit testunit = new InfantryUnit("the man", 25);
+            assertEquals(1, testunit.getResistBonus(terrain));
+            assertEquals(2, testunit.getAttackBonus(terrain));
+        }
+
+        /**
+         * checks if the attack and resist bonus stats are as they should be.
+         */
+        @Test
+        public void checkAttackAndResistStatsInPlains(){
+            Terrain terrain = Terrain.PLAINS;
+            Unit testunit = new InfantryUnit("the man", 25);
+            assertEquals(1, testunit.getResistBonus(terrain));
+            assertEquals(2, testunit.getAttackBonus(terrain));
+        }
     }
 }

@@ -1,6 +1,6 @@
 package edu.ntnu.idatt2001.units;
 
-import java.util.ArrayList;
+import edu.ntnu.idatt2001.Terrain;
 
 public class RangedUnit extends Unit implements UnitInterface{
 
@@ -31,16 +31,25 @@ public class RangedUnit extends Unit implements UnitInterface{
      * @return attack bonus of this unit
      */
     @Override
-    public int getAttackBonus() {
-        return 3;
+    public int getAttackBonus(Terrain terrain) {
+        if (terrain == Terrain.HILL){
+            return 5;
+        }
+        else if(terrain == Terrain.FOREST){
+            return 1;
+        }
+        else{
+            return 3;
+        }
     }
 
     /**
      *
      * @return armour bonus of this unit
+     * @param terrain battle terrain
      */
     @Override
-    public int getResistBonus() {
+    public int getResistBonus(Terrain terrain) {
         if (numAttacksReceived == 0){
             return 6;
         }

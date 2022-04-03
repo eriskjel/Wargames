@@ -48,6 +48,84 @@ public class BattleTest {
     }
 
     /**
+     * unit test for simulate method. Tricky method to test, however it's possible to just overlook that armies fight and that there
+     * is a winner picked, implying that the other army has no units left
+     * this unit test also accounts for terrain changes in attack and resists stats
+     */
+    @Test
+    public void simulateWithHillTerrain() {
+        Terrain terrain = Terrain.HILL;
+        Army armyOne = new Army("archers");
+        Army armyTwo = new Army("footmen");
+
+        for (int i = 0; i < 5; i++) {
+            armyOne.add(new InfantryUnit("Footman", 100));
+            //armyTwo.add(new InfantryUnit("Grunt", 100));
+        }
+        for (int i = 0; i < 5; i++) {
+            //armyOne.add(new RangedUnit("Archer", 100));
+            armyTwo.add(new RangedUnit("Ranged",100));
+        }
+
+        Battle battle = new Battle(armyOne, armyTwo, terrain);
+        battle.simulate();
+
+        assertTrue(!armyOne.hasUnits() || !armyTwo.hasUnits());
+    }
+
+    /**
+     * unit test for simulate method. Tricky method to test, however it's possible to just overlook that armies fight and that there
+     * is a winner picked, implying that the other army has no units left
+     * this unit test also accounts for terrain changes in attack and resists stats
+     */
+    @Test
+    public void simulateWithForestTerrain() {
+        Terrain terrain = Terrain.FOREST;
+        Army armyOne = new Army("archers");
+        Army armyTwo = new Army("footmen");
+
+        for (int i = 0; i < 5; i++) {
+            armyOne.add(new InfantryUnit("Footman", 100));
+            //armyTwo.add(new InfantryUnit("Grunt", 100));
+        }
+        for (int i = 0; i < 1; i++) {
+            //armyOne.add(new RangedUnit("Archer", 100));
+            armyTwo.add(new RangedUnit("Ranged",10));
+        }
+
+        Battle battle = new Battle(armyOne, armyTwo, terrain);
+        battle.simulate();
+
+        assertTrue(!armyOne.hasUnits() || !armyTwo.hasUnits());
+    }
+
+    /**
+     * unit test for simulate method. Tricky method to test, however it's possible to just overlook that armies fight and that there
+     * is a winner picked, implying that the other army has no units left
+     * this unit test also accounts for terrain changes in attack and resists stats
+     */
+    @Test
+    public void simulateWithPlainsTerrain() {
+        Terrain terrain = Terrain.PLAINS;
+        Army armyOne = new Army("Human Army");
+        Army armyTwo = new Army("Orcish Horde");
+
+        for (int i = 0; i < 10; i++) {
+            armyOne.add(new InfantryUnit("Footman", 100));
+            armyTwo.add(new InfantryUnit("Grunt", 100));
+        }
+        for (int i = 0; i < 10; i++) {
+            armyOne.add(new RangedUnit("Archer", 100));
+            armyTwo.add(new RangedUnit("Ranged",100));
+        }
+
+        Battle battle = new Battle(armyOne, armyTwo, terrain);
+        battle.simulate();
+
+        assertTrue(!armyOne.hasUnits() || !armyTwo.hasUnits());
+    }
+
+    /**
      * test to check if a winner is chosen properly
      */
     @Test
