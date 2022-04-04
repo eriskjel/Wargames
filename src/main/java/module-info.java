@@ -4,6 +4,8 @@ module Wargames {
 
     requires org.controlsfx.controls;
     requires validatorfx;
+    requires java.desktop;
+    requires java.logging;
 
     opens edu.ntnu.idatt2001.gui to javafx.fxml;
 
