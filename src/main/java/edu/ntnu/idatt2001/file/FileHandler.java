@@ -52,15 +52,9 @@ public class FileHandler {
         }
     }
 
-    public void writeToFile(Army army) {
-        try (FileWriter fileWriter = new FileWriter("C:\\Users\\eriks\\OneDrive - NTNU\\NTNU\\2. Semester\\IDATT2001\\Wargames\\csv\\test.csv")) {
+    public void writeToFile(Army army, String path) {
+        try (FileWriter fileWriter = new FileWriter(path)) {
             fileWriter.write(army.getName() + "\n");
-            /*
-            for (Unit unit : units) {
-                fileWriter.write(unit.toCSVFormat());
-            }
-
-             */
             for (int i = 0; i < army.getUnits().size(); i++) {
                 fileWriter.write(army.getUnits().get(i).toCSVFormat());
             }
