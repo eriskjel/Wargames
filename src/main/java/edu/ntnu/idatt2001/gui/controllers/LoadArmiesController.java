@@ -1,6 +1,7 @@
 package edu.ntnu.idatt2001.gui.controllers;
 
 import edu.ntnu.idatt2001.Army;
+import edu.ntnu.idatt2001.file.FileHandler;
 import edu.ntnu.idatt2001.units.CavalryUnit;
 import edu.ntnu.idatt2001.units.CommanderUnit;
 import edu.ntnu.idatt2001.units.InfantryUnit;
@@ -36,6 +37,9 @@ import java.util.ResourceBundle;
  */
 public class LoadArmiesController {
 
+    private ArrayList<Army> armies = new ArrayList<>();
+    private String pathLoaded;
+
 
     public Label lblFileSelected;
     /**
@@ -54,7 +58,9 @@ public class LoadArmiesController {
 
 
         File file = fileChooser.showOpenDialog(stage);
-        String path = file.getAbsolutePath();
+        pathLoaded = file.getAbsolutePath();
+
+        lblFileSelected.setText(pathLoaded);
     }
 
     private void openFile(File file) {
