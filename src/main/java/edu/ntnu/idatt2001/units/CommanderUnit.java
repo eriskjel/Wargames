@@ -1,6 +1,6 @@
 package edu.ntnu.idatt2001.units;
 
-import edu.ntnu.idatt2001.Terrain;
+import edu.ntnu.idatt2001.enums.Terrain;
 
 public class CommanderUnit extends Unit{
 

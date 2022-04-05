@@ -80,7 +80,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>edu.ntnu.idatt2001.WarGamesClient</mainClass>
+                            <mainClass>edu.ntnu.idatt2001.client.WarGamesClient</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

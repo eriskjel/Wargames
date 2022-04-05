@@ -1,10 +1,9 @@
 package edu.ntnu.idatt2001;
 
 import edu.ntnu.idatt2001.units.*;
-import org.junit.jupiter.api.Nested;
+import edu.ntnu.idatt2001.war.Army;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,7 +1,6 @@
 package edu.ntnu.idatt2001.file;
 
-import edu.ntnu.idatt2001.Army;
-import edu.ntnu.idatt2001.WarGamesClient;
+import edu.ntnu.idatt2001.war.Army;
 import edu.ntnu.idatt2001.units.CavalryUnit;
 import edu.ntnu.idatt2001.units.CommanderUnit;
 import edu.ntnu.idatt2001.units.InfantryUnit;

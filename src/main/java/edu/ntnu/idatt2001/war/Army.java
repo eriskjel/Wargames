@@ -1,10 +1,7 @@
-package edu.ntnu.idatt2001;
+package edu.ntnu.idatt2001.war;
 
 import edu.ntnu.idatt2001.units.*;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 

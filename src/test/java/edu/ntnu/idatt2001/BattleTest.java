@@ -1,6 +1,9 @@
 package edu.ntnu.idatt2001;
 
+import edu.ntnu.idatt2001.enums.Terrain;
 import edu.ntnu.idatt2001.units.*;
+import edu.ntnu.idatt2001.war.Army;
+import edu.ntnu.idatt2001.war.Battle;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
