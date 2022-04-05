@@ -1,6 +1,7 @@
-package edu.ntnu.idatt2001;
+package edu.ntnu.idatt2001.war;
 
 
+import edu.ntnu.idatt2001.enums.Terrain;
 import edu.ntnu.idatt2001.units.Unit;
 
 public class Battle {

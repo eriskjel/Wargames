@@ -1,6 +1,6 @@
 package edu.ntnu.idatt2001.units;
 
-import edu.ntnu.idatt2001.Terrain;
+import edu.ntnu.idatt2001.enums.Terrain;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

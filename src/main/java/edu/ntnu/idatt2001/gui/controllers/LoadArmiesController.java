@@ -1,6 +1,6 @@
 package edu.ntnu.idatt2001.gui.controllers;
 
-import edu.ntnu.idatt2001.Army;
+import edu.ntnu.idatt2001.war.Army;
 import edu.ntnu.idatt2001.file.FileHandler;
 import edu.ntnu.idatt2001.gui.models.UnitModel;
 import javafx.collections.FXCollections;
@@ -66,6 +66,7 @@ public class LoadArmiesController implements Initializable {
         //create army by reading file, with path specified from user input
         Army army = fileHandler.readFromFile(pathLoaded);
 
+        //sets army name above table for display
         lblArmyName.setText(army.getName());
 
         for (int i = 0; i < army.getArrayWithUnitNames().size(); i++) {
@@ -79,8 +80,6 @@ public class LoadArmiesController implements Initializable {
         this.colUnit.setCellValueFactory(new PropertyValueFactory<>("Unit"));
         this.colQuantity.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
         this.tableArmyPreview.setItems(observableList);
-        //refreshTable();
-
     }
 
 

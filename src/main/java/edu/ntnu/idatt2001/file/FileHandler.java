@@ -1,6 +1,6 @@
 package edu.ntnu.idatt2001.file;
 
-import edu.ntnu.idatt2001.Army;
+import edu.ntnu.idatt2001.war.Army;
 import edu.ntnu.idatt2001.units.*;
 
 import java.io.BufferedReader;
@@ -8,7 +8,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class FileHandler {
