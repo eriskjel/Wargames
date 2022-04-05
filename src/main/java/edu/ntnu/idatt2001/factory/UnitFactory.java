@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class UnitFactory {
 
-    public UnitInterface getUnit(String unitType, String name, int health){
+    public Unit createUnit(String unitType, String name, int health){
         if (unitType == null){
             return null;
         }
@@ -27,34 +27,9 @@ public class UnitFactory {
 
     public ArrayList<Unit> getListOfUnits(String unitType, int n, String name, int health){
         ArrayList<Unit> units = new ArrayList<>();
-        if (unitType == null){
-            return null;
+        for (int i = 0; i < n; i++) {
+            units.add(createUnit(unitType, name, health));
         }
-        if (unitType.equalsIgnoreCase("INFANTRY UNIT")){
-            for (int i = 0; i < n; i++) {
-                units.add(new InfantryUnit(name, health));
-            }
-            return units;
-        }
-        else if(unitType.equalsIgnoreCase("RANGED UNIT")){
-            for (int i = 0; i < n; i++) {
-                units.add(new RangedUnit(name, health));
-            }
-            return units;
-        }
-        else if(unitType.equalsIgnoreCase("CAVALRY UNIT")){
-            for (int i = 0; i < n; i++) {
-                units.add(new CavalryUnit(name, health));
-            }
-            return units;
-        }
-        else if (unitType.equalsIgnoreCase("COMMANDER UNIT")){
-            for (int i = 0; i < n; i++) {
-                units.add(new CommanderUnit(name, health));
-            }
-            return units;
-        }
-        return null;
-
+        return units;
     }
 }

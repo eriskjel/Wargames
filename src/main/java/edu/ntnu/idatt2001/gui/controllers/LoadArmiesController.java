@@ -27,6 +27,7 @@ public class LoadArmiesController implements Initializable {
     public TableView tableArmyPreview;
     public TableColumn colUnit;
     public TableColumn colQuantity;
+    public Label lblArmyName;
     private ArrayList<Army> armies = new ArrayList<>();
     private String pathLoaded;
     private FileHandler fileHandler = new FileHandler();
@@ -59,9 +60,13 @@ public class LoadArmiesController implements Initializable {
         //reset table beforehand
         tableArmyPreview.getItems().clear();
 
+
+
+
         //create army by reading file, with path specified from user input
         Army army = fileHandler.readFromFile(pathLoaded);
 
+        lblArmyName.setText(army.getName());
 
         for (int i = 0; i < army.getArrayWithUnitNames().size(); i++) {
             UnitModel unitModel = new UnitModel(army.getArrayWithUnitNames().get(i), army.getNumUnitsByType(army.getArrayWithUnitNames().get(i)));

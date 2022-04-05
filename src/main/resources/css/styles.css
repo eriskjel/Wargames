@@ -80,3 +80,46 @@
 .anchor:hover{
     -fx-underline: true;
 }
+
+.table-view .column-header-background .filler {
+    -fx-background-color: transparent;
+}
+
+.table-view .corner {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #d02929 0.0%, #0000ff 100.0%);
+    -fx-background-insets: 0 0 0 0;
+    -fx-padding: 0 0 3px 0;
+}
+
+.table-view .table-cell{
+    -fx-border-color: transparent;
+    -fx-padding: 2 0 2 10px;
+}
+.table-row-cell:odd{
+    -fx-background-color: white;
+    -fx-background-insets: 0, 0 0 0 0;
+    -fx-padding: 0.0em;
+}
+.table-row-cell:even{
+    -fx-background-color: #E9E9E9;
+    -fx-background-insets: 0, 0 0 0 0;
+    -fx-padding: 0.0em;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #a2a3a9;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-text-alignment: LEFT;
+}
+
