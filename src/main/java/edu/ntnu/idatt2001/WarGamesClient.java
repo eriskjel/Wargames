@@ -1,5 +1,6 @@
 package edu.ntnu.idatt2001;
 
+import edu.ntnu.idatt2001.file.FileHandler;
 import edu.ntnu.idatt2001.units.CavalryUnit;
 import edu.ntnu.idatt2001.units.CommanderUnit;
 import edu.ntnu.idatt2001.units.InfantryUnit;
@@ -70,7 +71,9 @@ public class WarGamesClient {
 
         //specifies the path to the csv file containing the army
         String pathToArmy = "C:\\Users\\eriks\\OneDrive - NTNU\\NTNU\\2. Semester\\IDATT2001\\Wargames\\csv\\army.csv";
-        Army armyFromFile = readFromFile(pathToArmy);
+        FileHandler fileHandler = new FileHandler();
+        Army armyFromFile = fileHandler.readFromFile(pathToArmy);
+        //Army armyFromFile = readFromFile(pathToArmy);
 
         //simulates battle (hardcode army vs. file army)
         Battle battle = new Battle(armyOne, armyFromFile, terrain);

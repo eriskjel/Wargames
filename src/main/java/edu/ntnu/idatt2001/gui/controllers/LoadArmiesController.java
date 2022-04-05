@@ -45,14 +45,16 @@ public class LoadArmiesController {
     private Desktop desktop = Desktop.getDesktop();
 
     public void uploadArmy(ActionEvent actionEvent) {
+
+
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         //fileChooser.showOpenDialog(stage);
 
+
+
         File file = fileChooser.showOpenDialog(stage);
-        if (file != null){
-            openFile(file);
-        }
+        String path = file.getAbsolutePath();
     }
 
     private void openFile(File file) {
