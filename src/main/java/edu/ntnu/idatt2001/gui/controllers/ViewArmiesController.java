@@ -2,8 +2,10 @@ package edu.ntnu.idatt2001.gui.controllers;
 
 import edu.ntnu.idatt2001.file.FileHandler;
 import edu.ntnu.idatt2001.gui.App;
+import edu.ntnu.idatt2001.gui.models.LoadedArmyModel;
 import edu.ntnu.idatt2001.gui.models.UnitModel;
 import edu.ntnu.idatt2001.register.ArmyRegister;
+import edu.ntnu.idatt2001.register.RegistryClient;
 import edu.ntnu.idatt2001.war.Army;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,7 +18,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
 
@@ -32,53 +33,65 @@ import java.util.ResourceBundle;
  */
 public class ViewArmiesController implements Initializable {
 
-    public TableView tableArmyPreview;
-    public TableColumn colUnit;
-    public TableColumn colQuantity;
     public Label lblArmyName;
-    private ArrayList<Army> armies = new ArrayList<>();
-    private String pathLoaded;
+    public TableView tableLoadedArmies;
+    public TableColumn colArmyName;
+    public TableColumn colTotalUnits;
+    public TableColumn colTotalHealth;
+    public TableColumn colFileName;
     private FileHandler fileHandler = new FileHandler();
     ObservableList<UnitModel> observableList = FXCollections.observableArrayList();
-    public Label lblFileSelected;
-    ArmyRegister armyRegister = new ArmyRegister();
     /**
      * stage of application
      */
     private Stage stage;
 
+    /**
+     * Fills table when fxml table is loaded
+     * @param url url
+     * @param resourceBundle bundle
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        clearTable();
+        this.colArmyName.setCellValueFactory(new PropertyValueFactory<>("ArmyName"));
+        this.colTotalUnits.setCellValueFactory(new PropertyValueFactory<>("TotalUnits"));
+        this.colTotalHealth.setCellValueFactory(new PropertyValueFactory<>("TotalHealth"));
+        this.colFileName.setCellValueFactory(new PropertyValueFactory<>("FileName"));
+        this.tableLoadedArmies.setItems(observableList);
+        fillTable();
+    }
+
+    /**
+     *
+     */
     public void fillTable(){
         clearTable();
 
-        //create army by reading file, with path specified from user input
-        Army army = fileHandler.readFromFile(pathLoaded);
 
-        //sets army name above table for display
-        lblArmyName.setText(army.getName());
-
-        for (int i = 0; i < army.getArrayWithUnitNames().size(); i++) {
-            UnitModel unitModel = new UnitModel(army.getArrayWithUnitNames().get(i), army.getNumUnitsByType(army.getArrayWithUnitNames().get(i)));
-            tableArmyPreview.getItems().add(unitModel);
+        for (int i = 0; i < RegistryClient.armyRegister.getArmiesSize(); i++) {
+            LoadedArmyModel loadedArmyModel = new LoadedArmyModel(
+                    RegistryClient.armyRegister.getArmies().get(i).getName(),
+                    RegistryClient.armyRegister.getArmies().get(i).getUnits().size(),
+                    RegistryClient.armyRegister.getArmies().get(i).getSumHealth(),
+                    RegistryClient.armyRegister.getArmies().get(i).getFileName());
+            tableLoadedArmies.getItems().add(loadedArmyModel);
         }
+
     }
 
     /**
      * clears table
      */
     public void clearTable(){
-        tableArmyPreview.getItems().clear();
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.colUnit.setCellValueFactory(new PropertyValueFactory<>("Unit"));
-        this.colQuantity.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
-        this.tableArmyPreview.setItems(observableList);
+        tableLoadedArmies.getItems().clear();
     }
 
     public void removeAllArmies(ActionEvent actionEvent) throws IOException {
+        RegistryClient.armyRegister.removeAll();
         File file = new File("src/main/resources/armyRegister");
         FileUtils.cleanDirectory(file);
+        clearTable();
     }
 
     /**

@@ -1,5 +1,6 @@
 package edu.ntnu.idatt2001.gui;
 
+import edu.ntnu.idatt2001.register.RegistryClient;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,6 +19,7 @@ public class App extends Application {
         stage.getIcons().add(new Image("file:src/main/resources/img/swords.png"));
         stage.setScene(scene);
         stage.show();
+        RegistryClient.armyRegister.removeAll();
     }
 
 
