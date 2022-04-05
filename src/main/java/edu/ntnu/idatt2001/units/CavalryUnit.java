@@ -2,7 +2,7 @@ package edu.ntnu.idatt2001.units;
 
 import edu.ntnu.idatt2001.Terrain;
 
-public class CavalryUnit extends Unit implements UnitInterface{
+public class CavalryUnit extends Unit{
 
     /**
      * Constructor of unit
@@ -63,11 +63,5 @@ public class CavalryUnit extends Unit implements UnitInterface{
         else{
             return 1;
         }
-    }
-
-
-    @Override
-    public void draw() {
-        System.out.println("Inside CavalryUnit::draw method.");
     }
 }

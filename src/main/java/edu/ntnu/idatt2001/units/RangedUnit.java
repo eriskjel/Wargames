@@ -2,7 +2,7 @@ package edu.ntnu.idatt2001.units;
 
 import edu.ntnu.idatt2001.Terrain;
 
-public class RangedUnit extends Unit implements UnitInterface{
+public class RangedUnit extends Unit{
 
     /**
      * Constructor of Unit class.
@@ -59,10 +59,5 @@ public class RangedUnit extends Unit implements UnitInterface{
         else{
             return 2;
         }
-    }
-
-    @Override
-    public void draw() {
-        System.out.println("Inside RangedUnit::draw method.");
     }
 }

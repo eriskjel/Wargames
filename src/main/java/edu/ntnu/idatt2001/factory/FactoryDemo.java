@@ -1,6 +1,7 @@
 package edu.ntnu.idatt2001.factory;
 
 
+import edu.ntnu.idatt2001.units.Unit;
 import edu.ntnu.idatt2001.units.UnitInterface;
 
 public class FactoryDemo {
@@ -8,17 +9,17 @@ public class FactoryDemo {
     public static void main(String[] args) {
         UnitFactory unitFactory = new UnitFactory();
 
-        UnitInterface unit1 = unitFactory.getUnit("INFANTRY UNIT", "Footman", 100);
-        unit1.draw();
+        Unit unit1 = unitFactory.createUnit("INFANTRY UNIT", "Footman", 100);
 
-        UnitInterface unit2 = unitFactory.getUnit("RANGED UNIT", "Archer", 100);
-        unit2.draw();
 
-        UnitInterface unit3 = unitFactory.getUnit("RANGED UNIT", "Archer", 100);
-        unit3.draw();
+        Unit unit2 = unitFactory.createUnit("RANGED UNIT", "Archer", 100);
 
-        UnitInterface unit4 = unitFactory.getUnit("RANGED UNIT", "Archer", 100);
-        unit4.draw();
+
+        Unit unit3 = unitFactory.createUnit("RANGED UNIT", "Archer", 100);
+
+
+        Unit unit4 = unitFactory.createUnit("RANGED UNIT", "Archer", 100);
+
 
         System.out.println(unitFactory.getListOfUnits("INFANTRY UNIT", 5, "TEST", 100));
 

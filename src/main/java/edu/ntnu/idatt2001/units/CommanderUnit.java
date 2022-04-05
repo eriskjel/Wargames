@@ -2,7 +2,7 @@ package edu.ntnu.idatt2001.units;
 
 import edu.ntnu.idatt2001.Terrain;
 
-public class CommanderUnit extends Unit implements UnitInterface{
+public class CommanderUnit extends Unit{
 
 
     /**
@@ -49,10 +49,5 @@ public class CommanderUnit extends Unit implements UnitInterface{
     @Override
     public int getResistBonus(Terrain terrain) {
         return 1;
-    }
-
-    @Override
-    public void draw() {
-        System.out.println("Inside CommanderUnit::draw method.");
     }
 }
