@@ -56,21 +56,23 @@ public class LoadArmiesController implements Initializable {
     }
 
     public void fillTable(){
+        //reset table beforehand
+        tableArmyPreview.getItems().clear();
+
+        //create army by reading file, with path specified from user input
         Army army = fileHandler.readFromFile(pathLoaded);
 
 
-        /*
-        for (int i = 0; i < army.getNumOfDifferentUnits(); i++) {
-            UnitModel unitModel = new UnitModel(army);
+        for (int i = 0; i < army.getArrayWithUnitNames().size(); i++) {
+            UnitModel unitModel = new UnitModel(army.getArrayWithUnitNames().get(i), army.getNumUnitsByType(army.getArrayWithUnitNames().get(i)));
+            tableArmyPreview.getItems().add(unitModel);
         }
-
-         */
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.colUnit.setCellValueFactory(new PropertyValueFactory<>("Date"));
-        this.colQuantity.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        this.colUnit.setCellValueFactory(new PropertyValueFactory<>("Unit"));
+        this.colQuantity.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
         this.tableArmyPreview.setItems(observableList);
         //refreshTable();
 

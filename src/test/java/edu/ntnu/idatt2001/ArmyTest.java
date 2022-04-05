@@ -110,28 +110,6 @@ public class ArmyTest {
         assertEquals(1, armyOne.getCommanderUnits().size());
     }
 
-    @Test
-    void getNumOfDifferentUnits() {
-        Army armyOne = new Army("Human Army");
-
-        //adds hundreds of different units to both armies
-        for (int i = 0; i < 10; i++) {
-            armyOne.add(new InfantryUnit("Footman", 10));
-        }
-        for (int i = 0; i < 5; i++) {
-            armyOne.add(new RangedUnit("Archer", 10));
-        }
-        for (int i = 0; i < 2; i++) {
-            armyOne.add(new CavalryUnit("Knight", 5));
-        }
-
-        ArrayList<String> correctArraylistWithNames = new ArrayList<>();
-        correctArraylistWithNames.add("Infantry");
-        correctArraylistWithNames.add("Ranged");
-        correctArraylistWithNames.add("Cavalry");
-
-        assertEquals(correctArraylistWithNames.size(), armyOne.getNumOfDifferentUnits());
-    }
 
     @Test
     public void getArrayWithUnitNames() {
@@ -154,5 +132,25 @@ public class ArmyTest {
         correctArraylistWithNames.add("Cavalry");
 
         assertEquals(correctArraylistWithNames, armyOne.getArrayWithUnitNames());
+    }
+
+    @Test
+    public void getNumUnitsByType() {
+        Army armyOne = new Army("Human Army");
+
+        //adds hundreds of different units to both armies
+        for (int i = 0; i < 10; i++) {
+            armyOne.add(new InfantryUnit("Footman", 10));
+        }
+        for (int i = 0; i < 5; i++) {
+            armyOne.add(new RangedUnit("Archer", 10));
+        }
+        for (int i = 0; i < 2; i++) {
+            armyOne.add(new CavalryUnit("Knight", 5));
+        }
+
+        assertEquals(10, armyOne.getNumUnitsByType("Infantry"));
+        assertEquals(5, armyOne.getNumUnitsByType("Ranged"));
+        assertEquals(2, armyOne.getNumUnitsByType("Cavalry"));
     }
 }
