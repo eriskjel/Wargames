@@ -10,6 +10,7 @@ public class Army {
     private int armyID;
     private final String name;
     private final ArrayList<Unit> units;
+    private String fileName = "";
 
     /**
      * Constructor for army
@@ -52,6 +53,14 @@ public class Army {
      */
     public String getName(){
         return this.name;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName){
+        this.fileName = fileName;
     }
 
     /**
@@ -129,13 +138,19 @@ public class Army {
     }
 
     public int getNumUnitsByType(String type){
+        return (int) this.getUnits().stream().map(Unit::getUnitType).filter(unit -> unit.equals(type)).count();
+    }
+
+    public int getSumHealth(){
         int sum = 0;
         for (int i = 0; i < this.getUnits().size(); i++) {
-            if (this.getUnits().get(i).getUnitType().equals(type)){
-                sum++;
-            }
+            sum += this.getUnits().get(i).getHealth();
         }
         return sum;
+    }
+
+    public String getFilePath(){
+        return "src/main/resources/armyRegister/" + this.getName() + " - " + this.getArmyID();
     }
 
     /**

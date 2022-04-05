@@ -2,6 +2,7 @@ package edu.ntnu.idatt2001.gui.controllers;
 
 import edu.ntnu.idatt2001.gui.App;
 import edu.ntnu.idatt2001.register.ArmyRegister;
+import edu.ntnu.idatt2001.register.RegistryClient;
 import edu.ntnu.idatt2001.war.Army;
 import edu.ntnu.idatt2001.file.FileHandler;
 import edu.ntnu.idatt2001.gui.models.UnitModel;
@@ -38,7 +39,7 @@ public class LoadArmiesController implements Initializable {
     private FileHandler fileHandler = new FileHandler();
     ObservableList<UnitModel> observableList = FXCollections.observableArrayList();
     public Label lblFileSelected;
-    ArmyRegister armyRegister = new ArmyRegister();
+    private String fileName;
     /**
      * stage of application
      */
@@ -53,6 +54,7 @@ public class LoadArmiesController implements Initializable {
 
         File file = fileChooser.showOpenDialog(stage);
         pathLoaded = file.getAbsolutePath();
+        fileName = file.getName();
 
         lblFileSelected.setText(pathLoaded);
 
@@ -99,7 +101,8 @@ public class LoadArmiesController implements Initializable {
     public void saveArmy(ActionEvent actionEvent) throws IOException {
 
         Army army = fileHandler.readFromFile(pathLoaded);
-        armyRegister.add(army);
+        army.setFileName(fileName);
+        RegistryClient.armyRegister.add(army);
         goToViewArmies(actionEvent);
     }
 

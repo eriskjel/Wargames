@@ -67,7 +67,7 @@ public class WarGamesClient {
         Terrain terrain = Terrain.PLAINS;
 
         //specifies the path to the csv file containing the army
-        String pathToArmy = "C:\\Users\\eriks\\OneDrive - NTNU\\NTNU\\2. Semester\\IDATT2001\\Wargames\\csv\\army.csv";
+        String pathToArmy = "src/main/resources/csv/army.csv";
 
         //creates fileHandler object to read army from file
         FileHandler fileHandler = new FileHandler();

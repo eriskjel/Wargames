@@ -37,7 +37,7 @@
                 <version>0.0.8</version>
                 <configuration>
                     <!-- TODO: Set your main class here -->
-                    <mainClass>Wargames/edu.idatt2001.gui.Application</mainClass>
+                    <mainClass>Wargames/edu.ntnu.idatt2001.gui.AppMain</mainClass>
                 </configuration>
             </plugin>
 

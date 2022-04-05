@@ -114,12 +114,12 @@
                         <Glow />
                      </effect>
                   </ImageView>
-                  <TableView fx:id="tableArmyPreview" layoutX="271.0" layoutY="106.0" prefHeight="252.0" prefWidth="759.0" stylesheets="@../css/styles.css">
+                  <TableView fx:id="tableLoadedArmies" layoutX="271.0" layoutY="106.0" prefHeight="252.0" prefWidth="759.0" stylesheets="@../css/styles.css">
                     <columns>
-                      <TableColumn fx:id="colUnit" prefWidth="181.0" text="Army name" />
-                      <TableColumn fx:id="colQuantity" prefWidth="197.0" text="Total units" />
-                        <TableColumn fx:id="colUnit1" prefWidth="186.0" text="Total health" />
-                        <TableColumn fx:id="colUnit2" prefWidth="194.0" text="File name" />
+                      <TableColumn fx:id="colArmyName" prefWidth="181.0" text="Army name" />
+                      <TableColumn fx:id="colTotalUnits" prefWidth="197.0" text="Total units" />
+                        <TableColumn fx:id="colTotalHealth" prefWidth="186.0" text="Total health" />
+                        <TableColumn fx:id="colFileName" prefWidth="194.0" text="File name" />
                     </columns>
                   </TableView>
                   <Button layoutX="270.0" layoutY="390.0" mnemonicParsing="false" onAction="#removeAllArmies" text="Remove all armies" />
