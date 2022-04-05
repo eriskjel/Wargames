@@ -109,29 +109,4 @@ public class ArmyTest {
         assertEquals(100, armyOne.getCavalryUnits().size());
         assertEquals(1, armyOne.getCommanderUnits().size());
     }
-
-    /**
-     * test for method writing to file
-     * runs writeToFile method, and afterwards checks if there is a file with the desired name written in the method
-     */
-    @Test
-    public void writeToFile(){
-
-        Army armyOne = new Army("Human Army");
-
-        //adds hundreds of different units to both armies
-        for (int i = 0; i < 100; i++) {
-            armyOne.add(new InfantryUnit("Footman", 100));
-            armyOne.add(new RangedUnit("Footman", 100));
-        }
-
-
-        //writes to file
-        armyOne.writeToFile(armyOne.getUnits());
-
-        //checks if file exists and if the file has content
-        File file = new File("csv/test.csv");
-        assertTrue(file.exists());
-        assertNotEquals(0, file.length());
-    }
 }

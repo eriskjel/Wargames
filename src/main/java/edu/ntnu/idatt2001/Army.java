@@ -107,6 +107,7 @@ public class Army {
         return commanderUnits;
     }
 
+    /*
     public void writeToFile(ArrayList<Unit> units) {
         try (FileWriter fileWriter = new FileWriter("C:\\Users\\eriks\\OneDrive - NTNU\\NTNU\\2. Semester\\IDATT2001\\Wargames\\csv\\test.csv")) {
             fileWriter.write(this.name + "\n");
@@ -120,8 +121,7 @@ public class Army {
 
     }
 
-
-
+     */
 
     /**
      * equals method
