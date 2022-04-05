@@ -5,8 +5,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
- * Class that represents an Army. This is solely used to add data to the table, used in "load-armies.fxml".
- * This should not be confused with the actual Army object, which represent an actual army in a battle.
+ * Class that represents u Unit. This is solely used to add data to the table, used in "load-armies.fxml".
+ * This should not be confused with the actual Unit object, which represents an actual unit in a battle.
  *
  */
 public class UnitModel {
