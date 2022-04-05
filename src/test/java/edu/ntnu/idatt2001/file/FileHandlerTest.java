@@ -54,16 +54,16 @@ public class FileHandlerTest {
         //adds hundreds of different units to both armies
         for (int i = 0; i < 10; i++) {
             armyOne.add(new InfantryUnit("Footman", 100));
-            armyOne.add(new RangedUnit("Footman", 100));
+            armyOne.add(new RangedUnit("Archer", 100));
         }
 
 
         //writes to file
         FileHandler fileHandler = new FileHandler();
-        fileHandler.writeToFile(armyOne);
+        fileHandler.writeToFile(armyOne, "src/main/resources/csv/test.csv");
 
         //checks if file exists and if the file has content
-        File file = new File("csv/test.csv");
+        File file = new File("src/main/resources/csv/test.csv");
         assertTrue(file.exists());
         assertNotEquals(0, file.length());
     }
