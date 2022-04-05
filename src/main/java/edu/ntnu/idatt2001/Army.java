@@ -109,12 +109,19 @@ public class Army {
         return commanderUnits;
     }
 
-    public int getNumOfDifferentUnits(){
-        return (int) this.getUnits().stream().map(Unit::getUnitType).distinct().count();
-    }
 
     public ArrayList<String> getArrayWithUnitNames(){
         return this.getUnits().stream().map(Unit::getUnitType).distinct().collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    public int getNumUnitsByType(String type){
+        int sum = 0;
+        for (int i = 0; i < this.getUnits().size(); i++) {
+            if (this.getUnits().get(i).getUnitType().equals(type)){
+                sum++;
+            }
+        }
+        return sum;
     }
 
     /**

@@ -8,8 +8,11 @@ module Wargames {
     requires java.logging;
 
     opens edu.ntnu.idatt2001.gui to javafx.fxml;
-
     exports edu.ntnu.idatt2001.gui;
+
+    opens edu.ntnu.idatt2001.gui.models to javafx.fxml;
+    exports edu.ntnu.idatt2001.gui.models;
+
     exports edu.ntnu.idatt2001.gui.controllers;
     opens edu.ntnu.idatt2001.gui.controllers to javafx.fxml;
 }
