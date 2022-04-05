@@ -6,6 +6,7 @@ module Wargames {
     requires validatorfx;
     requires java.desktop;
     requires java.logging;
+    requires org.apache.commons.io;
 
     opens edu.ntnu.idatt2001.gui to javafx.fxml;
     exports edu.ntnu.idatt2001.gui;

@@ -2,7 +2,6 @@ package edu.ntnu.idatt2001.factory;
 
 
 import edu.ntnu.idatt2001.units.Unit;
-import edu.ntnu.idatt2001.units.UnitInterface;
 
 public class FactoryDemo {
 
