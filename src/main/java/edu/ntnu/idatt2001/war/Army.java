@@ -7,11 +7,12 @@ import java.util.stream.Collectors;
 
 public class Army {
 
+    private int armyID;
     private final String name;
     private final ArrayList<Unit> units;
 
     /**
-     * Constructor
+     * Constructor for army
      * @param name name of army
      */
     public Army(String name){
@@ -20,13 +21,29 @@ public class Army {
     }
 
     /**
-     * Constuctor
+     * Constructor for army
      * @param name name of army
      * @param units list with units to fill army
      */
     public Army(String name, ArrayList<Unit> units){
         this.name = name;
         this.units = units;
+    }
+
+    /**
+     * getter for armyid
+     * @return army id
+     */
+    public int getArmyID() {
+        return armyID;
+    }
+
+    /**
+     * setter for army id
+     * @param armyID armyid
+     */
+    public void setArmyID(int armyID) {
+        this.armyID = armyID;
     }
 
     /**
