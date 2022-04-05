@@ -122,6 +122,10 @@ public abstract class Unit {
         return this.getClass().getSimpleName() + "," + this.name + "," +this.getHealth() + "\n";
     }
 
+    public String getUnitType(){
+        return this.getClass().getSimpleName().replaceAll("Unit", "");
+    }
+
     /**
      *
      * @return attack bonus of unit

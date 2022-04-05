@@ -4,7 +4,9 @@ import edu.ntnu.idatt2001.units.*;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Army {
 
@@ -107,21 +109,13 @@ public class Army {
         return commanderUnits;
     }
 
-    /*
-    public void writeToFile(ArrayList<Unit> units) {
-        try (FileWriter fileWriter = new FileWriter("C:\\Users\\eriks\\OneDrive - NTNU\\NTNU\\2. Semester\\IDATT2001\\Wargames\\csv\\test.csv")) {
-            fileWriter.write(this.name + "\n");
-            for (Unit unit : units) {
-                fileWriter.write(unit.toCSVFormat());
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+    public int getNumOfDifferentUnits(){
+        return (int) this.getUnits().stream().map(Unit::getUnitType).distinct().count();
     }
 
-     */
+    public ArrayList<String> getArrayWithUnitNames(){
+        return this.getUnits().stream().map(Unit::getUnitType).distinct().collect(Collectors.toCollection(ArrayList::new));
+    }
 
     /**
      * equals method
