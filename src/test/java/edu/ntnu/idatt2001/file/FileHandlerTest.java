@@ -21,7 +21,7 @@ public class FileHandlerTest {
     @Test
     public void readFromFile() {
         //create army from file
-        String filePath = "C:\\Users\\eriks\\OneDrive - NTNU\\NTNU\\2. Semester\\IDATT2001\\Wargames\\csv\\army.csv";
+        String filePath = "src/main/resources/csv/army.csv";
         FileHandler fileHandler = new FileHandler();
         Army armyFromFile = fileHandler.readFromFile(filePath);
         //Army armyFromFile = WarGamesClient.readFromFile(filePath);

@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class InfantryUnitTest {
+public class InfantryUnitTest {
 
     /**
      * test that checks every object variable of unit superclass, and for each csv line, with different illegal values, checks
