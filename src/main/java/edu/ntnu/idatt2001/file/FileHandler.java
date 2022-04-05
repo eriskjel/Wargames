@@ -1,15 +1,14 @@
 package edu.ntnu.idatt2001.file;
 
 import edu.ntnu.idatt2001.Army;
-import edu.ntnu.idatt2001.units.CavalryUnit;
-import edu.ntnu.idatt2001.units.CommanderUnit;
-import edu.ntnu.idatt2001.units.InfantryUnit;
-import edu.ntnu.idatt2001.units.RangedUnit;
+import edu.ntnu.idatt2001.units.*;
 
 import java.io.BufferedReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class FileHandler {
@@ -52,5 +51,24 @@ public class FileHandler {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public void writeToFile(Army army) {
+        try (FileWriter fileWriter = new FileWriter("C:\\Users\\eriks\\OneDrive - NTNU\\NTNU\\2. Semester\\IDATT2001\\Wargames\\csv\\test.csv")) {
+            fileWriter.write(army.getName() + "\n");
+            /*
+            for (Unit unit : units) {
+                fileWriter.write(unit.toCSVFormat());
+            }
+
+             */
+            for (int i = 0; i < army.getUnits().size(); i++) {
+                fileWriter.write(army.getUnits().get(i).toCSVFormat());
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }
