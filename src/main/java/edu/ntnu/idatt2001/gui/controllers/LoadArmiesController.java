@@ -2,32 +2,19 @@ package edu.ntnu.idatt2001.gui.controllers;
 
 import edu.ntnu.idatt2001.Army;
 import edu.ntnu.idatt2001.file.FileHandler;
-import edu.ntnu.idatt2001.units.CavalryUnit;
-import edu.ntnu.idatt2001.units.CommanderUnit;
-import edu.ntnu.idatt2001.units.InfantryUnit;
-import edu.ntnu.idatt2001.units.RangedUnit;
+import edu.ntnu.idatt2001.gui.models.UnitModel;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import java.awt.Desktop;
-import java.io.BufferedReader;
+
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Objects;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -35,10 +22,16 @@ import java.util.ResourceBundle;
  * Class that handles the interaction between the fxml file "admin-edit-tournament.fxml" and the backend.
  * This class houses all the methods and variables needed to perform the tasks
  */
-public class LoadArmiesController {
+public class LoadArmiesController implements Initializable {
 
+    public TableView tableArmyPreview;
+    public TableColumn colUnit;
+    public TableColumn colQuantity;
     private ArrayList<Army> armies = new ArrayList<>();
     private String pathLoaded;
+    private FileHandler fileHandler = new FileHandler();
+    ObservableList<UnitModel> observableList = FXCollections.observableArrayList();
+
 
 
     public Label lblFileSelected;
@@ -46,11 +39,8 @@ public class LoadArmiesController {
      * stage of application
      */
     private Stage stage;
-    private Desktop desktop = Desktop.getDesktop();
 
     public void uploadArmy(ActionEvent actionEvent) {
-
-
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         //fileChooser.showOpenDialog(stage);
@@ -61,17 +51,29 @@ public class LoadArmiesController {
         pathLoaded = file.getAbsolutePath();
 
         lblFileSelected.setText(pathLoaded);
+
+        fillTable();
     }
 
-    private void openFile(File file) {
-        try {
-            desktop.open(file);
-        } catch (IOException ex) {
-            Logger.getLogger(
-                    LoadArmiesController.class.getName()).log(
-                    Level.SEVERE, null, ex
-            );
+    public void fillTable(){
+        Army army = fileHandler.readFromFile(pathLoaded);
+
+
+        /*
+        for (int i = 0; i < army.getNumOfDifferentUnits(); i++) {
+            UnitModel unitModel = new UnitModel(army);
         }
+
+         */
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.colUnit.setCellValueFactory(new PropertyValueFactory<>("Date"));
+        this.colQuantity.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        this.tableArmyPreview.setItems(observableList);
+        //refreshTable();
+
     }
 
 
