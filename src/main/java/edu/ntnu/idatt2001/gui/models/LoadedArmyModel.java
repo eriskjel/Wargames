@@ -18,13 +18,15 @@ public class LoadedArmyModel {
     private SimpleIntegerProperty totalUnits;
     private SimpleIntegerProperty totalHealth;
     private SimpleStringProperty fileName;
+    private int armyID;
 
 
-    public LoadedArmyModel(String armyName, int totalUnits, int totalHealth, String fileName){
+    public LoadedArmyModel(String armyName, int totalUnits, int totalHealth, String fileName, int armyID){
         this.armyName = new SimpleStringProperty(armyName);
         this.totalUnits = new SimpleIntegerProperty(totalUnits);
         this.totalHealth = new SimpleIntegerProperty(totalHealth);
         this.fileName = new SimpleStringProperty(fileName);
+        this.armyID = armyID;
     }
 
 
@@ -91,5 +93,9 @@ public class LoadedArmyModel {
      */
     public void setTotalHealth(String fileName) {
         this.fileName = new SimpleStringProperty(fileName);
+    }
+
+    public int getArmyID(){
+        return this.armyID;
     }
 }

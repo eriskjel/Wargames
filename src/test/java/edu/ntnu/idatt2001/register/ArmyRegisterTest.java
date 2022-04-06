@@ -7,10 +7,12 @@ import edu.ntnu.idatt2001.units.RangedUnit;
 import edu.ntnu.idatt2001.war.Army;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ArmyRegisterTest {
-    ArmyRegister armyRegister = new ArmyRegister();
+
     @Test
     public void add() {
         //creates army
@@ -30,7 +32,14 @@ public class ArmyRegisterTest {
             armyOne.add(new CommanderUnit("Mountain King", 180));
         }
 
-        armyRegister.add(armyOne);
+        RegistryClient.armyRegister.add(armyOne);
+        assertEquals(1, RegistryClient.armyRegister.getArmies().size());
+
+        File file = new File(armyOne.getFilePath());
+        assertTrue(file.exists());
+
+        //delete file so that test leaves no trace
+        RegistryClient.armyRegister.remove(armyOne);
     }
 
     @Test
@@ -52,7 +61,11 @@ public class ArmyRegisterTest {
             armyOne.add(new CommanderUnit("Mountain King", 180));
         }
 
-        armyRegister.add(armyOne);
-        armyRegister.remove(armyOne);
+        RegistryClient.armyRegister.add(armyOne);
+        RegistryClient.armyRegister.remove(armyOne);
+        assertEquals(0, RegistryClient.armyRegister.getArmies().size());
+
+        File file = new File(armyOne.getFilePath());
+        assertFalse(file.exists());
     }
 }

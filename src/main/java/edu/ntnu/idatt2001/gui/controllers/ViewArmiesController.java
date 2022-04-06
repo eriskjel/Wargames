@@ -33,21 +33,16 @@ import java.util.ResourceBundle;
  */
 public class ViewArmiesController implements Initializable {
 
-    public Label lblArmyName;
     public TableView tableLoadedArmies;
     public TableColumn colArmyName;
     public TableColumn colTotalUnits;
     public TableColumn colTotalHealth;
     public TableColumn colFileName;
-    private FileHandler fileHandler = new FileHandler();
     ObservableList<UnitModel> observableList = FXCollections.observableArrayList();
-    /**
-     * stage of application
-     */
-    private Stage stage;
 
     /**
-     * Fills table when fxml table is loaded
+     * method that runs when fxml file is loaded
+     * makes sure that table is filled at startup
      * @param url url
      * @param resourceBundle bundle
      */
@@ -63,18 +58,20 @@ public class ViewArmiesController implements Initializable {
     }
 
     /**
-     *
+     * fills table with every army loaded in application
      */
     public void fillTable(){
+        //clears table
         clearTable();
 
-
-        for (int i = 0; i < RegistryClient.armyRegister.getArmiesSize(); i++) {
+        //loops through army register and fills table with LoadedArmyModels
+        for (int i = 0; i < RegistryClient.armyRegister.getArmies().size(); i++) {
             LoadedArmyModel loadedArmyModel = new LoadedArmyModel(
                     RegistryClient.armyRegister.getArmies().get(i).getName(),
                     RegistryClient.armyRegister.getArmies().get(i).getUnits().size(),
                     RegistryClient.armyRegister.getArmies().get(i).getSumHealth(),
-                    RegistryClient.armyRegister.getArmies().get(i).getFileName());
+                    RegistryClient.armyRegister.getArmies().get(i).getFileName(),
+                    RegistryClient.armyRegister.getArmies().get(i).getArmyID());
             tableLoadedArmies.getItems().add(loadedArmyModel);
         }
 
@@ -87,7 +84,12 @@ public class ViewArmiesController implements Initializable {
         tableLoadedArmies.getItems().clear();
     }
 
-    public void removeAllArmies(ActionEvent actionEvent) throws IOException {
+    /**
+     * removes all armies from register, deletes all files from army directory
+     * and clears table afterwards
+     * @throws IOException exception
+     */
+    public void removeAllArmies() throws IOException {
         RegistryClient.armyRegister.removeAll();
         File file = new File("src/main/resources/armyRegister");
         FileUtils.cleanDirectory(file);
@@ -97,11 +99,11 @@ public class ViewArmiesController implements Initializable {
     /**
      * Method that loads a new fxml file and sets it as the current scene
      * @param actionEvent event
-     * @throws IOException
+     * @throws IOException exception
      */
     public void goToLoadArmies(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/load-armies.fxml"));
-        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load(), 1300, 680);
 
         stage.setTitle("View your armies");
@@ -110,7 +112,18 @@ public class ViewArmiesController implements Initializable {
     }
 
 
-    public void removeSelectedArmy(ActionEvent actionEvent) {
-        //
+    public void removeSelectedArmy(ActionEvent actionEvent) throws IOException {
+        ObservableList<LoadedArmyModel> allArmies, singleArmy;
+        allArmies = tableLoadedArmies.getItems();
+        singleArmy = tableLoadedArmies.getSelectionModel().getSelectedItems();
+
+        for (int i = 0; i < RegistryClient.armyRegister.getArmies().size(); i++) {
+            if (RegistryClient.armyRegister.getArmies().get(i).getArmyID() == singleArmy.get(0).getArmyID()){
+                RegistryClient.armyRegister.remove(RegistryClient.armyRegister.getArmies().get(i));
+            }
+        }
+        singleArmy.forEach(allArmies::remove);
+        RegistryClient.armyRegister.setArmyIDs();
+        RegistryClient.armyRegister.resetAndWriteArmyToFile();
     }
 }

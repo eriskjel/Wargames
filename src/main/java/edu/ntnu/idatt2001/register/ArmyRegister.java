@@ -8,10 +8,16 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Class that holds a register over all armies in application
+ */
 public class ArmyRegister {
 
-    private ArrayList<Army> armies;
+    private final ArrayList<Army> armies;
 
+    /**
+     * constructor for class, which creates arraylist instance
+     */
     public ArmyRegister(){
         this.armies = new ArrayList<>();
     }
@@ -19,29 +25,78 @@ public class ArmyRegister {
     public void add(Army army){
         army.setArmyID(armies.size());
         armies.add(army);
+        writeArmyToFile(army);
+    }
+
+    public void setArmyIDs(){
+        for (int i = 0; i < this.getArmies().size(); i++) {
+            this.getArmies().get(i).setArmyID(i);
+        }
+    }
+
+    public void writeArmyToFile(Army army){
         FileHandler fileHandler = new FileHandler();
-        String pathName = army.getFilePath();
-        fileHandler.writeToFile(army, pathName);
+        fileHandler.writeToFile(army, army.getFilePath());
     }
 
+
+    /**
+     * resets directory with every army, and creates a new one with correct army ids
+     * this is needed because when army ID are reset, because register size is changing, the file names
+     * does not automatically change.
+     * therefore, this method makes sures that the file names have the same id as the corresponding army
+     * @throws IOException exception
+     */
+    public void resetAndWriteArmyToFile() throws IOException {
+        //deletes directory
+        File file = new File("src/main/resources/armyRegister");
+        FileUtils.cleanDirectory(file);
+
+        FileHandler fileHandler = new FileHandler();
+
+
+        for (int i = 0; i < this.getArmies().size(); i++) {
+            Army army = this.getArmies().get(i);
+            fileHandler.writeToFile(army, army.getFilePath());
+        }
+    }
+
+    /**
+     * removes army from register, and deleted corresponding army file
+     * @param army army
+     */
     public void remove(Army army){
+        //removes army from arraylist register
         armies.remove(army);
+
+        //gets file path
         File file = new File(army.getFilePath());
-        file.delete();
+        //tries to delete file
+        try{
+            file.delete();
+        }
+        catch (Exception e){
+            System.err.println(e);
+        }
     }
 
-    public int getArmiesSize(){
-        return this.armies.size();
-    }
-
+    /**
+     * returns register
+     * @return army register
+     */
     public ArrayList<Army> getArmies(){
         return this.armies;
     }
 
+    /**
+     * removes every army from register, and deletes all files from army register folder
+     * @throws IOException exception
+     */
     public void removeAll() throws IOException {
+        //clear arraylist
         armies.clear();
+        //deletes directory
         File file = new File("src/main/resources/armyRegister");
         FileUtils.cleanDirectory(file);
-
     }
 }

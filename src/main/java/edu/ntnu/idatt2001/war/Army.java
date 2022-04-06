@@ -132,15 +132,27 @@ public class Army {
         return commanderUnits;
     }
 
-
+    /**
+     * method that gets all the different types of units in an army
+     * @return arraylist of string with all the different units types in an army
+     */
     public ArrayList<String> getArrayWithUnitNames(){
         return this.getUnits().stream().map(Unit::getUnitType).distinct().collect(Collectors.toCollection(ArrayList::new));
     }
 
+    /**
+     * returns the number of each unit
+     * @param type type of unit
+     * @return int with number of unique units
+     */
     public int getNumUnitsByType(String type){
         return (int) this.getUnits().stream().map(Unit::getUnitType).filter(unit -> unit.equals(type)).count();
     }
 
+    /**
+     * gets the sum of the combined health points in an army
+     * @return int with sum of health points in army
+     */
     public int getSumHealth(){
         int sum = 0;
         for (int i = 0; i < this.getUnits().size(); i++) {
@@ -149,8 +161,13 @@ public class Army {
         return sum;
     }
 
+    /**
+     * gets path of file where army will be saved in project
+     * the filepath consists of the predetermined path plus the army name plus the army id
+     * @return string with filepath
+     */
     public String getFilePath(){
-        return "src/main/resources/armyRegister/" + this.getName() + " - " + this.getArmyID();
+        return "src/main/resources/armyRegister/" + this.getName() + "-" + this.getArmyID();
     }
 
     /**
