@@ -7,11 +7,13 @@ import java.util.stream.Collectors;
 
 public class Army {
 
+    private int armyID;
     private final String name;
     private final ArrayList<Unit> units;
+    private String fileName = "";
 
     /**
-     * Constructor
+     * Constructor for army
      * @param name name of army
      */
     public Army(String name){
@@ -20,7 +22,7 @@ public class Army {
     }
 
     /**
-     * Constuctor
+     * Constructor for army
      * @param name name of army
      * @param units list with units to fill army
      */
@@ -30,11 +32,35 @@ public class Army {
     }
 
     /**
+     * getter for armyid
+     * @return army id
+     */
+    public int getArmyID() {
+        return armyID;
+    }
+
+    /**
+     * setter for army id
+     * @param armyID armyid
+     */
+    public void setArmyID(int armyID) {
+        this.armyID = armyID;
+    }
+
+    /**
      *
      * @return name of army
      */
     public String getName(){
         return this.name;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName){
+        this.fileName = fileName;
     }
 
     /**
@@ -106,19 +132,42 @@ public class Army {
         return commanderUnits;
     }
 
-
+    /**
+     * method that gets all the different types of units in an army
+     * @return arraylist of string with all the different units types in an army
+     */
     public ArrayList<String> getArrayWithUnitNames(){
         return this.getUnits().stream().map(Unit::getUnitType).distinct().collect(Collectors.toCollection(ArrayList::new));
     }
 
+    /**
+     * returns the number of each unit
+     * @param type type of unit
+     * @return int with number of unique units
+     */
     public int getNumUnitsByType(String type){
+        return (int) this.getUnits().stream().map(Unit::getUnitType).filter(unit -> unit.equals(type)).count();
+    }
+
+    /**
+     * gets the sum of the combined health points in an army
+     * @return int with sum of health points in army
+     */
+    public int getSumHealth(){
         int sum = 0;
         for (int i = 0; i < this.getUnits().size(); i++) {
-            if (this.getUnits().get(i).getUnitType().equals(type)){
-                sum++;
-            }
+            sum += this.getUnits().get(i).getHealth();
         }
         return sum;
+    }
+
+    /**
+     * gets path of file where army will be saved in project
+     * the filepath consists of the predetermined path plus the army name plus the army id
+     * @return string with filepath
+     */
+    public String getFilePath(){
+        return "src/main/resources/armyRegister/" + this.getName() + "-" + this.getArmyID();
     }
 
     /**

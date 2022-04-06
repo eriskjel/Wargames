@@ -1,4 +1,4 @@
-package edu.ntnu.idatt2001;
+package edu.ntnu.idatt2001.war;
 
 import edu.ntnu.idatt2001.units.*;
 import edu.ntnu.idatt2001.war.Army;
@@ -147,9 +147,30 @@ public class ArmyTest {
         for (int i = 0; i < 2; i++) {
             armyOne.add(new CavalryUnit("Knight", 5));
         }
+        for (int i = 0; i < 50; i++) {
+            armyOne.add(new RangedUnit("Archer", 10));
+        }
 
         assertEquals(10, armyOne.getNumUnitsByType("Infantry"));
-        assertEquals(5, armyOne.getNumUnitsByType("Ranged"));
+        assertEquals(55, armyOne.getNumUnitsByType("Ranged"));
         assertEquals(2, armyOne.getNumUnitsByType("Cavalry"));
+    }
+
+    @Test
+    public void getSumHealth(){
+        Army armyOne = new Army("Human Army");
+
+        //adds hundreds of different units to both armies
+        for (int i = 0; i < 10; i++) {
+            armyOne.add(new InfantryUnit("Footman", 10));
+        }
+        for (int i = 0; i < 10; i++) {
+            armyOne.add(new RangedUnit("Archer", 10));
+        }
+        for (int i = 0; i < 2; i++) {
+            armyOne.add(new CavalryUnit("Knight", 5));
+        }
+
+        assertEquals(210, armyOne.getSumHealth());
     }
 }

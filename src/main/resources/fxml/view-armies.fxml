@@ -21,7 +21,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="680.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ntnu.idatt2001.gui.controllers.LoadArmiesController">
+<VBox prefHeight="680.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ntnu.idatt2001.gui.controllers.ViewArmiesController">
    <children>
       <MenuBar prefHeight="25.0" prefWidth="1217.0" VBox.vgrow="NEVER">
          <menus>
@@ -69,13 +69,13 @@
                   <Pane layoutX="238.0" layoutY="15.0" prefHeight="80.0" prefWidth="824.0">
                      <children>
                         <Button layoutX="373.0" layoutY="15.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="79.0" styleClass="button-menu" stylesheets="@../css/styles.css" text="Battle" />
-                        <Button layoutX="218.0" layoutY="9.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="122.0" style="-fx-text-alignment: left;" stylesheets="@../css/styles.css" text="Load army">
+                        <Button layoutX="218.0" layoutY="9.0" mnemonicParsing="false" onAction="#goToLoadArmies" prefHeight="62.0" prefWidth="122.0" style="-fx-text-alignment: left;" stylesheets="@../css/styles.css" text="Load army">
                            <styleClass>
                               <String fx:value="button-menu" />
                               <String fx:value="activeBtn" />
                            </styleClass>
                         </Button>
-                        <Button layoutX="495.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToViewArmies" prefHeight="62.0" prefWidth="134.0" styleClass="button-menu" stylesheets="@../css/styles.css" text="View armies" />
+                        <Button layoutX="495.0" layoutY="10.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="134.0" styleClass="button-menu" stylesheets="@../css/styles.css" text="View armies" />
                      </children>
                      <padding>
                         <Insets right="50.0" />
@@ -85,7 +85,7 @@
             </Pane>
             <Pane layoutY="109.0" prefHeight="547.0" prefWidth="1300.0">
                <children>
-                  <Label layoutX="487.0" layoutY="45.0" styleClass="header" stylesheets="@../css/styles.css" text="Load army from file">
+                  <Label layoutX="551.0" layoutY="45.0" styleClass="header" stylesheets="@../css/styles.css" text="View armies">
                      <font>
                         <Font name="JUSTICE" size="14.0" />
                      </font>
@@ -114,27 +114,16 @@
                         <Glow />
                      </effect>
                   </ImageView>
-                  <Label layoutX="111.0" layoutY="137.0" text="Upload a CSV file containing desired army:" />
-                  <Button layoutX="352.0" layoutY="133.0" mnemonicParsing="false" onAction="#uploadArmy" text="Choose file" />
-                  <Label fx:id="lblFileSelected" layoutX="111.0" layoutY="166.0" text="No file selected" />
-                  <TableView fx:id="tableArmyPreview" layoutX="852.0" layoutY="133.0" prefHeight="314.0" prefWidth="347.0" stylesheets="@../css/styles.css">
+                  <TableView fx:id="tableLoadedArmies" layoutX="271.0" layoutY="106.0" prefHeight="252.0" prefWidth="759.0" stylesheets="@../css/styles.css">
                     <columns>
-                      <TableColumn fx:id="colUnit" prefWidth="181.0" text="Unit" />
-                      <TableColumn fx:id="colQuantity" prefWidth="165.0" text="Quantity" />
+                      <TableColumn fx:id="colArmyName" prefWidth="181.0" text="Army name" />
+                      <TableColumn fx:id="colTotalUnits" prefWidth="197.0" text="Total units" />
+                        <TableColumn fx:id="colTotalHealth" prefWidth="186.0" text="Total health" />
+                        <TableColumn fx:id="colFileName" prefWidth="194.0" text="File name" />
                     </columns>
                   </TableView>
-                  <Label fx:id="lblArmyName" layoutX="1025.0" layoutY="96.0" prefHeight="17.0" prefWidth="172.0">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="lblArmyName1" layoutX="947.0" layoutY="96.0" text="Preview of:">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <Button layoutX="111.0" layoutY="230.0" mnemonicParsing="false" onAction="#removeArmy" text="Remove army" />
-                  <Button layoutX="224.0" layoutY="230.0" mnemonicParsing="false" onAction="#saveArmy" text="Save army" />
+                  <Button layoutX="270.0" layoutY="390.0" mnemonicParsing="false" onAction="#removeAllArmies" text="Remove all armies" />
+                  <Button layoutX="270.0" layoutY="456.0" mnemonicParsing="false" onAction="#removeSelectedArmy" text="Remove selected army" />
                </children>
             </Pane>
          </children>
