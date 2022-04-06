@@ -57,6 +57,7 @@ public class LoadArmiesController implements Initializable {
         fileName = file.getName();
 
         lblFileSelected.setText(pathLoaded);
+        lblFileSelected.setStyle("-fx-font-weight: bold;");
 
         fillTable();
     }
