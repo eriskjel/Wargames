@@ -22,20 +22,20 @@ public class BattleTest {
         Army armyOne = new Army("Human Army");
         Army armyTwo = new Army("Orcish Horde");
 
-        for (int i = 0; i < 75; i++) {
+        for (int i = 0; i < 10; i++) {
             armyOne.add(new InfantryUnit("Footman", 100));
             armyTwo.add(new InfantryUnit("Grunt", 100));
         }
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 10; i++) {
             armyOne.add(new RangedUnit("Archer", 100));
             armyTwo.add(new RangedUnit("Ranged",100));
         }
 
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 5; i++) {
             armyOne.add(new CavalryUnit("Knight", 100));
             armyTwo.add(new CavalryUnit("Raider", 100));
         }
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 2; i++) {
             armyOne.add(new RangedUnit("Archer", 100));
             armyTwo.add(new RangedUnit("Spearman", 100));
         }
