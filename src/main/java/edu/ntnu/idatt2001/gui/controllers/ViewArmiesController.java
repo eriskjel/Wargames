@@ -126,4 +126,8 @@ public class ViewArmiesController implements Initializable {
         RegistryClient.armyRegister.setArmyIDs();
         RegistryClient.armyRegister.resetAndWriteArmyToFile();
     }
+
+    public void viewSelectedArmy(ActionEvent actionEvent) {
+        //TODO: add code
+    }
 }
