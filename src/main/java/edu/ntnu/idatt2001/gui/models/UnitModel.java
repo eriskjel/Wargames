@@ -3,6 +3,7 @@ package edu.ntnu.idatt2001.gui.models;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.image.ImageView;
 
 /**
  * Class that represents u Unit. This is solely used to add data to the table, used in "load-armies.fxml".
@@ -16,15 +17,17 @@ public class UnitModel {
      */
     private SimpleStringProperty unit;
     private SimpleIntegerProperty quantity;
+    private ImageView icon;
 
     /**
      * constructor for armymodel
      * @param unit
      * @param quantity
      */
-    public UnitModel(String unit, int quantity){
+    public UnitModel(String unit, int quantity, ImageView icon){
         this.unit = new SimpleStringProperty(unit);
         this.quantity = new SimpleIntegerProperty(quantity);
+        this.icon = icon;
     }
 
 
@@ -59,5 +62,17 @@ public class UnitModel {
      */
     public void setQuantity(int quantity) {
         this.quantity = new SimpleIntegerProperty(quantity);
+    }
+
+    /**
+     * getter for icon
+     * @return icon
+     */
+    public ImageView getIcon(){
+        return icon;
+    }
+
+    public void setIcon(ImageView icon){
+        this.icon = icon;
     }
 }

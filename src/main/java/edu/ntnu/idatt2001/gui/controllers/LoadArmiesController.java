@@ -9,12 +9,15 @@ import edu.ntnu.idatt2001.gui.models.UnitModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.File;
@@ -30,15 +33,16 @@ import org.apache.commons.io.FileUtils;
  */
 public class LoadArmiesController implements Initializable {
 
-    public TableView tableArmyPreview;
-    public TableColumn colUnit;
-    public TableColumn colQuantity;
-    public Label lblArmyName;
+    @FXML private TableView tableArmyPreview;
+    @FXML private TableColumn colUnit;
+    @FXML private TableColumn colQuantity;
+    @FXML private Label lblArmyName;
+    @FXML private TableColumn colIcon;
     private ArrayList<Army> armies = new ArrayList<>();
     private String pathLoaded;
     private FileHandler fileHandler = new FileHandler();
     ObservableList<UnitModel> observableList = FXCollections.observableArrayList();
-    public Label lblFileSelected;
+    @FXML private Label lblFileSelected;
     private String fileName;
     /**
      * stage of application
@@ -71,9 +75,30 @@ public class LoadArmiesController implements Initializable {
         //sets army name above table for display
         lblArmyName.setText(army.getName());
 
+        //ImageView infantryIcon = new ImageView(new Image(this.getClass().getResourceAsStream("src/main/resources/img/p4BiuhTsDJGEqF8-Black-Sword-PNG-Transparent-Image.png")));
+        //ImageView rangedIcon = new ImageView(new Image(this.getClass().getResourceAsStream("src/main/resources/img/Daco_3282610.png")));
+        //ImageView cavalryIcon = new ImageView(new Image(this.getClass().getResourceAsStream("src/main/resources/img/Daco_3282610.png")));
+        //ImageView commanderIcon = new ImageView(new Image(this.getClass().getResourceAsStream("src/main/resources/img/pngfind.com-fitness-icon-png-1646611.png")));
+
         for (int i = 0; i < army.getArrayWithUnitNames().size(); i++) {
-            UnitModel unitModel = new UnitModel(army.getArrayWithUnitNames().get(i), army.getNumUnitsByType(army.getArrayWithUnitNames().get(i)));
+            UnitModel unitModel = new UnitModel(army.getArrayWithUnitNames().get(i), army.getNumUnitsByType(army.getArrayWithUnitNames().get(i)), getIconByType(army.getArrayWithUnitNames().get(i)));
             tableArmyPreview.getItems().add(unitModel);
+        }
+    }
+
+    public ImageView getIconByType(String unit){
+        switch (unit) {
+            case "Infantry":
+                return new ImageView(new Image(this.getClass().getResourceAsStream("/img/infantry.png")));
+            case "Ranged":
+                return new ImageView(new Image(this.getClass().getResourceAsStream("/img/ranged.png")));
+            case "Cavalry":
+                return new ImageView(new Image(this.getClass().getResourceAsStream("/img/cavalry.png")));
+            case "Commander":
+                return new ImageView(new Image(this.getClass().getResourceAsStream("/img/commander.png")));
+            default:
+                System.err.println("Something went wrong.");
+                return null;
         }
     }
 
@@ -86,6 +111,8 @@ public class LoadArmiesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //this.colIcon.setPrefWidth(80);
+        this.colIcon.setCellValueFactory(new PropertyValueFactory<>("Icon"));
         this.colUnit.setCellValueFactory(new PropertyValueFactory<>("Unit"));
         this.colQuantity.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
         this.tableArmyPreview.setItems(observableList);
