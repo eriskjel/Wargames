@@ -111,8 +111,11 @@ public class ViewArmiesController implements Initializable {
         stage.show();
     }
 
-
-    public void removeSelectedArmy(ActionEvent actionEvent) throws IOException {
+    /**
+     * removes selected army from gui table as well as from the army register
+     * @throws IOException exception
+     */
+    public void removeSelectedArmy() throws IOException {
         ObservableList<LoadedArmyModel> allArmies, singleArmy;
         allArmies = tableLoadedArmies.getItems();
         singleArmy = tableLoadedArmies.getSelectionModel().getSelectedItems();
@@ -127,7 +130,26 @@ public class ViewArmiesController implements Initializable {
         RegistryClient.armyRegister.resetAndWriteArmyToFile();
     }
 
-    public void viewSelectedArmy(ActionEvent actionEvent) {
-        //TODO: add code
+    /**
+     * gets the armyID from the selected army in the gui. then sends army file location to controller which will display said army contents.
+     * then method loads the new fxml file which will display the contents of the army
+     * @param actionEvent event
+     * @throws IOException exception
+     */
+    public void viewSelectedArmy(ActionEvent actionEvent) throws IOException {
+        ObservableList<LoadedArmyModel> armyModel = tableLoadedArmies.getSelectionModel().getSelectedItems();
+        int armyID = armyModel.get(0).getArmyID();
+
+        ViewSpecificArmyController.setCurrentArmyFileName(RegistryClient.armyRegister.getArmyByID(armyID).getFilePath());
+
+        //loads new fxml file
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/view-specific-army.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(fxmlLoader.load(), 1300, 680);
+
+        stage.setTitle("View your armies");
+        stage.setScene(scene);
+        stage.show();
+
     }
 }

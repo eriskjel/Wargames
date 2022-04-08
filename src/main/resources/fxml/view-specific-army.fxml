@@ -122,8 +122,6 @@
                         <TableColumn fx:id="colFileName" prefWidth="194.0" text="File name" />
                     </columns>
                   </TableView>
-                  <Button layoutX="270.0" layoutY="390.0" mnemonicParsing="false" onAction="#removeAllArmies" text="Remove all armies" />
-                  <Button layoutX="270.0" layoutY="456.0" mnemonicParsing="false" onAction="#removeSelectedArmy" text="Remove selected army" />
                </children>
             </Pane>
          </children>

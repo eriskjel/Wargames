@@ -34,6 +34,7 @@ public class ViewSpecificArmyController implements Initializable {
     public TableColumn colTotalHealth;
     public TableColumn colFileName;
     ObservableList<UnitModel> observableList = FXCollections.observableArrayList();
+    private static String currentArmyFileName;
 
     /**
      * method that runs when fxml file is loaded
@@ -70,6 +71,10 @@ public class ViewSpecificArmyController implements Initializable {
             tableLoadedArmies.getItems().add(loadedArmyModel);
         }
 
+    }
+
+    public static void setCurrentArmyFileName(String path){
+        currentArmyFileName = path;
     }
 
     /**
