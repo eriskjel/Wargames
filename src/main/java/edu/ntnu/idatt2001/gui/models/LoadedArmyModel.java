@@ -3,6 +3,7 @@ package edu.ntnu.idatt2001.gui.models;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.image.ImageView;
 
 /**
  * Class that represents an Army. This is solely used to add data to the table, used in "view-armies.fxml".
@@ -14,11 +15,13 @@ public class LoadedArmyModel {
     /**
      * uses SimpleString and SimpleInt properties. this is to use the correct format in order to add data to the javafx tableview
      */
+    //private final ImageView icon;
     private SimpleStringProperty armyName;
     private SimpleIntegerProperty totalUnits;
     private SimpleIntegerProperty totalHealth;
     private SimpleStringProperty fileName;
     private int armyID;
+
 
 
     public LoadedArmyModel(String armyName, int totalUnits, int totalHealth, String fileName, int armyID){

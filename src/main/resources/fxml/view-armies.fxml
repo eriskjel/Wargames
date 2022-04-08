@@ -124,6 +124,7 @@
                   </TableView>
                   <Button layoutX="270.0" layoutY="390.0" mnemonicParsing="false" onAction="#removeAllArmies" text="Remove all armies" />
                   <Button layoutX="270.0" layoutY="456.0" mnemonicParsing="false" onAction="#removeSelectedArmy" text="Remove selected army" />
+                  <Button layoutX="591.0" layoutY="390.0" mnemonicParsing="false" onAction="#viewSelectedArmy" text="View selected army" />
                </children>
             </Pane>
          </children>
