@@ -123,3 +123,6 @@
     -fx-text-alignment: LEFT;
 }
 
+.table-view .column-header#test .label{
+    -fx-alignment: CENTER_LEFT;
+}
