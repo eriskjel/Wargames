@@ -99,4 +99,13 @@ public class ArmyRegister {
         File file = new File("src/main/resources/armyRegister");
         FileUtils.cleanDirectory(file);
     }
+
+    public Army getArmyByID(int id){
+        for (int i = 0; i < this.getArmies().size(); i++) {
+            if (this.getArmies().get(i).getArmyID() == id){
+                return this.getArmies().get(i);
+            }
+        }
+        return null;
+    }
 }
