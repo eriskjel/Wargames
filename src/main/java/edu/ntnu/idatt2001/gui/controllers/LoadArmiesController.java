@@ -36,8 +36,8 @@ public class LoadArmiesController implements Initializable {
     @FXML private TableView tableArmyPreview;
     @FXML private TableColumn colUnit;
     @FXML private TableColumn colQuantity;
-    @FXML private Label lblArmyName;
     @FXML private TableColumn colIcon;
+    @FXML private Label lblArmyName;
     @FXML private Label lblFileSelected;
     @FXML private Stage stage;
     private String pathLoaded;

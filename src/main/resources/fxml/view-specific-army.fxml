@@ -75,7 +75,7 @@
                               <String fx:value="activeBtn" />
                            </styleClass>
                         </Button>
-                        <Button layoutX="495.0" layoutY="10.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="134.0" styleClass="button-menu" stylesheets="@../css/styles.css" text="View armies" />
+                        <Button layoutX="495.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToViewArmies" prefHeight="62.0" prefWidth="134.0" styleClass="button-menu" stylesheets="@../css/styles.css" text="View armies" />
                      </children>
                      <padding>
                         <Insets right="50.0" />
@@ -85,7 +85,7 @@
             </Pane>
             <Pane layoutY="109.0" prefHeight="547.0" prefWidth="1300.0">
                <children>
-                  <Label layoutX="507.0" layoutY="45.0" styleClass="header" stylesheets="@../css/styles.css" text="Viewing:">
+                  <Label layoutX="496.0" layoutY="45.0" styleClass="header" stylesheets="@../css/styles.css" text="Viewing:">
                      <font>
                         <Font name="JUSTICE" size="14.0" />
                      </font>
@@ -114,14 +114,14 @@
                         <Glow />
                      </effect>
                   </ImageView>
-                  <TableView fx:id="tableLoadedArmies" layoutX="271.0" layoutY="106.0" prefHeight="252.0" prefWidth="759.0" stylesheets="@../css/styles.css">
+                  <TableView fx:id="tableViewArmy" layoutX="377.0" layoutY="170.0" prefHeight="256.0" prefWidth="547.0" stylesheets="@../css/styles.css">
                     <columns>
-                      <TableColumn fx:id="colArmyName" prefWidth="181.0" text="Army name" />
-                      <TableColumn fx:id="colTotalUnits" prefWidth="197.0" text="Total units" />
-                        <TableColumn fx:id="colTotalHealth" prefWidth="186.0" text="Total health" />
-                        <TableColumn fx:id="colFileName" prefWidth="194.0" text="File name" />
+                      <TableColumn fx:id="colIcon" prefWidth="76.0" text="Icon" />
+                      <TableColumn fx:id="colUnit" prefWidth="277.0" text="Unit" />
+                        <TableColumn fx:id="colQuantity" prefWidth="193.0" text="Quantity" />
                     </columns>
                   </TableView>
+                  <Label fx:id="lblArmyName" layoutX="657.0" layoutY="45.0" prefHeight="51.0" prefWidth="209.0" />
                </children>
             </Pane>
          </children>
