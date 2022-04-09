@@ -20,11 +20,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -78,7 +76,7 @@ public class ViewArmiesController implements Initializable {
     }
 
     /**
-     * clears table
+     * clears gui table
      */
     public void clearTable(){
         tableLoadedArmies.getItems().clear();
