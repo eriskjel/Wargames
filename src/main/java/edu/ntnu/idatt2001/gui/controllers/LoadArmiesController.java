@@ -1,7 +1,5 @@
 package edu.ntnu.idatt2001.gui.controllers;
 
-import edu.ntnu.idatt2001.gui.App;
-import edu.ntnu.idatt2001.register.ArmyRegister;
 import edu.ntnu.idatt2001.register.RegistryClient;
 import edu.ntnu.idatt2001.war.Army;
 import edu.ntnu.idatt2001.file.FileHandler;
@@ -10,10 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -23,9 +18,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
-import org.apache.commons.io.FileUtils;
 
 /**
  * Class that handles the interaction between the fxml file "admin-edit-tournament.fxml" and the backend.
@@ -36,36 +29,39 @@ public class LoadArmiesController implements Initializable {
     @FXML private TableView tableArmyPreview;
     @FXML private TableColumn colUnit;
     @FXML private TableColumn colQuantity;
-    @FXML private Label lblArmyName;
     @FXML private TableColumn colIcon;
-    private ArrayList<Army> armies = new ArrayList<>();
+    @FXML private Label lblArmyName;
+    @FXML private Label lblFileSelected;
+    @FXML private ObservableList<UnitModel> observableList = FXCollections.observableArrayList();
+    @FXML private Stage stage;
     private String pathLoaded;
     private FileHandler fileHandler = new FileHandler();
-    ObservableList<UnitModel> observableList = FXCollections.observableArrayList();
-    @FXML private Label lblFileSelected;
     private String fileName;
-    /**
-     * stage of application
-     */
-    private Stage stage;
 
+
+    /**
+     * opens dialog box to user, prompting user to pick a csv file containing desired army to upload
+     * @param actionEvent
+     */
     public void uploadArmy(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
-        //fileChooser.showOpenDialog(stage);
-
-
-
         File file = fileChooser.showOpenDialog(stage);
         pathLoaded = file.getAbsolutePath();
+
+
         fileName = file.getName();
 
+        //displays to gui which file has been uploaded as well as file path
         lblFileSelected.setText(pathLoaded);
         lblFileSelected.setStyle("-fx-font-weight: bold;");
 
         fillTable();
     }
 
+    /**
+     * displays the army currently loaded from the csv file that user uploaded
+     */
     public void fillTable(){
         clearTable();
 
@@ -75,17 +71,18 @@ public class LoadArmiesController implements Initializable {
         //sets army name above table for display
         lblArmyName.setText(army.getName());
 
-        //ImageView infantryIcon = new ImageView(new Image(this.getClass().getResourceAsStream("src/main/resources/img/p4BiuhTsDJGEqF8-Black-Sword-PNG-Transparent-Image.png")));
-        //ImageView rangedIcon = new ImageView(new Image(this.getClass().getResourceAsStream("src/main/resources/img/Daco_3282610.png")));
-        //ImageView cavalryIcon = new ImageView(new Image(this.getClass().getResourceAsStream("src/main/resources/img/Daco_3282610.png")));
-        //ImageView commanderIcon = new ImageView(new Image(this.getClass().getResourceAsStream("src/main/resources/img/pngfind.com-fitness-icon-png-1646611.png")));
-
+        //adds models to tableview
         for (int i = 0; i < army.getArrayWithUnitNames().size(); i++) {
             UnitModel unitModel = new UnitModel(army.getArrayWithUnitNames().get(i), army.getNumUnitsByType(army.getArrayWithUnitNames().get(i)), getIconByType(army.getArrayWithUnitNames().get(i)));
             tableArmyPreview.getItems().add(unitModel);
         }
     }
 
+    /**
+     * method that returns the correct icon based on what type of unit the army has
+     * @param unit string containing unit type name
+     * @return ImageView with icon matching unit
+     */
     public ImageView getIconByType(String unit){
         switch (unit) {
             case "Infantry":
@@ -97,7 +94,7 @@ public class LoadArmiesController implements Initializable {
             case "Commander":
                 return new ImageView(new Image(this.getClass().getResourceAsStream("/img/commander.png")));
             default:
-                System.err.println("Something went wrong.");
+                System.err.println("Something went wrong when rendering icon to unit.");
                 return null;
         }
     }
@@ -109,16 +106,23 @@ public class LoadArmiesController implements Initializable {
         tableArmyPreview.getItems().clear();
     }
 
+    /**
+     * method that runs as soon as the fxml file is loaded. this particular override initializes the tableview in the gui
+     * @param url url
+     * @param resourceBundle url
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //this.colIcon.setPrefWidth(80);
         this.colIcon.setCellValueFactory(new PropertyValueFactory<>("Icon"));
         this.colUnit.setCellValueFactory(new PropertyValueFactory<>("Unit"));
         this.colQuantity.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
         this.tableArmyPreview.setItems(observableList);
     }
 
-    public void removeArmy(ActionEvent actionEvent) {
+    /**
+     * removes army from the tableview, and resets the path-loaded variable and furthermore displays that no army is selected
+     */
+    public void removeArmy() {
         clearTable();
 
         pathLoaded = "";
@@ -126,28 +130,30 @@ public class LoadArmiesController implements Initializable {
         lblFileSelected.setText("No file selected");
     }
 
+    /**
+     * creates an army object by reading the csv file uploaded
+     * @param actionEvent event
+     * @throws IOException exception
+     */
     public void saveArmy(ActionEvent actionEvent) throws IOException {
-
+        //creates army
         Army army = fileHandler.readFromFile(pathLoaded);
         army.setFileName(fileName);
+
+        //adds army to armyRegister
         RegistryClient.armyRegister.add(army);
+
+        //loads new fxml file
         goToViewArmies(actionEvent);
     }
 
-
     /**
-     * Method that loads a new fxml file and sets it as the current scene
-     * @param actionEvent event
-     * @throws IOException
+     * calls on the FXMLLoader class to load a new fxml file
+     * @param event event
+     * @throws IOException exception
      */
-    public void goToViewArmies(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/view-armies.fxml"));
-        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(fxmlLoader.load(), 1300, 680);
-
-        stage.setTitle("View your armies");
-        stage.setScene(scene);
-        stage.show();
+    public void goToViewArmies(ActionEvent event) throws IOException {
+        RegistryClient.fxmlLoaderClass.goToViewArmies(event);
     }
 
 

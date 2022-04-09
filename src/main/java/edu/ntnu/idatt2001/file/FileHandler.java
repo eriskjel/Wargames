@@ -42,7 +42,7 @@ public class FileHandler {
                     army.add(new CommanderUnit(words[1], Integer.parseInt(words[2])));
                 }
                 else{
-                    System.err.println("Something went wrong");
+                    System.err.println("Something went wrong when reading file. Have you deleted all empty lines?");
                 }
             }
             return army;
