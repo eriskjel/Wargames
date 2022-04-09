@@ -1,24 +1,16 @@
 package edu.ntnu.idatt2001.gui.controllers;
 
-import edu.ntnu.idatt2001.file.FileHandler;
-import edu.ntnu.idatt2001.gui.App;
 import edu.ntnu.idatt2001.gui.models.LoadedArmyModel;
 import edu.ntnu.idatt2001.gui.models.UnitModel;
-import edu.ntnu.idatt2001.register.ArmyRegister;
 import edu.ntnu.idatt2001.register.RegistryClient;
-import edu.ntnu.idatt2001.war.Army;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
@@ -31,12 +23,12 @@ import java.util.ResourceBundle;
  */
 public class ViewArmiesController implements Initializable {
 
-    public TableView tableLoadedArmies;
-    public TableColumn colArmyName;
-    public TableColumn colTotalUnits;
-    public TableColumn colTotalHealth;
-    public TableColumn colFileName;
-    ObservableList<UnitModel> observableList = FXCollections.observableArrayList();
+    @FXML private TableView tableLoadedArmies;
+    @FXML private TableColumn colArmyName;
+    @FXML private TableColumn colTotalUnits;
+    @FXML private TableColumn colTotalHealth;
+    @FXML private TableColumn colFileName;
+    @FXML private ObservableList<UnitModel> observableList = FXCollections.observableArrayList();
 
     /**
      * method that runs when fxml file is loaded
@@ -95,18 +87,12 @@ public class ViewArmiesController implements Initializable {
     }
 
     /**
-     * Method that loads a new fxml file and sets it as the current scene
-     * @param actionEvent event
+     * calls on the FXMLLoaderClass to load the new fxml file
+     * @param event event
      * @throws IOException exception
      */
-    public void goToLoadArmies(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/load-armies.fxml"));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(fxmlLoader.load(), 1300, 680);
-
-        stage.setTitle("View your armies");
-        stage.setScene(scene);
-        stage.show();
+    public void goToLoadArmies(ActionEvent event) throws IOException {
+        RegistryClient.fxmlLoaderClass.goToLoadArmies(event);
     }
 
     /**
@@ -141,13 +127,6 @@ public class ViewArmiesController implements Initializable {
         ViewSpecificArmyController.setCurrentArmyFileName(RegistryClient.armyRegister.getArmyByID(armyID).getFilePath());
 
         //loads new fxml file
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/view-specific-army.fxml"));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(fxmlLoader.load(), 1300, 680);
-
-        stage.setTitle("View your armies");
-        stage.setScene(scene);
-        stage.show();
-
+        RegistryClient.fxmlLoaderClass.goToSpecificArmy(actionEvent);
     }
 }
