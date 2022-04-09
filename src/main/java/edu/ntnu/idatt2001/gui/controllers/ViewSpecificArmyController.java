@@ -1,7 +1,6 @@
 package edu.ntnu.idatt2001.gui.controllers;
 
 import edu.ntnu.idatt2001.file.FileHandler;
-import edu.ntnu.idatt2001.gui.App;
 import edu.ntnu.idatt2001.gui.models.LoadedArmyModel;
 import edu.ntnu.idatt2001.gui.models.UnitModel;
 import edu.ntnu.idatt2001.register.RegistryClient;
@@ -10,10 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -34,16 +30,14 @@ import java.util.ResourceBundle;
  */
 public class ViewSpecificArmyController implements Initializable {
 
-    @FXML
-    private TableView tableViewArmy;
+    @FXML private TableView tableViewArmy;
     @FXML private TableColumn colUnit;
     @FXML private TableColumn colQuantity;
     @FXML private TableColumn colIcon;
-    public Label lblArmyName;
-    ObservableList<UnitModel> observableList = FXCollections.observableArrayList();
+    @FXML private Label lblArmyName;
+    @FXML private ObservableList<UnitModel> observableList = FXCollections.observableArrayList();
     private static String currentArmyFileName;
     private FileHandler fileHandler = new FileHandler();
-    @FXML private Stage stage;
 
     /**
      * method that runs when fxml file is loaded
@@ -127,48 +121,22 @@ public class ViewSpecificArmyController implements Initializable {
     }
 
     /**
-     * Method that loads a new fxml file and sets it as the current scene
-     * @param actionEvent event
+     * calls on the fxmlLoaderClass to load the new fxml file
+     * @param event event
      * @throws IOException exception
      */
-    public void goToLoadArmies(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/load-armies.fxml"));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(fxmlLoader.load(), 1300, 680);
-
-        stage.setTitle("View your armies");
-        stage.setScene(scene);
-        stage.show();
-    }
-
-
-    public void removeSelectedArmy(ActionEvent actionEvent) throws IOException {
-        ObservableList<LoadedArmyModel> allArmies, singleArmy;
-        allArmies = tableViewArmy.getItems();
-        singleArmy = tableViewArmy.getSelectionModel().getSelectedItems();
-
-        for (int i = 0; i < RegistryClient.armyRegister.getArmies().size(); i++) {
-            if (RegistryClient.armyRegister.getArmies().get(i).getArmyID() == singleArmy.get(0).getArmyID()){
-                RegistryClient.armyRegister.remove(RegistryClient.armyRegister.getArmies().get(i));
-            }
-        }
-        singleArmy.forEach(allArmies::remove);
-        RegistryClient.armyRegister.setArmyIDs();
-        RegistryClient.armyRegister.resetAndWriteArmyToFile();
+    public void goToLoadArmies(ActionEvent event) throws IOException {
+        RegistryClient.fxmlLoaderClass.goToLoadArmies(event);
     }
 
     /**
-     * Method that loads a new fxml file and sets it as the current scene
-     * @param actionEvent event
+     * calls on the FXMLLoaderClass to load the new fxml file
+     * @param event event
      * @throws IOException exception
      */
-    public void goToViewArmies(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/view-armies.fxml"));
-        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(fxmlLoader.load(), 1300, 680);
-
-        stage.setTitle("View your armies");
-        stage.setScene(scene);
-        stage.show();
+    public void goToViewArmies(ActionEvent event) throws IOException {
+        RegistryClient.fxmlLoaderClass.goToViewArmies(event);
     }
+
+
 }

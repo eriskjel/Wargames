@@ -1,7 +1,5 @@
 package edu.ntnu.idatt2001.gui.controllers;
 
-import edu.ntnu.idatt2001.gui.App;
-import edu.ntnu.idatt2001.register.ArmyRegister;
 import edu.ntnu.idatt2001.register.RegistryClient;
 import edu.ntnu.idatt2001.war.Army;
 import edu.ntnu.idatt2001.file.FileHandler;
@@ -10,10 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -23,9 +18,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
-import org.apache.commons.io.FileUtils;
 
 /**
  * Class that handles the interaction between the fxml file "admin-edit-tournament.fxml" and the backend.
@@ -39,10 +32,10 @@ public class LoadArmiesController implements Initializable {
     @FXML private TableColumn colIcon;
     @FXML private Label lblArmyName;
     @FXML private Label lblFileSelected;
+    @FXML private ObservableList<UnitModel> observableList = FXCollections.observableArrayList();
     @FXML private Stage stage;
     private String pathLoaded;
     private FileHandler fileHandler = new FileHandler();
-    ObservableList<UnitModel> observableList = FXCollections.observableArrayList();
     private String fileName;
 
 
@@ -154,20 +147,13 @@ public class LoadArmiesController implements Initializable {
         goToViewArmies(actionEvent);
     }
 
-
     /**
-     * Method that loads a new fxml file and sets it as the current scene
-     * @param actionEvent event
+     * calls on the FXMLLoader class to load a new fxml file
+     * @param event event
      * @throws IOException exception
      */
-    public void goToViewArmies(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/view-armies.fxml"));
-        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(fxmlLoader.load(), 1300, 680);
-
-        stage.setTitle("View your armies");
-        stage.setScene(scene);
-        stage.show();
+    public void goToViewArmies(ActionEvent event) throws IOException {
+        RegistryClient.fxmlLoaderClass.goToViewArmies(event);
     }
 
 
