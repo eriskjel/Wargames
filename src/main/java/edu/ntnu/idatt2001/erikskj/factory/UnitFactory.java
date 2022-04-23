@@ -10,16 +10,16 @@ public class UnitFactory {
         if (unitType == null){
             return null;
         }
-        if (unitType.equalsIgnoreCase("INFANTRY UNIT")){
+        if (unitType.equalsIgnoreCase("InfantryUnit")){
             return new InfantryUnit(name, health);
         }
-        else if(unitType.equalsIgnoreCase("RANGED UNIT")){
+        else if(unitType.equalsIgnoreCase("RangedUnit")){
             return new RangedUnit(name, health);
         }
-        else if(unitType.equalsIgnoreCase("CAVALRY UNIT")){
+        else if(unitType.equalsIgnoreCase("CavalryUnit")){
             return new CavalryUnit(name, health);
         }
-        else if (unitType.equalsIgnoreCase("COMMANDER UNIT")){
+        else if (unitType.equalsIgnoreCase("CommanderUnit")){
             return new CommanderUnit(name, health);
         }
         return null;

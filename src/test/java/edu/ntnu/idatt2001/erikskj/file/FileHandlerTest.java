@@ -107,11 +107,15 @@ public class FileHandlerTest {
 
         //writes to file
         FileHandler fileHandler = new FileHandler();
-        fileHandler.writeToFile(armyOne, "src/main/resources/csv/test.csv");
+        String path = "src/main/resources/testFiles/testnew.csv";
+        fileHandler.writeToFile(armyOne, path);
 
         //checks if file exists and if the file has content
-        File file = new File("src/main/resources/csv/test.csv");
+        File file = new File(path);
         assertTrue(file.exists());
         assertNotEquals(0, file.length());
+
+        //deletes file after test
+        file.delete();
     }
 }

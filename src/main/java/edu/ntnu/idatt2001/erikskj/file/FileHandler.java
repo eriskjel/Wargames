@@ -1,5 +1,6 @@
 package edu.ntnu.idatt2001.erikskj.file;
 
+import edu.ntnu.idatt2001.erikskj.factory.UnitFactory;
 import edu.ntnu.idatt2001.erikskj.units.CavalryUnit;
 import edu.ntnu.idatt2001.erikskj.units.CommanderUnit;
 import edu.ntnu.idatt2001.erikskj.units.InfantryUnit;
@@ -46,19 +47,33 @@ public class FileHandler {
             }
 
             Army army = new Army(armyName);
+            UnitFactory factory = new UnitFactory();
+
+            //constants
+            String infantryUnit = "InfantryUnit";
+            String rangedUnit = "RangedUnit";
+            String cavalryUnit = "CavalryUnit";
+            String commanderUnit = "CommanderUnit";
+
             while ((line = bufferedReader.readLine()) != null) {
                 String[] words = line.split(",");
-                if (Objects.equals(words[0], "InfantryUnit")) {
-                    army.add(new InfantryUnit(words[1], Integer.parseInt(words[2])));
+                String unitName = words[1];
+                int unitHealth = Integer.parseInt(words[2]);
+                if (Objects.equals(words[0], infantryUnit)) {
+                    //army.add(new InfantryUnit(words[1], Integer.parseInt(words[2])));
+                    army.add(factory.createUnit(infantryUnit, unitName, unitHealth));
                 }
                 else if (Objects.equals(words[0], "RangedUnit")) {
-                    army.add(new RangedUnit(words[1], Integer.parseInt(words[2])));
+                    //army.add(new RangedUnit(words[1], Integer.parseInt(words[2])));
+                    army.add(factory.createUnit(rangedUnit, unitName, unitHealth));
                 }
                 else if (Objects.equals(words[0], "CavalryUnit")) {
-                    army.add(new CavalryUnit(words[1], Integer.parseInt(words[2])));
+                    //army.add(new CavalryUnit(words[1], Integer.parseInt(words[2])));
+                    army.add(factory.createUnit(cavalryUnit, unitName, unitHealth));
                 }
                 else if (Objects.equals(words[0], "CommanderUnit")) {
-                    army.add(new CommanderUnit(words[1], Integer.parseInt(words[2])));
+                    //army.add(new CommanderUnit(words[1], Integer.parseInt(words[2])));
+                    army.add(factory.createUnit(commanderUnit, unitName, unitHealth));
                 }
                 else{
                     System.err.println("Something went wrong when reading file. Have you deleted all empty lines?");

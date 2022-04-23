@@ -1,5 +1,6 @@
 package edu.ntnu.idatt2001.erikskj.client;
 
+import edu.ntnu.idatt2001.erikskj.factory.UnitFactory;
 import edu.ntnu.idatt2001.erikskj.file.FileHandler;
 import edu.ntnu.idatt2001.erikskj.war.Army;
 import edu.ntnu.idatt2001.erikskj.war.Battle;
@@ -49,20 +50,27 @@ public class WarGamesClient {
         //creates hardcoded army one, to fight army from file
         Army armyOne = new Army("Human Army");
 
+        UnitFactory factory = new UnitFactory();
+
         //adds hundreds of different units to both armies
         for (int i = 0; i < 7; i++) {
-            armyOne.add(new InfantryUnit("Footman", 100));
+            //armyOne.add(new InfantryUnit("Footman", 100));
+            armyOne.add(factory.createUnit("Infantry", "Footman", 100));
         }
         for (int i = 0; i < 1; i++) {
-            armyOne.add(new RangedUnit("Archer", 100));
+            //armyOne.add(new RangedUnit("Archer", 100));
+            armyOne.add(factory.createUnit("Ranged", "Archer", 100));
         }
 
         for (int i = 0; i < 2; i++) {
-            armyOne.add(new CavalryUnit("Knight", 100));
+            //armyOne.add(new CavalryUnit("Knight", 100));
+            armyOne.add(factory.createUnit("Cavalry", "Knight", 100));
         }
         for (int i = 0; i < 1; i++) {
-            armyOne.add(new CommanderUnit("Mountain King", 180));
+            //armyOne.add(new CommanderUnit("Mountain King", 180));
+            armyOne.add(factory.createUnit("Commander", "Footman", 100));
         }
+
 
         Terrain terrain = Terrain.PLAINS;
 
