@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>edu.ntnu.idatt2001</groupId>
+    <groupId>edu.ntnu.idatt2001.erikskj</groupId>
     <artifactId>Wargames</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -37,7 +37,7 @@
                 <version>0.0.8</version>
                 <configuration>
                     <!-- TODO: Set your main class here -->
-                    <mainClass>Wargames/edu.ntnu.idatt2001.gui.AppMain</mainClass>
+                    <mainClass>Wargames/edu.ntnu.idatt2001.erikskj.gui.AppMain</mainClass>
                 </configuration>
             </plugin>
 
@@ -80,7 +80,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>edu.ntnu.idatt2001.client.WarGamesClient</mainClass>
+                            <mainClass>edu.ntnu.idatt2001.erikskj.client.WarGamesClient</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -99,7 +99,7 @@
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <!-- TODO: Add your main-class here, with full package prefix. From the example above: the MyJavaFXApplicationMain-class -->
-                                    <mainClass>edu.ntnu.idatt2001.gui.AppMain</mainClass>
+                                    <mainClass>edu.ntnu.idatt2001.erikskj.gui.AppMain</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>

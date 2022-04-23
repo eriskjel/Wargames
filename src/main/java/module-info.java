@@ -8,12 +8,12 @@ module Wargames {
     requires java.logging;
     requires org.apache.commons.io;
 
-    opens edu.ntnu.idatt2001.gui to javafx.fxml;
-    exports edu.ntnu.idatt2001.gui;
+    opens edu.ntnu.idatt2001.erikskj.gui to javafx.fxml;
+    exports edu.ntnu.idatt2001.erikskj.gui;
 
-    opens edu.ntnu.idatt2001.gui.models to javafx.fxml;
-    exports edu.ntnu.idatt2001.gui.models;
+    opens edu.ntnu.idatt2001.erikskj.gui.models to javafx.fxml;
+    exports edu.ntnu.idatt2001.erikskj.gui.models;
 
-    exports edu.ntnu.idatt2001.gui.controllers;
-    opens edu.ntnu.idatt2001.gui.controllers to javafx.fxml;
+    exports edu.ntnu.idatt2001.erikskj.gui.controllers;
+    opens edu.ntnu.idatt2001.erikskj.gui.controllers to javafx.fxml;
 }
