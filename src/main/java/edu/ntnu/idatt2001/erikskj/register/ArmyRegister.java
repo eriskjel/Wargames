@@ -36,7 +36,7 @@ public class ArmyRegister {
 
     public void writeArmyToFile(Army army){
         FileHandler fileHandler = new FileHandler();
-        fileHandler.writeToFile(army, army.getFilePath());
+        fileHandler.writeToFile(army, army.getFilePathAndName());
     }
 
 
@@ -57,7 +57,7 @@ public class ArmyRegister {
 
         for (int i = 0; i < this.getArmies().size(); i++) {
             Army army = this.getArmies().get(i);
-            fileHandler.writeToFile(army, army.getFilePath());
+            fileHandler.writeToFile(army, army.getFilePathAndName());
         }
     }
 
@@ -70,7 +70,7 @@ public class ArmyRegister {
         armies.remove(army);
 
         //gets file path
-        File file = new File(army.getFilePath());
+        File file = new File(army.getFilePathAndName());
         //tries to delete file
         try{
             file.delete();

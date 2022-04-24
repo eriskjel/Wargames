@@ -169,7 +169,7 @@ public class Army {
      * the filepath consists of the predetermined path plus the army name plus the army id
      * @return string with filepath
      */
-    public String getFilePath(){
+    public String getFilePathAndName(){
         return "src/main/resources/armyRegister/" + this.getName() + "-" + this.getArmyID() + ".csv";
     }
 

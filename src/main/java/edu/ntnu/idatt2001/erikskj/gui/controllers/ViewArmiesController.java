@@ -136,7 +136,7 @@ public class ViewArmiesController implements Initializable {
         ObservableList<LoadedArmyModel> armyModel = tableLoadedArmies.getSelectionModel().getSelectedItems();
         int armyID = armyModel.get(0).getArmyID();
 
-        ViewSpecificArmyController.setCurrentArmyFileName(RegistryClient.armyRegister.getArmyByID(armyID).getFilePath());
+        ViewSpecificArmyController.setCurrentArmyFileName(RegistryClient.armyRegister.getArmyByID(armyID).getFilePathAndName());
 
         //loads new fxml file
         RegistryClient.fxmlLoaderClass.goToSpecificArmy(actionEvent);

@@ -205,6 +205,7 @@ public class CreateArmyController implements Initializable {
             return true;
         }
     }
+
     public void saveArmy(ActionEvent event) throws IOException {
         if (canArmyBeAdded()){
             Army army = new Army(this.inpArmyName.getText(), units);

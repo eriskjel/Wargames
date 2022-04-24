@@ -35,7 +35,7 @@ public class ArmyRegisterTest {
         RegistryClient.armyRegister.add(armyOne);
         assertEquals(1, RegistryClient.armyRegister.getArmies().size());
 
-        File file = new File(armyOne.getFilePath());
+        File file = new File(armyOne.getFilePathAndName());
         assertTrue(file.exists());
 
         //delete file so that test leaves no trace
@@ -65,7 +65,7 @@ public class ArmyRegisterTest {
         RegistryClient.armyRegister.remove(armyOne);
         assertEquals(0, RegistryClient.armyRegister.getArmies().size());
 
-        File file = new File(armyOne.getFilePath());
+        File file = new File(armyOne.getFilePathAndName());
         assertFalse(file.exists());
     }
 }
