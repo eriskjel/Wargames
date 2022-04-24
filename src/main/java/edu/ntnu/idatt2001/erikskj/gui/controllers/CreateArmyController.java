@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
  * Class that handles the interaction between the fxml file "admin-edit-tournament.fxml" and the backend.
  * This class houses all the methods and variables needed to perform the tasks
  */
-public class LoadArmiesController implements Initializable {
+public class CreateArmyController implements Initializable {
 
     @FXML private TableView tableArmyPreview;
     @FXML private TableColumn colUnit;
@@ -152,7 +152,6 @@ public class LoadArmiesController implements Initializable {
 
     /**
      * calls on the FXMLLoader class to load a new fxml file
-     * this particular loads the view-armies file
      * @param event event
      * @throws IOException exception
      */
@@ -161,13 +160,4 @@ public class LoadArmiesController implements Initializable {
     }
 
 
-    /**
-     * calls on the fxmlloader class to load a new fxml file
-     * this particular loads the create-army file
-     * @param actionEvent
-     * @throws IOException
-     */
-    public void goToCreateArmy(ActionEvent actionEvent) throws IOException {
-        RegistryClient.fxmlLoaderClass.goToCreateArmy(actionEvent);
-    }
 }
