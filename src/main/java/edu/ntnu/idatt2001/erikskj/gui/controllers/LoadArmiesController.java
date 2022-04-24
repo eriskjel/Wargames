@@ -170,4 +170,13 @@ public class LoadArmiesController implements Initializable {
     public void goToCreateArmy(ActionEvent actionEvent) throws IOException {
         RegistryClient.fxmlLoaderClass.goToCreateArmy(actionEvent);
     }
+
+    /**
+     * calls on the FXMLLoader class to load a new fxml file
+     * @param event event
+     * @throws IOException exception
+     */
+    public void goToBattle(ActionEvent event) throws IOException {
+        RegistryClient.fxmlLoaderClass.goToBattle(event);
+    }
 }

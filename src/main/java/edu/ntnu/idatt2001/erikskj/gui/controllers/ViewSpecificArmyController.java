@@ -106,17 +106,6 @@ public class ViewSpecificArmyController implements Initializable {
         tableViewArmy.getItems().clear();
     }
 
-    /**
-     * removes all armies from register, deletes all files from army directory
-     * and clears table afterwards
-     * @throws IOException exception
-     */
-    public void removeAllArmies() throws IOException {
-        RegistryClient.armyRegister.removeAll();
-        File file = new File("src/main/resources/armyRegister");
-        FileUtils.cleanDirectory(file);
-        clearTable();
-    }
 
     /**
      * calls on the fxmlLoaderClass to load the new fxml file
@@ -139,5 +128,14 @@ public class ViewSpecificArmyController implements Initializable {
 
     public void goToCreateArmy(ActionEvent actionEvent) throws IOException {
         RegistryClient.fxmlLoaderClass.goToCreateArmy(actionEvent);
+    }
+
+    /**
+     * calls on the FXMLLoader class to load a new fxml file
+     * @param event event
+     * @throws IOException exception
+     */
+    public void goToBattle(ActionEvent event) throws IOException {
+        RegistryClient.fxmlLoaderClass.goToBattle(event);
     }
 }

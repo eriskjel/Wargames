@@ -1,6 +1,7 @@
 package edu.ntnu.idatt2001.erikskj.file;
 
 import edu.ntnu.idatt2001.erikskj.factory.UnitFactory;
+import edu.ntnu.idatt2001.erikskj.register.RegistryClient;
 import edu.ntnu.idatt2001.erikskj.units.CavalryUnit;
 import edu.ntnu.idatt2001.erikskj.units.CommanderUnit;
 import edu.ntnu.idatt2001.erikskj.units.InfantryUnit;
@@ -14,6 +15,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class FileHandler {
@@ -86,6 +88,21 @@ public class FileHandler {
         }
     }
 
+    public ArrayList<Army> readArmyFromRegister(){
+        ArrayList<Army> armies = new ArrayList<>();
+        File dir = new File("src/main/resources/armyRegister");
+        File[] directoryListing = dir.listFiles();
+        if (directoryListing != null) {
+            for (File child : directoryListing) {
+                armies.add(readFromFile(child.getPath()));
+            }
+        }
+        else{
+            return null;
+        }
+        return armies;
+    }
+
     public void writeToFile(Army army, String path) {
         if (!path.endsWith("csv")){
             path += ".csv";
@@ -101,4 +118,5 @@ public class FileHandler {
         }
 
     }
+
 }

@@ -80,4 +80,34 @@ public class FXMLLoaderClass {
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     * Method that loads "view-specific-army" fxml file and sets it as the current scene
+     * @param actionEvent event
+     * @throws IOException exception
+     */
+    public void goToBattle(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/battle.fxml"));
+        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(fxmlLoader.load(), 1300, 680);
+
+        stage.setTitle("Choose armies to battle with");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    /**
+     * Method that loads "view-specific-army" fxml file and sets it as the current scene
+     * @param actionEvent event
+     * @throws IOException exception
+     */
+    public void goToSimulation(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/simulation.fxml"));
+        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(fxmlLoader.load(), 1300, 680);
+
+        stage.setTitle("Battle simulation");
+        stage.setScene(scene);
+        stage.show();
+    }
 }

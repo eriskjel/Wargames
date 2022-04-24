@@ -98,6 +98,15 @@ public class ViewArmiesController implements Initializable {
     }
 
     /**
+     * calls on the FXMLLoader class to load a new fxml file
+     * @param event event
+     * @throws IOException exception
+     */
+    public void goToBattle(ActionEvent event) throws IOException {
+        RegistryClient.fxmlLoaderClass.goToBattle(event);
+    }
+
+    /**
      * calls on the FXMLLoaderClass to load the new fxml file
      * this particular loads the create army fxml file
      * @param actionEvent event
