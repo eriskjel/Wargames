@@ -172,7 +172,7 @@
                   <Button layoutX="196.0" layoutY="403.0" mnemonicParsing="false" text="Save army" />
                   <ImageView fitHeight="25.0" fitWidth="24.0" layoutX="292.0" layoutY="210.0" onMouseClicked="#addInfantry" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/plus%20(2).png" />
+                        <Image url="@../img/plus.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="25.0" fitWidth="24.0" layoutX="331.0" layoutY="209.0" onMouseClicked="#removeInfantry" pickOnBounds="true" preserveRatio="true">
@@ -182,17 +182,17 @@
                   </ImageView>
                   <ImageView fitHeight="25.0" fitWidth="24.0" layoutX="290.0" layoutY="331.0" onMouseClicked="#addCommander" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/plus%20(2).png" />
+                        <Image url="@../img/plus.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="25.0" fitWidth="24.0" layoutX="290.0" layoutY="292.0" onMouseClicked="#addCavalry" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/plus%20(2).png" />
+                        <Image url="@../img/plus.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="25.0" fitWidth="24.0" layoutX="292.0" layoutY="251.0" onMouseClicked="#addRanged" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/plus%20(2).png" />
+                        <Image url="@../img/plus.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="25.0" fitWidth="24.0" layoutX="331.0" layoutY="331.0" onMouseClicked="#removeCommander" pickOnBounds="true" preserveRatio="true">
