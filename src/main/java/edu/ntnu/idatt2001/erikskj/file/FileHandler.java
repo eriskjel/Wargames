@@ -87,6 +87,9 @@ public class FileHandler {
     }
 
     public void writeToFile(Army army, String path) {
+        if (!path.endsWith("csv")){
+            path += ".csv";
+        }
         try (FileWriter fileWriter = new FileWriter(path)) {
             fileWriter.write(army.getName() + "\n");
             for (int i = 0; i < army.getUnits().size(); i++) {

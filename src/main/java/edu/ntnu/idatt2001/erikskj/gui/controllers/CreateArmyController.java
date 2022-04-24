@@ -1,26 +1,25 @@
 package edu.ntnu.idatt2001.erikskj.gui.controllers;
 
+import edu.ntnu.idatt2001.erikskj.factory.UnitFactory;
 import edu.ntnu.idatt2001.erikskj.file.FileHandler;
+import edu.ntnu.idatt2001.erikskj.gui.FXMLLoaderClass;
 import edu.ntnu.idatt2001.erikskj.gui.models.UnitModel;
 import edu.ntnu.idatt2001.erikskj.register.RegistryClient;
+import edu.ntnu.idatt2001.erikskj.units.Unit;
 import edu.ntnu.idatt2001.erikskj.war.Army;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
+import javafx.scene.input.MouseEvent;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -29,78 +28,29 @@ import java.util.ResourceBundle;
  */
 public class CreateArmyController implements Initializable {
 
+    public ImageView removeInfantry;
+    @FXML private TextField sumInfantry;
+    @FXML private TextField sumCommander;
+    @FXML private TextField sumCavalry;
+    @FXML private TextField sumRanged;
+    @FXML private TextField inpInfantry;
+    @FXML private TextField inpRanged;
+    @FXML private TextField inpCavalry;
+    @FXML private TextField inpCommander;
+    @FXML private TextField inpInfantryName;
+    @FXML private TextField inpCommanderName;
+    @FXML private TextField inpCavalryName;
+    @FXML private TextField inpRangedName;
+    @FXML private TextField inpArmyName;
     @FXML private TableView tableArmyPreview;
     @FXML private TableColumn colUnit;
     @FXML private TableColumn colQuantity;
     @FXML private TableColumn colIcon;
-    @FXML private Label lblArmyName;
-    @FXML private Label lblFileSelected;
     @FXML private ObservableList<UnitModel> observableList = FXCollections.observableArrayList();
-    @FXML private Stage stage;
-    private String pathLoaded;
     private FileHandler fileHandler = new FileHandler();
-    private String fileName;
+    private final ArrayList<Unit> units = new ArrayList<>();
+    private final UnitFactory unitFactory = new UnitFactory();
 
-
-    /**
-     * opens dialog box to user, prompting user to pick a csv file containing desired army to upload
-     * @param actionEvent
-     */
-    public void uploadArmy(ActionEvent actionEvent) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Resource File");
-        File file = fileChooser.showOpenDialog(stage);
-        pathLoaded = file.getAbsolutePath();
-
-
-        fileName = file.getName();
-
-        //displays to gui which file has been uploaded as well as file path
-        lblFileSelected.setText(pathLoaded);
-        lblFileSelected.setStyle("-fx-font-weight: bold;");
-
-        fillTable();
-    }
-
-    /**
-     * displays the army currently loaded from the csv file that user uploaded
-     */
-    public void fillTable(){
-        clearTable();
-
-        //create army by reading file, with path specified from user input
-        Army army = fileHandler.readFromFile(pathLoaded);
-
-        //sets army name above table for display
-        lblArmyName.setText(army.getName());
-
-        //adds models to tableview
-        for (int i = 0; i < army.getArrayWithUnitNames().size(); i++) {
-            UnitModel unitModel = new UnitModel(army.getArrayWithUnitNames().get(i), army.getNumUnitsByType(army.getArrayWithUnitNames().get(i)), getIconByType(army.getArrayWithUnitNames().get(i)));
-            tableArmyPreview.getItems().add(unitModel);
-        }
-    }
-
-    /**
-     * method that returns the correct icon based on what type of unit the army has
-     * @param unit string containing unit type name
-     * @return ImageView with icon matching unit
-     */
-    public ImageView getIconByType(String unit){
-        switch (unit) {
-            case "Infantry":
-                return new ImageView(new Image(this.getClass().getResourceAsStream("/img/infantry.png")));
-            case "Ranged":
-                return new ImageView(new Image(this.getClass().getResourceAsStream("/img/ranged.png")));
-            case "Cavalry":
-                return new ImageView(new Image(this.getClass().getResourceAsStream("/img/cavalry.png")));
-            case "Commander":
-                return new ImageView(new Image(this.getClass().getResourceAsStream("/img/commander.png")));
-            default:
-                System.err.println("Something went wrong when rendering icon to unit.");
-                return null;
-        }
-    }
 
     /**
      * clears table
@@ -122,33 +72,6 @@ public class CreateArmyController implements Initializable {
         this.tableArmyPreview.setItems(observableList);
     }
 
-    /**
-     * removes army from the tableview, and resets the path-loaded variable and furthermore displays that no army is selected
-     */
-    public void removeArmy() {
-        clearTable();
-
-        pathLoaded = "";
-
-        lblFileSelected.setText("No file selected");
-    }
-
-    /**
-     * creates an army object by reading the csv file uploaded
-     * @param actionEvent event
-     * @throws IOException exception
-     */
-    public void saveArmy(ActionEvent actionEvent) throws IOException {
-        //creates army
-        Army army = fileHandler.readFromFile(pathLoaded);
-        army.setFileName(fileName);
-
-        //adds army to armyRegister
-        RegistryClient.armyRegister.add(army);
-
-        //loads new fxml file
-        goToViewArmies(actionEvent);
-    }
 
     /**
      * calls on the FXMLLoader class to load a new fxml file
@@ -159,5 +82,150 @@ public class CreateArmyController implements Initializable {
         RegistryClient.fxmlLoaderClass.goToViewArmies(event);
     }
 
+    /**
+     * calls on the FXMLLoader class to load a new fxml file
+     * @param event event
+     * @throws IOException exception
+     */
+    public void goToLoadArmies(ActionEvent event) throws IOException {
+        RegistryClient.fxmlLoaderClass.goToLoadArmies(event);
+    }
+
+    public void addStackOfUnits(){
+        if (!inpInfantryName.getText().equals("") && !inpInfantry.getText().equals("")) {
+            //adds infantry units
+            units.addAll(unitFactory.getListOfUnits("InfantryUnit", Integer.parseInt(inpInfantry.getText()), inpInfantryName.getText(), 100));
+        }
+
+        if (!inpRangedName.getText().equals("") && !inpRanged.getText().equals("")) {
+            //adds ranged units
+            units.addAll(unitFactory.getListOfUnits("RangedUnit", Integer.parseInt(inpRanged.getText()), inpRangedName.getText(), 100));
+        }
+
+        if (!inpCavalryName.getText().equals("") && !inpCavalry.getText().equals("")) {
+            //adds cavalry units
+            units.addAll(unitFactory.getListOfUnits("CavalryUnit", Integer.parseInt(inpCavalry.getText()), inpCavalryName.getText(), 100));
+        }
+
+        if (!inpCommanderName.getText().equals("") && !inpCommander.getText().equals("")) {
+            //adds commander units
+            units.addAll(unitFactory.getListOfUnits("CommanderUnit", Integer.parseInt(inpCommander.getText()), inpCommanderName.getText(), 180));
+        }
+        resetInputFields();
+        updateUnitCount();
+        System.out.println(units);
+    }
+
+    public void resetInputFields(){
+        inpInfantryName.setText("");
+        inpInfantry.setText("");
+
+        inpRangedName.setText("");
+        inpRanged.setText("");
+
+        inpCavalryName.setText("");
+        inpCavalry.setText("");
+
+        inpCommanderName.setText("");
+        inpCommander.setText("");
+    }
+
+    public void updateArmyName(){
+        String armyName = inpArmyName.getText();
+    }
+
+    public void updateUnitCount(){
+        this.sumInfantry.setText(String.valueOf(units.stream().filter(unit -> unit.getUnitType().equals("Infantry")).count()));
+        this.sumRanged.setText(String.valueOf(units.stream().filter(unit -> unit.getUnitType().equals("Ranged")).count()));
+        this.sumCavalry.setText(String.valueOf(units.stream().filter(unit -> unit.getUnitType().equals("Cavalry")).count()));
+        this.sumCommander.setText(String.valueOf(units.stream().filter(unit -> unit.getUnitType().equals("Commander")).count()));
+    }
+
+    public void displayWarningCannotRemoveUnit(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning! Could not remove unit.");
+        alert.setHeaderText(null);
+        alert.setContentText("There are not any units of the type you're trying to remove, therefore you can not remove another unit.");
+        alert.showAndWait();
+    }
+
+
+    public void removeInfantryUnit(MouseEvent mouseEvent) {
+        if (Integer.parseInt(this.sumInfantry.getText()) == 0){
+            displayWarningCannotRemoveUnit();
+        }
+        else{
+            units.stream().filter(unit -> unit.getUnitType().equals("Infantry")).findAny().map(units::remove);
+            updateUnitCount();
+        }
+    }
+
+    public void removeRangedUnit(MouseEvent mouseEvent) {
+        if (Integer.parseInt(this.sumRanged.getText()) == 0){
+            displayWarningCannotRemoveUnit();
+        }
+        else{
+            units.stream().filter(unit -> unit.getUnitType().equals("Ranged")).findAny().map(units::remove);
+            updateUnitCount();
+        }
+    }
+
+    public void removeCavalryUnit(MouseEvent mouseEvent) {
+        if (Integer.parseInt(this.sumCavalry.getText()) == 0){
+            displayWarningCannotRemoveUnit();
+        }
+        else{
+            units.stream().filter(unit -> unit.getUnitType().equals("Cavalry")).findAny().map(units::remove);
+            updateUnitCount();
+        }
+    }
+
+    public void removeCommanderUnit(MouseEvent mouseEvent) {
+        if (Integer.parseInt(this.sumCommander.getText()) == 0){
+            displayWarningCannotRemoveUnit();
+        }
+        else{
+            units.stream().filter(unit -> unit.getUnitType().equals("Commander")).findAny().map(units::remove);
+            updateUnitCount();
+        }
+    }
+
+    public boolean canArmyBeAdded(){
+        if (Integer.parseInt(sumInfantry.getText()) == 0 && Integer.parseInt(sumRanged.getText()) == 0 && Integer.parseInt(sumCavalry.getText()) == 0 && Integer.parseInt(sumCommander.getText()) == 0){
+            displayWarningArmyCannotBeAdded();
+            return false;
+        }
+        else if(inpArmyName.getText().equals("")){
+            displayWarningInvalidArmyName();
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+    public void saveArmy(ActionEvent event) throws IOException {
+        if (canArmyBeAdded()){
+            Army army = new Army(this.inpArmyName.getText(), units);
+            army.setFileName(army.getName() + "-" + army.getArmyID() + ".csv");
+            RegistryClient.armyRegister.add(army);
+        }
+        RegistryClient.fxmlLoaderClass.goToViewArmies(event);
+    }
+
+    public void displayWarningArmyCannotBeAdded(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning! Could not save army");
+        alert.setHeaderText(null);
+        alert.setContentText("You have not added any units to your army. Please add at least one unit to save an army.");
+        alert.showAndWait();
+    }
+
+    public void displayWarningInvalidArmyName(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning! Could not save army");
+        alert.setHeaderText(null);
+        alert.setContentText("You have not given your army a name. Please add a name before saving.");
+        alert.showAndWait();
+    }
 
 }

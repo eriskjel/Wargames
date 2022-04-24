@@ -123,7 +123,7 @@
                   <Label layoutX="50.0" layoutY="137.0" text="Upload a CSV file containing desired army:" />
                   <Button layoutX="291.0" layoutY="133.0" mnemonicParsing="false" onAction="#uploadArmy" text="Choose file" />
                   <Label fx:id="lblFileSelected" layoutX="50.0" layoutY="166.0" text="No file selected" />
-                  <TableView id="unitTable" fx:id="tableArmyPreview" layoutX="795.0" layoutY="133.0" prefHeight="314.0" prefWidth="418.0" stylesheets="@../css/styles.css">
+                  <TableView id="unitTable" fx:id="tableArmyPreview" layoutX="795.0" layoutY="133.0" prefHeight="178.0" prefWidth="418.0" stylesheets="@../css/styles.css">
                     <columns>
                         <TableColumn id="test" fx:id="colIcon" prefWidth="73.0" resizable="false" text="Icon" />
                       <TableColumn id="test" fx:id="colUnit" prefWidth="152.0" text="Unit" />
