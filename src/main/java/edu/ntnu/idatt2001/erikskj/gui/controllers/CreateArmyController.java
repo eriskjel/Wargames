@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -139,6 +140,7 @@ public class CreateArmyController implements Initializable {
         this.sumRanged.setText(String.valueOf(units.stream().filter(unit -> unit.getUnitType().equals("Ranged")).count()));
         this.sumCavalry.setText(String.valueOf(units.stream().filter(unit -> unit.getUnitType().equals("Cavalry")).count()));
         this.sumCommander.setText(String.valueOf(units.stream().filter(unit -> unit.getUnitType().equals("Commander")).count()));
+        fillTable();
     }
 
     public void displayWarningCannotRemoveUnit(){
@@ -226,6 +228,52 @@ public class CreateArmyController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText("You have not given your army a name. Please add a name before saving.");
         alert.showAndWait();
+    }
+
+
+    public void fillTable(){
+        clearTable();
+        //adding infantry
+        if (Integer.parseInt(sumInfantry.getText()) != 0){
+            UnitModel infantryModel = new UnitModel("Infantry Unit", (int) units.stream().filter(unit -> unit.getUnitType().equals("Infantry")).count(), getIconByType("Infantry"));
+            tableArmyPreview.getItems().add(infantryModel);
+        }
+
+        if (Integer.parseInt(sumRanged.getText()) != 0){
+            UnitModel rangedModel = new UnitModel("Ranged Unit", (int) units.stream().filter(unit -> unit.getUnitType().equals("Ranged")).count(), getIconByType("Ranged"));
+            tableArmyPreview.getItems().add(rangedModel);
+        }
+
+        if (Integer.parseInt(sumCavalry.getText()) != 0){
+            UnitModel cavalryModel = new UnitModel("Cavalry Unit", (int) units.stream().filter(unit -> unit.getUnitType().equals("Cavalry")).count(), getIconByType("Cavalry"));
+            tableArmyPreview.getItems().add(cavalryModel);
+        }
+
+        if (Integer.parseInt(sumCommander.getText()) != 0){
+            UnitModel commanderModel = new UnitModel("Commander Unit", (int) units.stream().filter(unit -> unit.getUnitType().equals("Commander")).count(), getIconByType("Commander"));
+            tableArmyPreview.getItems().add(commanderModel);
+        }
+    }
+
+    /**
+     * method that returns the correct icon based on what type of unit the army has
+     * @param unit string containing unit type name
+     * @return ImageView with icon matching unit
+     */
+    public ImageView getIconByType(String unit){
+        switch (unit) {
+            case "Infantry":
+                return new ImageView(new Image(this.getClass().getResourceAsStream("/img/infantry.png")));
+            case "Ranged":
+                return new ImageView(new Image(this.getClass().getResourceAsStream("/img/ranged.png")));
+            case "Cavalry":
+                return new ImageView(new Image(this.getClass().getResourceAsStream("/img/cavalry.png")));
+            case "Commander":
+                return new ImageView(new Image(this.getClass().getResourceAsStream("/img/commander.png")));
+            default:
+                System.err.println("Something went wrong when rendering icon to unit.");
+                return null;
+        }
     }
 
 }

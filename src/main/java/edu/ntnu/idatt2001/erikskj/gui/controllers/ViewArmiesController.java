@@ -89,11 +89,22 @@ public class ViewArmiesController implements Initializable {
 
     /**
      * calls on the FXMLLoaderClass to load the new fxml file
+     * this particular loads the load army fxml file
      * @param event event
      * @throws IOException exception
      */
     public void goToLoadArmies(ActionEvent event) throws IOException {
         RegistryClient.fxmlLoaderClass.goToLoadArmies(event);
+    }
+
+    /**
+     * calls on the FXMLLoaderClass to load the new fxml file
+     * this particular loads the create army fxml file
+     * @param actionEvent event
+     * @throws IOException exception
+     */
+    public void goToCreateArmy(ActionEvent actionEvent) throws IOException {
+        RegistryClient.fxmlLoaderClass.goToCreateArmy(actionEvent);
     }
 
     /**
@@ -130,4 +141,7 @@ public class ViewArmiesController implements Initializable {
         //loads new fxml file
         RegistryClient.fxmlLoaderClass.goToSpecificArmy(actionEvent);
     }
+
+
+
 }

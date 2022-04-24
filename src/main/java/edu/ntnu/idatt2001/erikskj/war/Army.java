@@ -170,7 +170,7 @@ public class Army {
      * @return string with filepath
      */
     public String getFilePath(){
-        return "src/main/resources/armyRegister/" + this.getName() + "-" + this.getArmyID();
+        return "src/main/resources/armyRegister/" + this.getName() + "-" + this.getArmyID() + ".csv";
     }
 
     /**

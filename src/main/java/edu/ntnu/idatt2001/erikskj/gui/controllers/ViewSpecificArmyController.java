@@ -137,4 +137,7 @@ public class ViewSpecificArmyController implements Initializable {
     }
 
 
+    public void goToCreateArmy(ActionEvent actionEvent) throws IOException {
+        RegistryClient.fxmlLoaderClass.goToCreateArmy(actionEvent);
+    }
 }
