@@ -34,8 +34,11 @@ public class ViewSpecificArmyController implements Initializable {
     @FXML private TableColumn colIcon;
     @FXML private Label lblArmyName;
     @FXML private ObservableList<UnitModel> observableList = FXCollections.observableArrayList();
-    private static String currentArmyFileName;
+    private static String currentArmyFilePath;
     private FileHandler fileHandler = new FileHandler();
+    private static String filePath;
+
+
 
     /**
      * method that runs when fxml file is loaded
@@ -62,7 +65,7 @@ public class ViewSpecificArmyController implements Initializable {
         clearTable();
 
         //create army by reading file, with path specified from user input
-        Army army = fileHandler.readFromFile(currentArmyFileName);
+        Army army = fileHandler.readFromFile(currentArmyFilePath);
 
         //sets army name above table for display
         lblArmyName.setText(army.getName());
@@ -96,7 +99,7 @@ public class ViewSpecificArmyController implements Initializable {
     }
 
     public static void setCurrentArmyFileName(String path){
-        currentArmyFileName = path;
+        currentArmyFilePath = path;
     }
 
     /**

@@ -74,7 +74,7 @@
                               <String fx:value="activeBtn" />
                            </styleClass>
                         </Button>
-                        <Button layoutX="279.0" layoutY="12.0" mnemonicParsing="false"  prefHeight="62.0" prefWidth="134.0" styleClass="button-menu" stylesheets="@../css/styles.css" text="View armies" />
+                        <Button layoutX="279.0" layoutY="12.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="134.0" styleClass="button-menu" stylesheets="@../css/styles.css" text="View armies" />
                         <Button layoutY="11.0" mnemonicParsing="false" onAction="#goToCreateArmy" prefHeight="62.0" prefWidth="134.0" style="-fx-text-alignment: left;" stylesheets="@../css/styles.css" text="Create army">
                            <styleClass>
                               <String fx:value="button-menu" />

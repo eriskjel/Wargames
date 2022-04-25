@@ -104,7 +104,7 @@ public class SimulationController implements Initializable {
                     RegistryClient.armyRegister.getArmies().get(i).getName(),
                     RegistryClient.armyRegister.getArmies().get(i).getUnits().size(),
                     RegistryClient.armyRegister.getArmies().get(i).getSumHealth(),
-                    RegistryClient.armyRegister.getArmies().get(i).getFileName(),
+                    RegistryClient.armyRegister.getArmies().get(i).getArmyFile(),
                     RegistryClient.armyRegister.getArmies().get(i).getArmyID());
             tableLoadedArmies.getItems().add(loadedArmyModel);
         }
@@ -178,6 +178,7 @@ public class SimulationController implements Initializable {
     }
 
     public void fillArmyTable(int id, String name, int n){
+
         String pathAndName = "src/main/resources/armyRegister/" + name + "-" + id + ".csv";
         Army army = fileHandler.readFromFile(pathAndName);
 
@@ -195,6 +196,8 @@ public class SimulationController implements Initializable {
                 armyName2.setText(name);
             }
         }
+
+        System.out.println("test");
     }
 
     /**

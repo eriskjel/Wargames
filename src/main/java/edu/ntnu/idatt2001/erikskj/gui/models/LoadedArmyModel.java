@@ -5,6 +5,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.image.ImageView;
 
+import java.io.File;
+
 /**
  * Class that represents an Army. This is solely used to add data to the table, used in "view-armies.fxml".
  * This should not be confused with the actual Army object, which represent an actual army in a battle.
@@ -19,16 +21,19 @@ public class LoadedArmyModel {
     private SimpleStringProperty armyName;
     private SimpleIntegerProperty totalUnits;
     private SimpleIntegerProperty totalHealth;
-    private SimpleStringProperty fileName;
+    //private SimpleStringProperty filePath;
     private int armyID;
+    //private SimpleStringProperty fileName;
+    private File armyFile;
 
 
 
-    public LoadedArmyModel(String armyName, int totalUnits, int totalHealth, String fileName, int armyID){
+    public LoadedArmyModel(String armyName, int totalUnits, int totalHealth, File armyFile, int armyID){
         this.armyName = new SimpleStringProperty(armyName);
         this.totalUnits = new SimpleIntegerProperty(totalUnits);
         this.totalHealth = new SimpleIntegerProperty(totalHealth);
-        this.fileName = new SimpleStringProperty(fileName);
+        //this.filePath = new SimpleStringProperty(filePath);
+        this.armyFile = armyFile;
         this.armyID = armyID;
     }
 
@@ -86,19 +91,31 @@ public class LoadedArmyModel {
      * getter for fileName
      * @return fileName
      */
-    public String getFileName() {
-        return fileName.get();
+    public String getFilePath() {
+        return armyFile.getPath();
     }
 
     /**
      * setter for fileName
-     * @param fileName new quantity
+     * @param file new quantity
      */
-    public void setTotalHealth(String fileName) {
-        this.fileName = new SimpleStringProperty(fileName);
+    public void setFilePath(File file) {
+        this.armyFile = file;
     }
 
     public int getArmyID(){
         return this.armyID;
     }
+
+    public String getFileName(){
+        return armyFile.getName();
+    }
+
+    /*
+    public void setFileName(String fileName){
+        this.fileName = new SimpleStringProperty(fileName);
+    }
+
+     */
+
 }

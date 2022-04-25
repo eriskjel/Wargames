@@ -69,7 +69,7 @@
                <children>
                   <Pane layoutX="386.0" layoutY="15.0" prefHeight="80.0" prefWidth="528.0">
                      <children>
-                        <Button layoutX="148.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToLoadArmies" prefHeight="62.0" prefWidth="122.0" style="-fx-text-alignment: left;" stylesheets="@../css/styles.css" text="Load army">
+                        <Button layoutX="148.0" layoutY="10.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="122.0" style="-fx-text-alignment: left;" stylesheets="@../css/styles.css" text="Load army">
                            <styleClass>
                               <String fx:value="button-menu" />
                               <String fx:value="activeBtn" />

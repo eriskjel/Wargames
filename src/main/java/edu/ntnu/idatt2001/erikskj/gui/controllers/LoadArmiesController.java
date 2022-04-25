@@ -2,6 +2,7 @@ package edu.ntnu.idatt2001.erikskj.gui.controllers;
 
 import edu.ntnu.idatt2001.erikskj.file.FileHandler;
 import edu.ntnu.idatt2001.erikskj.gui.models.UnitModel;
+import edu.ntnu.idatt2001.erikskj.register.PathRegister;
 import edu.ntnu.idatt2001.erikskj.register.RegistryClient;
 import edu.ntnu.idatt2001.erikskj.war.Army;
 import javafx.collections.FXCollections;
@@ -40,6 +41,7 @@ public class LoadArmiesController implements Initializable {
     private String pathLoaded;
     private FileHandler fileHandler = new FileHandler();
     private String fileName;
+    private File armyFile;
 
 
     /**
@@ -50,6 +52,7 @@ public class LoadArmiesController implements Initializable {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         File file = fileChooser.showOpenDialog(stage);
+        armyFile = file;
         pathLoaded = file.getAbsolutePath();
 
 
@@ -69,7 +72,7 @@ public class LoadArmiesController implements Initializable {
         clearTable();
 
         //create army by reading file, with path specified from user input
-        Army army = fileHandler.readFromFile(pathLoaded);
+        Army army = fileHandler.readFromFile(armyFile);
 
         //sets army name above table for display
         lblArmyName.setText(army.getName());
@@ -140,11 +143,12 @@ public class LoadArmiesController implements Initializable {
      */
     public void saveArmy(ActionEvent actionEvent) throws IOException {
         //creates army
-        Army army = fileHandler.readFromFile(pathLoaded);
+        Army army = fileHandler.readFromFile(armyFile);
         army.setFileName(fileName);
 
         //adds army to armyRegister
         RegistryClient.armyRegister.add(army);
+        RegistryClient.pathRegister.add(pathLoaded);
 
         //loads new fxml file
         goToViewArmies(actionEvent);

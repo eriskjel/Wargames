@@ -1,8 +1,10 @@
 package edu.ntnu.idatt2001.erikskj.gui.controllers;
 
+import edu.ntnu.idatt2001.erikskj.file.FileHandler;
 import edu.ntnu.idatt2001.erikskj.gui.models.LoadedArmyModel;
 import edu.ntnu.idatt2001.erikskj.gui.models.UnitModel;
 import edu.ntnu.idatt2001.erikskj.register.RegistryClient;
+import edu.ntnu.idatt2001.erikskj.war.Army;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,6 +32,7 @@ public class ViewArmiesController implements Initializable {
     @FXML private TableColumn colTotalHealth;
     @FXML private TableColumn colFileName;
     @FXML private ObservableList<UnitModel> observableList = FXCollections.observableArrayList();
+    private FileHandler fileHandler = new FileHandler();
 
     /**
      * method that runs when fxml file is loaded
@@ -55,16 +58,31 @@ public class ViewArmiesController implements Initializable {
         //clears table
         clearTable();
 
+        for (int i = 0; i < RegistryClient.pathRegister.getSize(); i++) {
+            String armyPath = RegistryClient.pathRegister.getRegister().get(i);
+            Army army = fileHandler.readFromFile(armyPath);
+            LoadedArmyModel loadedArmyModel = new LoadedArmyModel(
+                    army.getName(),
+                    army.getUnits().size(),
+                    army.getSumHealth(),
+                    army.getArmyFile(),
+                    army.getArmyID());
+            tableLoadedArmies.getItems().add(loadedArmyModel);
+        }
+
+        /*
         //loops through army register and fills table with LoadedArmyModels
         for (int i = 0; i < RegistryClient.armyRegister.getArmies().size(); i++) {
             LoadedArmyModel loadedArmyModel = new LoadedArmyModel(
                     RegistryClient.armyRegister.getArmies().get(i).getName(),
                     RegistryClient.armyRegister.getArmies().get(i).getUnits().size(),
                     RegistryClient.armyRegister.getArmies().get(i).getSumHealth(),
-                    RegistryClient.armyRegister.getArmies().get(i).getFileName(),
+                    RegistryClient.armyRegister.getArmies().get(i).getArmyFilePath(),
                     RegistryClient.armyRegister.getArmies().get(i).getArmyID());
             tableLoadedArmies.getItems().add(loadedArmyModel);
         }
+
+         */
 
     }
 
@@ -143,9 +161,11 @@ public class ViewArmiesController implements Initializable {
      */
     public void viewSelectedArmy(ActionEvent actionEvent) throws IOException {
         ObservableList<LoadedArmyModel> armyModel = tableLoadedArmies.getSelectionModel().getSelectedItems();
-        int armyID = armyModel.get(0).getArmyID();
 
-        ViewSpecificArmyController.setCurrentArmyFileName(RegistryClient.armyRegister.getArmyByID(armyID).getFilePathAndName());
+        int armyID = armyModel.get(0).getArmyID();
+        String filePath = armyModel.get(0).getFilePath();
+
+        ViewSpecificArmyController.setCurrentArmyFileName(filePath);
 
         //loads new fxml file
         RegistryClient.fxmlLoaderClass.goToSpecificArmy(actionEvent);

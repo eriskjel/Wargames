@@ -126,7 +126,7 @@ public class GoToBattleController<directoryListing> implements Initializable {
                     armies.get(i).getName(),
                     armies.get(i).getUnits().size(),
                     armies.get(i).getSumHealth(),
-                    armies.get(i).getFileName(),
+                    armies.get(i).getArmyFile(),
                     armies.get(i).getArmyID());
             tableLoadedArmies.getItems().add(loadedArmyModel);
         }

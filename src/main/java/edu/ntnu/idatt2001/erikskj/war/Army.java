@@ -2,6 +2,7 @@ package edu.ntnu.idatt2001.erikskj.war;
 
 import edu.ntnu.idatt2001.erikskj.units.*;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -14,6 +15,8 @@ public class Army {
     private final String name;
     private final ArrayList<Unit> units;
     private String fileName = "";
+    private String armyFilePath;
+    private File armyFile;
 
     /**
      * Constructor for army
@@ -22,7 +25,6 @@ public class Army {
     public Army(String name){
         this.name = name;
         units = new ArrayList<>();
-        this.setFileName(this.getFileName());
     }
 
     /**
@@ -61,7 +63,7 @@ public class Army {
     }
 
     public String getFileName() {
-        return fileName;
+        return armyFile.getName();
     }
 
     public void setFileName(String fileName){
@@ -175,6 +177,18 @@ public class Army {
         return "src/main/resources/armyRegister/" + this.getName() + "-" + this.getArmyID() + ".csv";
     }
 
+    public void setArmyFilePath(String path){
+        this.armyFilePath = path;
+    }
+
+    public File getArmyFile(){
+        return this.armyFile;
+    }
+
+    public void setArmyFile(File file){
+        this.armyFile = file;
+    }
+
     /**
      * equals method
      * @param o unit
@@ -204,5 +218,9 @@ public class Army {
             results += unit.toString() + "\n";
         }
         return results;
+    }
+
+    public String getArmyFilePath() {
+        return armyFilePath;
     }
 }

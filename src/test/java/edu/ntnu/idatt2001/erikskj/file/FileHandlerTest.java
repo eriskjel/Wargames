@@ -5,6 +5,7 @@ import edu.ntnu.idatt2001.erikskj.units.RangedUnit;
 import edu.ntnu.idatt2001.erikskj.war.Army;
 import edu.ntnu.idatt2001.erikskj.units.CavalryUnit;
 import edu.ntnu.idatt2001.erikskj.units.CommanderUnit;
+import javafx.stage.FileChooser;
 import org.junit.jupiter.api.Test;
 
 import java.io.BufferedWriter;
@@ -43,6 +44,16 @@ public class FileHandlerTest {
 
 
         assertEquals(armyFromFile, testFileArmy);
+    }
+
+    @Test
+    public void UploadArmy(){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        File file = new File("src/main/resources/csv/army.csv");
+        FileHandler fileHandler = new FileHandler();
+        Army army = fileHandler.readFromFile(file);
+        System.out.println(army);
     }
 
     /**
