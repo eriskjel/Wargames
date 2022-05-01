@@ -32,7 +32,7 @@ public class ArmyRegisterTest {
             armyOne.add(new CommanderUnit("Mountain King", 180));
         }
 
-        RegistryClient.armyRegister.add(armyOne);
+        RegistryClient.armyRegister.add(armyOne, false);
         assertEquals(1, RegistryClient.armyRegister.getArmies().size());
 
         File file = new File(armyOne.getFilePathAndName());
@@ -61,7 +61,7 @@ public class ArmyRegisterTest {
             armyOne.add(new CommanderUnit("Mountain King", 180));
         }
 
-        RegistryClient.armyRegister.add(armyOne);
+        RegistryClient.armyRegister.add(armyOne, false);
         RegistryClient.armyRegister.remove(armyOne);
         assertEquals(0, RegistryClient.armyRegister.getArmies().size());
 

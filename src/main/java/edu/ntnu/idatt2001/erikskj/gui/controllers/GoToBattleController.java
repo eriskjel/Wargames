@@ -179,6 +179,7 @@ public class GoToBattleController<directoryListing> implements Initializable {
     public void loadSelectedArmy(){
         ObservableList<LoadedArmyModel> armyModel = tableLoadedArmies.getSelectionModel().getSelectedItems();
 
+        /*
         if (table1Empty){
             army1ID = armyModel.get(0).getArmyID();
             fillArmyTable(army1ID, armyModel.get(0).getArmyName(), 1);
@@ -192,6 +193,23 @@ public class GoToBattleController<directoryListing> implements Initializable {
         else{
             displayWarningMax2Armies();
         }
+
+         */
+
+        if (table1Empty){
+            army1ID = armyModel.get(0).getArmyID();
+            fillArmyTable(armyModel.get(0).getFilePath(), 1);
+            table1Empty = false;
+        }
+        else if (table2Empty){
+            army2ID = armyModel.get(0).getArmyID();
+            fillArmyTable(armyModel.get(0).getFilePath(), 2);
+            table2Empty = false;
+        }
+        else{
+            displayWarningMax2Armies();
+        }
+
     }
 
     public void displayWarningMax2Armies(){
@@ -218,6 +236,25 @@ public class GoToBattleController<directoryListing> implements Initializable {
             else if(n == 2){
                 tableArmy2.getItems().add(unitModel);
                 armyName2.setText(name);
+            }
+        }
+    }
+
+    public void fillArmyTable(String path, int n){
+        Army army = fileHandler.readFromFile(path);
+
+
+        //adds models to tableview
+        for (int i = 0; i < army.getArrayWithUnitNames().size(); i++) {
+            UnitModel unitModel = new UnitModel(army.getArrayWithUnitNames().get(i), army.getNumUnitsByType(army.getArrayWithUnitNames().get(i)), getIconByType(army.getArrayWithUnitNames().get(i)));
+            if (n == 1){
+                tableArmy1.getItems().add(unitModel);
+                armyName1.setText(army.getName());
+
+            }
+            else if(n == 2){
+                tableArmy2.getItems().add(unitModel);
+                armyName2.setText(army.getName());
             }
         }
     }

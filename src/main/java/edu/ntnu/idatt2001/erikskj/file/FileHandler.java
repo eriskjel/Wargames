@@ -178,7 +178,7 @@ public class FileHandler {
         return armies;
     }
 
-    public void writeToFile(Army army, String path) {
+    public void writeToFile(Army army, String path, boolean armyIsCreated) {
         if (!path.endsWith("csv")){
             path += ".csv";
         }
@@ -187,7 +187,9 @@ public class FileHandler {
             for (int i = 0; i < army.getUnits().size(); i++) {
                 fileWriter.write(army.getUnits().get(i).toCSVFormat());
             }
-
+            if (armyIsCreated) {
+                RegistryClient.pathRegister.add(path);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

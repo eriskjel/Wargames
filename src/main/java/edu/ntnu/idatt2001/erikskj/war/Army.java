@@ -35,7 +35,7 @@ public class Army {
     public Army(String name, ArrayList<Unit> units){
         this.name = name;
         this.units = units;
-        this.setFileName(this.getFileName());
+        //this.setFileName(this.getFileName());
     }
 
     /**

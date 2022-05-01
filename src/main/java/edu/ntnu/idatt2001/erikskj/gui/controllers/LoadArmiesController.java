@@ -147,7 +147,7 @@ public class LoadArmiesController implements Initializable {
         army.setFileName(fileName);
 
         //adds army to armyRegister
-        RegistryClient.armyRegister.add(army);
+        RegistryClient.armyRegister.add(army, false);
         RegistryClient.pathRegister.add(pathLoaded);
 
         //loads new fxml file

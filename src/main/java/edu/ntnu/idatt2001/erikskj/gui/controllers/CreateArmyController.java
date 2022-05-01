@@ -220,7 +220,7 @@ public class CreateArmyController implements Initializable {
         if (canArmyBeAdded()){
             Army army = new Army(this.inpArmyName.getText(), units);
             army.setFileName(army.getName() + "-" + army.getArmyID() + ".csv");
-            RegistryClient.armyRegister.add(army);
+            RegistryClient.armyRegister.add(army, true);
         }
         RegistryClient.fxmlLoaderClass.goToViewArmies(event);
     }
