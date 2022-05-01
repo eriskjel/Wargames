@@ -95,18 +95,18 @@ public class GoToBattleController<directoryListing> implements Initializable {
         clearTable();
 
         //loops through army register and fills table with LoadedArmyModels
-        /*
+
         for (int i = 0; i < RegistryClient.armyRegister.getArmies().size(); i++) {
             LoadedArmyModel loadedArmyModel = new LoadedArmyModel(
                     RegistryClient.armyRegister.getArmies().get(i).getName(),
                     RegistryClient.armyRegister.getArmies().get(i).getUnits().size(),
                     RegistryClient.armyRegister.getArmies().get(i).getSumHealth(),
-                    RegistryClient.armyRegister.getArmies().get(i).getFileName(),
+                    RegistryClient.armyRegister.getArmies().get(i).getArmyFile(),
                     RegistryClient.armyRegister.getArmies().get(i).getArmyID());
             tableLoadedArmies.getItems().add(loadedArmyModel);
         }
 
-         */
+
 
         /*
         File dir = new File("src/main/resources/armyRegister");
@@ -120,6 +120,8 @@ public class GoToBattleController<directoryListing> implements Initializable {
 
          */
 
+
+        /*
         ArrayList<Army> armies = fileHandler.readArmyFromRegister();
         for (int i = 0; i < armies.size(); i++) {
             LoadedArmyModel loadedArmyModel = new LoadedArmyModel(
@@ -130,6 +132,10 @@ public class GoToBattleController<directoryListing> implements Initializable {
                     armies.get(i).getArmyID());
             tableLoadedArmies.getItems().add(loadedArmyModel);
         }
+
+         */
+
+
 
 
     }
