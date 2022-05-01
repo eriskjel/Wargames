@@ -79,15 +79,18 @@ public class ArmyRegister {
         armies.remove(army);
 
         //gets file path
+        if (!army.isUploaded()){
+            File file = new File(army.getArmyFile().getPath());
+            //tries to delete file
+            try{
+                file.delete();
+            }
+            catch (Exception e){
+                System.err.println(e);
+            }
+        }
         /*
-        File file = new File(army.getArmyFile().getPath());
-        //tries to delete file
-        try{
-            file.delete();
-        }
-        catch (Exception e){
-            System.err.println(e);
-        }
+
 
          */
     }

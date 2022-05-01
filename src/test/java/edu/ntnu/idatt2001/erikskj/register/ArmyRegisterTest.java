@@ -16,7 +16,7 @@ public class ArmyRegisterTest {
     @Test
     public void add() {
         //creates army
-        Army armyOne = new Army("Human Army");
+        Army armyOne = new Army("Human Army", false);
 
         //adds hundreds of different units to both armies
         for (int i = 0; i < 10; i++) {
@@ -35,7 +35,7 @@ public class ArmyRegisterTest {
         RegistryClient.armyRegister.add(armyOne);
         assertEquals(1, RegistryClient.armyRegister.getArmies().size());
 
-        File file = new File(armyOne.getFilePathAndName());
+        File file = new File(armyOne.getArmyFile().getPath());
         assertTrue(file.exists());
 
         //delete file so that test leaves no trace
@@ -45,7 +45,7 @@ public class ArmyRegisterTest {
     @Test
     public void remove() {
         //creates army
-        Army armyOne = new Army("Human Army");
+        Army armyOne = new Army("Human Army", false);
 
         //adds hundreds of different units to both armies
         for (int i = 0; i < 10; i++) {

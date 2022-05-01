@@ -29,6 +29,16 @@ public class Army {
     /**
      * Constructor for army
      * @param name name of army
+     */
+    public Army(String name, boolean isUploaded){
+        this.name = name;
+        units = new ArrayList<>();
+        this.isUploaded = isUploaded;
+    }
+
+    /**
+     * Constructor for army
+     * @param name name of army
      * @param units list with units to fill army
      */
     public Army(String name, ArrayList<Unit> units){
