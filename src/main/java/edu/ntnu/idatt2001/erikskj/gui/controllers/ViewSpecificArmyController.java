@@ -34,8 +34,11 @@ public class ViewSpecificArmyController implements Initializable {
     @FXML private TableColumn colIcon;
     @FXML private Label lblArmyName;
     @FXML private ObservableList<UnitModel> observableList = FXCollections.observableArrayList();
-    private static String currentArmyFileName;
+    private static String currentArmyFilePath;
     private FileHandler fileHandler = new FileHandler();
+    private static String filePath;
+
+
 
     /**
      * method that runs when fxml file is loaded
@@ -62,7 +65,7 @@ public class ViewSpecificArmyController implements Initializable {
         clearTable();
 
         //create army by reading file, with path specified from user input
-        Army army = fileHandler.readFromFile(currentArmyFileName);
+        Army army = fileHandler.readFromFile(currentArmyFilePath);
 
         //sets army name above table for display
         lblArmyName.setText(army.getName());
@@ -96,7 +99,7 @@ public class ViewSpecificArmyController implements Initializable {
     }
 
     public static void setCurrentArmyFileName(String path){
-        currentArmyFileName = path;
+        currentArmyFilePath = path;
     }
 
     /**
@@ -106,17 +109,6 @@ public class ViewSpecificArmyController implements Initializable {
         tableViewArmy.getItems().clear();
     }
 
-    /**
-     * removes all armies from register, deletes all files from army directory
-     * and clears table afterwards
-     * @throws IOException exception
-     */
-    public void removeAllArmies() throws IOException {
-        RegistryClient.armyRegister.removeAll();
-        File file = new File("src/main/resources/armyRegister");
-        FileUtils.cleanDirectory(file);
-        clearTable();
-    }
 
     /**
      * calls on the fxmlLoaderClass to load the new fxml file
@@ -137,4 +129,16 @@ public class ViewSpecificArmyController implements Initializable {
     }
 
 
+    public void goToCreateArmy(ActionEvent actionEvent) throws IOException {
+        RegistryClient.fxmlLoaderClass.goToCreateArmy(actionEvent);
+    }
+
+    /**
+     * calls on the FXMLLoader class to load a new fxml file
+     * @param event event
+     * @throws IOException exception
+     */
+    public void goToBattle(ActionEvent event) throws IOException {
+        RegistryClient.fxmlLoaderClass.goToBattle(event);
+    }
 }

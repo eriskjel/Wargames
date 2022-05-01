@@ -2,6 +2,7 @@ package edu.ntnu.idatt2001.erikskj.war;
 
 import edu.ntnu.idatt2001.erikskj.units.*;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -13,7 +14,8 @@ public class Army {
     private int armyID;
     private final String name;
     private final ArrayList<Unit> units;
-    private String fileName = "";
+    private String armyFilePath;
+    private File armyFile;
 
     /**
      * Constructor for army
@@ -32,6 +34,7 @@ public class Army {
     public Army(String name, ArrayList<Unit> units){
         this.name = name;
         this.units = units;
+        //this.setFileName(this.getFileName());
     }
 
     /**
@@ -59,12 +62,15 @@ public class Army {
     }
 
     public String getFileName() {
-        return fileName;
+        return armyFile.getName();
     }
 
+    /*
     public void setFileName(String fileName){
         this.fileName = fileName;
     }
+
+     */
 
     /**
      * method that adds given unit to list of units
@@ -169,8 +175,20 @@ public class Army {
      * the filepath consists of the predetermined path plus the army name plus the army id
      * @return string with filepath
      */
-    public String getFilePath(){
-        return "src/main/resources/armyRegister/" + this.getName() + "-" + this.getArmyID();
+    public String getFilePathAndName(){
+        return "src/main/resources/armyRegister/" + this.getName() + "-" + this.getArmyID() + ".csv";
+    }
+
+    public void setArmyFilePath(String path){
+        this.armyFilePath = path;
+    }
+
+    public File getArmyFile(){
+        return this.armyFile;
+    }
+
+    public void setArmyFile(File file){
+        this.armyFile = file;
     }
 
     /**
@@ -202,5 +220,9 @@ public class Army {
             results += unit.toString() + "\n";
         }
         return results;
+    }
+
+    public String getArmyFilePath() {
+        return armyFilePath;
     }
 }

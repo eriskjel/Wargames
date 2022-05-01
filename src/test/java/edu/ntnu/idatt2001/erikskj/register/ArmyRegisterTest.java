@@ -32,10 +32,10 @@ public class ArmyRegisterTest {
             armyOne.add(new CommanderUnit("Mountain King", 180));
         }
 
-        RegistryClient.armyRegister.add(armyOne);
+        RegistryClient.armyRegister.add(armyOne, false);
         assertEquals(1, RegistryClient.armyRegister.getArmies().size());
 
-        File file = new File(armyOne.getFilePath());
+        File file = new File(armyOne.getFilePathAndName());
         assertTrue(file.exists());
 
         //delete file so that test leaves no trace
@@ -61,11 +61,11 @@ public class ArmyRegisterTest {
             armyOne.add(new CommanderUnit("Mountain King", 180));
         }
 
-        RegistryClient.armyRegister.add(armyOne);
+        RegistryClient.armyRegister.add(armyOne, false);
         RegistryClient.armyRegister.remove(armyOne);
         assertEquals(0, RegistryClient.armyRegister.getArmies().size());
 
-        File file = new File(armyOne.getFilePath());
+        File file = new File(armyOne.getFilePathAndName());
         assertFalse(file.exists());
     }
 }

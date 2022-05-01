@@ -22,10 +22,10 @@ public class ArmyRegister {
         this.armies = new ArrayList<>();
     }
 
-    public void add(Army army){
+    public void add(Army army, boolean armyIsCreated){
         army.setArmyID(armies.size());
         armies.add(army);
-        writeArmyToFile(army);
+        writeArmyToFile(army, armyIsCreated);
     }
 
     public void setArmyIDs(){
@@ -34,9 +34,9 @@ public class ArmyRegister {
         }
     }
 
-    public void writeArmyToFile(Army army){
+    public void writeArmyToFile(Army army, boolean armyIsCreated){
         FileHandler fileHandler = new FileHandler();
-        fileHandler.writeToFile(army, army.getFilePath());
+        fileHandler.writeToFile(army, army.getFilePathAndName(), armyIsCreated);
     }
 
 
@@ -57,7 +57,7 @@ public class ArmyRegister {
 
         for (int i = 0; i < this.getArmies().size(); i++) {
             Army army = this.getArmies().get(i);
-            fileHandler.writeToFile(army, army.getFilePath());
+            fileHandler.writeToFile(army, army.getFilePathAndName(), false);
         }
     }
 
@@ -70,7 +70,7 @@ public class ArmyRegister {
         armies.remove(army);
 
         //gets file path
-        File file = new File(army.getFilePath());
+        File file = new File(army.getFilePathAndName());
         //tries to delete file
         try{
             file.delete();
