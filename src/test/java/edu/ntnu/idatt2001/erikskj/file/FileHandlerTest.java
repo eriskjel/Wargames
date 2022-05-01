@@ -119,7 +119,7 @@ public class FileHandlerTest {
         //writes to file
         FileHandler fileHandler = new FileHandler();
         String path = "src/main/resources/testFiles/testnew.csv";
-        fileHandler.writeToFile(armyOne, path, false);
+        fileHandler.writeToFile(armyOne);
 
         //checks if file exists and if the file has content
         File file = new File(path);

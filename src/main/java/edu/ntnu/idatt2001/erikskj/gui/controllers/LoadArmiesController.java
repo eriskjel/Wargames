@@ -144,10 +144,11 @@ public class LoadArmiesController implements Initializable {
     public void saveArmy(ActionEvent actionEvent) throws IOException {
         //creates army
         Army army = fileHandler.readFromFile(armyFile);
+        army.setIsUploaded(true);
         //army.setFileName(fileName);
 
         //adds army to armyRegister
-        RegistryClient.armyRegister.add(army, false);
+        RegistryClient.armyRegister.add(army);
         RegistryClient.pathRegister.add(pathLoaded);
 
         //loads new fxml file

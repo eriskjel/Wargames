@@ -22,10 +22,12 @@ public class ArmyRegister {
         this.armies = new ArrayList<>();
     }
 
-    public void add(Army army, boolean armyIsCreated){
+    public void add(Army army){
         army.setArmyID(armies.size());
         armies.add(army);
-        writeArmyToFile(army, armyIsCreated);
+        if (!army.isUploaded()){
+            writeArmyToFile(army);
+        }
     }
 
     public void setArmyIDs(){
@@ -34,9 +36,10 @@ public class ArmyRegister {
         }
     }
 
-    public void writeArmyToFile(Army army, boolean armyIsCreated){
+    public void writeArmyToFile(Army army){
         FileHandler fileHandler = new FileHandler();
-        fileHandler.writeToFile(army, army.getFilePathAndName(), armyIsCreated);
+        //fileHandler.writeToFile(army, army.getFilePathAndName(), armyIsCreated);
+        fileHandler.writeToFile(army);
     }
 
 
@@ -49,15 +52,21 @@ public class ArmyRegister {
      */
     public void resetAndWriteArmyToFile() throws IOException {
         //deletes directory
-        File file = new File("src/main/resources/armyRegister");
+        File file = new File("./Armies/");
         FileUtils.cleanDirectory(file);
+
+
+        File gitkeep = new File("./Armies/.gitkeep");
+        gitkeep.createNewFile();
 
         FileHandler fileHandler = new FileHandler();
 
 
         for (int i = 0; i < this.getArmies().size(); i++) {
             Army army = this.getArmies().get(i);
-            fileHandler.writeToFile(army, army.getFilePathAndName(), false);
+            if (!army.isUploaded()){
+                fileHandler.writeToFile(army);
+            }
         }
     }
 
@@ -70,7 +79,8 @@ public class ArmyRegister {
         armies.remove(army);
 
         //gets file path
-        File file = new File(army.getFilePathAndName());
+        /*
+        File file = new File(army.getArmyFile().getPath());
         //tries to delete file
         try{
             file.delete();
@@ -78,6 +88,8 @@ public class ArmyRegister {
         catch (Exception e){
             System.err.println(e);
         }
+
+         */
     }
 
     /**

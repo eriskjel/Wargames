@@ -18,6 +18,7 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 /**
@@ -58,6 +59,7 @@ public class ViewArmiesController implements Initializable {
         //clears table
         clearTable();
 
+        /*
         for (int i = 0; i < RegistryClient.pathRegister.getSize(); i++) {
             String armyPath = RegistryClient.pathRegister.getRegister().get(i);
             Army army = fileHandler.readFromFile(armyPath);
@@ -70,19 +72,20 @@ public class ViewArmiesController implements Initializable {
             tableLoadedArmies.getItems().add(loadedArmyModel);
         }
 
-        /*
+     */
+
+
         //loops through army register and fills table with LoadedArmyModels
         for (int i = 0; i < RegistryClient.armyRegister.getArmies().size(); i++) {
             LoadedArmyModel loadedArmyModel = new LoadedArmyModel(
                     RegistryClient.armyRegister.getArmies().get(i).getName(),
                     RegistryClient.armyRegister.getArmies().get(i).getUnits().size(),
                     RegistryClient.armyRegister.getArmies().get(i).getSumHealth(),
-                    RegistryClient.armyRegister.getArmies().get(i).getArmyFilePath(),
+                    RegistryClient.armyRegister.getArmies().get(i).getArmyFile(),
                     RegistryClient.armyRegister.getArmies().get(i).getArmyID());
             tableLoadedArmies.getItems().add(loadedArmyModel);
+            System.out.println(RegistryClient.armyRegister.getArmies().get(i).toStringTest());
         }
-
-         */
 
     }
 
@@ -93,17 +96,37 @@ public class ViewArmiesController implements Initializable {
         tableLoadedArmies.getItems().clear();
     }
 
+
     /**
      * removes all armies from register, deletes all files from army directory
      * and clears table afterwards
      * @throws IOException exception
      */
+
     public void removeAllArmies() throws IOException {
         RegistryClient.armyRegister.removeAll();
         File file = new File("src/main/resources/armyRegister");
         FileUtils.cleanDirectory(file);
         clearTable();
     }
+
+
+    /**
+     * removes all armies from register, deletes all files from army directory
+     * and clears table afterwards
+     * @throws IOException exception
+     */
+    /*
+
+
+    public void removeAllArmies() throws IOException {
+        RegistryClient.pathRegister.removeAll();
+        File file = new File("src/main/resources/armyRegister");
+        FileUtils.cleanDirectory(file);
+        clearTable();
+    }
+
+     */
 
     /**
      * calls on the FXMLLoaderClass to load the new fxml file
@@ -138,6 +161,7 @@ public class ViewArmiesController implements Initializable {
      * removes selected army from gui table as well as from the army register
      * @throws IOException exception
      */
+
     public void removeSelectedArmy() throws IOException {
         ObservableList<LoadedArmyModel> allArmies, singleArmy;
         allArmies = tableLoadedArmies.getItems();
@@ -152,6 +176,30 @@ public class ViewArmiesController implements Initializable {
         RegistryClient.armyRegister.setArmyIDs();
         RegistryClient.armyRegister.resetAndWriteArmyToFile();
     }
+
+
+
+    /**
+     * removes selected army from gui table as well as from the army register
+     * @throws IOException exception
+     */
+    /*
+    public void removeSelectedArmy() throws IOException {
+        ObservableList<LoadedArmyModel> allArmies, singleArmy;
+        allArmies = tableLoadedArmies.getItems();
+        singleArmy = tableLoadedArmies.getSelectionModel().getSelectedItems();
+
+        for (int i = 0; i < RegistryClient.pathRegister.getSize(); i++) {
+            if (Objects.equals(RegistryClient.pathRegister.getRegister().get(i), singleArmy.get(0).getFilePath())){
+                RegistryClient.pathRegister.removeArmyPath(RegistryClient.pathRegister.getRegister().get(i));
+            }
+        }
+        singleArmy.forEach(allArmies::remove);
+        RegistryClient.armyRegister.setArmyIDs();
+        RegistryClient.armyRegister.resetAndWriteArmyToFile();
+    }
+
+     */
 
     /**
      * gets the armyID from the selected army in the gui. then sends army file location to controller which will display said army contents.

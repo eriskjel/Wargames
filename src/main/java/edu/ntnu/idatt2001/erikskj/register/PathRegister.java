@@ -18,4 +18,16 @@ public class PathRegister {
     public int getSize(){
         return armyPathRegister.size();
     }
+
+    public void removeAll(){
+        armyPathRegister.clear();
+    }
+
+    public void removeArmyPath(String path){
+        for (int i = 0; i < armyPathRegister.size(); i++) {
+            if (path.equals(armyPathRegister.get(i))){
+                armyPathRegister.remove(armyPathRegister.get(i));
+            }
+        }
+    }
 }
