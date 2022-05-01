@@ -14,7 +14,6 @@ public class Army {
     private int armyID;
     private final String name;
     private final ArrayList<Unit> units;
-    private String fileName = "";
     private String armyFilePath;
     private File armyFile;
 
@@ -66,9 +65,12 @@ public class Army {
         return armyFile.getName();
     }
 
+    /*
     public void setFileName(String fileName){
         this.fileName = fileName;
     }
+
+     */
 
     /**
      * method that adds given unit to list of units

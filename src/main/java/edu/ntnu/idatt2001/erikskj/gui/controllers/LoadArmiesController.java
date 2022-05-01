@@ -144,7 +144,7 @@ public class LoadArmiesController implements Initializable {
     public void saveArmy(ActionEvent actionEvent) throws IOException {
         //creates army
         Army army = fileHandler.readFromFile(armyFile);
-        army.setFileName(fileName);
+        //army.setFileName(fileName);
 
         //adds army to armyRegister
         RegistryClient.armyRegister.add(army, false);
