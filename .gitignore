@@ -12,3 +12,4 @@ target
 *.iml
 target/
 wireframe
+*.csv
