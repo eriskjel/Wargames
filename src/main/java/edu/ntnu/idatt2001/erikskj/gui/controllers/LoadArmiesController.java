@@ -2,7 +2,6 @@ package edu.ntnu.idatt2001.erikskj.gui.controllers;
 
 import edu.ntnu.idatt2001.erikskj.file.FileHandler;
 import edu.ntnu.idatt2001.erikskj.gui.models.UnitModel;
-import edu.ntnu.idatt2001.erikskj.register.PathRegister;
 import edu.ntnu.idatt2001.erikskj.register.RegistryClient;
 import edu.ntnu.idatt2001.erikskj.war.Army;
 import javafx.collections.FXCollections;
@@ -144,11 +143,11 @@ public class LoadArmiesController implements Initializable {
     public void saveArmy(ActionEvent actionEvent) throws IOException {
         //creates army
         Army army = fileHandler.readFromFile(armyFile);
+        army.setIsUploaded(true);
         //army.setFileName(fileName);
 
         //adds army to armyRegister
-        RegistryClient.armyRegister.add(army, false);
-        RegistryClient.pathRegister.add(pathLoaded);
+        RegistryClient.armyRegister.add(army);
 
         //loads new fxml file
         goToViewArmies(actionEvent);

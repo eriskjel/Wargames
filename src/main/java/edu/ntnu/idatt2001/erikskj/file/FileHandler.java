@@ -20,8 +20,9 @@ import java.util.Objects;
 
 public class FileHandler {
 
-
+    private String defaultPath = "./Armies/";
     public FileHandler(){}
+
 
     /**
      * Method for reading an army from a file. Reads line by line, and splits by comma.
@@ -178,8 +179,9 @@ public class FileHandler {
         return armies;
     }
 
-    public void writeToFile(Army army, String path, boolean armyIsCreated) {
-        if (!path.endsWith("csv")){
+    public void writeToFile(Army army) {
+        String path = defaultPath + army.generateFileName();
+        if (!path.endsWith(".csv")){
             path += ".csv";
         }
         try (FileWriter fileWriter = new FileWriter(path)) {
@@ -187,9 +189,8 @@ public class FileHandler {
             for (int i = 0; i < army.getUnits().size(); i++) {
                 fileWriter.write(army.getUnits().get(i).toCSVFormat());
             }
-            if (armyIsCreated) {
-                RegistryClient.pathRegister.add(path);
-            }
+
+            army.setArmyFile(new File(path));
         } catch (IOException e) {
             e.printStackTrace();
         }

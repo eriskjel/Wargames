@@ -218,9 +218,9 @@ public class CreateArmyController implements Initializable {
 
     public void saveArmy(ActionEvent event) throws IOException {
         if (canArmyBeAdded()){
-            Army army = new Army(this.inpArmyName.getText(), units);
+            Army army = new Army(this.inpArmyName.getText(), units, false);
             //army.setFileName(army.getName() + "-" + army.getArmyID() + ".csv");
-            RegistryClient.armyRegister.add(army, true);
+            RegistryClient.armyRegister.add(army);
         }
         RegistryClient.fxmlLoaderClass.goToViewArmies(event);
     }

@@ -14,8 +14,8 @@ public class Army {
     private int armyID;
     private final String name;
     private final ArrayList<Unit> units;
-    private String armyFilePath;
     private File armyFile;
+    private boolean isUploaded;
 
     /**
      * Constructor for army
@@ -29,12 +29,32 @@ public class Army {
     /**
      * Constructor for army
      * @param name name of army
+     */
+    public Army(String name, boolean isUploaded){
+        this.name = name;
+        units = new ArrayList<>();
+        this.isUploaded = isUploaded;
+    }
+
+    /**
+     * Constructor for army
+     * @param name name of army
      * @param units list with units to fill army
      */
     public Army(String name, ArrayList<Unit> units){
         this.name = name;
         this.units = units;
-        //this.setFileName(this.getFileName());
+    }
+
+    /**
+     * Constructor for army
+     * @param name name of army
+     * @param units list with units to fill army
+     */
+    public Army(String name, ArrayList<Unit> units, boolean isUploaded){
+        this.name = name;
+        this.units = units;
+        this.isUploaded = isUploaded;
     }
 
     /**
@@ -60,17 +80,6 @@ public class Army {
     public String getName(){
         return this.name;
     }
-
-    public String getFileName() {
-        return armyFile.getName();
-    }
-
-    /*
-    public void setFileName(String fileName){
-        this.fileName = fileName;
-    }
-
-     */
 
     /**
      * method that adds given unit to list of units
@@ -179,16 +188,24 @@ public class Army {
         return "src/main/resources/armyRegister/" + this.getName() + "-" + this.getArmyID() + ".csv";
     }
 
-    public void setArmyFilePath(String path){
-        this.armyFilePath = path;
-    }
-
     public File getArmyFile(){
         return this.armyFile;
     }
 
     public void setArmyFile(File file){
         this.armyFile = file;
+    }
+
+    public String generateFileName(){
+        return this.getName() + "-" + this.armyID;
+    }
+
+    public boolean isUploaded(){
+        return this.isUploaded;
+    }
+
+    public void setIsUploaded(boolean isUploaded){
+        this.isUploaded = isUploaded;
     }
 
     /**
@@ -222,7 +239,17 @@ public class Army {
         return results;
     }
 
-    public String getArmyFilePath() {
-        return armyFilePath;
+
+    /**
+     * @return string with all units in current army
+     */
+    public String toStringTest() {
+        return "Army{" +
+                "armyID=" + armyID +
+                ", name='" + name + '\'' +
+                ", units=" + units +
+                ", armyFile=" + armyFile +
+                ", isUploaded=" + isUploaded +
+                '}';
     }
 }
