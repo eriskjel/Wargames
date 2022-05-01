@@ -149,7 +149,7 @@
                   <Label fx:id="armyName2" layoutX="585.0" layoutY="119.0" prefHeight="17.0" prefWidth="79.0" />
                   <Button layoutX="743.0" layoutY="115.0" mnemonicParsing="false" onAction="#removeArmy2" text="Remove army" />
                   <Button layoutX="1126.0" layoutY="115.0" mnemonicParsing="false" onAction="#removeArmy1" text="Remove army" />
-                  <Button layoutX="800.0" layoutY="405.0" mnemonicParsing="false" onAction="#goToSimulation" prefHeight="62.0" prefWidth="122.0" text="Go to battle!" />
+                  <Button layoutX="800.0" layoutY="405.0" mnemonicParsing="false" onAction="#goToSimulation" prefHeight="62.0" prefWidth="122.0" text="Go to battle! (Not implemented yet)" />
                </children>
             </Pane>
          </children>
