@@ -159,7 +159,9 @@ public class FileHandler {
                     System.err.println("Something went wrong when reading file. Have you deleted all empty lines?");
                 }
             }
-            army.setArmyFile(file);
+            if (army.getArmyFile() == null){
+                army.setArmyFile(file);
+            }
             return army;
         } catch (IOException e) {
             e.printStackTrace();
@@ -167,9 +169,29 @@ public class FileHandler {
         }
     }
 
-    public ArrayList<Army> readArmyFromRegister(){
+    public ArrayList<Army> readArmiesFromRegister(){
         ArrayList<Army> armies = new ArrayList<>();
         File dir = new File(defaultPath);
+        File[] directoryListing = dir.listFiles();
+        if (directoryListing != null) {
+            for (File child : directoryListing) {
+                armies.add(readFromFile(child));
+            }
+        }
+        else{
+            return null;
+        }
+        return armies;
+    }
+
+    /**
+     * used for testing, because test armies is in a separate folder from default path
+     * @param path path to test armies
+     * @return arraylist with armies
+     */
+    public ArrayList<Army> readArmiesFromRegister(String path){
+        ArrayList<Army> armies = new ArrayList<>();
+        File dir = new File(path);
         File[] directoryListing = dir.listFiles();
         if (directoryListing != null) {
             for (File child : directoryListing) {

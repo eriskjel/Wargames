@@ -1,5 +1,6 @@
 package edu.ntnu.idatt2001.erikskj.file;
 
+import edu.ntnu.idatt2001.erikskj.factory.UnitFactory;
 import edu.ntnu.idatt2001.erikskj.units.InfantryUnit;
 import edu.ntnu.idatt2001.erikskj.units.RangedUnit;
 import edu.ntnu.idatt2001.erikskj.war.Army;
@@ -12,6 +13,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,18 +24,16 @@ public class FileHandlerTest {
      * reads army and creates an army object instance. Afterwards that army is compared with the expected, hardcoded, army and if the two are equal
      * then the file reading is done successfully
      */
-    /*
     @Test
     public void readFromFile() {
         //create army from file
-        String filePath = "src/main/resources/csv/army.csv";
+        String filePath = "src/test/java/edu/ntnu/idatt2001/erikskj/file/testFiles/testArmy.csv";
         FileHandler fileHandler = new FileHandler();
         Army armyFromFile = fileHandler.readFromFile(filePath);
-        //Army armyFromFile = WarGamesClient.readFromFile(filePath);
 
 
         //creating equal army to army from file, to check if file reading method works
-        Army testFileArmy = new Army("File Army");
+        Army testFileArmy = new Army("Test Army");
         for (int i = 0; i < 6; i++) {
             testFileArmy.add(new InfantryUnit("Footman", 100));
         }
@@ -47,36 +47,19 @@ public class FileHandlerTest {
         assertEquals(armyFromFile, testFileArmy);
     }
 
-     */
-
-    @Test
-    public void UploadArmy(){
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Resource File");
-        File file = new File("src/main/resources/csv/army.csv");
-        FileHandler fileHandler = new FileHandler();
-        Army army = fileHandler.readFromFile(file);
-        System.out.println(army);
-    }
-
     /**
      * tests if file filehandler class throws exception if file to be read is not csv
      * @throws IOException exception
      */
     @Test
-    public void readFromFileNotCSVThrowsException() throws IOException {
-        //create new file
-        String filePath = "src/main/resources/testFiles/NOTCSV.notCSV";
-        File file = new File(filePath);
-        file.createNewFile();
+    public void readFromFileNotCSVThrowsException() {
+        //get test file
+        File file = new File("src/test/java/edu/ntnu/idatt2001/erikskj/file/testFiles/armyNOTCSV.txt");
 
         FileHandler fileHandler = new FileHandler();
         assertThrows(IllegalArgumentException.class, () ->{
-            fileHandler.readFromFile(filePath);
+            fileHandler.readFromFile(file.getPath());
         });
-
-        //deletes file after test
-        file.delete();
     }
 
     /**
@@ -85,29 +68,45 @@ public class FileHandlerTest {
      */
     @Test
     public void readArmyFromFileArmyNameNotFound() throws IOException {
-        String path = "src/main/resources/testFiles/armyWithOutName.csv";
-        BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+        File file = new File("src/test/java/edu/ntnu/idatt2001/erikskj/file/testFiles/armyWithoutName.txt");
 
-        //writing to file, imitating a scenario where the army name is not specified, and the
-        //file only contains the units
-        writer.write("InfantryUnit,The man,1000");
-        writer.close();
 
         FileHandler fileHandler = new FileHandler();
         assertThrows(IllegalArgumentException.class, () ->{
-            fileHandler.readFromFile(path);
+            fileHandler.readFromFile(file.getPath());
         });
-
-        //deletes file after test
-        File file = new File(path);
-        file.delete();
     }
 
     /**
      * test for method writing to file
      * runs writeToFile method from FileHandler class, and afterwards checks if there is a file with the desired name written in the method
      */
-    /*
+
+    @Test
+    public void readArmiesFromRegister(){
+        UnitFactory factory = new UnitFactory();
+        ArrayList<Army> correctArmyList = new ArrayList<>();
+        //create army 1
+        Army army = new Army("Test Army 1");
+        army.addAll(factory.getListOfUnits("InfantryUnit", 2, "Footman", 100));
+        army.add(factory.createUnit("RangedUnit", "Archer", 100));
+        army.addAll(factory.getListOfUnits("CavalryUnit", 2, "The Rock", 100));
+        army.add(factory.createUnit("CommanderUnit", "Erik", 180));
+        correctArmyList.add(army);
+
+        //create army 2
+        Army army2 = new Army("Test Army 2");
+        army2.add(factory.createUnit("InfantryUnit", "Footman", 100));
+        army2.add(factory.createUnit("RangedUnit", "Archer", 100));
+        army2.addAll(factory.getListOfUnits("CavalryUnit", 2, "The Rock", 100));
+        army2.add(factory.createUnit("CommanderUnit", "Erik", 180));
+        correctArmyList.add(army2);
+
+        ArrayList<Army> armiesFromRegister = new ArrayList<>(new FileHandler().readArmiesFromRegister("src/test/java/edu/ntnu/idatt2001/erikskj/file/TestFiles/TestRegister"));
+        assertEquals(correctArmyList, armiesFromRegister);
+
+    }
+
     @Test
     public void writeToFile(){
 
@@ -122,17 +121,17 @@ public class FileHandlerTest {
 
         //writes to file
         FileHandler fileHandler = new FileHandler();
-        String path = "src/main/resources/testFiles/testnew.csv";
         fileHandler.writeToFile(armyOne);
 
+
         //checks if file exists and if the file has content
-        File file = new File(path);
+        File file = new File("./ArmiesDir/Armies/");
         assertTrue(file.exists());
         assertNotEquals(0, file.length());
 
         //deletes file after test
-        file.delete();
+        armyOne.getArmyFile().delete();
     }
 
-     */
+
 }

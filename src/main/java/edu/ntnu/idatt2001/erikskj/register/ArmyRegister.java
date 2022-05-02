@@ -122,7 +122,7 @@ public class ArmyRegister {
     public void readArmiesFromDir() throws IOException {
         FileHandler fileHandler = new FileHandler();
         if (!fileHandler.isArmiesDirEmpty()){
-            ArrayList<Army> armies = fileHandler.readArmyFromRegister();
+            ArrayList<Army> armies = fileHandler.readArmiesFromRegister();
             for(Army army : armies){
                 this.add(army);
             }
