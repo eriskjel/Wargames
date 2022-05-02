@@ -29,7 +29,7 @@ public class FileHandlerTest {
     @Test
     public void readFromFile() {
         //create army from file
-        String filePath = "/src/test/java/edu/ntnu/idatt2001/erikskj/file/testFiles/testArmy.csv";
+        String filePath = "src/main/resources/csv/TestFiles/testArmy.csv";
         FileHandler fileHandler = new FileHandler();
         Army armyFromFile = fileHandler.readFromFile(filePath);
 
@@ -56,7 +56,7 @@ public class FileHandlerTest {
     @Test
     public void readFromFileNotCSVThrowsException() {
         //get test file
-        File file = new File("src/test/java/edu/ntnu/idatt2001/erikskj/file/testFiles/armyNOTCSV.txt");
+        File file = new File("src/main/resources/csv/TestFiles/armyNOTCSV.txt");
 
         FileHandler fileHandler = new FileHandler();
         assertThrows(IllegalArgumentException.class, () ->{
@@ -70,7 +70,7 @@ public class FileHandlerTest {
      */
     @Test
     public void readArmyFromFileArmyNameNotFound() throws IOException {
-        File file = new File("src/test/java/edu/ntnu/idatt2001/erikskj/file/testFiles/armyWithoutName.txt");
+        File file = new File("src/main/resources/csv/TestFiles/armyWithoutName.csv");
 
 
         FileHandler fileHandler = new FileHandler();
@@ -104,7 +104,7 @@ public class FileHandlerTest {
         army2.add(factory.createUnit("CommanderUnit", "Erik", 180));
         correctArmyList.add(army2);
 
-        ArrayList<Army> armiesFromRegister = new ArrayList<>(new FileHandler().readArmiesFromRegister("src/test/java/edu/ntnu/idatt2001/erikskj/file/TestFiles/TestRegister"));
+        ArrayList<Army> armiesFromRegister = new ArrayList<>(new FileHandler().readArmiesFromRegister("src/main/resources/csv/TestFiles/TestRegister"));
         assertEquals(correctArmyList, armiesFromRegister);
 
     }
