@@ -13,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ import java.util.Objects;
 
 public class FileHandler {
 
-    private String defaultPath = "./Armies/";
+    private String defaultPath = "./ArmiesDir/Armies/";
     public FileHandler(){}
 
 
@@ -96,7 +97,9 @@ public class FileHandler {
 
                  */
             }
-            army.setArmyFile(loadedFile);
+            if (army.getArmyFile() == null){
+                army.setArmyFile(loadedFile);
+            }
             return army;
         } catch (IOException e) {
             e.printStackTrace();
@@ -166,7 +169,7 @@ public class FileHandler {
 
     public ArrayList<Army> readArmyFromRegister(){
         ArrayList<Army> armies = new ArrayList<>();
-        File dir = new File("src/main/resources/armyRegister");
+        File dir = new File(defaultPath);
         File[] directoryListing = dir.listFiles();
         if (directoryListing != null) {
             for (File child : directoryListing) {
@@ -195,6 +198,33 @@ public class FileHandler {
             e.printStackTrace();
         }
 
+    }
+
+    public void initDirectory() throws IOException {
+        File armiesDir = new File("./ArmiesDir");
+        File armies = new File("./ArmiesDir/Armies");
+        if (!armiesDir.exists() && !armies.exists()){
+            new File("./ArmiesDir").mkdirs();
+            new File("./ArmiesDir/Armies").mkdirs();
+            File gitkeep = new File("./ArmiesDir/.gitkeep");
+            gitkeep.createNewFile();
+        }
+        if (!armies.exists() && armiesDir.exists()){
+            new File("./ArmiesDir/Armies").mkdirs();
+        }
+
+    }
+
+    public boolean isArmiesDirEmpty(){
+        File armies = new File("./ArmiesDir/Armies/");
+        System.out.println(armies.length());
+        return armies.length() < 1;
+    }
+
+    public boolean isDirEmpty() throws IOException {
+        try(DirectoryStream<Path> dirStream = Files.newDirectoryStream(Path.of(defaultPath))) {
+            return !dirStream.iterator().hasNext();
+        }
     }
 
 }

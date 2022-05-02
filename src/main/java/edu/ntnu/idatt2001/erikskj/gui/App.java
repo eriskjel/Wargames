@@ -1,6 +1,9 @@
 package edu.ntnu.idatt2001.erikskj.gui;
 
+import edu.ntnu.idatt2001.erikskj.file.FileHandler;
+import edu.ntnu.idatt2001.erikskj.register.ArmyRegister;
 import edu.ntnu.idatt2001.erikskj.register.RegistryClient;
+import edu.ntnu.idatt2001.erikskj.war.Army;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -20,6 +23,8 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
         RegistryClient.armyRegister.removeAll();
+        new FileHandler().initDirectory();
+        RegistryClient.armyRegister.readArmiesFromDir();
     }
 
 

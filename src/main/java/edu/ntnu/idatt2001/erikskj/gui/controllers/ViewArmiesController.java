@@ -175,6 +175,7 @@ public class ViewArmiesController implements Initializable {
         singleArmy.forEach(allArmies::remove);
         RegistryClient.armyRegister.setArmyIDs();
         RegistryClient.armyRegister.resetAndWriteArmyToFile();
+        fillTable();
     }
 
 

@@ -51,13 +51,16 @@ public class ArmyRegister {
      * @throws IOException exception
      */
     public void resetAndWriteArmyToFile() throws IOException {
-        //deletes directory
-        File file = new File("./Armies/");
+        //deletes all files in army directory
+        File file = new File("./ArmiesDir/Armies/");
         FileUtils.cleanDirectory(file);
 
 
+        /*
         File gitkeep = new File("./Armies/.gitkeep");
         gitkeep.createNewFile();
+
+         */
 
         FileHandler fileHandler = new FileHandler();
 
@@ -122,5 +125,15 @@ public class ArmyRegister {
             }
         }
         return null;
+    }
+
+    public void readArmiesFromDir() throws IOException {
+        FileHandler fileHandler = new FileHandler();
+        if (!fileHandler.isDirEmpty()){
+            ArrayList<Army> armies = fileHandler.readArmyFromRegister();
+            for(Army army : armies){
+                this.add(army);
+            }
+        }
     }
 }
