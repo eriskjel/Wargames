@@ -29,7 +29,7 @@ public class FileHandlerTest {
     @Test
     public void readFromFile() {
         //create army from file
-        String filePath = "src/test/java/edu/ntnu/idatt2001/erikskj/file/testFiles/testArmy.csv";
+        String filePath = "/src/test/java/edu/ntnu/idatt2001/erikskj/file/testFiles/testArmy.csv";
         FileHandler fileHandler = new FileHandler();
         Army armyFromFile = fileHandler.readFromFile(filePath);
 
