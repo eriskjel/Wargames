@@ -22,7 +22,6 @@ public class App extends Application {
         stage.getIcons().add(new Image("file:src/main/resources/img/swords.png"));
         stage.setScene(scene);
         stage.show();
-        RegistryClient.armyRegister.removeAll();
         new FileHandler().initDirectory();
         RegistryClient.armyRegister.readArmiesFromDir();
     }

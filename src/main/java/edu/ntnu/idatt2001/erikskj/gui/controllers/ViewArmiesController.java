@@ -105,7 +105,7 @@ public class ViewArmiesController implements Initializable {
 
     public void removeAllArmies() throws IOException {
         RegistryClient.armyRegister.removeAll();
-        File file = new File("src/main/resources/armyRegister");
+        File file = new File("./ArmiesDir/Armies/");
         FileUtils.cleanDirectory(file);
         clearTable();
     }

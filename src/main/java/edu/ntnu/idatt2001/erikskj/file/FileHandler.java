@@ -215,13 +215,8 @@ public class FileHandler {
 
     }
 
-    public boolean isArmiesDirEmpty(){
-        File armies = new File("./ArmiesDir/Armies/");
-        System.out.println(armies.length());
-        return armies.length() < 1;
-    }
 
-    public boolean isDirEmpty() throws IOException {
+    public boolean isArmiesDirEmpty() throws IOException {
         try(DirectoryStream<Path> dirStream = Files.newDirectoryStream(Path.of(defaultPath))) {
             return !dirStream.iterator().hasNext();
         }

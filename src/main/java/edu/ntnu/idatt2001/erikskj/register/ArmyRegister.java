@@ -56,19 +56,14 @@ public class ArmyRegister {
         FileUtils.cleanDirectory(file);
 
 
-        /*
-        File gitkeep = new File("./Armies/.gitkeep");
-        gitkeep.createNewFile();
-
-         */
-
-        FileHandler fileHandler = new FileHandler();
 
 
+        //FileHandler fileHandler = new FileHandler();
         for (int i = 0; i < this.getArmies().size(); i++) {
             Army army = this.getArmies().get(i);
             if (!army.isUploaded()){
-                fileHandler.writeToFile(army);
+                //fileHandler.writeToFile(army);
+                new FileHandler().writeToFile(army);
             }
         }
     }
@@ -113,9 +108,6 @@ public class ArmyRegister {
     public void removeAll() throws IOException {
         //clear arraylist
         armies.clear();
-        //deletes directory
-        File file = new File("src/main/resources/armyRegister");
-        FileUtils.cleanDirectory(file);
     }
 
     public Army getArmyByID(int id){
@@ -129,7 +121,7 @@ public class ArmyRegister {
 
     public void readArmiesFromDir() throws IOException {
         FileHandler fileHandler = new FileHandler();
-        if (!fileHandler.isDirEmpty()){
+        if (!fileHandler.isArmiesDirEmpty()){
             ArrayList<Army> armies = fileHandler.readArmyFromRegister();
             for(Army army : armies){
                 this.add(army);
