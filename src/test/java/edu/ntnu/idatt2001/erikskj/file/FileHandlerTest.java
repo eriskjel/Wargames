@@ -49,15 +49,6 @@ public class FileHandlerTest {
 
      */
 
-    @Test
-    public void UploadArmy(){
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Resource File");
-        File file = new File("src/main/resources/csv/army.csv");
-        FileHandler fileHandler = new FileHandler();
-        Army army = fileHandler.readFromFile(file);
-        System.out.println(army);
-    }
 
     /**
      * tests if file filehandler class throws exception if file to be read is not csv
@@ -66,7 +57,7 @@ public class FileHandlerTest {
     @Test
     public void readFromFileNotCSVThrowsException() throws IOException {
         //create new file
-        String filePath = "src/main/resources/testFiles/NOTCSV.notCSV";
+        String filePath = "src/test/java/edu/ntnu/idatt2001/erikskj/file/testFiles/NOTCSV.notCSV";
         File file = new File(filePath);
         file.createNewFile();
 
@@ -85,7 +76,7 @@ public class FileHandlerTest {
      */
     @Test
     public void readArmyFromFileArmyNameNotFound() throws IOException {
-        String path = "src/main/resources/testFiles/armyWithOutName.csv";
+        String path = "src/test/java/edu/ntnu/idatt2001/erikskj/file/testFiles/armyWithOutName.csv";
         BufferedWriter writer = new BufferedWriter(new FileWriter(path));
 
         //writing to file, imitating a scenario where the army name is not specified, and the
