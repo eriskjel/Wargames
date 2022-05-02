@@ -21,7 +21,7 @@ import java.util.Objects;
 
 public class FileHandler {
 
-    private String defaultPath = "./ArmiesDir/Armies/";
+    private String defaultPath = "./ArmiesDir/";
     public FileHandler(){}
 
 
@@ -35,8 +35,9 @@ public class FileHandler {
     public Army readFromFile(File loadedFile) throws IllegalArgumentException{
         //checks if file is a csv file
         //File file = new File(path);
+
         if (!FilenameUtils.getExtension(loadedFile.getName()).equals("csv")){
-            throw new IllegalArgumentException("The file needs to be a .csv file.");
+                throw new IllegalArgumentException("The file needs to be a .csv file.");
         }
 
         //reads file
@@ -175,7 +176,9 @@ public class FileHandler {
         File[] directoryListing = dir.listFiles();
         if (directoryListing != null) {
             for (File child : directoryListing) {
-                armies.add(readFromFile(child));
+                if (!child.getName().equals(".gitkeep")){
+                    armies.add(readFromFile(child));
+                }
             }
         }
         else{
@@ -224,17 +227,11 @@ public class FileHandler {
 
     public void initDirectory() throws IOException {
         File armiesDir = new File("./ArmiesDir");
-        File armies = new File("./ArmiesDir/Armies");
-        if (!armiesDir.exists() && !armies.exists()){
+        if (!armiesDir.exists()){
             new File("./ArmiesDir").mkdirs();
-            new File("./ArmiesDir/Armies").mkdirs();
             File gitkeep = new File("./ArmiesDir/.gitkeep");
             gitkeep.createNewFile();
         }
-        if (!armies.exists() && armiesDir.exists()){
-            new File("./ArmiesDir/Armies").mkdirs();
-        }
-
     }
 
 
@@ -244,4 +241,13 @@ public class FileHandler {
         }
     }
 
+
+    public void cleanDir() {
+        File dir = new File(defaultPath);
+        for (File file : Objects.requireNonNull(dir.listFiles())) {
+            if (!file.getName().equals(".gitkeep")) {
+                file.delete();
+            }
+        }
+    }
 }

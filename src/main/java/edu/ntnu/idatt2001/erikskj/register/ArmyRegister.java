@@ -2,7 +2,6 @@ package edu.ntnu.idatt2001.erikskj.register;
 
 import edu.ntnu.idatt2001.erikskj.file.FileHandler;
 import edu.ntnu.idatt2001.erikskj.war.Army;
-import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -51,12 +50,8 @@ public class ArmyRegister {
      * @throws IOException exception
      */
     public void resetAndWriteArmyToFile() throws IOException {
-        //deletes all files in army directory
-        File file = new File("./ArmiesDir/Armies/");
-        FileUtils.cleanDirectory(file);
 
-
-
+        new FileHandler().cleanDir();
 
         //FileHandler fileHandler = new FileHandler();
         for (int i = 0; i < this.getArmies().size(); i++) {
@@ -108,6 +103,8 @@ public class ArmyRegister {
     public void removeAll() throws IOException {
         //clear arraylist
         armies.clear();
+
+        new FileHandler().cleanDir();
     }
 
     public Army getArmyByID(int id){
