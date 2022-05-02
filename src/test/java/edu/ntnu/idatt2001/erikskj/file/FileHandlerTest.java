@@ -19,6 +19,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class FileHandlerTest {
 
+    private String armiesDir = "./ArmiesDir/";
+
     /**
      * junit test for reading an army from a file.
      * reads army and creates an army object instance. Afterwards that army is compared with the expected, hardcoded, army and if the two are equal
@@ -125,7 +127,7 @@ public class FileHandlerTest {
 
 
         //checks if file exists and if the file has content
-        File file = new File("./ArmiesDir/Armies/");
+        File file = new File(armiesDir);
         assertTrue(file.exists());
         assertNotEquals(0, file.length());
 
