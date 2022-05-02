@@ -46,7 +46,7 @@ public class FileHandlerTest {
         testFileArmy.add(new CommanderUnit("Erik", 180));
 
 
-        assertEquals(armyFromFile, testFileArmy);
+        assertEquals(testFileArmy, armyFromFile);
     }
 
     /**
