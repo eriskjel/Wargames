@@ -90,21 +90,21 @@ public class FileHandlerTest {
         ArrayList<Army> correctArmyList = new ArrayList<>();
         //create army 1
         Army army = new Army("Test Army 1");
-        army.addAll(factory.getListOfUnits("InfantryUnit", 2, "Footman", 100));
-        army.add(factory.createUnit("RangedUnit", "Archer", 100));
+        army.addAll(factory.getListOfUnits("InfantryUnit", 3, "Footman", 100));
+        army.addAll(factory.getListOfUnits("RangedUnit", 1, "Archer", 100));
         army.addAll(factory.getListOfUnits("CavalryUnit", 2, "The Rock", 100));
-        army.add(factory.createUnit("CommanderUnit", "Erik", 180));
+        army.addAll(factory.getListOfUnits("CommanderUnit", 1, "Erik", 180));
         correctArmyList.add(army);
 
         //create army 2
         Army army2 = new Army("Test Army 2");
-        army2.add(factory.createUnit("InfantryUnit", "Footman", 100));
-        army2.add(factory.createUnit("RangedUnit", "Archer", 100));
-        army2.addAll(factory.getListOfUnits("CavalryUnit", 2, "The Rock", 100));
-        army2.add(factory.createUnit("CommanderUnit", "Erik", 180));
+        army2.addAll(factory.getListOfUnits("InfantryUnit", 1, "Footman", 100));
+        army2.addAll(factory.getListOfUnits("RangedUnit", 1, "Archer", 100));
+        army2.addAll(factory.getListOfUnits("CavalryUnit", 3, "The Rock", 100));
+        army2.addAll(factory.getListOfUnits("CommanderUnit", 1, "Erik", 200));
         correctArmyList.add(army2);
 
-        ArrayList<Army> armiesFromRegister = new ArrayList<>(new FileHandler().readArmiesFromRegister("src/main/resources/csv/TestFiles/TestRegister"));
+        ArrayList<Army> armiesFromRegister = new ArrayList<>(new FileHandler().readArmiesFromRegister("src/main/resources/csv/TestFiles/TestRegister/"));
         assertEquals(correctArmyList, armiesFromRegister);
 
     }
