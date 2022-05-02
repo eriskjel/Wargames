@@ -88,13 +88,6 @@ public class FileHandlerTest {
     public void readArmiesFromRegister(){
         UnitFactory factory = new UnitFactory();
         ArrayList<Army> correctArmyList = new ArrayList<>();
-        //create army 1
-        Army army = new Army("Test Army 1");
-        army.addAll(factory.getListOfUnits("InfantryUnit", 3, "Footman", 100));
-        army.addAll(factory.getListOfUnits("RangedUnit", 1, "Archer", 100));
-        army.addAll(factory.getListOfUnits("CavalryUnit", 2, "The Rock", 100));
-        army.addAll(factory.getListOfUnits("CommanderUnit", 1, "Erik", 180));
-        correctArmyList.add(army);
 
         //create army 2
         Army army2 = new Army("Test Army 2");
@@ -103,6 +96,17 @@ public class FileHandlerTest {
         army2.addAll(factory.getListOfUnits("CavalryUnit", 3, "The Rock", 100));
         army2.addAll(factory.getListOfUnits("CommanderUnit", 1, "Erik", 200));
         correctArmyList.add(army2);
+
+
+        //create army 1
+        Army army = new Army("Test Army 1");
+        army.addAll(factory.getListOfUnits("InfantryUnit", 3, "Footman", 100));
+        army.addAll(factory.getListOfUnits("RangedUnit", 1, "Archer", 100));
+        army.addAll(factory.getListOfUnits("CavalryUnit", 2, "The Rock", 100));
+        army.addAll(factory.getListOfUnits("CommanderUnit", 1, "Erik", 180));
+        correctArmyList.add(army);
+
+
 
         ArrayList<Army> armiesFromRegister = new ArrayList<>(new FileHandler().readArmiesFromRegister("src/main/resources/csv/TestFiles/TestRegister/"));
         assertEquals(correctArmyList, armiesFromRegister);
