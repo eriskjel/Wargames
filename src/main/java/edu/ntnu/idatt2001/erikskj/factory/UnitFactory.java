@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 public class UnitFactory {
 
-    public Unit createUnit(String unitType, String name, int health){
+    public Unit createUnit(String unitType, String name, int health) throws IllegalArgumentException{
         if (unitType == null){
-            return null;
+            throw new IllegalArgumentException("Invalid unit type");
         }
         if (unitType.equalsIgnoreCase("InfantryUnit")){
             return new InfantryUnit(name, health);
@@ -22,7 +22,9 @@ public class UnitFactory {
         else if (unitType.equalsIgnoreCase("CommanderUnit")){
             return new CommanderUnit(name, health);
         }
-        return null;
+        else{
+            throw new IllegalArgumentException("Invalid unit type");
+        }
     }
 
     public ArrayList<Unit> getListOfUnits(String unitType, int n, String name, int health){

@@ -97,7 +97,7 @@ public class ArmyTest {
         for (int i = 0; i < 100; i++) {
             armyOne.add(new CavalryUnit("Knight", 5));
         }
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 3; i++) {
             armyOne.add(new CommanderUnit("Mountain King", 180));
         }
 
@@ -105,7 +105,7 @@ public class ArmyTest {
         assertEquals(500, armyOne.getInfantryUnits().size());
         assertEquals(300, armyOne.getRangedUnits().size());
         assertEquals(100, armyOne.getCavalryUnits().size());
-        assertEquals(1, armyOne.getCommanderUnits().size());
+        assertEquals(3, armyOne.getCommanderUnits().size());
     }
 
 

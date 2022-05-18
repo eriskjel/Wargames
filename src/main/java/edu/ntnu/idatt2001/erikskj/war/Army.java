@@ -22,6 +22,9 @@ public class Army {
      * @param name name of army
      */
     public Army(String name){
+        if (name.equals("") || name == null){
+            throw new IllegalArgumentException("Army name is not defined");
+        }
         this.name = name;
         units = new ArrayList<>();
     }
@@ -31,6 +34,9 @@ public class Army {
      * @param name name of army
      */
     public Army(String name, boolean isUploaded){
+        if (name.equals("") || name == null){
+            throw new IllegalArgumentException("Army name is not defined");
+        }
         this.name = name;
         units = new ArrayList<>();
         this.isUploaded = isUploaded;
@@ -42,6 +48,9 @@ public class Army {
      * @param units list with units to fill army
      */
     public Army(String name, ArrayList<Unit> units){
+        if (name.equals("") || name == null){
+            throw new IllegalArgumentException("Army name is not defined");
+        }
         this.name = name;
         this.units = units;
     }
@@ -52,6 +61,9 @@ public class Army {
      * @param units list with units to fill army
      */
     public Army(String name, ArrayList<Unit> units, boolean isUploaded){
+        if (name.equals("") || name == null){
+            throw new IllegalArgumentException("Army name is not defined");
+        }
         this.name = name;
         this.units = units;
         this.isUploaded = isUploaded;
@@ -106,7 +118,7 @@ public class Army {
     }
 
     /**
-     * method that check is army unit list is emptpy
+     * method that check is army unit list is empty
      * @return true if list has units, false if empty
      */
     public boolean hasUnits(){
@@ -127,27 +139,19 @@ public class Army {
     }
 
     public ArrayList<Unit> getInfantryUnits(){
-        ArrayList<Unit> infantryUnits = new ArrayList<>();
-        units.stream().filter(item -> item instanceof InfantryUnit).forEach(infantryUnits::add);
-        return infantryUnits;
+        return units.stream().filter(unit -> unit instanceof InfantryUnit).collect(Collectors.toCollection(ArrayList::new));
     }
 
     public ArrayList<Unit> getRangedUnits(){
-        ArrayList<Unit> rangedUnits = new ArrayList<>();
-        units.stream().filter(item -> item instanceof RangedUnit).forEach(rangedUnits::add);
-        return rangedUnits;
+        return units.stream().filter(unit -> unit instanceof RangedUnit).collect(Collectors.toCollection(ArrayList::new));
     }
 
     public ArrayList<Unit> getCavalryUnits(){
-        ArrayList<Unit> cavalryUnits = new ArrayList<>();
-        units.stream().filter(item -> item instanceof CavalryUnit).forEach(cavalryUnits::add);
-        return cavalryUnits;
+        return units.stream().filter(unit -> unit instanceof CavalryUnit).collect(Collectors.toCollection(ArrayList::new));
     }
 
     public ArrayList<Unit> getCommanderUnits(){
-        ArrayList<Unit> commanderUnits = new ArrayList<>();
-        units.stream().filter(item -> item instanceof CommanderUnit).forEach(commanderUnits::add);
-        return commanderUnits;
+        return units.stream().filter(unit -> unit instanceof CommanderUnit).collect(Collectors.toCollection(ArrayList::new));
     }
 
     /**
