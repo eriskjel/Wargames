@@ -10,6 +10,7 @@
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -21,7 +22,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="680.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ntnu.idatt2001.erikskj.gui.controllers.GoToBattleController">
+<VBox prefHeight="680.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ntnu.idatt2001.erikskj.gui.controllers.SimulationController">
    <children>
       <MenuBar prefHeight="25.0" prefWidth="1217.0" VBox.vgrow="NEVER">
          <menus>
@@ -134,12 +135,16 @@
                         <TableColumn id="test" fx:id="colQuantity1" prefWidth="192.0" text="Quantity" />
                      </columns>
                   </TableView>
-                  <Pane id="simulationBox" layoutX="765.0" layoutY="65.0" prefHeight="439.0" prefWidth="521.0" stylesheets="@../css/styles.css" />
+                  <Pane id="simulationBox" layoutX="765.0" layoutY="65.0" prefHeight="439.0" prefWidth="521.0" stylesheets="@../css/styles.css">
+                     <children>
+                        <TextArea id="textArea" fx:id="containerBattleInfo" layoutX="3.0" layoutY="3.0" prefHeight="433.0" prefWidth="515.0" stylesheets="@../css/styles.css" />
+                     </children>
+                  </Pane>
                   <Label layoutX="584.0" layoutY="96.0" text="Choose terrain:" />
-                  <Button layoutX="519.0" layoutY="129.0" mnemonicParsing="false" text="Hills" />
-                  <Button layoutX="601.0" layoutY="129.0" mnemonicParsing="false" text="Plains" />
-                  <Button layoutX="680.0" layoutY="129.0" mnemonicParsing="false" text="Forrest" />
-                  <Button layoutX="601.0" layoutY="285.0" mnemonicParsing="false" text="Simulate" />
+                  <Button fx:id="btnHills" layoutX="519.0" layoutY="129.0" mnemonicParsing="false" onAction="#setTerrainToHills" text="Hills" />
+                  <Button fx:id="btnPlains" layoutX="601.0" layoutY="129.0" mnemonicParsing="false" onAction="#setTerrainToPlains" text="Plains" />
+                  <Button fx:id="btnForrest" layoutX="680.0" layoutY="129.0" mnemonicParsing="false" onAction="#setTerrainToForest" text="Forest" />
+                  <Button layoutX="601.0" layoutY="285.0" mnemonicParsing="false" onAction="#simulate" text="Simulate" />
                </children>
             </Pane>
          </children>

@@ -2,6 +2,7 @@ package edu.ntnu.idatt2001.erikskj.war;
 
 
 import edu.ntnu.idatt2001.erikskj.enums.Terrain;
+import edu.ntnu.idatt2001.erikskj.gui.controllers.SimulationController;
 import edu.ntnu.idatt2001.erikskj.units.Unit;
 
 public class Battle {
@@ -9,6 +10,7 @@ public class Battle {
     private final Army armyOne;
     private final Army armyTwo;
     private static Terrain terrain = null;
+    private static String battleInfo = "";
 
     /**
      * constructor for battle class
@@ -42,14 +44,14 @@ public class Battle {
             int randomIndex = Math.random() <= 0.5 ? 1 : 2;
 
             if (randomIndex == 1){
-                battleInfo(attacker1,victim2);
+                appendBattleInfo(attacker1,victim2);
                 attacker1.attack(victim2, terrain);
                 if (isDead(victim2)){
                     armyTwo.remove(victim2);
                 }
             }
             else{
-                battleInfo(attacker2,victim1);
+                appendBattleInfo(attacker2,victim1);
                 attacker2.attack(victim1, terrain);
                 if (isDead(victim1)){
                     armyOne.remove(victim1);
@@ -57,6 +59,10 @@ public class Battle {
             }
             System.out.println(checkWin(armyOne, armyTwo));
         }
+    }
+
+    public String getBattleInfo(){
+        return this.battleInfo;
     }
 
     /**
@@ -83,6 +89,7 @@ public class Battle {
         } else if (!armyTwo.hasUnits()) {
             result += armyOne.getName() + " has won! Remaining units: " + armyOne;
         }
+        battleInfo += result;
         return result;
     }
 
@@ -91,8 +98,19 @@ public class Battle {
      * @param attacker attacker unit
      * @param victim victim unit
      */
-    public static void battleInfo(Unit attacker, Unit victim){
+    public void appendBattleInfoWithFullStats(Unit attacker, Unit victim){
         System.out.println(attacker.getName() + " with " + attacker.getHealth() + " health has a " + (attacker.getAttack() + attacker.getAttackBonus(terrain)) + " total attack points, and attacks " + victim.getName() +  " with " + victim.getHealth() + " health who has " + (victim.getResistBonus(terrain) + victim.getArmour()) + " total armour points.");
+        battleInfo += attacker.getName() + " with " + attacker.getHealth() + " health has a " + (attacker.getAttack() + attacker.getAttackBonus(terrain)) + " total attack points, and attacks " + victim.getName() +  " with " + victim.getHealth() + " health who has " + (victim.getResistBonus(terrain) + victim.getArmour()) + " total armour points. \n";
+    }
+
+    /**
+     * method that outputs battle info. It will display who attacks who, and the stats of the parts involved
+     * @param attacker attacker unit
+     * @param victim victim unit
+     */
+    public void appendBattleInfo(Unit attacker, Unit victim){
+        System.out.println(attacker.getName() + " with " + attacker.getHealth() + " attacks " + victim.getName() +  " with " + victim.getHealth() + " health. \n");
+        battleInfo += attacker.getName() + " with " + attacker.getHealth() + " attacks " + victim.getName() +  " with " + victim.getHealth() + " health. \n";
     }
 
     /**

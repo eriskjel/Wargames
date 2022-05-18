@@ -1,20 +1,19 @@
 package edu.ntnu.idatt2001.erikskj.gui.controllers;
 
+import edu.ntnu.idatt2001.erikskj.enums.Terrain;
 import edu.ntnu.idatt2001.erikskj.file.FileHandler;
 import edu.ntnu.idatt2001.erikskj.gui.models.LoadedArmyModel;
 import edu.ntnu.idatt2001.erikskj.gui.models.UnitModel;
 import edu.ntnu.idatt2001.erikskj.register.RegistryClient;
 import edu.ntnu.idatt2001.erikskj.units.Unit;
 import edu.ntnu.idatt2001.erikskj.war.Army;
+import edu.ntnu.idatt2001.erikskj.war.Battle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -39,19 +38,24 @@ public class SimulationController implements Initializable {
     @FXML private TableColumn colUnit1;
     @FXML private TableColumn colQuantity1;
     @FXML private TableColumn colIcon1;
-    @FXML private ObservableList<LoadedArmyModel> observableListArmies = FXCollections.observableArrayList();
     @FXML private ObservableList<UnitModel> observableListArmy1 = FXCollections.observableArrayList();
     @FXML private ObservableList<UnitModel> observableListArmy2 = FXCollections.observableArrayList();
+    @FXML private TextArea containerBattleInfo;
     private static int army1ID;
     private static int army2ID;
     private FileHandler fileHandler = new FileHandler();
-    private boolean table1Empty = true;
-    private boolean table2Empty = true;
+    private Terrain terrain;
+
+
 
 
     public static void setArmyIDs(int id1, int id2){
         army1ID = id1;
         army2ID = id2;
+    }
+    
+    public static void setBattleInfo(String battleInfo){
+        battleInfo = battleInfo;
     }
 
 
@@ -90,11 +94,11 @@ public class SimulationController implements Initializable {
 
         Army army1 = RegistryClient.armyRegister.getArmyByID(army1ID);
         Army army2 = RegistryClient.armyRegister.getArmyByID(army2ID);
-        for (int i = 0; i < army1.getUnits().size(); i++) {
+        for (int i = 0; i < army1.getArrayWithUnitNames().size(); i++) {
             UnitModel unitModel = new UnitModel(army1.getArrayWithUnitNames().get(i), army1.getNumUnitsByType(army1.getArrayWithUnitNames().get(i)), getIconByType(army1.getArrayWithUnitNames().get(i)));
             tableArmy1.getItems().add(unitModel);
         }
-        for (int i = 0; i < army2.getUnits().size(); i++) {
+        for (int i = 0; i < army2.getArrayWithUnitNames().size(); i++) {
             UnitModel unitModel = new UnitModel(army2.getArrayWithUnitNames().get(i), army2.getNumUnitsByType(army2.getArrayWithUnitNames().get(i)), getIconByType(army2.getArrayWithUnitNames().get(i)));
             tableArmy2.getItems().add(unitModel);
         }
@@ -140,37 +144,6 @@ public class SimulationController implements Initializable {
     }
 
 
-    public void displayWarningMax2Armies(){
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Warning! Cannot load another army.");
-        alert.setHeaderText(null);
-        alert.setContentText("You have already loaded 2 armies. Please remove one, to add another.");
-        alert.showAndWait();
-    }
-
-    public void fillArmyTable(int id, String name, int n){
-
-        String pathAndName = "src/main/resources/armyRegister/" + name + "-" + id + ".csv";
-        Army army = fileHandler.readFromFile(pathAndName);
-
-
-        //adds models to tableview
-        for (int i = 0; i < army.getArrayWithUnitNames().size(); i++) {
-            UnitModel unitModel = new UnitModel(army.getArrayWithUnitNames().get(i), army.getNumUnitsByType(army.getArrayWithUnitNames().get(i)), getIconByType(army.getArrayWithUnitNames().get(i)));
-            if (n == 1){
-                tableArmy1.getItems().add(unitModel);
-                armyName1.setText(name);
-
-            }
-            else if(n == 2){
-                tableArmy2.getItems().add(unitModel);
-                armyName2.setText(name);
-            }
-        }
-
-        System.out.println("test");
-    }
-
     /**
      * method that returns the correct icon based on what type of unit the army has
      * @param unit string containing unit type name
@@ -192,19 +165,24 @@ public class SimulationController implements Initializable {
         }
     }
 
-    public void removeArmy1(){
-        observableListArmy1.clear();
-        table1Empty = true;
-        armyName1.setText("");
+    public void setTerrainToHills(ActionEvent actionEvent) {
+        this.terrain = Terrain.HILL;
     }
 
-    public void removeArmy2(){
-        observableListArmy2.clear();
-        table2Empty = true;
-        armyName2.setText("");
+    public void setTerrainToPlains(ActionEvent actionEvent) {
+        this.terrain = Terrain.PLAINS;
     }
 
-    public void goToSimulation(ActionEvent actionEvent) throws IOException {
-        RegistryClient.fxmlLoaderClass.goToSimulation(actionEvent);
+    public void setTerrainToForest(ActionEvent actionEvent) {
+        this.terrain = Terrain.FOREST;
     }
+
+    public void simulate(){
+        this.containerBattleInfo.clear();
+        Battle battle = new Battle(RegistryClient.armyRegister.getArmyByID(army1ID),RegistryClient.armyRegister.getArmyByID(army2ID), terrain);
+        battle.simulate();
+        this.containerBattleInfo.appendText(battle.getBattleInfo());
+    }
+    
+
 }
