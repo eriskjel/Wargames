@@ -19,7 +19,7 @@ public class BattleTest {
      * is a winner picked, implying that the other army has no units left
      */
     @Test
-    public void simulate() {
+    public void simulate() throws InterruptedException {
         Army armyOne = new Army("Human Army");
         Army armyTwo = new Army("Orcish Horde");
 
@@ -57,7 +57,7 @@ public class BattleTest {
      * this unit test also accounts for terrain changes in attack and resists stats
      */
     @Test
-    public void simulateWithHillTerrain() {
+    public void simulateWithHillTerrain() throws InterruptedException {
         Terrain terrain = Terrain.HILL;
         Army armyOne = new Army("archers");
         Army armyTwo = new Army("footmen");
@@ -83,7 +83,7 @@ public class BattleTest {
      * this unit test also accounts for terrain changes in attack and resists stats
      */
     @Test
-    public void simulateWithForestTerrain() {
+    public void simulateWithForestTerrain() throws InterruptedException {
         Terrain terrain = Terrain.FOREST;
         Army armyOne = new Army("archers");
         Army armyTwo = new Army("footmen");
@@ -109,7 +109,7 @@ public class BattleTest {
      * this unit test also accounts for terrain changes in attack and resists stats
      */
     @Test
-    public void simulateWithPlainsTerrain() {
+    public void simulateWithPlainsTerrain() throws InterruptedException {
         Terrain terrain = Terrain.PLAINS;
         Army armyOne = new Army("Human Army");
         Army armyTwo = new Army("Orcish Horde");

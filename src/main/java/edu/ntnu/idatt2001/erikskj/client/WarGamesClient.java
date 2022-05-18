@@ -13,7 +13,7 @@ import edu.ntnu.idatt2001.erikskj.units.RangedUnit;
 public class WarGamesClient {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         //test data for if project wants to hardcoded armies to fight
         //at the moment, one army is created by code down below, and one by file

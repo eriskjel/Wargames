@@ -2,25 +2,27 @@ package edu.ntnu.idatt2001.erikskj.gui.controllers;
 
 import edu.ntnu.idatt2001.erikskj.enums.Terrain;
 import edu.ntnu.idatt2001.erikskj.file.FileHandler;
-import edu.ntnu.idatt2001.erikskj.gui.models.LoadedArmyModel;
 import edu.ntnu.idatt2001.erikskj.gui.models.UnitModel;
 import edu.ntnu.idatt2001.erikskj.register.RegistryClient;
-import edu.ntnu.idatt2001.erikskj.units.Unit;
 import edu.ntnu.idatt2001.erikskj.war.Army;
 import edu.ntnu.idatt2001.erikskj.war.Battle;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 
 /**
  * Class that handles the interaction between the fxml file "admin-edit-tournament.fxml" and the backend.
@@ -43,8 +45,8 @@ public class SimulationController implements Initializable {
     @FXML private TextArea containerBattleInfo;
     private static int army1ID;
     private static int army2ID;
-    private FileHandler fileHandler = new FileHandler();
     private Terrain terrain;
+    private int sleepTime;
 
 
 
@@ -53,11 +55,6 @@ public class SimulationController implements Initializable {
         army1ID = id1;
         army2ID = id2;
     }
-    
-    public static void setBattleInfo(String battleInfo){
-        battleInfo = battleInfo;
-    }
-
 
     /**
      * method that runs when fxml file is loaded
@@ -177,12 +174,58 @@ public class SimulationController implements Initializable {
         this.terrain = Terrain.FOREST;
     }
 
-    public void simulate(){
+    public void setSpeedToSlow(ActionEvent actionEvent) {
+        this.sleepTime = 1000;
+    }
+
+    public void setSpeedToFast(ActionEvent actionEvent) {
+        this.sleepTime = 500;
+    }
+
+    public void setSpeedToInstant(ActionEvent actionEvent) {
+        this.sleepTime = 0;
+    }
+
+    public void simulate() throws InterruptedException {
         this.containerBattleInfo.clear();
         Battle battle = new Battle(RegistryClient.armyRegister.getArmyByID(army1ID),RegistryClient.armyRegister.getArmyByID(army2ID), terrain);
         battle.simulate();
-        this.containerBattleInfo.appendText(battle.getBattleInfo());
+        printBattleInfo(battle.getBattleInfo());
     }
-    
 
+    public void printBattleInfo(String battleInfo) throws InterruptedException {
+        int sleep = this.sleepTime;
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Runnable updater = new Runnable() {
+                    @Override
+                    public void run() {}
+                };
+
+                String print = "";
+                Scanner scanner = new Scanner(battleInfo);
+
+                while(scanner.hasNextLine()){
+                    try{
+                        if (sleep != 0){
+                            print = scanner.nextLine() + "\n";
+                            containerBattleInfo.appendText(print);
+                            Thread.sleep(sleep);
+                        }
+                        else{
+                            print += scanner.nextLine() + "\n";
+                        }
+                    }
+                    catch (Exception e){
+                        containerBattleInfo.setText(e.getMessage());
+                    }
+                    Platform.runLater(updater);
+                }
+            }
+        });
+        thread.setDaemon(true);
+        thread.start();
+    }
 }

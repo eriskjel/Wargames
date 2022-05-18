@@ -32,7 +32,7 @@ public class Battle {
      * and if dead, the unit is removed from battle. At the end of each while-iteration the program will check if there is a winner
      * if so, when the program stops and outputs the winners, if not then the battle goes on.
      */
-    public void simulate() {
+    public void simulate() throws InterruptedException {
         while (armyOne.hasUnits() && armyTwo.hasUnits()) {
 
             Unit attacker1 = armyOne.getRandom();
@@ -109,8 +109,8 @@ public class Battle {
      * @param victim victim unit
      */
     public void appendBattleInfo(Unit attacker, Unit victim){
-        System.out.println(attacker.getName() + " with " + attacker.getHealth() + " attacks " + victim.getName() +  " with " + victim.getHealth() + " health. \n");
-        battleInfo += attacker.getName() + " with " + attacker.getHealth() + " attacks " + victim.getName() +  " with " + victim.getHealth() + " health. \n";
+        System.out.println(attacker.getName() + " with " + attacker.getHealth() + " attacks " + victim.getName() +  " with " + victim.getHealth() + " health. - ");
+        battleInfo += attacker.getName() + " with " + attacker.getHealth() + " attacks " + victim.getName() +  " with " + victim.getHealth() + " health. - ";
     }
 
     /**
@@ -120,10 +120,12 @@ public class Battle {
      */
     public static boolean isDead(Unit victim){
         if (victim.getHealth() < 1) {
-            System.out.println(victim.getName() + " has died in combat.");
+            System.out.println(victim.getName() + " has died in combat.\n");
+            battleInfo += victim.getName() + " has died in combat.\n";
             return true;
         } else {
-            System.out.println(victim.getName() + " now has " + victim.getHealth() + " health remaining");
+            System.out.println(victim.getName() + " now has " + victim.getHealth() + " health remaining.\n");
+            battleInfo += victim.getName() + " now has " + victim.getHealth() + " health remaining.\n";
             return false;
         }
     }

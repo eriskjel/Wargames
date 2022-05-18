@@ -140,11 +140,15 @@
                         <TextArea id="textArea" fx:id="containerBattleInfo" layoutX="3.0" layoutY="3.0" prefHeight="433.0" prefWidth="515.0" stylesheets="@../css/styles.css" />
                      </children>
                   </Pane>
-                  <Label layoutX="584.0" layoutY="96.0" text="Choose terrain:" />
-                  <Button fx:id="btnHills" layoutX="519.0" layoutY="129.0" mnemonicParsing="false" onAction="#setTerrainToHills" text="Hills" />
-                  <Button fx:id="btnPlains" layoutX="601.0" layoutY="129.0" mnemonicParsing="false" onAction="#setTerrainToPlains" text="Plains" />
-                  <Button fx:id="btnForrest" layoutX="680.0" layoutY="129.0" mnemonicParsing="false" onAction="#setTerrainToForest" text="Forest" />
+                  <Label layoutX="584.0" layoutY="75.0" text="Choose terrain:" />
+                  <Button fx:id="btnHills" layoutX="519.0" layoutY="96.0" mnemonicParsing="false" onAction="#setTerrainToHills" text="Hills" />
+                  <Button fx:id="btnPlains" layoutX="601.0" layoutY="96.0" mnemonicParsing="false" onAction="#setTerrainToPlains" text="Plains" />
+                  <Button fx:id="btnForrest" layoutX="680.0" layoutY="96.0" mnemonicParsing="false" onAction="#setTerrainToForest" text="Forest" />
                   <Button layoutX="601.0" layoutY="285.0" mnemonicParsing="false" onAction="#simulate" text="Simulate" />
+                  <Label layoutX="571.0" layoutY="138.0" text="Choose logging speed:" />
+                  <Button layoutX="678.0" layoutY="171.0" mnemonicParsing="false" onAction="#setSpeedToInstant" text="Instant" />
+                  <Button layoutX="594.0" layoutY="171.0" mnemonicParsing="false" onAction="#setSpeedToFast" text="Medium" />
+                  <Button layoutX="519.0" layoutY="171.0" mnemonicParsing="false" onAction="#setSpeedToSlow" text="Slow" />
                </children>
             </Pane>
          </children>
