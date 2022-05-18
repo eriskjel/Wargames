@@ -24,7 +24,7 @@ public class ArmyRegister {
     public void add(Army army){
         army.setArmyID(armies.size());
         armies.add(army);
-        if (!army.isUploaded()){
+        if (!army.isUploaded() && !army.armyHasFile()){
             writeArmyToFile(army);
         }
     }
@@ -116,13 +116,16 @@ public class ArmyRegister {
         return null;
     }
 
+
     public void readArmiesFromDir() throws IOException {
         FileHandler fileHandler = new FileHandler();
         if (!fileHandler.isArmiesDirEmpty()){
             ArrayList<Army> armies = fileHandler.readArmiesFromRegister();
             for(Army army : armies){
+                this.setArmyIDs();
                 this.add(army);
             }
         }
+        this.resetAndWriteArmyToFile();
     }
 }

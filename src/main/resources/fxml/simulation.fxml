@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="680.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ntnu.idatt2001.erikskj.gui.controllers.GoToBattleController">
+   <children>
+      <MenuBar prefHeight="25.0" prefWidth="1217.0" VBox.vgrow="NEVER">
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="New" />
+                  <MenuItem mnemonicParsing="false" text="Open…" />
+                  <Menu mnemonicParsing="false" text="Open Recent" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Close" />
+                  <MenuItem mnemonicParsing="false" text="Save" />
+                  <MenuItem mnemonicParsing="false" text="Save As…" />
+                  <MenuItem mnemonicParsing="false" text="Revert" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Preferences…" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Quit" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Undo" />
+                  <MenuItem mnemonicParsing="false" text="Redo" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Cut" />
+                  <MenuItem mnemonicParsing="false" text="Copy" />
+                  <MenuItem mnemonicParsing="false" text="Paste" />
+                  <MenuItem mnemonicParsing="false" text="Delete" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Select All" />
+                  <MenuItem mnemonicParsing="false" text="Unselect All" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="739.0" prefWidth="1251.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Pane prefHeight="110.0" prefWidth="1300.0" styleClass="top-bar" stylesheets="@../css/styles.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Pane layoutX="386.0" layoutY="14.0" prefHeight="80.0" prefWidth="528.0">
+                     <children>
+                        <Button layoutX="148.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToLoadArmies" prefHeight="62.0" prefWidth="122.0" style="-fx-text-alignment: left;" stylesheets="@../css/styles.css" text="Load army">
+                           <styleClass>
+                              <String fx:value="button-menu" />
+                              <String fx:value="activeBtn" />
+                           </styleClass>
+                        </Button>
+                        <Button layoutX="279.0" layoutY="12.0" mnemonicParsing="false" onAction="#goToViewArmies" prefHeight="62.0" prefWidth="134.0" styleClass="button-menu" stylesheets="@../css/styles.css" text="View armies" />
+                        <Button layoutY="11.0" mnemonicParsing="false" onAction="#goToCreateArmy" prefHeight="62.0" prefWidth="134.0" style="-fx-text-alignment: left;" stylesheets="@../css/styles.css" text="Create army">
+                           <styleClass>
+                              <String fx:value="button-menu" />
+                              <String fx:value="activeBtn" />
+                           </styleClass>
+                        </Button>
+                        <Button layoutX="424.0" layoutY="17.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="79.0" styleClass="button-menu" stylesheets="@../css/styles.css" text="Battle" />
+                     </children>
+                     <padding>
+                        <Insets right="50.0" />
+                     </padding>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane layoutY="109.0" prefHeight="547.0" prefWidth="1300.0">
+               <children>
+                  <TableView id="unitTable" fx:id="tableArmy1" layoutX="58.0" layoutY="75.0" prefHeight="178.0" prefWidth="418.0" stylesheets="@../css/styles.css">
+                     <columns>
+                        <TableColumn id="test" fx:id="colIcon" prefWidth="73.0" resizable="false" text="Icon" />
+                        <TableColumn id="test" fx:id="colUnit" prefWidth="152.0" text="Unit" />
+                        <TableColumn id="test" fx:id="colQuantity" prefWidth="192.0" text="Quantity" />
+                     </columns>
+                  </TableView>
+                  <Label layoutX="510.0" layoutY="14.0" styleClass="header" stylesheets="@../css/styles.css" text="Battle simulation">
+                     <font>
+                        <Font name="JUSTICE" size="14.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="1.0" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Label>
+                  <ImageView fitHeight="439.0" fitWidth="591.0" layoutX="407.0" layoutY="96.0" opacity="0.07" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/swords.png" />
+                     </image>
+                     <effect>
+                        <Glow />
+                     </effect>
+                  </ImageView>
+                  <TableView id="unitTable" fx:id="tableArmy2" layoutX="58.0" layoutY="305.0" prefHeight="178.0" prefWidth="418.0" stylesheets="@../css/styles.css">
+                     <columns>
+                        <TableColumn id="test" fx:id="colIcon1" prefWidth="73.0" resizable="false" text="Icon" />
+                        <TableColumn id="test" fx:id="colUnit1" prefWidth="152.0" text="Unit" />
+                        <TableColumn id="test" fx:id="colQuantity1" prefWidth="192.0" text="Quantity" />
+                     </columns>
+                  </TableView>
+                  <Pane id="simulationBox" layoutX="765.0" layoutY="65.0" prefHeight="439.0" prefWidth="521.0" stylesheets="@../css/styles.css" />
+                  <Label layoutX="584.0" layoutY="96.0" text="Choose terrain:" />
+                  <Button layoutX="519.0" layoutY="129.0" mnemonicParsing="false" text="Hills" />
+                  <Button layoutX="601.0" layoutY="129.0" mnemonicParsing="false" text="Plains" />
+                  <Button layoutX="680.0" layoutY="129.0" mnemonicParsing="false" text="Forrest" />
+                  <Button layoutX="601.0" layoutY="285.0" mnemonicParsing="false" text="Simulate" />
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

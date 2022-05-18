@@ -43,7 +43,6 @@ public class ViewArmiesController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        clearTable();
         this.colArmyName.setCellValueFactory(new PropertyValueFactory<>("ArmyName"));
         this.colTotalUnits.setCellValueFactory(new PropertyValueFactory<>("TotalUnits"));
         this.colTotalHealth.setCellValueFactory(new PropertyValueFactory<>("TotalHealth"));

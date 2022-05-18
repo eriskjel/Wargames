@@ -200,6 +200,10 @@ public class Army {
         this.armyFile = file;
     }
 
+    public boolean armyHasFile(){
+        return this.getArmyFile() != null;
+    }
+
     public String generateFileName(){
         return this.getName() + "-" + this.armyID;
     }

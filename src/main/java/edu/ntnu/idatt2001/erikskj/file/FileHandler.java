@@ -1,11 +1,6 @@
 package edu.ntnu.idatt2001.erikskj.file;
 
 import edu.ntnu.idatt2001.erikskj.factory.UnitFactory;
-import edu.ntnu.idatt2001.erikskj.register.RegistryClient;
-import edu.ntnu.idatt2001.erikskj.units.CavalryUnit;
-import edu.ntnu.idatt2001.erikskj.units.CommanderUnit;
-import edu.ntnu.idatt2001.erikskj.units.InfantryUnit;
-import edu.ntnu.idatt2001.erikskj.units.RangedUnit;
 import edu.ntnu.idatt2001.erikskj.war.Army;
 import org.apache.commons.io.FilenameUtils;
 

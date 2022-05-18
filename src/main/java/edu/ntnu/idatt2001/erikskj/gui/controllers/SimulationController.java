@@ -4,6 +4,7 @@ import edu.ntnu.idatt2001.erikskj.file.FileHandler;
 import edu.ntnu.idatt2001.erikskj.gui.models.LoadedArmyModel;
 import edu.ntnu.idatt2001.erikskj.gui.models.UnitModel;
 import edu.ntnu.idatt2001.erikskj.register.RegistryClient;
+import edu.ntnu.idatt2001.erikskj.units.Unit;
 import edu.ntnu.idatt2001.erikskj.war.Army;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,18 +32,13 @@ public class SimulationController implements Initializable {
     @FXML private Label armyName1;
     @FXML private Label armyName2;
     @FXML private TableView tableArmy1;
-    @FXML private TableView tableArmy2;
-    @FXML private TableColumn colIcon;
     @FXML private TableColumn colUnit;
     @FXML private TableColumn colQuantity;
-    @FXML private TableColumn colIcon1;
+    @FXML private TableColumn colIcon;
+    @FXML private TableView tableArmy2;
     @FXML private TableColumn colUnit1;
     @FXML private TableColumn colQuantity1;
-    @FXML private TableView tableLoadedArmies;
-    @FXML private TableColumn colArmyName;
-    @FXML private TableColumn colTotalUnits;
-    @FXML private TableColumn colTotalHealth;
-    @FXML private TableColumn colFileName;
+    @FXML private TableColumn colIcon1;
     @FXML private ObservableList<LoadedArmyModel> observableListArmies = FXCollections.observableArrayList();
     @FXML private ObservableList<UnitModel> observableListArmy1 = FXCollections.observableArrayList();
     @FXML private ObservableList<UnitModel> observableListArmy2 = FXCollections.observableArrayList();
@@ -69,13 +65,6 @@ public class SimulationController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         clearTable();
 
-        //initialize all armies table
-        this.colArmyName.setCellValueFactory(new PropertyValueFactory<>("ArmyName"));
-        this.colTotalUnits.setCellValueFactory(new PropertyValueFactory<>("TotalUnits"));
-        this.colTotalHealth.setCellValueFactory(new PropertyValueFactory<>("TotalHealth"));
-        this.colFileName.setCellValueFactory(new PropertyValueFactory<>("FileName"));
-        this.tableLoadedArmies.setItems(observableListArmies);
-
         //initialize army1 table
         this.colIcon.setCellValueFactory(new PropertyValueFactory<>("Icon"));
         this.colUnit.setCellValueFactory(new PropertyValueFactory<>("Unit"));
@@ -98,15 +87,16 @@ public class SimulationController implements Initializable {
         //clears table
         clearTable();
 
-        //loops through army register and fills table with LoadedArmyModels
-        for (int i = 0; i < RegistryClient.armyRegister.getArmies().size(); i++) {
-            LoadedArmyModel loadedArmyModel = new LoadedArmyModel(
-                    RegistryClient.armyRegister.getArmies().get(i).getName(),
-                    RegistryClient.armyRegister.getArmies().get(i).getUnits().size(),
-                    RegistryClient.armyRegister.getArmies().get(i).getSumHealth(),
-                    RegistryClient.armyRegister.getArmies().get(i).getArmyFile(),
-                    RegistryClient.armyRegister.getArmies().get(i).getArmyID());
-            tableLoadedArmies.getItems().add(loadedArmyModel);
+
+        Army army1 = RegistryClient.armyRegister.getArmyByID(army1ID);
+        Army army2 = RegistryClient.armyRegister.getArmyByID(army2ID);
+        for (int i = 0; i < army1.getUnits().size(); i++) {
+            UnitModel unitModel = new UnitModel(army1.getArrayWithUnitNames().get(i), army1.getNumUnitsByType(army1.getArrayWithUnitNames().get(i)), getIconByType(army1.getArrayWithUnitNames().get(i)));
+            tableArmy1.getItems().add(unitModel);
+        }
+        for (int i = 0; i < army2.getUnits().size(); i++) {
+            UnitModel unitModel = new UnitModel(army2.getArrayWithUnitNames().get(i), army2.getNumUnitsByType(army2.getArrayWithUnitNames().get(i)), getIconByType(army2.getArrayWithUnitNames().get(i)));
+            tableArmy2.getItems().add(unitModel);
         }
 
     }
@@ -115,7 +105,8 @@ public class SimulationController implements Initializable {
      * clears gui table
      */
     public void clearTable(){
-        tableLoadedArmies.getItems().clear();
+        tableArmy1.getItems().clear();
+        tableArmy2.getItems().clear();
     }
 
 
@@ -148,26 +139,6 @@ public class SimulationController implements Initializable {
         RegistryClient.fxmlLoaderClass.goToCreateArmy(actionEvent);
     }
 
-
-
-
-    public void loadSelectedArmy(){
-        ObservableList<LoadedArmyModel> armyModel = tableLoadedArmies.getSelectionModel().getSelectedItems();
-
-        if (table1Empty){
-            army1ID = armyModel.get(0).getArmyID();
-            fillArmyTable(army1ID, armyModel.get(0).getArmyName(), 1);
-            table1Empty = false;
-        }
-        else if (table2Empty){
-            army2ID = armyModel.get(0).getArmyID();
-            fillArmyTable(army2ID, armyModel.get(0).getArmyName(), 2);
-            table2Empty = false;
-        }
-        else{
-            displayWarningMax2Armies();
-        }
-    }
 
     public void displayWarningMax2Armies(){
         Alert alert = new Alert(Alert.AlertType.WARNING);
