@@ -32,8 +32,8 @@ public class ViewArmiesController implements Initializable {
     @FXML private TableColumn colTotalUnits;
     @FXML private TableColumn colTotalHealth;
     @FXML private TableColumn colFileName;
-    @FXML private ObservableList<UnitModel> observableList = FXCollections.observableArrayList();
-    private FileHandler fileHandler = new FileHandler();
+    @FXML private final ObservableList<UnitModel> observableList = FXCollections.observableArrayList();
+    private final FileHandler fileHandler = new FileHandler();
 
     /**
      * method that runs when fxml file is loaded

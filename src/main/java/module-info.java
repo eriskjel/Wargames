@@ -16,4 +16,7 @@ module Wargames {
 
     exports edu.ntnu.idatt2001.erikskj.gui.controllers;
     opens edu.ntnu.idatt2001.erikskj.gui.controllers to javafx.fxml;
+
+    exports edu.ntnu.idatt2001.erikskj.war;
+    opens edu.ntnu.idatt2001.erikskj.war to javafx.fxml;
 }

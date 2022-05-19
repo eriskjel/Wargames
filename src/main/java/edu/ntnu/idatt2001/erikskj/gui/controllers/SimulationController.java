@@ -2,6 +2,7 @@ package edu.ntnu.idatt2001.erikskj.gui.controllers;
 
 import edu.ntnu.idatt2001.erikskj.enums.Terrain;
 import edu.ntnu.idatt2001.erikskj.file.FileHandler;
+import edu.ntnu.idatt2001.erikskj.gui.IconGetter;
 import edu.ntnu.idatt2001.erikskj.gui.models.UnitModel;
 import edu.ntnu.idatt2001.erikskj.register.RegistryClient;
 import edu.ntnu.idatt2001.erikskj.war.Army;
@@ -30,8 +31,8 @@ import java.util.Scanner;
  */
 public class SimulationController implements Initializable {
 
-    @FXML private Label armyName1;
-    @FXML private Label armyName2;
+    @FXML private Label lblArmy1Name;
+    @FXML private Label lblArmy2Name;
     @FXML private TableView tableArmy1;
     @FXML private TableColumn colUnit;
     @FXML private TableColumn colQuantity;
@@ -40,8 +41,8 @@ public class SimulationController implements Initializable {
     @FXML private TableColumn colUnit1;
     @FXML private TableColumn colQuantity1;
     @FXML private TableColumn colIcon1;
-    @FXML private ObservableList<UnitModel> observableListArmy1 = FXCollections.observableArrayList();
-    @FXML private ObservableList<UnitModel> observableListArmy2 = FXCollections.observableArrayList();
+    @FXML private final ObservableList<UnitModel> observableListArmy1 = FXCollections.observableArrayList();
+    @FXML private final ObservableList<UnitModel> observableListArmy2 = FXCollections.observableArrayList();
     @FXML private TextArea containerBattleInfo;
     private static int army1ID;
     private static int army2ID;
@@ -78,6 +79,9 @@ public class SimulationController implements Initializable {
         this.colQuantity1.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
         this.tableArmy2.setItems(observableListArmy2);
 
+        this.lblArmy1Name.setText(RegistryClient.armyRegister.getArmyByID(army1ID).getName());
+        this.lblArmy2Name.setText(RegistryClient.armyRegister.getArmyByID(army2ID).getName());
+
         fillAllArmiesTable();
     }
 
@@ -87,16 +91,17 @@ public class SimulationController implements Initializable {
     public void fillAllArmiesTable(){
         //clears table
         clearTable();
+        IconGetter iconGetter = new IconGetter();
 
 
         Army army1 = RegistryClient.armyRegister.getArmyByID(army1ID);
         Army army2 = RegistryClient.armyRegister.getArmyByID(army2ID);
         for (int i = 0; i < army1.getArrayWithUnitNames().size(); i++) {
-            UnitModel unitModel = new UnitModel(army1.getArrayWithUnitNames().get(i), army1.getNumUnitsByType(army1.getArrayWithUnitNames().get(i)), getIconByType(army1.getArrayWithUnitNames().get(i)));
+            UnitModel unitModel = new UnitModel(army1.getArrayWithUnitNames().get(i), army1.getNumUnitsByType(army1.getArrayWithUnitNames().get(i)), iconGetter.getIconByType(army1.getArrayWithUnitNames().get(i)));
             tableArmy1.getItems().add(unitModel);
         }
         for (int i = 0; i < army2.getArrayWithUnitNames().size(); i++) {
-            UnitModel unitModel = new UnitModel(army2.getArrayWithUnitNames().get(i), army2.getNumUnitsByType(army2.getArrayWithUnitNames().get(i)), getIconByType(army2.getArrayWithUnitNames().get(i)));
+            UnitModel unitModel = new UnitModel(army2.getArrayWithUnitNames().get(i), army2.getNumUnitsByType(army2.getArrayWithUnitNames().get(i)), iconGetter.getIconByType(army2.getArrayWithUnitNames().get(i)));
             tableArmy2.getItems().add(unitModel);
         }
 
@@ -141,27 +146,6 @@ public class SimulationController implements Initializable {
     }
 
 
-    /**
-     * method that returns the correct icon based on what type of unit the army has
-     * @param unit string containing unit type name
-     * @return ImageView with icon matching unit
-     */
-    public ImageView getIconByType(String unit){
-        switch (unit) {
-            case "Infantry":
-                return new ImageView(new Image(this.getClass().getResourceAsStream("/img/infantry.png")));
-            case "Ranged":
-                return new ImageView(new Image(this.getClass().getResourceAsStream("/img/ranged.png")));
-            case "Cavalry":
-                return new ImageView(new Image(this.getClass().getResourceAsStream("/img/cavalry.png")));
-            case "Commander":
-                return new ImageView(new Image(this.getClass().getResourceAsStream("/img/commander.png")));
-            default:
-                System.err.println("Something went wrong when rendering icon to unit.");
-                return null;
-        }
-    }
-
     public void setTerrainToHills(ActionEvent actionEvent) {
         this.terrain = Terrain.HILL;
     }
@@ -183,7 +167,7 @@ public class SimulationController implements Initializable {
     }
 
     public void setSpeedToInstant(ActionEvent actionEvent) {
-        this.sleepTime = 0;
+        this.sleepTime = 10;
     }
 
     public void simulate() throws InterruptedException {
@@ -227,5 +211,13 @@ public class SimulationController implements Initializable {
         });
         thread.setDaemon(true);
         thread.start();
+    }
+
+    public void resetArmy1(){
+        RegistryClient.armyRegister.refillUnitsHealth(army1ID);
+    }
+
+    public void resetArmy2(){
+        RegistryClient.armyRegister.refillUnitsHealth(army2ID);
     }
 }

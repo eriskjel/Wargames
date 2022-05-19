@@ -1,5 +1,6 @@
 package edu.ntnu.idatt2001.erikskj.war;
 
+import edu.ntnu.idatt2001.erikskj.factory.UnitFactory;
 import edu.ntnu.idatt2001.erikskj.units.*;
 import org.junit.jupiter.api.Test;
 
@@ -171,5 +172,84 @@ public class ArmyTest {
         }
 
         assertEquals(210, armyOne.getSumHealth());
+    }
+
+    @Test
+    public void hasUnitsAlive() {
+        Army armyOne = new Army("Human Army");
+
+        //adds hundreds of different units to both armies
+        for (int i = 0; i < 10; i++) {
+            armyOne.add(new InfantryUnit("Footman", 10));
+        }
+        for (int i = 0; i < 10; i++) {
+            armyOne.add(new RangedUnit("Archer", 10));
+        }
+        for (int i = 0; i < 2; i++) {
+            armyOne.add(new CavalryUnit("Knight", 5));
+        }
+
+        assertTrue(armyOne.hasUnitsAlive());
+    }
+
+    @Test
+    public void hasOneUnitAlive() {
+        Army armyOne = new Army("Human Army");
+
+        UnitFactory factory = new UnitFactory();
+        armyOne.addAll(factory.getListOfUnits("InfantryUnit", 10, "Erik", 10));
+        armyOne.addAll(factory.getListOfUnits("RangedUnit", 10, "Erik", 10));
+        armyOne.addAll(factory.getListOfUnits("CavalryUnit", 10, "Erik", 10));
+        armyOne.addAll(factory.getListOfUnits("CommanderUnit", 10, "Erik", 10));
+
+        //sets health of all units to zero except one unit, meaning they are all killed in combat
+        for (int i = 0; i < armyOne.getUnits().size() - 1; i++) {
+            armyOne.getUnits().get(i).setHealth(0);
+        }
+
+        System.out.println(armyOne);
+        assertTrue(armyOne.hasUnitsAlive());
+    }
+
+    @Test
+    public void hasNotUnitsAlive() {
+        Army armyOne = new Army("Human Army");
+
+        UnitFactory factory = new UnitFactory();
+        armyOne.addAll(factory.getListOfUnits("InfantryUnit", 10, "Erik", 10));
+        armyOne.addAll(factory.getListOfUnits("RangedUnit", 10, "Erik", 10));
+        armyOne.addAll(factory.getListOfUnits("CavalryUnit", 10, "Erik", 10));
+        armyOne.addAll(factory.getListOfUnits("CommanderUnit", 10, "Erik", 10));
+
+        //sets health of all units to zero, meaning they are all killed in combat
+        for (int i = 0; i < armyOne.getUnits().size(); i++) {
+            armyOne.getUnits().get(i).setHealth(0);
+        }
+
+        assertFalse(armyOne.hasUnitsAlive());
+    }
+
+    @Test
+    public void getRandomAliveUnit() {
+
+        Army armyOne = new Army("Human Army");
+
+        UnitFactory factory = new UnitFactory();
+        armyOne.addAll(factory.getListOfUnits("InfantryUnit", 10, "Kenneth", 10));
+        armyOne.addAll(factory.getListOfUnits("RangedUnit", 10, "Paul", 10));
+        //sets health of all units to zero, meaning they are all killed in combat
+        for (int i = 0; i < armyOne.getUnits().size(); i++) {
+            armyOne.getUnits().get(i).setHealth(0);
+        }
+        armyOne.addAll(factory.getListOfUnits("CavalryUnit", 1, "Sam", 10));
+        Unit unit = new CommanderUnit("Lord", 180);
+        unit.setHealth(0);
+        armyOne.add(unit);
+
+
+
+
+        System.out.println(armyOne);
+        assertEquals("Sam", armyOne.getRandomAliveUnit().getName());
     }
 }
