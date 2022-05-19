@@ -3,6 +3,7 @@ package edu.ntnu.idatt2001.erikskj.gui.controllers;
 import edu.ntnu.idatt2001.erikskj.factory.UnitFactory;
 import edu.ntnu.idatt2001.erikskj.file.FileHandler;
 import edu.ntnu.idatt2001.erikskj.gui.FXMLLoaderClass;
+import edu.ntnu.idatt2001.erikskj.gui.IconGetter;
 import edu.ntnu.idatt2001.erikskj.gui.models.UnitModel;
 import edu.ntnu.idatt2001.erikskj.register.RegistryClient;
 import edu.ntnu.idatt2001.erikskj.units.Unit;
@@ -29,7 +30,7 @@ import java.util.ResourceBundle;
  */
 public class CreateArmyController implements Initializable {
 
-    public ImageView removeInfantry;
+    private ImageView removeInfantry;
     @FXML private TextField sumInfantry;
     @FXML private TextField sumCommander;
     @FXML private TextField sumCavalry;
@@ -244,47 +245,26 @@ public class CreateArmyController implements Initializable {
 
     public void fillTable(){
         clearTable();
+        IconGetter iconGetter = new IconGetter();
         //adding infantry
         if (Integer.parseInt(sumInfantry.getText()) != 0){
-            UnitModel infantryModel = new UnitModel("Infantry Unit", (int) units.stream().filter(unit -> unit.getUnitType().equals("Infantry")).count(), getIconByType("Infantry"));
+            UnitModel infantryModel = new UnitModel("Infantry Unit", (int) units.stream().filter(unit -> unit.getUnitType().equals("Infantry")).count(), iconGetter.getIconByType("Infantry"));
             tableArmyPreview.getItems().add(infantryModel);
         }
 
         if (Integer.parseInt(sumRanged.getText()) != 0){
-            UnitModel rangedModel = new UnitModel("Ranged Unit", (int) units.stream().filter(unit -> unit.getUnitType().equals("Ranged")).count(), getIconByType("Ranged"));
+            UnitModel rangedModel = new UnitModel("Ranged Unit", (int) units.stream().filter(unit -> unit.getUnitType().equals("Ranged")).count(), iconGetter.getIconByType("Ranged"));
             tableArmyPreview.getItems().add(rangedModel);
         }
 
         if (Integer.parseInt(sumCavalry.getText()) != 0){
-            UnitModel cavalryModel = new UnitModel("Cavalry Unit", (int) units.stream().filter(unit -> unit.getUnitType().equals("Cavalry")).count(), getIconByType("Cavalry"));
+            UnitModel cavalryModel = new UnitModel("Cavalry Unit", (int) units.stream().filter(unit -> unit.getUnitType().equals("Cavalry")).count(), iconGetter.getIconByType("Cavalry"));
             tableArmyPreview.getItems().add(cavalryModel);
         }
 
         if (Integer.parseInt(sumCommander.getText()) != 0){
-            UnitModel commanderModel = new UnitModel("Commander Unit", (int) units.stream().filter(unit -> unit.getUnitType().equals("Commander")).count(), getIconByType("Commander"));
+            UnitModel commanderModel = new UnitModel("Commander Unit", (int) units.stream().filter(unit -> unit.getUnitType().equals("Commander")).count(), iconGetter.getIconByType("CommanderUnit"));
             tableArmyPreview.getItems().add(commanderModel);
         }
     }
-
-    /**
-     * method that returns the correct icon based on what type of unit the army has
-     * @param unit string containing unit type name
-     * @return ImageView with icon matching unit
-     */
-    public ImageView getIconByType(String unit){
-        switch (unit) {
-            case "Infantry":
-                return new ImageView(new Image(this.getClass().getResourceAsStream("/img/infantry.png")));
-            case "Ranged":
-                return new ImageView(new Image(this.getClass().getResourceAsStream("/img/ranged.png")));
-            case "Cavalry":
-                return new ImageView(new Image(this.getClass().getResourceAsStream("/img/cavalry.png")));
-            case "Commander":
-                return new ImageView(new Image(this.getClass().getResourceAsStream("/img/commander.png")));
-            default:
-                System.err.println("Something went wrong when rendering icon to unit.");
-                return null;
-        }
-    }
-
 }

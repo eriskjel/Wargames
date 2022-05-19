@@ -1,6 +1,7 @@
 package edu.ntnu.idatt2001.erikskj.gui.controllers;
 
 import edu.ntnu.idatt2001.erikskj.file.FileHandler;
+import edu.ntnu.idatt2001.erikskj.gui.IconGetter;
 import edu.ntnu.idatt2001.erikskj.gui.models.UnitModel;
 import edu.ntnu.idatt2001.erikskj.register.RegistryClient;
 import edu.ntnu.idatt2001.erikskj.war.Army;
@@ -63,6 +64,7 @@ public class ViewSpecificArmyController implements Initializable {
     public void fillTable(){
         //clears table
         clearTable();
+        IconGetter iconGetter = new IconGetter();
 
         //create army by reading file, with path specified from user input
         Army army = fileHandler.readFromFile(currentArmyFilePath);
@@ -72,31 +74,11 @@ public class ViewSpecificArmyController implements Initializable {
 
         //adds models to tableview
         for (int i = 0; i < army.getArrayWithUnitNames().size(); i++) {
-            UnitModel unitModel = new UnitModel(army.getArrayWithUnitNames().get(i), army.getNumUnitsByType(army.getArrayWithUnitNames().get(i)), getIconByType(army.getArrayWithUnitNames().get(i)));
+            UnitModel unitModel = new UnitModel(army.getArrayWithUnitNames().get(i), army.getNumUnitsByType(army.getArrayWithUnitNames().get(i)), iconGetter.getIconByType(army.getArrayWithUnitNames().get(i)));
             tableViewArmy.getItems().add(unitModel);
         }
     }
 
-    /**
-     * method that returns the correct icon based on what type of unit the army has
-     * @param unit string containing unit type name
-     * @return ImageView with icon matching unit
-     */
-    public ImageView getIconByType(String unit){
-        switch (unit) {
-            case "Infantry":
-                return new ImageView(new Image(this.getClass().getResourceAsStream("/img/infantry.png")));
-            case "Ranged":
-                return new ImageView(new Image(this.getClass().getResourceAsStream("/img/ranged.png")));
-            case "Cavalry":
-                return new ImageView(new Image(this.getClass().getResourceAsStream("/img/cavalry.png")));
-            case "Commander":
-                return new ImageView(new Image(this.getClass().getResourceAsStream("/img/commander.png")));
-            default:
-                System.err.println("Something went wrong when rendering icon to unit.");
-                return null;
-        }
-    }
 
     public static void setCurrentArmyFileName(String path){
         currentArmyFilePath = path;
