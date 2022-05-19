@@ -13,7 +13,7 @@ public class Battle {
     private final Army armyTwo;
     private static Terrain terrain;
     //Battleinfo String is a complete log containing who attacked who, if someone died and also info about the winning army
-    private static String battleInfo = "";
+    private static String battleInfo;
 
     /**
      * constructor for battle class
@@ -25,6 +25,7 @@ public class Battle {
         this.armyOne = armyOne;
         this.armyTwo = armyTwo;
         Battle.terrain = terrain;
+        battleInfo = "";
     }
 
     /**

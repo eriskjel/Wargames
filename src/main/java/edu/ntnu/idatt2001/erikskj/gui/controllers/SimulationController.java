@@ -13,10 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -166,15 +163,59 @@ public class SimulationController implements Initializable {
     }
 
     public void setSpeedToInstant(ActionEvent actionEvent) {
-        this.sleepTime = 10;
+        this.sleepTime = 30;
     }
 
     public void simulate() throws InterruptedException {
-        this.containerBattleInfo.clear();
-        Battle battle = new Battle(RegistryClient.armyRegister.getArmyByID(army1ID),RegistryClient.armyRegister.getArmyByID(army2ID), terrain);
-        battle.simulate();
-        printBattleInfo(battle.getBattleInfo());
-        fillAllArmiesTable();
+        if (checkIfBattleCanStart()){
+            this.containerBattleInfo.clear();
+            Battle battle = new Battle(RegistryClient.armyRegister.getArmyByID(army1ID),RegistryClient.armyRegister.getArmyByID(army2ID), terrain);
+            battle.simulate();
+            printBattleInfo(battle.getBattleInfo());
+            fillAllArmiesTable();
+        }
+    }
+
+    public boolean checkIfBattleCanStart(){
+        if (!RegistryClient.armyRegister.getArmyByID(army1ID).hasUnitsAlive() || !RegistryClient.armyRegister.getArmyByID(army2ID).hasUnitsAlive()){
+            displayWarningArmyIsDead();
+            return false;
+        }
+        else if(terrain == null){
+            displayWarningTerrainIsNull();
+            return false;
+        }
+        else if(sleepTime == 0){
+            displayWarningSleepTimeIsNull();
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    public void displayWarningArmyIsDead(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning! Cannot start battle!");
+        alert.setHeaderText(null);
+        alert.setContentText("One the armies loaded for battle does not have any units alive to battle!\nReset the army or load a new one to battle.");
+        alert.showAndWait();
+    }
+
+    public void displayWarningTerrainIsNull(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning! Cannot start battle!");
+        alert.setHeaderText(null);
+        alert.setContentText("Terrain is not defined. You need to pick a terrain to battle on.");
+        alert.showAndWait();
+    }
+
+    public void displayWarningSleepTimeIsNull(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning! Cannot start battle!");
+        alert.setHeaderText(null);
+        alert.setContentText("Logging speed is not defined. Please pick a speed to log the battle info.");
+        alert.showAndWait();
     }
 
     public void printBattleInfo(String battleInfo) throws InterruptedException {
