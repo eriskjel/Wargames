@@ -33,13 +33,13 @@ public class Battle {
      * if so, when the program stops and outputs the winners, if not then the battle goes on.
      */
     public void simulate() throws InterruptedException {
-        while (armyOne.hasUnits() && armyTwo.hasUnits()) {
+        while (armyOne.hasUnitsAlive() && armyTwo.hasUnitsAlive()) {
 
-            Unit attacker1 = armyOne.getRandom();
-            Unit attacker2 = armyTwo.getRandom();
+            Unit attacker1 = armyOne.getRandomAliveUnit();
+            Unit attacker2 = armyTwo.getRandomAliveUnit();
 
-            Unit victim1 = armyOne.getRandom();
-            Unit victim2 = armyTwo.getRandom();
+            Unit victim1 = armyOne.getRandomAliveUnit();
+            Unit victim2 = armyTwo.getRandomAliveUnit();
 
             int randomIndex = Math.random() <= 0.5 ? 1 : 2;
 
@@ -47,14 +47,28 @@ public class Battle {
                 appendBattleInfo(attacker1,victim2);
                 attacker1.attack(victim2, terrain);
                 if (isDead(victim2)){
-                    armyTwo.remove(victim2);
+                    //armyTwo.remove(victim2);
+                    System.out.println(victim2.getName() + " has died in combat.\n");
+                    battleInfo += victim2.getName() + " has died in combat.\n";
+                    victim2.setHealth(0);
+                }
+                else{
+                    System.out.println(victim2.getName() + " now has " + victim2.getHealth() + " health remaining.\n");
+                    battleInfo += victim2.getName() + " now has " + victim2.getHealth() + " health remaining.\n";
                 }
             }
             else{
                 appendBattleInfo(attacker2,victim1);
                 attacker2.attack(victim1, terrain);
                 if (isDead(victim1)){
-                    armyOne.remove(victim1);
+                    //armyOne.remove(victim1);
+                    System.out.println(victim1.getName() + " has died in combat.\n");
+                    battleInfo += victim1.getName() + " has died in combat.\n";
+                    victim1.setHealth(0);
+                }
+                else{
+                    System.out.println(victim1.getName() + " now has " + victim1.getHealth() + " health remaining.\n");
+                    battleInfo += victim1.getName() + " now has " + victim1.getHealth() + " health remaining.\n";
                 }
             }
             System.out.println(checkWin(armyOne, armyTwo));
@@ -84,10 +98,10 @@ public class Battle {
      */
     public static String checkWin(Army armyOne, Army armyTwo){
         String result = "";
-        if (!armyOne.hasUnits()) {
-            result += armyTwo.getName() + " has won! Remaining units: " + armyTwo;
-        } else if (!armyTwo.hasUnits()) {
-            result += armyOne.getName() + " has won! Remaining units: " + armyOne;
+        if (!armyOne.hasUnitsAlive()) {
+            result += armyTwo.getName() + " has won! Remaining units: " + armyTwo.unitsAlive();
+        } else if (!armyTwo.hasUnitsAlive()) {
+            result += armyOne.getName() + " has won! Remaining units: " + armyOne.unitsAlive();
         }
         battleInfo += result;
         return result;
@@ -109,8 +123,8 @@ public class Battle {
      * @param victim victim unit
      */
     public void appendBattleInfo(Unit attacker, Unit victim){
-        System.out.println(attacker.getName() + " with " + attacker.getHealth() + " attacks " + victim.getName() +  " with " + victim.getHealth() + " health. - ");
-        battleInfo += attacker.getName() + " with " + attacker.getHealth() + " attacks " + victim.getName() +  " with " + victim.getHealth() + " health. - ";
+        System.out.println(attacker.getName() + " with " + attacker.getHealth() + " attacks " + victim.getName() +  " with " + victim.getHealth() + " health.\n");
+        battleInfo += attacker.getName() + " with " + attacker.getHealth() + " attacks " + victim.getName() +  " with " + victim.getHealth() + " health.\n";
     }
 
     /**
@@ -119,14 +133,6 @@ public class Battle {
      * @return true if unit is dead, false if alive
      */
     public static boolean isDead(Unit victim){
-        if (victim.getHealth() < 1) {
-            System.out.println(victim.getName() + " has died in combat.\n");
-            battleInfo += victim.getName() + " has died in combat.\n";
-            return true;
-        } else {
-            System.out.println(victim.getName() + " now has " + victim.getHealth() + " health remaining.\n");
-            battleInfo += victim.getName() + " now has " + victim.getHealth() + " health remaining.\n";
-            return false;
-        }
+        return victim.getHealth() < 1;
     }
 }

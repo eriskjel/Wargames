@@ -125,6 +125,15 @@ public class Army {
         return !units.isEmpty();
     }
 
+    public boolean hasUnitsAlive(){
+        for (int i = 0; i < units.size(); i++) {
+            if (units.get(i).getHealth() > 0){
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * method that returns random unit from army list of units
      * @return unit
@@ -132,6 +141,19 @@ public class Army {
     public Unit getRandom(){
         Random random = new Random();
         return units.get(random.nextInt((units.size())));
+    }
+
+    public Unit getRandomAliveUnit(){
+        Unit unit = this.getRandom();
+        while(!unit.unitIsAlive()){
+            if (unit.unitIsAlive()){
+                return unit;
+            }
+            else{
+                unit = this.getRandom();
+            }
+        }
+        return unit;
     }
 
     public ArrayList<Unit> getUnits(){
@@ -243,6 +265,16 @@ public class Army {
         String results = "\n";
         for (Unit unit: units) {
             results += unit.toString() + "\n";
+        }
+        return results;
+    }
+
+    public String unitsAlive(){
+        String results = "\n";
+        for (Unit unit: units){
+            if (unit.unitIsAlive()){
+                results += unit.toString() + "\n";
+            }
         }
         return results;
     }

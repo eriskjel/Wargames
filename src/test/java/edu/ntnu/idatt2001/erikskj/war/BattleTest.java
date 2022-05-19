@@ -48,7 +48,7 @@ public class BattleTest {
         Battle battle = new Battle(armyOne, armyTwo, Terrain.HILL);
         battle.simulate();
 
-        assertTrue(!armyOne.hasUnits() || !armyTwo.hasUnits());
+        assertTrue(!armyOne.hasUnitsAlive() || !armyTwo.hasUnitsAlive());
     }
 
     /**

@@ -30,8 +30,8 @@ import java.util.Scanner;
  */
 public class SimulationController implements Initializable {
 
-    @FXML private Label armyName1;
-    @FXML private Label armyName2;
+    @FXML private Label lblArmy1Name;
+    @FXML private Label lblArmy2Name;
     @FXML private TableView tableArmy1;
     @FXML private TableColumn colUnit;
     @FXML private TableColumn colQuantity;
@@ -77,6 +77,9 @@ public class SimulationController implements Initializable {
         this.colUnit1.setCellValueFactory(new PropertyValueFactory<>("Unit"));
         this.colQuantity1.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
         this.tableArmy2.setItems(observableListArmy2);
+
+        this.lblArmy1Name.setText(RegistryClient.armyRegister.getArmyByID(army1ID).getName());
+        this.lblArmy2Name.setText(RegistryClient.armyRegister.getArmyByID(army2ID).getName());
 
         fillAllArmiesTable();
     }
@@ -227,5 +230,13 @@ public class SimulationController implements Initializable {
         });
         thread.setDaemon(true);
         thread.start();
+    }
+
+    public void resetArmy1(){
+        RegistryClient.armyRegister.refillUnitsHealth(army1ID);
+    }
+
+    public void resetArmy2(){
+        RegistryClient.armyRegister.refillUnitsHealth(army2ID);
     }
 }

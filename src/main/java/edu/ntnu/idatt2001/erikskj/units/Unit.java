@@ -8,6 +8,7 @@ public abstract class Unit {
 
 
     protected final String name;
+    protected final int totalHealth;
     protected int health;
     protected final int attack;
     protected final int armour;
@@ -36,6 +37,7 @@ public abstract class Unit {
             throw new IllegalArgumentException("Armour stat must be an integer larger than zero.");
         }
         this.name = name;
+        this.totalHealth = health;
         this.health = health;
         this.attack = attack;
         this.armour = armour;
@@ -69,6 +71,18 @@ public abstract class Unit {
      */
     public int getHealth() {
         return health;
+    }
+
+    /**
+     *
+     * @return initial and total health of unit
+     */
+    public int getTotalHealth(){
+        return totalHealth;
+    }
+
+    public boolean unitIsAlive(){
+        return getHealth() > 0;
     }
 
     /**
