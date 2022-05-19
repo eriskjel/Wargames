@@ -5,11 +5,15 @@ import edu.ntnu.idatt2001.erikskj.enums.Terrain;
 import edu.ntnu.idatt2001.erikskj.gui.controllers.SimulationController;
 import edu.ntnu.idatt2001.erikskj.units.Unit;
 
+/**
+ * Class that manages the battle and simulation aspect of the project. Class takes two armies and a terrain, and holds a battleInfo string.
+ */
 public class Battle {
 
     private final Army armyOne;
     private final Army armyTwo;
-    private static Terrain terrain = null;
+    private static Terrain terrain;
+    //Battleinfo String is a complete log containing who attacked who, if someone died and also info about the winning army
     private static String battleInfo = "";
 
     /**
@@ -23,6 +27,15 @@ public class Battle {
         this.armyTwo = armyTwo;
         Battle.terrain = terrain;
     }
+
+    /**
+     * getter for battleinfo
+     * @return string with all the battle info
+     */
+    public String getBattleInfo(){
+        return battleInfo;
+    }
+
 
 
     /**
@@ -46,12 +59,12 @@ public class Battle {
             if (randomIndex == 1){
                 updateBattleInfoWithAttack(attacker1,victim2);
                 attacker1.attack(victim2, terrain);
-                updateBattleInfoIfDead(victim2);
+                updateBattleInfoWithHealthStatus(victim2);
             }
             else{
                 updateBattleInfoWithAttack(attacker2,victim1);
                 attacker2.attack(victim1, terrain);
-                updateBattleInfoIfDead(victim1);
+                updateBattleInfoWithHealthStatus(victim1);
             }
             checkWinner(armyOne, armyTwo);
         }
@@ -67,9 +80,12 @@ public class Battle {
         battleInfo += attacker.getName() + " with " + attacker.getHealth() + "HP, attacks " + victim.getName() +  " with " + victim.getHealth() + " HP.\n";
     }
 
-    public void updateBattleInfoIfDead(Unit victim){
+    /**
+     * checks if victim of attack has died from the attack. If so then that is logged, and also the unit's health is set to zero.
+     * @param victim victim of attack
+     */
+    public void updateBattleInfoWithHealthStatus(Unit victim){
         if (!victim.unitIsAlive()){
-            //armyTwo.remove(victim2);
             System.out.println(victim.getName() + " has died in combat.\n");
             battleInfo += victim.getName() + " has died in combat.\n";
             victim.setHealth(0);
@@ -80,25 +96,12 @@ public class Battle {
         }
     }
 
-    public String getBattleInfo(){
-        return battleInfo;
-    }
-
-
-
     /**
-     * Method that checks if one army has won, by checking if the other army has any units left.
-     * @param armyWinner army that won battle
+     * checks if there is a winner amongst the two armies battling, and returns the winning army if there is one
+     * @param armyOne army1
+     * @param armyTwo army2
+     * @return winning army or null
      */
-    public static String printWinner(Army armyWinner){
-        String result = armyWinner.getName() + " has won! Remaining units: " + armyWinner.unitsAlive();
-        battleInfo += result;
-
-        //for testing purposes
-        System.out.println(result);
-        return result;
-    }
-
     public static Army checkWinner(Army armyOne, Army armyTwo){
         if (!armyOne.hasUnitsAlive()) {
             printWinner(armyTwo);
@@ -108,6 +111,20 @@ public class Battle {
             return armyOne;
         }
         return null;
+    }
+
+    /**
+     * method that prints how has one, and appends this to the battleinfo string
+     * @param armyWinner winning army
+     * @return result as string
+     */
+    public static String printWinner(Army armyWinner){
+        String result = armyWinner.getName() + " has won! Remaining units: " + armyWinner.unitsAlive();
+        battleInfo += result;
+
+        //for testing purposes
+        System.out.println(result);
+        return result;
     }
 
     /**
