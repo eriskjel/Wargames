@@ -230,7 +230,7 @@ public class ArmyTest {
     }
 
     @Test
-    void getRandomAliveUnit() {
+    public void getRandomAliveUnit() {
 
         Army armyOne = new Army("Human Army");
 

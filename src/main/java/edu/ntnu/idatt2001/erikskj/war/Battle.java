@@ -2,7 +2,6 @@ package edu.ntnu.idatt2001.erikskj.war;
 
 
 import edu.ntnu.idatt2001.erikskj.enums.Terrain;
-import edu.ntnu.idatt2001.erikskj.gui.controllers.SimulationController;
 import edu.ntnu.idatt2001.erikskj.units.Unit;
 
 /**
@@ -116,15 +115,13 @@ public class Battle {
     /**
      * method that prints how has one, and appends this to the battleinfo string
      * @param armyWinner winning army
-     * @return result as string
      */
-    public static String printWinner(Army armyWinner){
+    public static void printWinner(Army armyWinner){
         String result = armyWinner.getName() + " has won! Remaining units: " + armyWinner.unitsAlive();
         battleInfo += result;
 
         //for testing purposes
         System.out.println(result);
-        return result;
     }
 
     /**
