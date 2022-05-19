@@ -33,10 +33,10 @@ public abstract class Unit {
         if (health <= 0){
             throw new IllegalArgumentException("Health must be an integer larger than zero.");
         }
-        if (attack < 0){
+        if (attack <= 0){
             throw new IllegalArgumentException("Armour stat must be an integer larger than zero.");
         }
-        if (armour < 0){
+        if (armour <= 0){
             throw new IllegalArgumentException("Armour stat must be an integer larger than zero.");
         }
         this.name = name;

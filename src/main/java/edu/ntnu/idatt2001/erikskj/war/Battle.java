@@ -4,7 +4,6 @@ package edu.ntnu.idatt2001.erikskj.war;
 import edu.ntnu.idatt2001.erikskj.enums.Terrain;
 import edu.ntnu.idatt2001.erikskj.units.Unit;
 
-import java.util.Random;
 
 /**
  * Class that manages the battle and simulation aspect of the project. Class takes two armies and a terrain, and holds a battleInfo string.
@@ -58,12 +57,19 @@ public class Battle {
 
             int randomIndex = Math.random() <= 0.5 ? 1 : 2;
 
+            switch (randomIndex){
+                case 1: attack(attacker1, victim2);
+                case 2: attack(attacker2, victim1);
+            }
+            /*
             if (randomIndex == 1){
                 attack(attacker1, victim2);
             }
             else{
                 attack(attacker2, victim1);
             }
+
+             */
         }
         checkWinner(armyOne, armyTwo);
     }
