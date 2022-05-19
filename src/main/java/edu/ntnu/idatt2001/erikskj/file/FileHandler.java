@@ -16,7 +16,7 @@ import java.util.Objects;
 
 public class FileHandler {
 
-    private String defaultPath = "./ArmiesDir/";
+    private final String defaultPath = "./ArmiesDir/";
     public FileHandler(){}
 
 

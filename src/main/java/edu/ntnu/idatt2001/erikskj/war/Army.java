@@ -269,11 +269,15 @@ public class Army {
         return results;
     }
 
+    /**
+     *
+     * @return string with all alive units in army
+     */
     public String unitsAlive(){
         String results = "\n";
         for (Unit unit: units){
             if (unit.unitIsAlive()){
-                results += unit.toString() + "\n";
+                results += unit + "\n";
             }
         }
         return results;

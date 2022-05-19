@@ -47,8 +47,8 @@ public class CreateArmyController implements Initializable {
     @FXML private TableColumn colUnit;
     @FXML private TableColumn colQuantity;
     @FXML private TableColumn colIcon;
-    @FXML private ObservableList<UnitModel> observableList = FXCollections.observableArrayList();
-    private FileHandler fileHandler = new FileHandler();
+    @FXML private final ObservableList<UnitModel> observableList = FXCollections.observableArrayList();
+    private final FileHandler fileHandler = new FileHandler();
     private final ArrayList<Unit> units = new ArrayList<>();
     private final UnitFactory unitFactory = new UnitFactory();
 

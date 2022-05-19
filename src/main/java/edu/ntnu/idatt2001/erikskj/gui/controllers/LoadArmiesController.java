@@ -35,10 +35,10 @@ public class LoadArmiesController implements Initializable {
     @FXML private TableColumn colIcon;
     @FXML private Label lblArmyName;
     @FXML private Label lblFileSelected;
-    @FXML private ObservableList<UnitModel> observableList = FXCollections.observableArrayList();
+    @FXML private final ObservableList<UnitModel> observableList = FXCollections.observableArrayList();
     @FXML private Stage stage;
     private String pathLoaded;
-    private FileHandler fileHandler = new FileHandler();
+    private final FileHandler fileHandler = new FileHandler();
     private String fileName;
     private File armyFile;
 

@@ -46,12 +46,12 @@ public class GoToBattleController<directoryListing> implements Initializable {
     @FXML private TableColumn colTotalUnits;
     @FXML private TableColumn colTotalHealth;
     @FXML private TableColumn colFileName;
-    @FXML private ObservableList<LoadedArmyModel> observableListArmies = FXCollections.observableArrayList();
-    @FXML private ObservableList<UnitModel> observableListArmy1 = FXCollections.observableArrayList();
-    @FXML private ObservableList<UnitModel> observableListArmy2 = FXCollections.observableArrayList();
+    @FXML private final ObservableList<LoadedArmyModel> observableListArmies = FXCollections.observableArrayList();
+    @FXML private final ObservableList<UnitModel> observableListArmy1 = FXCollections.observableArrayList();
+    @FXML private final ObservableList<UnitModel> observableListArmy2 = FXCollections.observableArrayList();
     private int army1ID;
     private int army2ID;
-    private FileHandler fileHandler = new FileHandler();
+    private final FileHandler fileHandler = new FileHandler();
     private boolean table1Empty = true;
     private boolean table2Empty = true;
 

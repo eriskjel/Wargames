@@ -33,9 +33,9 @@ public class ViewSpecificArmyController implements Initializable {
     @FXML private TableColumn colQuantity;
     @FXML private TableColumn colIcon;
     @FXML private Label lblArmyName;
-    @FXML private ObservableList<UnitModel> observableList = FXCollections.observableArrayList();
+    @FXML private final ObservableList<UnitModel> observableList = FXCollections.observableArrayList();
     private static String currentArmyFilePath;
-    private FileHandler fileHandler = new FileHandler();
+    private final FileHandler fileHandler = new FileHandler();
     private static String filePath;
 
 

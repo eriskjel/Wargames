@@ -40,8 +40,8 @@ public class SimulationController implements Initializable {
     @FXML private TableColumn colUnit1;
     @FXML private TableColumn colQuantity1;
     @FXML private TableColumn colIcon1;
-    @FXML private ObservableList<UnitModel> observableListArmy1 = FXCollections.observableArrayList();
-    @FXML private ObservableList<UnitModel> observableListArmy2 = FXCollections.observableArrayList();
+    @FXML private final ObservableList<UnitModel> observableListArmy1 = FXCollections.observableArrayList();
+    @FXML private final ObservableList<UnitModel> observableListArmy2 = FXCollections.observableArrayList();
     @FXML private TextArea containerBattleInfo;
     private static int army1ID;
     private static int army2ID;

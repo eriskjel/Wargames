@@ -22,7 +22,7 @@ public class LoadedArmyModel {
     private SimpleIntegerProperty totalUnits;
     private SimpleIntegerProperty totalHealth;
     //private SimpleStringProperty filePath;
-    private int armyID;
+    private final int armyID;
     //private SimpleStringProperty fileName;
     private File armyFile;
 

@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class FileHandlerTest {
 
-    private String armiesDir = "./ArmiesDir/";
+    private final String armiesDir = "./ArmiesDir/";
 
     /**
      * junit test for reading an army from a file.

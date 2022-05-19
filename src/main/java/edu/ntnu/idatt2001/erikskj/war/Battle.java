@@ -32,7 +32,7 @@ public class Battle {
      * and if dead, the unit is removed from battle. At the end of each while-iteration the program will check if there is a winner
      * if so, when the program stops and outputs the winners, if not then the battle goes on.
      */
-    public void simulate() throws InterruptedException {
+    public void simulate() {
         while (armyOne.hasUnitsAlive() && armyTwo.hasUnitsAlive()) {
 
             Unit attacker1 = armyOne.getRandomAliveUnit();
@@ -44,67 +44,70 @@ public class Battle {
             int randomIndex = Math.random() <= 0.5 ? 1 : 2;
 
             if (randomIndex == 1){
-                appendBattleInfo(attacker1,victim2);
+                updateBattleInfoWithAttack(attacker1,victim2);
                 attacker1.attack(victim2, terrain);
-                if (isDead(victim2)){
-                    //armyTwo.remove(victim2);
-                    System.out.println(victim2.getName() + " has died in combat.\n");
-                    battleInfo += victim2.getName() + " has died in combat.\n";
-                    victim2.setHealth(0);
-                }
-                else{
-                    System.out.println(victim2.getName() + " now has " + victim2.getHealth() + " health remaining.\n");
-                    battleInfo += victim2.getName() + " now has " + victim2.getHealth() + " health remaining.\n";
-                }
+                updateBattleInfoIfDead(victim2);
             }
             else{
-                appendBattleInfo(attacker2,victim1);
+                updateBattleInfoWithAttack(attacker2,victim1);
                 attacker2.attack(victim1, terrain);
-                if (isDead(victim1)){
-                    //armyOne.remove(victim1);
-                    System.out.println(victim1.getName() + " has died in combat.\n");
-                    battleInfo += victim1.getName() + " has died in combat.\n";
-                    victim1.setHealth(0);
-                }
-                else{
-                    System.out.println(victim1.getName() + " now has " + victim1.getHealth() + " health remaining.\n");
-                    battleInfo += victim1.getName() + " now has " + victim1.getHealth() + " health remaining.\n";
-                }
+                updateBattleInfoIfDead(victim1);
             }
-            System.out.println(checkWin(armyOne, armyTwo));
+            checkWinner(armyOne, armyTwo);
+        }
+    }
+
+    /**
+     * method that outputs battle info. It will display who attacks who, and the stats of the parts involved
+     * @param attacker attacker unit
+     * @param victim victim unit
+     */
+    public void updateBattleInfoWithAttack(Unit attacker, Unit victim){
+        System.out.println(attacker.getName() + " with " + attacker.getHealth() + " HP, attacks " + victim.getName() +  " with " + victim.getHealth() + " HP.\n");
+        battleInfo += attacker.getName() + " with " + attacker.getHealth() + "HP, attacks " + victim.getName() +  " with " + victim.getHealth() + " HP.\n";
+    }
+
+    public void updateBattleInfoIfDead(Unit victim){
+        if (!victim.unitIsAlive()){
+            //armyTwo.remove(victim2);
+            System.out.println(victim.getName() + " has died in combat.\n");
+            battleInfo += victim.getName() + " has died in combat.\n";
+            victim.setHealth(0);
+        }
+        else{
+            System.out.println(victim.getName() + " now has " + victim.getHealth() + " HP remaining.\n");
+            battleInfo += victim.getName() + " now has " + victim.getHealth() + " HP remaining.\n";
         }
     }
 
     public String getBattleInfo(){
-        return this.battleInfo;
+        return battleInfo;
     }
 
-    /**
-     * tostring
-     * @return string with army names
-     */
-    @Override
-    public String toString() {
-        return "Battle{" +
-                "armyOne=" + armyOne +
-                ", armyTwo=" + armyTwo +
-                '}';
-    }
+
 
     /**
      * Method that checks if one army has won, by checking if the other army has any units left.
-     * @param armyOne army 1
-     * @param armyTwo army 2
+     * @param armyWinner army that won battle
      */
-    public static String checkWin(Army armyOne, Army armyTwo){
-        String result = "";
-        if (!armyOne.hasUnitsAlive()) {
-            result += armyTwo.getName() + " has won! Remaining units: " + armyTwo.unitsAlive();
-        } else if (!armyTwo.hasUnitsAlive()) {
-            result += armyOne.getName() + " has won! Remaining units: " + armyOne.unitsAlive();
-        }
+    public static String printWinner(Army armyWinner){
+        String result = armyWinner.getName() + " has won! Remaining units: " + armyWinner.unitsAlive();
         battleInfo += result;
+
+        //for testing purposes
+        System.out.println(result);
         return result;
+    }
+
+    public static Army checkWinner(Army armyOne, Army armyTwo){
+        if (!armyOne.hasUnitsAlive()) {
+            printWinner(armyTwo);
+            return armyTwo;
+        } else if (!armyTwo.hasUnitsAlive()) {
+            printWinner(armyOne);
+            return armyOne;
+        }
+        return null;
     }
 
     /**
@@ -118,21 +121,14 @@ public class Battle {
     }
 
     /**
-     * method that outputs battle info. It will display who attacks who, and the stats of the parts involved
-     * @param attacker attacker unit
-     * @param victim victim unit
+     * tostring
+     * @return string with army names
      */
-    public void appendBattleInfo(Unit attacker, Unit victim){
-        System.out.println(attacker.getName() + " with " + attacker.getHealth() + " attacks " + victim.getName() +  " with " + victim.getHealth() + " health.\n");
-        battleInfo += attacker.getName() + " with " + attacker.getHealth() + " attacks " + victim.getName() +  " with " + victim.getHealth() + " health.\n";
-    }
-
-    /**
-     * checks if a unit is dead
-     * @param victim unit
-     * @return true if unit is dead, false if alive
-     */
-    public static boolean isDead(Unit victim){
-        return victim.getHealth() < 1;
+    @Override
+    public String toString() {
+        return "Battle{" +
+                "armyOne=" + armyOne +
+                ", armyTwo=" + armyTwo +
+                '}';
     }
 }
