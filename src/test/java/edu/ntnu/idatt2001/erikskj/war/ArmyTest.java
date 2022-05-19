@@ -286,4 +286,42 @@ public class ArmyTest {
         assertEquals(2, armyOne.getNumAliveUnitsByType("Cavalry"));
         assertEquals(10, armyOne.getNumAliveUnitsByType("Commander"));
     }
+
+    @Test
+    public void resetArmy() {
+        Army armyOne = new Army("Human Army");
+
+        int sumHealth = 0;
+
+        for (int i = 0; i < 4; i++) {
+            Unit unit = new InfantryUnit("Erik", 100);
+            sumHealth += unit.getHealth();
+            unit.setHealth(0);
+            armyOne.add(unit);
+        }
+
+        for (int i = 0; i < 5; i++) {
+            Unit unit = new RangedUnit("Archer", 63);
+            sumHealth += unit.getHealth();
+            unit.setHealth(0);
+            armyOne.add(unit);
+        }
+
+        for (int i = 0; i < 6; i++) {
+            Unit unit = new CavalryUnit("Knight", 72);
+            sumHealth += unit.getHealth();
+            unit.setHealth(0);
+            armyOne.add(unit);
+        }
+
+        for (int i = 0; i < 3; i++) {
+            Unit unit = new CommanderUnit("Lord", 180);
+            sumHealth += unit.getHealth();
+            unit.setHealth(0);
+            armyOne.add(unit);
+        }
+
+        armyOne.resetArmy();
+        assertEquals(sumHealth, armyOne.getSumHealth());
+    }
 }

@@ -214,10 +214,12 @@ public class SimulationController implements Initializable {
     }
 
     public void resetArmy1(){
-        RegistryClient.armyRegister.refillUnitsHealth(army1ID);
+        RegistryClient.armyRegister.getArmyByID(army1ID).resetArmy();
+        fillAllArmiesTable();
     }
 
     public void resetArmy2(){
-        RegistryClient.armyRegister.refillUnitsHealth(army2ID);
+        RegistryClient.armyRegister.getArmyByID(army2ID).resetArmy();
+        fillAllArmiesTable();
     }
 }

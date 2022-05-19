@@ -128,13 +128,9 @@ public class ArmyRegister {
         this.resetAndWriteArmyToFile();
     }
 
-    public void refillUnitsHealth(int armyID){
-        for (int i = 0; i < this.armies.size(); i++) {
-            if (armies.get(i).getArmyID() == armyID){
-                for (int j = 0; j < getArmyByID(armyID).getUnits().size(); j++) {
-                    getArmyByID(armyID).getUnits().get(j).setHealth(getArmyByID(armyID).getUnits().get(j).getTotalHealth());
-                }
-            }
+    public void resetAllArmies(){
+        for (Army army : armies) {
+            army.resetArmy();
         }
     }
 }

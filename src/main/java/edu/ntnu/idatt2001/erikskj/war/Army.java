@@ -251,6 +251,12 @@ public class Army {
         this.isUploaded = isUploaded;
     }
 
+    public void resetArmy(){
+        for (int i = 0; i < this.getUnits().size(); i++) {
+            this.getUnits().get(i).setHealth(getUnits().get(i).getTotalHealth());
+        }
+    }
+
     /**
      * equals method
      * @param o unit

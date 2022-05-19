@@ -128,9 +128,11 @@
                         <TableColumn fx:id="colFileName" prefWidth="194.0" text="File name" />
                     </columns>
                   </TableView>
-                  <Button layoutX="270.0" layoutY="390.0" mnemonicParsing="false" onAction="#removeAllArmies" text="Remove all armies" />
-                  <Button layoutX="270.0" layoutY="456.0" mnemonicParsing="false" onAction="#removeSelectedArmy" text="Remove selected army" />
+                  <Button layoutX="272.0" layoutY="456.0" mnemonicParsing="false" onAction="#removeAllArmies" prefHeight="25.0" prefWidth="134.0" text="Remove all armies" />
+                  <Button layoutX="271.0" layoutY="396.0" mnemonicParsing="false" onAction="#removeSelectedArmy" text="Remove selected army" />
                   <Button layoutX="594.0" layoutY="396.0" mnemonicParsing="false" onAction="#viewSelectedArmy" text="View selected army" />
+                  <Button layoutX="912.0" layoutY="396.0" mnemonicParsing="false" onAction="#resetSelectedArmy" text="Reset selected army" />
+                  <Button layoutX="912.0" layoutY="456.0" mnemonicParsing="false" onAction="#resetAllArmies" prefHeight="25.0" prefWidth="121.0" text="Reset all armies" />
                </children>
             </Pane>
          </children>

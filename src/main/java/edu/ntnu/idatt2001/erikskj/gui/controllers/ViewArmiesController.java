@@ -217,6 +217,18 @@ public class ViewArmiesController implements Initializable {
         RegistryClient.fxmlLoaderClass.goToSpecificArmy(actionEvent);
     }
 
+    public void resetSelectedArmy(){
+        ObservableList<LoadedArmyModel> armyModel = tableLoadedArmies.getSelectionModel().getSelectedItems();
+        int armyID = armyModel.get(0).getArmyID();
+        RegistryClient.armyRegister.getArmyByID(armyID).resetArmy();
+        fillTable();
+    }
+
+    public void resetAllArmies(){
+        RegistryClient.armyRegister.resetAllArmies();
+        fillTable();
+    }
+
 
 
 }
