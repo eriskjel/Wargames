@@ -95,8 +95,58 @@
 
 .table-view .column-header-background{
     -fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #d02929 0.0%, #0000ff 100.0%);
+
     -fx-background-insets: 0 0 0 0;
     -fx-padding: 0 0 3px 0;
+}
+
+
+#unitTable1 .column-header-background{
+    -fx-background-color: #d02929 !important;
+
+    -fx-background-insets: 0 0 0 0;
+    -fx-padding: 0 0 3px 0;
+}
+
+#unitTable2 .column-header-background{
+    -fx-background-color: #0000ff !important;
+
+    -fx-background-insets: 0 0 0 0;
+    -fx-padding: 0 0 3px 0;
+}
+
+#BtnArmy1{
+    -fx-text-fill: #d02929;
+    -fx-border-width: 2px;
+    -fx-border-color: #d02929;
+    -fx-background-color: white;
+    -fx-border-radius: 2px;
+    -fx-font-weight: bold;
+}
+
+#BtnArmy1:hover{
+    -fx-background-color: #d02929;
+    -fx-text-fill: white;
+    -fx-underline: false;
+    -fx-border-radius: 2px;
+    -fx-font-weight: bold;
+}
+
+#BtnArmy2{
+    -fx-text-fill: #0000ff;
+    -fx-border-width: 2px;
+    -fx-border-color: #0000ff;
+    -fx-background-color: white;
+    -fx-border-radius: 2px;
+    -fx-font-weight: bold;
+}
+
+#BtnArmy2:hover{
+    -fx-background-color: #0000ff;
+    -fx-text-fill: white;
+    -fx-underline: false;
+    -fx-border-radius: 2px;
+    -fx-font-weight: bold;
 }
 
 .table-view .table-cell{
@@ -132,6 +182,22 @@
     -fx-border-width: 3px;
     -fx-border-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #d02929 0.0%, #0000ff 100.0%);
     -fx-background-color: rgba(128, 128, 128, 0.51);
+}
+
+.BtnSmall{
+    -fx-text-fill: #9b9b9b;
+    -fx-border-color: #9b9b9b;
+    -fx-background-color: white;
+    -fx-border-radius: 4px;
+    -fx-font-weight: bold;
+}
+
+.BtnSmall:hover{
+    -fx-text-fill: white;
+    -fx-background-color: #9b9b9b;
+    -fx-border-radius: 4px;
+    -fx-font-weight: bold;
+    -fx-underline: false;
 }
 
 

@@ -28,6 +28,12 @@ import java.util.Scanner;
  */
 public class SimulationController implements Initializable {
 
+    @FXML private Button btnHills;
+    @FXML private Button btnPlains;
+    @FXML private Button btnForest;
+    @FXML private Button btnSlow;
+    @FXML private Button btnMedium;
+    @FXML private Button btnFast;
     @FXML private Label lblArmy1Name;
     @FXML private Label lblArmy2Name;
     @FXML private TableView tableArmy1;
@@ -144,26 +150,72 @@ public class SimulationController implements Initializable {
 
     public void setTerrainToHills(ActionEvent actionEvent) {
         this.terrain = Terrain.HILL;
+        this.btnHills.setStyle(
+                "-fx-text-fill: white;" +
+                "-fx-background-color: #9b9b9b;" +
+                "-fx-border-radius: 4px;" +
+                "-fx-font-weight: bold;" +
+                "-fx-underline: false;"
+        );
+        this.btnPlains.setStyle("");
+        this.btnForest.setStyle("");
     }
 
     public void setTerrainToPlains(ActionEvent actionEvent) {
         this.terrain = Terrain.PLAINS;
+        this.btnHills.setStyle("");
+        this.btnPlains.setStyle("-fx-text-fill: white;" +
+                "-fx-background-color: #9b9b9b;" +
+                "-fx-border-radius: 4px;" +
+                "-fx-font-weight: bold;" +
+                "-fx-underline: false;");
+        this.btnForest.setStyle("");
     }
 
     public void setTerrainToForest(ActionEvent actionEvent) {
         this.terrain = Terrain.FOREST;
+        this.btnHills.setStyle("");
+        this.btnPlains.setStyle("");
+        this.btnForest.setStyle("-fx-text-fill: white;" +
+                "-fx-background-color: #9b9b9b;" +
+                "-fx-border-radius: 4px;" +
+                "-fx-font-weight: bold;" +
+                "-fx-underline: false;");
     }
 
     public void setSpeedToSlow(ActionEvent actionEvent) {
         this.sleepTime = 1000;
+        this.btnSlow.setStyle(
+                "-fx-text-fill: white;" +
+                        "-fx-background-color: #9b9b9b;" +
+                        "-fx-border-radius: 4px;" +
+                        "-fx-font-weight: bold;" +
+                        "-fx-underline: false;"
+        );
+        this.btnMedium.setStyle("");
+        this.btnFast.setStyle("");
     }
 
     public void setSpeedToFast(ActionEvent actionEvent) {
         this.sleepTime = 300;
+        this.btnSlow.setStyle("");
+        this.btnMedium.setStyle("-fx-text-fill: white;" +
+                "-fx-background-color: #9b9b9b;" +
+                "-fx-border-radius: 4px;" +
+                "-fx-font-weight: bold;" +
+                "-fx-underline: false;");
+        this.btnFast.setStyle("");
     }
 
     public void setSpeedToInstant(ActionEvent actionEvent) {
         this.sleepTime = 30;
+        this.btnSlow.setStyle("");
+        this.btnMedium.setStyle("");
+        this.btnFast.setStyle("-fx-text-fill: white;" +
+                "-fx-background-color: #9b9b9b;" +
+                "-fx-border-radius: 4px;" +
+                "-fx-font-weight: bold;" +
+                "-fx-underline: false;");
     }
 
     public void simulate() throws InterruptedException {
