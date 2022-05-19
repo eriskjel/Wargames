@@ -78,7 +78,7 @@ public class ViewArmiesController implements Initializable {
         for (int i = 0; i < RegistryClient.armyRegister.getArmies().size(); i++) {
             LoadedArmyModel loadedArmyModel = new LoadedArmyModel(
                     RegistryClient.armyRegister.getArmies().get(i).getName(),
-                    RegistryClient.armyRegister.getArmies().get(i).getUnits().size(),
+                    RegistryClient.armyRegister.getArmies().get(i).getListOfUnitsAlive().size(),
                     RegistryClient.armyRegister.getArmies().get(i).getSumHealth(),
                     RegistryClient.armyRegister.getArmies().get(i).getArmyFile(),
                     RegistryClient.armyRegister.getArmies().get(i).getArmyID());

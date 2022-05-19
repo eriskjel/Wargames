@@ -97,14 +97,13 @@ public class SimulationController implements Initializable {
         Army army1 = RegistryClient.armyRegister.getArmyByID(army1ID);
         Army army2 = RegistryClient.armyRegister.getArmyByID(army2ID);
         for (int i = 0; i < army1.getArrayWithUnitNames().size(); i++) {
-            UnitModel unitModel = new UnitModel(army1.getArrayWithUnitNames().get(i), army1.getNumUnitsByType(army1.getArrayWithUnitNames().get(i)), iconGetter.getIconByType(army1.getArrayWithUnitNames().get(i)));
+            UnitModel unitModel = new UnitModel(army1.getArrayWithUnitNames().get(i), army1.getNumAliveUnitsByType(army1.getArrayWithUnitNames().get(i)), iconGetter.getIconByType(army1.getArrayWithUnitNames().get(i)));
             tableArmy1.getItems().add(unitModel);
         }
         for (int i = 0; i < army2.getArrayWithUnitNames().size(); i++) {
-            UnitModel unitModel = new UnitModel(army2.getArrayWithUnitNames().get(i), army2.getNumUnitsByType(army2.getArrayWithUnitNames().get(i)), iconGetter.getIconByType(army2.getArrayWithUnitNames().get(i)));
+            UnitModel unitModel = new UnitModel(army2.getArrayWithUnitNames().get(i), army2.getNumAliveUnitsByType(army2.getArrayWithUnitNames().get(i)), iconGetter.getIconByType(army2.getArrayWithUnitNames().get(i)));
             tableArmy2.getItems().add(unitModel);
         }
-
     }
 
     /**
@@ -163,7 +162,7 @@ public class SimulationController implements Initializable {
     }
 
     public void setSpeedToFast(ActionEvent actionEvent) {
-        this.sleepTime = 500;
+        this.sleepTime = 300;
     }
 
     public void setSpeedToInstant(ActionEvent actionEvent) {
@@ -175,6 +174,7 @@ public class SimulationController implements Initializable {
         Battle battle = new Battle(RegistryClient.armyRegister.getArmyByID(army1ID),RegistryClient.armyRegister.getArmyByID(army2ID), terrain);
         battle.simulate();
         printBattleInfo(battle.getBattleInfo());
+        fillAllArmiesTable();
     }
 
     public void printBattleInfo(String battleInfo) throws InterruptedException {

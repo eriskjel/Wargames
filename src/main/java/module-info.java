@@ -19,4 +19,7 @@ module Wargames {
 
     exports edu.ntnu.idatt2001.erikskj.war;
     opens edu.ntnu.idatt2001.erikskj.war to javafx.fxml;
+
+    exports edu.ntnu.idatt2001.erikskj.units;
+    opens edu.ntnu.idatt2001.erikskj.units to javafx.fxml;
 }

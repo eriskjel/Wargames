@@ -100,7 +100,7 @@ public class GoToBattleController<directoryListing> implements Initializable {
         for (int i = 0; i < RegistryClient.armyRegister.getArmies().size(); i++) {
             LoadedArmyModel loadedArmyModel = new LoadedArmyModel(
                     RegistryClient.armyRegister.getArmies().get(i).getName(),
-                    RegistryClient.armyRegister.getArmies().get(i).getUnits().size(),
+                    RegistryClient.armyRegister.getArmies().get(i).getListOfUnitsAlive().size(),
                     RegistryClient.armyRegister.getArmies().get(i).getSumHealth(),
                     RegistryClient.armyRegister.getArmies().get(i).getArmyFile(),
                     RegistryClient.armyRegister.getArmies().get(i).getArmyID());
@@ -258,7 +258,7 @@ public class GoToBattleController<directoryListing> implements Initializable {
 
         //adds models to tableview
         for (int i = 0; i < army.getArrayWithUnitNames().size(); i++) {
-            UnitModel unitModel = new UnitModel(army.getArrayWithUnitNames().get(i), army.getNumUnitsByType(army.getArrayWithUnitNames().get(i)), iconGetter.getIconByType(army.getArrayWithUnitNames().get(i)));
+            UnitModel unitModel = new UnitModel(army.getArrayWithUnitNames().get(i), army.getNumAliveUnitsByType(army.getArrayWithUnitNames().get(i)), iconGetter.getIconByType(army.getArrayWithUnitNames().get(i)));
             if (n == 1){
                 tableArmy1.getItems().add(unitModel);
                 armyName1.setText(army.getName());

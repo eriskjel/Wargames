@@ -65,8 +65,9 @@ public class Battle {
                 attacker2.attack(victim1, terrain);
                 updateBattleInfoWithHealthStatus(victim1);
             }
-            checkWinner(armyOne, armyTwo);
+
         }
+        checkWinner(armyOne, armyTwo);
     }
 
     /**
@@ -76,7 +77,7 @@ public class Battle {
      */
     public void updateBattleInfoWithAttack(Unit attacker, Unit victim){
         System.out.println(attacker.getName() + " with " + attacker.getHealth() + " HP, attacks " + victim.getName() +  " with " + victim.getHealth() + " HP.\n");
-        battleInfo += attacker.getName() + " with " + attacker.getHealth() + "HP, attacks " + victim.getName() +  " with " + victim.getHealth() + " HP.\n";
+        battleInfo += attacker.getName() + " with " + attacker.getHealth() + " HP, attacks " + victim.getName() +  " with " + victim.getHealth() + " HP.\n";
     }
 
     /**
@@ -117,7 +118,7 @@ public class Battle {
      * @param armyWinner winning army
      */
     public static void printWinner(Army armyWinner){
-        String result = armyWinner.getName() + " has won! Remaining units: " + armyWinner.unitsAlive();
+        String result = armyWinner.getName() + " has won! Remaining units: " + armyWinner.unitsAliveToString();
         battleInfo += result;
 
         //for testing purposes

@@ -194,6 +194,19 @@ public class Army {
     }
 
     /**
+     *
+     * @param type type of unit
+     * @return int with number of alive units by unit type
+     */
+    public int getNumAliveUnitsByType(String type){
+        return (int) units.stream().filter(Unit::unitIsAlive).map(Unit::getUnitType).filter(unit -> unit.equals(type)).count();
+    }
+
+    public ArrayList<Unit> getListOfUnitsAlive(){
+        return this.getUnits().stream().filter(Unit::unitIsAlive).collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    /**
      * gets the sum of the combined health points in an army
      * @return int with sum of health points in army
      */
@@ -273,7 +286,7 @@ public class Army {
      *
      * @return string with all alive units in army
      */
-    public String unitsAlive(){
+    public String unitsAliveToString(){
         String results = "\n";
         for (Unit unit: units){
             if (unit.unitIsAlive()){

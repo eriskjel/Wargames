@@ -252,4 +252,38 @@ public class ArmyTest {
         System.out.println(armyOne);
         assertEquals("Sam", armyOne.getRandomAliveUnit().getName());
     }
+
+    @Test
+    public void getNumAliveUnitsByType() {
+        Army armyOne = new Army("Human Army");
+
+        //adds hundreds of different units to both armies
+        for (int i = 0; i < 10; i++) {
+            armyOne.add(new InfantryUnit("Footman", 10));
+        }
+
+
+        for (int i = 0; i < 10; i++) {
+            armyOne.add(new RangedUnit("Archer", 10));
+        }
+        Unit unit1 = new RangedUnit("Archer", 100);
+        unit1.setHealth(0);
+        armyOne.add(unit1);
+
+        for (int i = 0; i < 2; i++) {
+            armyOne.add(new CavalryUnit("Knight", 5));
+        }
+
+        for (int i = 0; i < 10; i++) {
+            armyOne.add(new CommanderUnit("Footman", 10));
+        }
+        Unit unit2 = new CommanderUnit("Lord", 180);
+        unit2.setHealth(0);
+        armyOne.add(unit2);
+
+        assertEquals(10, armyOne.getNumAliveUnitsByType("Infantry"));
+        assertEquals(10, armyOne.getNumAliveUnitsByType("Ranged"));
+        assertEquals(2, armyOne.getNumAliveUnitsByType("Cavalry"));
+        assertEquals(10, armyOne.getNumAliveUnitsByType("Commander"));
+    }
 }

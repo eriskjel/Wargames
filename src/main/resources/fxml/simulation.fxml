@@ -17,10 +17,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.text.Font?>
 
 <VBox prefHeight="680.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ntnu.idatt2001.erikskj.gui.controllers.SimulationController">
    <children>
@@ -92,35 +88,14 @@
             </Pane>
             <Pane layoutY="109.0" prefHeight="547.0" prefWidth="1300.0">
                <children>
-                  <TableView id="unitTable" fx:id="tableArmy1" layoutX="58.0" layoutY="75.0" prefHeight="178.0" prefWidth="418.0" stylesheets="@../css/styles.css">
+                  <TableView id="unitTable" fx:id="tableArmy1" layoutX="58.0" layoutY="49.0" prefHeight="178.0" prefWidth="300.0" stylesheets="@../css/styles.css">
                      <columns>
                         <TableColumn id="test" fx:id="colIcon" prefWidth="73.0" resizable="false" text="Icon" />
-                        <TableColumn id="test" fx:id="colUnit" prefWidth="152.0" text="Unit" />
-                        <TableColumn id="test" fx:id="colQuantity" prefWidth="192.0" text="Quantity" />
+                        <TableColumn id="test" fx:id="colUnit" prefWidth="111.0" text="Unit" />
+                        <TableColumn id="test" fx:id="colQuantity" prefWidth="115.0" text="Quantity" />
                      </columns>
                   </TableView>
-                  <Label layoutX="510.0" layoutY="14.0" styleClass="header" stylesheets="@../css/styles.css" text="Battle simulation">
-                     <font>
-                        <Font name="JUSTICE" size="14.0" />
-                     </font>
-                     <textFill>
-                        <LinearGradient endX="1.0" endY="1.0">
-                           <stops>
-                              <Stop>
-                                 <color>
-                                    <Color red="1.0" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color blue="1.0" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </LinearGradient>
-                     </textFill>
-                  </Label>
-                  <ImageView fitHeight="439.0" fitWidth="591.0" layoutX="407.0" layoutY="96.0" opacity="0.07" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="439.0" fitWidth="591.0" layoutX="388.0" layoutY="91.0" opacity="0.07" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/swords.png" />
                      </image>
@@ -128,11 +103,11 @@
                         <Glow />
                      </effect>
                   </ImageView>
-                  <TableView id="unitTable" fx:id="tableArmy2" layoutX="58.0" layoutY="316.0" prefHeight="178.0" prefWidth="418.0" stylesheets="@../css/styles.css">
+                  <TableView id="unitTable" fx:id="tableArmy2" layoutX="58.0" layoutY="289.0" prefHeight="178.0" prefWidth="300.0" stylesheets="@../css/styles.css">
                      <columns>
-                        <TableColumn id="test" fx:id="colIcon1" prefWidth="73.0" resizable="false" text="Icon" />
-                        <TableColumn id="test" fx:id="colUnit1" prefWidth="152.0" text="Unit" />
-                        <TableColumn id="test" fx:id="colQuantity1" prefWidth="192.0" text="Quantity" />
+                        <TableColumn id="test" fx:id="colIcon1" prefWidth="70.0" resizable="false" text="Icon" />
+                        <TableColumn id="test" fx:id="colUnit1" prefWidth="110.0" text="Unit" />
+                        <TableColumn id="test" fx:id="colQuantity1" prefWidth="119.0" text="Quantity" />
                      </columns>
                   </TableView>
                   <Pane id="simulationBox" layoutX="765.0" layoutY="65.0" prefHeight="439.0" prefWidth="521.0" stylesheets="@../css/styles.css">
@@ -149,10 +124,10 @@
                   <Button layoutX="678.0" layoutY="171.0" mnemonicParsing="false" onAction="#setSpeedToInstant" text="Instant" />
                   <Button layoutX="594.0" layoutY="171.0" mnemonicParsing="false" onAction="#setSpeedToFast" text="Medium" />
                   <Button layoutX="519.0" layoutY="171.0" mnemonicParsing="false" onAction="#setSpeedToSlow" text="Slow" />
-                  <Button layoutX="58.0" layoutY="504.0" mnemonicParsing="false" onAction="#resetArmy2" text="Reset army" />
-                  <Button layoutX="58.0" layoutY="261.0" mnemonicParsing="false" onAction="#resetArmy1" text="Reset army" />
-                  <Label fx:id="lblArmy1Name" alignment="CENTER" contentDisplay="CENTER" layoutX="168.0" layoutY="48.0" prefHeight="17.0" prefWidth="198.0" />
-                  <Label fx:id="lblArmy2Name" alignment="CENTER" contentDisplay="CENTER" layoutX="168.0" layoutY="289.0" prefHeight="17.0" prefWidth="198.0" />
+                  <Button layoutX="58.0" layoutY="479.0" mnemonicParsing="false" onAction="#resetArmy2" text="Reset army" />
+                  <Button layoutX="58.0" layoutY="233.0" mnemonicParsing="false" onAction="#resetArmy1" text="Reset army" />
+                  <Label fx:id="lblArmy1Name" alignment="CENTER" contentDisplay="CENTER" layoutX="109.0" layoutY="24.0" prefHeight="17.0" prefWidth="198.0" />
+                  <Label fx:id="lblArmy2Name" alignment="CENTER" contentDisplay="CENTER" layoutX="109.0" layoutY="265.0" prefHeight="17.0" prefWidth="198.0" />
                </children>
             </Pane>
          </children>
