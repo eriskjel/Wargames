@@ -50,4 +50,20 @@ public class CommanderUnit extends Unit{
     public int getResistBonus(Terrain terrain) {
         return 1;
     }
+
+    /**
+     * @return probability of units chance to hit a critical hit
+     */
+    @Override
+    public double getCriticalHitProbability() {
+        return 0.20;
+    }
+
+    /**
+     * @return critical hit bonus
+     */
+    @Override
+    public int getCriticalHitBonus() {
+        return 8;
+    }
 }

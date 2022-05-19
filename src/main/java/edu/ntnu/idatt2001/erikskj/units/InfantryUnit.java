@@ -51,4 +51,20 @@ public class InfantryUnit extends Unit{
             return 1;
         }
     }
+
+    /**
+     * @return probability of units chance to hit a critical hit
+     */
+    @Override
+    public double getCriticalHitProbability() {
+        return 0.1;
+    }
+
+    /**
+     * @return critical hit bonus
+     */
+    @Override
+    public int getCriticalHitBonus() {
+        return 4;
+    }
 }

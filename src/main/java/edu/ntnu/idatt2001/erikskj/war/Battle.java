@@ -4,6 +4,8 @@ package edu.ntnu.idatt2001.erikskj.war;
 import edu.ntnu.idatt2001.erikskj.enums.Terrain;
 import edu.ntnu.idatt2001.erikskj.units.Unit;
 
+import java.util.Random;
+
 /**
  * Class that manages the battle and simulation aspect of the project. Class takes two armies and a terrain, and holds a battleInfo string.
  */
@@ -57,18 +59,26 @@ public class Battle {
             int randomIndex = Math.random() <= 0.5 ? 1 : 2;
 
             if (randomIndex == 1){
-                updateBattleInfoWithAttack(attacker1,victim2);
-                attacker1.attack(victim2, terrain);
-                updateBattleInfoWithHealthStatus(victim2);
+                attack(attacker1, victim2);
             }
             else{
-                updateBattleInfoWithAttack(attacker2,victim1);
-                attacker2.attack(victim1, terrain);
-                updateBattleInfoWithHealthStatus(victim1);
+                attack(attacker2, victim1);
             }
-
         }
         checkWinner(armyOne, armyTwo);
+    }
+
+    public void attack(Unit attacker, Unit victim) {
+        boolean criticalHit = attacker.getCriticalHitBoolean();
+        if (criticalHit){
+            updateBattleInfoWithAttack(attacker,victim, true);
+            attacker.attack(victim, terrain, true);
+        }
+        else{
+            updateBattleInfoWithAttack(attacker,victim, false);
+            attacker.attack(victim, terrain, false);
+        }
+        updateBattleInfoWithHealthStatus(victim);
     }
 
     /**
@@ -76,9 +86,16 @@ public class Battle {
      * @param attacker attacker unit
      * @param victim victim unit
      */
-    public void updateBattleInfoWithAttack(Unit attacker, Unit victim){
-        System.out.println(attacker.getName() + " with " + attacker.getHealth() + " HP, attacks " + victim.getName() +  " with " + victim.getHealth() + " HP.\n");
-        battleInfo += attacker.getName() + " with " + attacker.getHealth() + " HP, attacks " + victim.getName() +  " with " + victim.getHealth() + " HP.\n";
+    public void updateBattleInfoWithAttack(Unit attacker, Unit victim, boolean criticalHit){
+        if (criticalHit){
+            System.out.println(attacker.getName() + " with " + attacker.getHealth() + " HP, attacks " + victim.getName() +  " with " + victim.getHealth() + " HP. A critical hit!\n");
+            battleInfo += attacker.getName() + " with " + attacker.getHealth() + " HP, attacks " + victim.getName() +  " with " + victim.getHealth() + " HP. A critical hit!\n";
+        }
+        else{
+            System.out.println(attacker.getName() + " with " + attacker.getHealth() + " HP, attacks " + victim.getName() +  " with " + victim.getHealth() + " HP.\n");
+            battleInfo += attacker.getName() + " with " + attacker.getHealth() + " HP, attacks " + victim.getName() +  " with " + victim.getHealth() + " HP.\n";
+        }
+
     }
 
     /**

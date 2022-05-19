@@ -64,4 +64,20 @@ public class CavalryUnit extends Unit{
             return 1;
         }
     }
+
+    /**
+     * @return probability of units chance to hit a critical hit
+     */
+    @Override
+    public double getCriticalHitProbability() {
+        return 0.2;
+    }
+
+    /**
+     * @return critical hit bonus
+     */
+    @Override
+    public int getCriticalHitBonus() {
+        return 6;
+    }
 }

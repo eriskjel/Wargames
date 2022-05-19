@@ -60,4 +60,20 @@ public class RangedUnit extends Unit{
             return 2;
         }
     }
+
+    /**
+     * @return probability of units chance to hit a critical hit
+     */
+    @Override
+    public double getCriticalHitProbability() {
+        return 0.15;
+    }
+
+    /**
+     * @return critical hit bonus
+     */
+    @Override
+    public int getCriticalHitBonus() {
+        return 6;
+    }
 }

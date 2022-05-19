@@ -3,6 +3,7 @@ package edu.ntnu.idatt2001.erikskj.units;
 import edu.ntnu.idatt2001.erikskj.enums.Terrain;
 
 import java.util.Objects;
+import java.util.Random;
 
 public abstract class Unit {
 
@@ -13,7 +14,9 @@ public abstract class Unit {
     protected final int attack;
     protected final int armour;
     protected int numAttacksGiven;
-    protected  int numAttacksReceived;
+    protected int numAttacksReceived;
+    protected double criticalHitProbability;
+    protected int criticalHitBonus;
 
     /**
      * Constructor of Unit class.
@@ -43,6 +46,23 @@ public abstract class Unit {
         this.armour = armour;
         this.numAttacksGiven = 0;
         this.numAttacksReceived = 0;
+        this.criticalHitBonus = 0;
+    }
+
+    /**
+     * Attack methods that simulates an attack from an object onto another object.
+     * Updates victims health and increment attacks received and attacks given counter.
+     * @param opponent Unit
+     */
+    public void attack(Unit opponent, Terrain terrain, boolean criticalHit){
+        int criticalHitBonus = 0;
+        if (criticalHit){
+            criticalHitBonus = getCriticalHitBonus();
+        }
+        int newHealth = opponent.getHealth() - (this.getAttack() + this.getAttackBonus(terrain) + criticalHitBonus) + (opponent.getArmour() + opponent.getResistBonus(terrain));
+        opponent.setHealth(newHealth);
+        opponent.incrementAttacksReceived();
+        this.incrementAttacksGiven();
     }
 
     /**
@@ -55,6 +75,11 @@ public abstract class Unit {
         opponent.setHealth(newHealth);
         opponent.incrementAttacksReceived();
         this.incrementAttacksGiven();
+    }
+
+    public boolean getCriticalHitBoolean(){
+        Random random = new Random();
+        return random.nextDouble() < getCriticalHitProbability();
     }
 
     /**
@@ -153,6 +178,18 @@ public abstract class Unit {
      * @param terrain battle terrain
      */
     public abstract int getResistBonus(Terrain terrain);
+
+    /**
+     *
+     * @return probability of units chance to hit a critical hit
+     */
+    public abstract double getCriticalHitProbability();
+
+    /**
+     *
+     * @return critical hit bonus
+     */
+    public abstract int getCriticalHitBonus();
 
 
     @Override
