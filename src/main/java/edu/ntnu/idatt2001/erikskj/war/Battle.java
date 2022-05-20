@@ -2,7 +2,10 @@ package edu.ntnu.idatt2001.erikskj.war;
 
 
 import edu.ntnu.idatt2001.erikskj.enums.Terrain;
+import edu.ntnu.idatt2001.erikskj.units.RangedUnit;
 import edu.ntnu.idatt2001.erikskj.units.Unit;
+
+import java.util.Random;
 
 
 /**
@@ -47,6 +50,8 @@ public class Battle {
      * if so, when the program stops and outputs the winners, if not then the battle goes on.
      */
     public void simulate() {
+        int army1attacks = 0;
+        int army2attacks = 0;
         while (armyOne.hasUnitsAlive() && armyTwo.hasUnitsAlive()) {
 
             Unit attacker1 = armyOne.getRandomAliveUnit();
@@ -55,23 +60,18 @@ public class Battle {
             Unit victim1 = armyOne.getRandomAliveUnit();
             Unit victim2 = armyTwo.getRandomAliveUnit();
 
-            int randomIndex = Math.random() <= 0.5 ? 1 : 2;
-
-            switch (randomIndex){
-                case 1: attack(attacker1, victim2);
-                case 2: attack(attacker2, victim1);
-            }
-            /*
-            if (randomIndex == 1){
+            if (new Random().nextBoolean()){
                 attack(attacker1, victim2);
+                army1attacks++;
             }
             else{
                 attack(attacker2, victim1);
+                army2attacks++;
             }
-
-             */
         }
         checkWinner(armyOne, armyTwo);
+        System.out.println(army1attacks);
+        System.out.println(army2attacks);
     }
 
     public void attack(Unit attacker, Unit victim) {
