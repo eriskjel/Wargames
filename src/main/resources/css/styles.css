@@ -101,21 +101,21 @@
 }
 
 
-#unitTable1 .column-header-background{
+.unitTable1 .column-header-background{
     -fx-background-color: #d02929 !important;
 
     -fx-background-insets: 0 0 0 0;
     -fx-padding: 0 0 3px 0;
 }
 
-#unitTable2 .column-header-background{
+.unitTable2 .column-header-background{
     -fx-background-color: #0000ff !important;
 
     -fx-background-insets: 0 0 0 0;
     -fx-padding: 0 0 3px 0;
 }
 
-#BtnArmy1{
+.BtnArmy1{
     -fx-text-fill: #d02929;
     -fx-border-width: 2px;
     -fx-border-color: #d02929;
@@ -124,7 +124,7 @@
     -fx-font-weight: bold;
 }
 
-#BtnArmy1:hover{
+.BtnArmy1:hover{
     -fx-background-color: #d02929;
     -fx-text-fill: white;
     -fx-underline: false;
@@ -132,7 +132,7 @@
     -fx-font-weight: bold;
 }
 
-#BtnArmy2{
+.BtnArmy2{
     -fx-text-fill: #0000ff;
     -fx-border-width: 2px;
     -fx-border-color: #0000ff;
@@ -141,7 +141,7 @@
     -fx-font-weight: bold;
 }
 
-#BtnArmy2:hover{
+.BtnArmy2:hover{
     -fx-background-color: #0000ff;
     -fx-text-fill: white;
     -fx-underline: false;
@@ -178,10 +178,41 @@
     -fx-text-alignment: LEFT;
 }
 
-#simulationBox{
+.simulationBox{
     -fx-border-width: 3px;
     -fx-border-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #d02929 0.0%, #0000ff 100.0%);
-    -fx-background-color: rgba(128, 128, 128, 0.51);
+    -fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #d02929 0.0%, #0000ff 100.0%);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-border-radius: 3px;
+}
+
+.simulationBox:hover{
+    -fx-border-width: 3px;
+    -fx-border-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #d02929 0.0%, #0000ff 100.0%);
+    -fx-background-color: white;
+    -fx-text-fill: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #d02929 0.0%, #0000ff 100.0%);
+    -fx-underline: false;
+}
+
+.box{
+    -fx-border-width: 3px;
+    -fx-border-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #d02929 0.0%, #0000ff 100.0%);
+    -fx-background-color: white;
+    -fx-text-fill: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #d02929 0.0%, #0000ff 100.0%);
+    -fx-underline: false;
+    -fx-border-radius: 3px;
+    -fx-font-weight: bold;
+}
+
+.box:hover{
+    -fx-border-width: 3px;
+    -fx-border-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #d02929 0.0%, #0000ff 100.0%);
+    -fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #d02929 0.0%, #0000ff 100.0%);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-border-radius: 3px;
+    -fx-underline: false;
 }
 
 .BtnSmall{

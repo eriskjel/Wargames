@@ -128,11 +128,11 @@
                         <TableColumn fx:id="colFileName" prefWidth="194.0" text="File name" />
                     </columns>
                   </TableView>
-                  <Button layoutX="272.0" layoutY="456.0" mnemonicParsing="false" onAction="#removeAllArmies" prefHeight="25.0" prefWidth="134.0" text="Remove all armies" />
-                  <Button layoutX="271.0" layoutY="396.0" mnemonicParsing="false" onAction="#removeSelectedArmy" text="Remove selected army" />
-                  <Button layoutX="594.0" layoutY="396.0" mnemonicParsing="false" onAction="#viewSelectedArmy" text="View selected army" />
-                  <Button layoutX="912.0" layoutY="396.0" mnemonicParsing="false" onAction="#resetSelectedArmy" text="Reset selected army" />
-                  <Button layoutX="912.0" layoutY="456.0" mnemonicParsing="false" onAction="#resetAllArmies" prefHeight="25.0" prefWidth="121.0" text="Reset all armies" />
+                  <Button layoutX="272.0" layoutY="456.0" mnemonicParsing="false" onAction="#removeAllArmies" prefHeight="31.0" prefWidth="149.0" styleClass="box" stylesheets="@../css/styles.css" text="Remove all armies" />
+                  <Button layoutX="272.0" layoutY="396.0" mnemonicParsing="false" onAction="#removeSelectedArmy" styleClass="box" stylesheets="@../css/styles.css" text="Remove selected army" />
+                  <Button layoutX="580.0" layoutY="396.0" mnemonicParsing="false" onAction="#viewSelectedArmy" prefHeight="31.0" prefWidth="140.0" styleClass="box" stylesheets="@../css/styles.css" text="View selected army" />
+                  <Button layoutX="889.0" layoutY="396.0" mnemonicParsing="false" onAction="#resetSelectedArmy" prefHeight="31.0" prefWidth="140.0" styleClass="box" stylesheets="@../css/styles.css" text="Reset selected army" />
+                  <Button layoutX="889.0" layoutY="456.0" mnemonicParsing="false" onAction="#resetAllArmies" prefHeight="31.0" prefWidth="140.0" styleClass="box" stylesheets="@../css/styles.css" text="Reset all armies" />
                </children>
             </Pane>
          </children>

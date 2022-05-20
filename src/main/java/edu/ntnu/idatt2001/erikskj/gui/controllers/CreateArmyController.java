@@ -31,10 +31,10 @@ import java.util.ResourceBundle;
 public class CreateArmyController implements Initializable {
 
     private ImageView removeInfantry;
-    @FXML private TextField sumInfantry;
-    @FXML private TextField sumCommander;
-    @FXML private TextField sumCavalry;
-    @FXML private TextField sumRanged;
+    private int sumInfantry;
+    private int sumCommander;
+    private int sumCavalry;
+    private int sumRanged;
     @FXML private TextField inpInfantry;
     @FXML private TextField inpRanged;
     @FXML private TextField inpCavalry;
@@ -124,7 +124,8 @@ public class CreateArmyController implements Initializable {
             units.addAll(unitFactory.getListOfUnits("CommanderUnit", Integer.parseInt(inpCommander.getText()), inpCommanderName.getText(), 180));
         }
         resetInputFields();
-        updateUnitCount();
+        fillTable();
+        //updateUnitCount();
         System.out.println(units);
     }
 
@@ -146,6 +147,7 @@ public class CreateArmyController implements Initializable {
         String armyName = inpArmyName.getText();
     }
 
+    /*
     public void updateUnitCount(){
         this.sumInfantry.setText(String.valueOf(units.stream().filter(unit -> unit.getUnitType().equals("Infantry")).count()));
         this.sumRanged.setText(String.valueOf(units.stream().filter(unit -> unit.getUnitType().equals("Ranged")).count()));
@@ -153,6 +155,8 @@ public class CreateArmyController implements Initializable {
         this.sumCommander.setText(String.valueOf(units.stream().filter(unit -> unit.getUnitType().equals("Commander")).count()));
         fillTable();
     }
+
+     */
 
     public void displayWarningCannotRemoveUnit(){
         Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -163,8 +167,9 @@ public class CreateArmyController implements Initializable {
     }
 
 
+    /*
     public void removeInfantryUnit(MouseEvent mouseEvent) {
-        if (Integer.parseInt(this.sumInfantry.getText()) == 0){
+        if (Integer.parseInt(this.inpInfantry.getText()) == 0){
             displayWarningCannotRemoveUnit();
         }
         else{
@@ -174,7 +179,7 @@ public class CreateArmyController implements Initializable {
     }
 
     public void removeRangedUnit(MouseEvent mouseEvent) {
-        if (Integer.parseInt(this.sumRanged.getText()) == 0){
+        if (Integer.parseInt(this.inpRanged.getText()) == 0){
             displayWarningCannotRemoveUnit();
         }
         else{
@@ -184,7 +189,7 @@ public class CreateArmyController implements Initializable {
     }
 
     public void removeCavalryUnit(MouseEvent mouseEvent) {
-        if (Integer.parseInt(this.sumCavalry.getText()) == 0){
+        if (Integer.parseInt(this.inpCavalry.getText()) == 0){
             displayWarningCannotRemoveUnit();
         }
         else{
@@ -203,8 +208,10 @@ public class CreateArmyController implements Initializable {
         }
     }
 
+     */
+
     public boolean canArmyBeAdded(){
-        if (Integer.parseInt(sumInfantry.getText()) == 0 && Integer.parseInt(sumRanged.getText()) == 0 && Integer.parseInt(sumCavalry.getText()) == 0 && Integer.parseInt(sumCommander.getText()) == 0){
+        if (units.size() == 0){
             displayWarningArmyCannotBeAdded();
             return false;
         }
@@ -242,28 +249,33 @@ public class CreateArmyController implements Initializable {
         alert.showAndWait();
     }
 
+    public int countUnits(String unitType){
+        return (int) units.stream().filter(unit -> unit.getUnitType().equals(unitType)).count();
+    }
+
+
 
     public void fillTable(){
         clearTable();
         IconGetter iconGetter = new IconGetter();
         //adding infantry
-        if (Integer.parseInt(sumInfantry.getText()) != 0){
-            UnitModel infantryModel = new UnitModel("Infantry Unit", (int) units.stream().filter(unit -> unit.getUnitType().equals("Infantry")).count(), iconGetter.getIconByType("Infantry"));
+        if (countUnits("Infantry") != 0){
+            UnitModel infantryModel = new UnitModel("Infantry Unit", countUnits("Infantry"), iconGetter.getIconByType("Infantry"));
             tableArmyPreview.getItems().add(infantryModel);
         }
 
-        if (Integer.parseInt(sumRanged.getText()) != 0){
-            UnitModel rangedModel = new UnitModel("Ranged Unit", (int) units.stream().filter(unit -> unit.getUnitType().equals("Ranged")).count(), iconGetter.getIconByType("Ranged"));
+        if (countUnits("Ranged") != 0){
+            UnitModel rangedModel = new UnitModel("Ranged Unit", countUnits("Ranged"), iconGetter.getIconByType("Ranged"));
             tableArmyPreview.getItems().add(rangedModel);
         }
 
-        if (Integer.parseInt(sumCavalry.getText()) != 0){
-            UnitModel cavalryModel = new UnitModel("Cavalry Unit", (int) units.stream().filter(unit -> unit.getUnitType().equals("Cavalry")).count(), iconGetter.getIconByType("Cavalry"));
+        if (countUnits("Cavalry") != 0){
+            UnitModel cavalryModel = new UnitModel("Cavalry Unit", countUnits("Cavalry"), iconGetter.getIconByType("Cavalry"));
             tableArmyPreview.getItems().add(cavalryModel);
         }
 
-        if (Integer.parseInt(sumCommander.getText()) != 0){
-            UnitModel commanderModel = new UnitModel("Commander Unit", (int) units.stream().filter(unit -> unit.getUnitType().equals("Commander")).count(), iconGetter.getIconByType("CommanderUnit"));
+        if (countUnits("Cavalry") != 0){
+            UnitModel commanderModel = new UnitModel("Commander Unit", countUnits("Cavalry"), iconGetter.getIconByType("CommanderUnit"));
             tableArmyPreview.getItems().add(commanderModel);
         }
     }

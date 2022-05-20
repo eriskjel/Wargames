@@ -315,4 +315,10 @@ public class SimulationController implements Initializable {
         RegistryClient.armyRegister.getArmyByID(army2ID).resetArmy();
         fillAllArmiesTable();
     }
+
+    public void resetBothArmies(){
+        RegistryClient.armyRegister.getArmyByID(army1ID).resetArmy();
+        RegistryClient.armyRegister.getArmyByID(army2ID).resetArmy();
+        fillAllArmiesTable();
+    }
 }
