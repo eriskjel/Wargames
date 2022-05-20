@@ -119,10 +119,11 @@ public class CreateArmyController implements Initializable {
         }
         resetInputFields();
         fillTable();
-        //updateUnitCount();
-        System.out.println(units);
     }
 
+    /**
+     * resets all input field in gui
+     */
     public void resetInputFields(){
         inpInfantryName.setText("");
         inpInfantry.setText("");
@@ -137,73 +138,18 @@ public class CreateArmyController implements Initializable {
         inpCommander.setText("");
     }
 
+    /**
+     * displays the army name on the gui
+     */
     public void updateArmyName(){
         String armyName = inpArmyName.getText();
     }
 
-    /*
-    public void updateUnitCount(){
-        this.sumInfantry.setText(String.valueOf(units.stream().filter(unit -> unit.getUnitType().equals("Infantry")).count()));
-        this.sumRanged.setText(String.valueOf(units.stream().filter(unit -> unit.getUnitType().equals("Ranged")).count()));
-        this.sumCavalry.setText(String.valueOf(units.stream().filter(unit -> unit.getUnitType().equals("Cavalry")).count()));
-        this.sumCommander.setText(String.valueOf(units.stream().filter(unit -> unit.getUnitType().equals("Commander")).count()));
-        fillTable();
-    }
-
+    /**
+     * method that checks if army can be added. if unit size is zero or the army name is not defined then the method returns false and calls
+     * on a warning display method
+     * @return true if army can be added without any errors, false if otherwise
      */
-
-    public void displayWarningCannotRemoveUnit(){
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Warning! Could not remove unit.");
-        alert.setHeaderText(null);
-        alert.setContentText("There are not any units of the type you're trying to remove, therefore you can not remove another unit.");
-        alert.showAndWait();
-    }
-
-
-    /*
-    public void removeInfantryUnit(MouseEvent mouseEvent) {
-        if (Integer.parseInt(this.inpInfantry.getText()) == 0){
-            displayWarningCannotRemoveUnit();
-        }
-        else{
-            units.stream().filter(unit -> unit.getUnitType().equals("Infantry")).findAny().map(units::remove);
-            updateUnitCount();
-        }
-    }
-
-    public void removeRangedUnit(MouseEvent mouseEvent) {
-        if (Integer.parseInt(this.inpRanged.getText()) == 0){
-            displayWarningCannotRemoveUnit();
-        }
-        else{
-            units.stream().filter(unit -> unit.getUnitType().equals("Ranged")).findAny().map(units::remove);
-            updateUnitCount();
-        }
-    }
-
-    public void removeCavalryUnit(MouseEvent mouseEvent) {
-        if (Integer.parseInt(this.inpCavalry.getText()) == 0){
-            displayWarningCannotRemoveUnit();
-        }
-        else{
-            units.stream().filter(unit -> unit.getUnitType().equals("Cavalry")).findAny().map(units::remove);
-            updateUnitCount();
-        }
-    }
-
-    public void removeCommanderUnit(MouseEvent mouseEvent) {
-        if (Integer.parseInt(this.sumCommander.getText()) == 0){
-            displayWarningCannotRemoveUnit();
-        }
-        else{
-            units.stream().filter(unit -> unit.getUnitType().equals("Commander")).findAny().map(units::remove);
-            updateUnitCount();
-        }
-    }
-
-     */
-
     public boolean canArmyBeAdded(){
         if (units.size() == 0){
             displayWarningArmyCannotBeAdded();
@@ -218,6 +164,11 @@ public class CreateArmyController implements Initializable {
         }
     }
 
+    /**
+     * saves army to armyregister, and directs user to view armies fxml file
+     * @param event event
+     * @throws IOException exception
+     */
     public void saveArmy(ActionEvent event) throws IOException {
         if (canArmyBeAdded()){
             Army army = new Army(this.inpArmyName.getText(), units, false);
@@ -227,6 +178,9 @@ public class CreateArmyController implements Initializable {
         RegistryClient.fxmlLoaderClass.goToViewArmies(event);
     }
 
+    /**
+     * displays a warning box to the user prompting that there are not any units in the army
+     */
     public void displayWarningArmyCannotBeAdded(){
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning! Could not save army");
@@ -235,6 +189,9 @@ public class CreateArmyController implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * displays a warning box to the user prompting that the army name is not defined
+     */
     public void displayWarningInvalidArmyName(){
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning! Could not save army");
@@ -243,12 +200,18 @@ public class CreateArmyController implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * counts number of unit by each type
+     * @param unitType type of unit
+     * @return int with number of units by type
+     */
     public int countUnits(String unitType){
         return (int) units.stream().filter(unit -> unit.getUnitType().equals(unitType)).count();
     }
 
-
-
+    /**
+     * fills gui table with models, based on what the user registered when creating an army
+     */
     public void fillTable(){
         clearTable();
         IconGetter iconGetter = new IconGetter();

@@ -33,7 +33,9 @@ public class InfantryUnit extends Unit{
         if (terrain == Terrain.FOREST){
             return 4;
         }
-        else return 2;
+        else {
+            return 2;
+        }
     }
 
 

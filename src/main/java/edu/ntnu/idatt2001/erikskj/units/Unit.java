@@ -15,8 +15,6 @@ public abstract class Unit {
     protected final int armour;
     protected int numAttacksGiven;
     protected int numAttacksReceived;
-    protected double criticalHitProbability;
-    protected int criticalHitBonus;
 
     /**
      * Constructor of Unit class.
@@ -46,7 +44,6 @@ public abstract class Unit {
         this.armour = armour;
         this.numAttacksGiven = 0;
         this.numAttacksReceived = 0;
-        this.criticalHitBonus = 0;
     }
 
     /**
@@ -77,6 +74,10 @@ public abstract class Unit {
         this.incrementAttacksGiven();
     }
 
+    /**
+     * generates a boolean based on the probability of the unit to hit a critical hit
+     * @return true if attacking unit will attack with critical hit
+     */
     public boolean getCriticalHitBoolean(){
         Random random = new Random();
         return random.nextDouble() < getCriticalHitProbability();
@@ -106,6 +107,10 @@ public abstract class Unit {
         return totalHealth;
     }
 
+    /**
+     * returns whether unit is alive
+     * @return true if unit has more than health points
+     */
     public boolean unitIsAlive(){
         return getHealth() > 0;
     }
@@ -157,10 +162,18 @@ public abstract class Unit {
         return "Name: " + this.getName() + ", health: " + this.getHealth() + ", attack: " + this.getAttack() + ", armour: " + this.getArmour();
     }
 
+    /**
+     *  getter for unit info in csv format
+     * @return String with unit info in CSV format
+     */
     public String toCSVFormat() {
         return this.getClass().getSimpleName() + "," + this.name + "," +this.getHealth() + "\n";
     }
 
+    /**
+     * Returns the type of the unit. Also removes the "unit" part of the name. InfantryUnit -> Infantry
+     * @return String with type of unit
+     */
     public String getUnitType(){
         return this.getClass().getSimpleName().replaceAll("Unit", "");
     }

@@ -2,7 +2,6 @@ package edu.ntnu.idatt2001.erikskj.war;
 
 
 import edu.ntnu.idatt2001.erikskj.enums.Terrain;
-import edu.ntnu.idatt2001.erikskj.units.RangedUnit;
 import edu.ntnu.idatt2001.erikskj.units.Unit;
 
 import java.util.Random;
