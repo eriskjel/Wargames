@@ -1,7 +1,6 @@
 package edu.ntnu.idatt2001.erikskj.gui.controllers;
 
 import edu.ntnu.idatt2001.erikskj.enums.Terrain;
-import edu.ntnu.idatt2001.erikskj.file.FileHandler;
 import edu.ntnu.idatt2001.erikskj.gui.IconGetter;
 import edu.ntnu.idatt2001.erikskj.gui.models.UnitModel;
 import edu.ntnu.idatt2001.erikskj.register.RegistryClient;
@@ -15,8 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -34,6 +32,7 @@ public class SimulationController implements Initializable {
     @FXML private Button btnSlow;
     @FXML private Button btnMedium;
     @FXML private Button btnFast;
+    @FXML private Button btnInstant;
     @FXML private Label lblArmy1Name;
     @FXML private Label lblArmy2Name;
     @FXML private TableView tableArmy1;
@@ -51,6 +50,7 @@ public class SimulationController implements Initializable {
     private static int army2ID;
     private Terrain terrain;
     private int sleepTime;
+    private boolean loggingSpeedChosen = false;
 
 
 
@@ -184,6 +184,7 @@ public class SimulationController implements Initializable {
     }
 
     public void setSpeedToSlow(ActionEvent actionEvent) {
+        loggingSpeedChosen = true;
         this.sleepTime = 1000;
         this.btnSlow.setStyle(
                 "-fx-text-fill: white;" +
@@ -194,9 +195,11 @@ public class SimulationController implements Initializable {
         );
         this.btnMedium.setStyle("");
         this.btnFast.setStyle("");
+        this.btnInstant.setStyle("");
     }
 
-    public void setSpeedToFast(ActionEvent actionEvent) {
+    public void setSpeedToMedium(ActionEvent actionEvent) {
+        loggingSpeedChosen = true;
         this.sleepTime = 300;
         this.btnSlow.setStyle("");
         this.btnMedium.setStyle("-fx-text-fill: white;" +
@@ -205,13 +208,29 @@ public class SimulationController implements Initializable {
                 "-fx-font-weight: bold;" +
                 "-fx-underline: false;");
         this.btnFast.setStyle("");
+        this.btnInstant.setStyle("");
     }
 
-    public void setSpeedToInstant(ActionEvent actionEvent) {
-        this.sleepTime = 30;
+    public void setSpeedToFast(ActionEvent actionEvent) {
+        loggingSpeedChosen = true;
+        this.sleepTime = 50;
         this.btnSlow.setStyle("");
         this.btnMedium.setStyle("");
         this.btnFast.setStyle("-fx-text-fill: white;" +
+                "-fx-background-color: #9b9b9b;" +
+                "-fx-border-radius: 4px;" +
+                "-fx-font-weight: bold;" +
+                "-fx-underline: false;");
+        this.btnInstant.setStyle("");
+    }
+
+    public void setSpeedToInstant(ActionEvent actionEvent) {
+        loggingSpeedChosen = true;
+        this.sleepTime = 0;
+        this.btnSlow.setStyle("");
+        this.btnMedium.setStyle("");
+        this.btnFast.setStyle("");
+        this.btnInstant.setStyle("-fx-text-fill: white;" +
                 "-fx-background-color: #9b9b9b;" +
                 "-fx-border-radius: 4px;" +
                 "-fx-font-weight: bold;" +
@@ -237,8 +256,9 @@ public class SimulationController implements Initializable {
             displayWarningTerrainIsNull();
             return false;
         }
-        else if(sleepTime == 0){
-            displayWarningSleepTimeIsNull();
+
+        else if(!loggingSpeedChosen){
+            displayWarningLoggingSpeedNotChosen();
             return false;
         }
         else{
@@ -262,7 +282,7 @@ public class SimulationController implements Initializable {
         alert.showAndWait();
     }
 
-    public void displayWarningSleepTimeIsNull(){
+    public void displayWarningLoggingSpeedNotChosen(){
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning! Cannot start battle!");
         alert.setHeaderText(null);
@@ -270,40 +290,49 @@ public class SimulationController implements Initializable {
         alert.showAndWait();
     }
 
-    public void printBattleInfo(String battleInfo) throws InterruptedException {
+    public void printBattleInfo(String battleInfo){
         int sleep = this.sleepTime;
 
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Runnable updater = new Runnable() {
-                    @Override
-                    public void run() {}
-                };
+        if (sleep != 0){
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Runnable updater = new Runnable() {
+                        @Override
+                        public void run() {}
+                    };
 
-                String print = "";
-                Scanner scanner = new Scanner(battleInfo);
+                    String print = "";
+                    Scanner scanner = new Scanner(battleInfo);
 
-                while(scanner.hasNextLine()){
-                    try{
-                        if (sleep != 0){
-                            print = scanner.nextLine() + "\n";
-                            containerBattleInfo.appendText(print);
-                            Thread.sleep(sleep);
+                    while(scanner.hasNextLine()){
+                        try{
+                            if (sleep != 0){
+                                print = scanner.nextLine() + "\n";
+                                containerBattleInfo.appendText(print);
+                                Thread.sleep(sleep);
+                            }
+                            else{
+                                print += scanner.nextLine() + "\n";
+                            }
                         }
-                        else{
-                            print += scanner.nextLine() + "\n";
+                        catch (Exception e){
+                            containerBattleInfo.setText(e.getMessage());
                         }
+                        Platform.runLater(updater);
                     }
-                    catch (Exception e){
-                        containerBattleInfo.setText(e.getMessage());
-                    }
-                    Platform.runLater(updater);
                 }
-            }
-        });
-        thread.setDaemon(true);
-        thread.start();
+            });
+            thread.setDaemon(true);
+            thread.start();
+        }
+        else{
+            containerBattleInfo.appendText(battleInfo);
+        }
+
+
+
+
     }
 
     public void resetArmy1(){

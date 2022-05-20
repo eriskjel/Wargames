@@ -30,11 +30,6 @@ import java.util.ResourceBundle;
  */
 public class CreateArmyController implements Initializable {
 
-    private ImageView removeInfantry;
-    private int sumInfantry;
-    private int sumCommander;
-    private int sumCavalry;
-    private int sumRanged;
     @FXML private TextField inpInfantry;
     @FXML private TextField inpRanged;
     @FXML private TextField inpCavalry;
@@ -49,7 +44,6 @@ public class CreateArmyController implements Initializable {
     @FXML private TableColumn colQuantity;
     @FXML private TableColumn colIcon;
     @FXML private final ObservableList<UnitModel> observableList = FXCollections.observableArrayList();
-    private final FileHandler fileHandler = new FileHandler();
     private final ArrayList<Unit> units = new ArrayList<>();
     private final UnitFactory unitFactory = new UnitFactory();
 
@@ -275,7 +269,7 @@ public class CreateArmyController implements Initializable {
         }
 
         if (countUnits("Cavalry") != 0){
-            UnitModel commanderModel = new UnitModel("Commander Unit", countUnits("Cavalry"), iconGetter.getIconByType("CommanderUnit"));
+            UnitModel commanderModel = new UnitModel("Commander Unit", countUnits("Commander"), iconGetter.getIconByType("Commander"));
             tableArmyPreview.getItems().add(commanderModel);
         }
     }

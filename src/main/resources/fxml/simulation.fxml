@@ -110,7 +110,7 @@
                         <TableColumn id="test" fx:id="colQuantity1" prefWidth="119.0" text="Quantity" />
                      </columns>
                   </TableView>
-                  <Pane id="simulationBox" layoutX="852.0" layoutY="65.0" prefHeight="439.0" prefWidth="434.0" stylesheets="@../css/styles.css">
+                  <Pane id="simulationContainer" layoutX="852.0" layoutY="65.0" prefHeight="439.0" prefWidth="434.0" stylesheets="@../css/styles.css">
                      <children>
                         <TextArea id="textArea" fx:id="containerBattleInfo" layoutX="3.0" layoutY="3.0" prefHeight="433.0" prefWidth="428.0" stylesheets="@../css/styles.css" />
                      </children>
@@ -121,14 +121,15 @@
                   <Button fx:id="btnForest" layoutX="687.0" layoutY="147.0" mnemonicParsing="false" onAction="#setTerrainToForest" prefHeight="51.0" prefWidth="79.0" styleClass="BtnSmall" stylesheets="@../css/styles.css" text="Forest" />
                   <Button layoutX="497.0" layoutY="465.0" mnemonicParsing="false" onAction="#resetBothArmies" prefHeight="39.0" prefWidth="128.0" styleClass="simulationBox" stylesheets="@../css/styles.css" text="Reset both armies" />
                   <Label layoutX="566.0" layoutY="227.0" text="Choose logging speed:" />
-                  <Button fx:id="btnFast" layoutX="687.0" layoutY="259.0" mnemonicParsing="false" onAction="#setSpeedToInstant" prefHeight="51.0" prefWidth="79.0" styleClass="BtnSmall" stylesheets="@../css/styles.css" text="Fast" />
-                  <Button fx:id="btnMedium" layoutX="592.0" layoutY="259.0" mnemonicParsing="false" onAction="#setSpeedToFast" prefHeight="51.0" prefWidth="79.0" styleClass="BtnSmall" stylesheets="@../css/styles.css" text="Medium" />
-                  <Button fx:id="btnSlow" layoutX="497.0" layoutY="259.0" mnemonicParsing="false" onAction="#setSpeedToSlow" prefHeight="51.0" prefWidth="79.0" styleClass="BtnSmall" stylesheets="@../css/styles.css" text="Slow" />
+                  <Button fx:id="btnFast" layoutX="645.0" layoutY="259.0" mnemonicParsing="false" onAction="#setSpeedToFast" prefHeight="51.0" prefWidth="79.0" styleClass="BtnSmall" stylesheets="@../css/styles.css" text="Fast" />
+                  <Button fx:id="btnMedium" layoutX="545.0" layoutY="259.0" mnemonicParsing="false" onAction="#setSpeedToMedium" prefHeight="51.0" prefWidth="79.0" styleClass="BtnSmall" stylesheets="@../css/styles.css" text="Medium" />
+                  <Button fx:id="btnSlow" layoutX="444.0" layoutY="259.0" mnemonicParsing="false" onAction="#setSpeedToSlow" prefHeight="51.0" prefWidth="79.0" styleClass="BtnSmall" stylesheets="@../css/styles.css" text="Slow" />
                   <Button layoutX="232.0" layoutY="270.0" mnemonicParsing="false" onAction="#resetArmy2" styleClass="BtnArmy2" stylesheets="@../css/styles.css" text="Reset army two" />
                   <Button layoutX="34.0" layoutY="270.0" mnemonicParsing="false" onAction="#resetArmy1" styleClass="BtnArmy1" stylesheets="@../css/styles.css" text="Reset army one" />
                   <Label fx:id="lblArmy1Name" alignment="CENTER" contentDisplay="CENTER" layoutX="88.0" layoutY="41.0" prefHeight="17.0" prefWidth="198.0" />
                   <Label fx:id="lblArmy2Name" alignment="CENTER" contentDisplay="CENTER" layoutX="88.0" layoutY="302.0" prefHeight="17.0" prefWidth="198.0" />
                   <Button layoutX="645.0" layoutY="465.0" mnemonicParsing="false" onAction="#simulate" prefHeight="39.0" prefWidth="121.0" styleClass="simulationBox" stylesheets="@../css/styles.css" text="Simulate" />
+                  <Button fx:id="btnInstant" layoutX="745.0" layoutY="259.0" mnemonicParsing="false" onAction="#setSpeedToInstant" prefHeight="51.0" prefWidth="79.0" styleClass="BtnSmall" stylesheets="@../css/styles.css" text="Instant" />
                </children>
             </Pane>
          </children>
