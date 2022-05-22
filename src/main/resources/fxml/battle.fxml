@@ -151,10 +151,10 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
-                  <Label fx:id="armyName1" layoutX="965.0" layoutY="119.0" prefHeight="17.0" prefWidth="89.0" />
-                  <Label fx:id="armyName2" layoutX="585.0" layoutY="119.0" prefHeight="17.0" prefWidth="79.0" />
-                  <Button layoutX="519.0" layoutY="375.0" mnemonicParsing="false" onAction="#removeArmy2" prefHeight="31.0" prefWidth="98.0" styleClass="BtnArmy1" stylesheets="@../css/styles.css" text="Remove army" />
-                  <Button layoutX="1117.0" layoutY="375.0" mnemonicParsing="false" onAction="#removeArmy1" prefHeight="31.0" prefWidth="98.0" styleClass="BtnArmy2" stylesheets="@../css/styles.css" text="Remove army" />
+                  <Label fx:id="armyName2" layoutX="965.0" layoutY="119.0" prefHeight="17.0" prefWidth="89.0" />
+                  <Label fx:id="armyName1" layoutX="585.0" layoutY="119.0" prefHeight="17.0" prefWidth="79.0" />
+                  <Button layoutX="519.0" layoutY="375.0" mnemonicParsing="false" onAction="#removeArmy1" prefHeight="31.0" prefWidth="98.0" styleClass="BtnArmy1" stylesheets="@../css/styles.css" text="Remove army" />
+                  <Button layoutX="1117.0" layoutY="375.0" mnemonicParsing="false" onAction="#removeArmy2" prefHeight="31.0" prefWidth="98.0" styleClass="BtnArmy2" stylesheets="@../css/styles.css" text="Remove army" />
                   <Button layoutX="808.0" layoutY="449.0" mnemonicParsing="false" onAction="#goToSimulation" prefHeight="51.0" prefWidth="114.0" styleClass="simulationBox" stylesheets="@../css/styles.css" text="Battle!" />
                </children>
             </Pane>

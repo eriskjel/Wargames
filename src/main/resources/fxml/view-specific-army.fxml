@@ -120,14 +120,18 @@
                         <Glow />
                      </effect>
                   </ImageView>
-                  <TableView fx:id="tableViewArmy" layoutX="377.0" layoutY="170.0" prefHeight="256.0" prefWidth="547.0" stylesheets="@../css/styles.css">
+                  <TableView fx:id="tableViewArmy" layoutX="377.0" layoutY="170.0" prefHeight="178.0" prefWidth="547.0" stylesheets="@../css/styles.css">
                     <columns>
                       <TableColumn fx:id="colIcon" prefWidth="76.0" text="Icon" />
                       <TableColumn fx:id="colUnit" prefWidth="277.0" text="Unit" />
                         <TableColumn fx:id="colQuantity" prefWidth="193.0" text="Quantity" />
                     </columns>
                   </TableView>
-                  <Label fx:id="lblArmyName" layoutX="657.0" layoutY="45.0" prefHeight="51.0" prefWidth="209.0" />
+                  <Label fx:id="lblArmyName" layoutX="650.0" layoutY="45.0" prefHeight="51.0" prefWidth="209.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                  <Button layoutX="571.0" layoutY="403.0" mnemonicParsing="false" onAction="#goToViewArmies" prefHeight="31.0" prefWidth="158.0" styleClass="box" stylesheets="@../css/styles.css" text="Go back to all armies" />
                </children>
             </Pane>
          </children>

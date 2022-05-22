@@ -284,7 +284,30 @@ public class GoToBattleController<directoryListing> implements Initializable {
     }
 
     public void goToSimulation(ActionEvent actionEvent) throws IOException {
-        SimulationController.setArmyIDs(army1ID, army2ID);
-        RegistryClient.fxmlLoaderClass.goToSimulation(actionEvent);
+        if (checkIfUserCanGoToBattle()){
+            SimulationController.setArmyIDs(army1ID, army2ID);
+            RegistryClient.fxmlLoaderClass.goToSimulation(actionEvent);
+        }
+    }
+
+    public boolean checkIfUserCanGoToBattle() {
+        if (table1Empty || table2Empty) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning! Cannot go to battle!");
+            alert.setHeaderText(null);
+            alert.setContentText("You need to load two armies to go to battle!");
+            alert.showAndWait();
+            return false;
+        } else if (army1ID == army2ID) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning! Cannot go to battle!");
+            alert.setHeaderText(null);
+            alert.setContentText("You cannot choose the same army twice, and go to battle!\nPlease pick to unique armies.");
+            alert.showAndWait();
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 }
