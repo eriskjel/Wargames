@@ -231,7 +231,7 @@ public class CreateArmyController implements Initializable {
             tableArmyPreview.getItems().add(cavalryModel);
         }
 
-        if (countUnits("Cavalry") != 0){
+        if (countUnits("Commander") != 0){
             UnitModel commanderModel = new UnitModel("Commander Unit", countUnits("Commander"), iconGetter.getIconByType("Commander"));
             tableArmyPreview.getItems().add(commanderModel);
         }
