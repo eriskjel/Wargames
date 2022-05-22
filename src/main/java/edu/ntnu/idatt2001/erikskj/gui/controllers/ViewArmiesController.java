@@ -210,9 +210,8 @@ public class ViewArmiesController implements Initializable {
 
         int armyID = armyModel.get(0).getArmyID();
         String filePath = armyModel.get(0).getFilePath();
-
-        ViewSpecificArmyController.setCurrentArmyFileName(filePath);
-
+        
+        ViewSpecificArmyController.setCurrentArmyID(armyID);
         //loads new fxml file
         RegistryClient.fxmlLoaderClass.goToSpecificArmy(actionEvent);
     }
