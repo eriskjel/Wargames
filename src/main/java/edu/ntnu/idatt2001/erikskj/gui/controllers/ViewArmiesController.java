@@ -208,10 +208,10 @@ public class ViewArmiesController implements Initializable {
     public void viewSelectedArmy(ActionEvent actionEvent) throws IOException {
         ObservableList<LoadedArmyModel> armyModel = tableLoadedArmies.getSelectionModel().getSelectedItems();
 
+        //give selected armyId to controller
         int armyID = armyModel.get(0).getArmyID();
-        String filePath = armyModel.get(0).getFilePath();
-        
         ViewSpecificArmyController.setCurrentArmyID(armyID);
+
         //loads new fxml file
         RegistryClient.fxmlLoaderClass.goToSpecificArmy(actionEvent);
     }
