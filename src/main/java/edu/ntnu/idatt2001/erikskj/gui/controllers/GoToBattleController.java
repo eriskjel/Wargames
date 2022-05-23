@@ -16,21 +16,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import org.apache.commons.io.FileUtils;
-
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
- * Class that handles the interaction between the fxml file "admin-edit-tournament.fxml" and the backend.
+ * Class that handles the interaction between the fxml file "battle" and the backend.
  * This class houses all the methods and variables needed to perform the tasks
  */
-public class GoToBattleController<directoryListing> implements Initializable {
+public class GoToBattleController implements Initializable {
 
     @FXML private Label armyName1;
     @FXML private Label armyName2;
@@ -96,7 +90,6 @@ public class GoToBattleController<directoryListing> implements Initializable {
         clearTable();
 
         //loops through army register and fills table with LoadedArmyModels
-
         for (int i = 0; i < RegistryClient.armyRegister.getArmies().size(); i++) {
             LoadedArmyModel loadedArmyModel = new LoadedArmyModel(
                     RegistryClient.armyRegister.getArmies().get(i).getName(),
@@ -106,42 +99,7 @@ public class GoToBattleController<directoryListing> implements Initializable {
                     RegistryClient.armyRegister.getArmies().get(i).getArmyID());
             tableLoadedArmies.getItems().add(loadedArmyModel);
         }
-
-
-
-        /*
-        File dir = new File("src/main/resources/armyRegister");
-        File[] directoryListing = dir.listFiles();
-        if (directoryListing != null) {
-            for (File child : directoryListing) {
-                Army army = fileHandler.readFromFile(child.getPath());
-
-            }
-        }
-
-         */
-
-
-        /*
-        ArrayList<Army> armies = fileHandler.readArmyFromRegister();
-        for (int i = 0; i < armies.size(); i++) {
-            LoadedArmyModel loadedArmyModel = new LoadedArmyModel(
-                    armies.get(i).getName(),
-                    armies.get(i).getUnits().size(),
-                    armies.get(i).getSumHealth(),
-                    armies.get(i).getArmyFile(),
-                    armies.get(i).getArmyID());
-            tableLoadedArmies.getItems().add(loadedArmyModel);
-        }
-
-         */
-
-
-
-
     }
-
-
 
     /**
      * clears gui table
@@ -149,7 +107,6 @@ public class GoToBattleController<directoryListing> implements Initializable {
     public void clearTable(){
         tableLoadedArmies.getItems().clear();
     }
-
 
     /**
      * calls on the FXMLLoaderClass to load the new fxml file
@@ -180,37 +137,20 @@ public class GoToBattleController<directoryListing> implements Initializable {
         RegistryClient.fxmlLoaderClass.goToCreateArmy(actionEvent);
     }
 
-
-
-
+    /**
+     * determines which table to load army data into, and fetches the selected army and sends this to help method
+     */
     public void loadSelectedArmy(){
         ObservableList<LoadedArmyModel> armyModel = tableLoadedArmies.getSelectionModel().getSelectedItems();
 
-        /*
         if (table1Empty){
             army1ID = armyModel.get(0).getArmyID();
-            fillArmyTable(army1ID, armyModel.get(0).getArmyName(), 1);
+            fillArmyTable(armyModel.get(0).getArmyID(), 1);
             table1Empty = false;
         }
         else if (table2Empty){
             army2ID = armyModel.get(0).getArmyID();
-            fillArmyTable(army2ID, armyModel.get(0).getArmyName(), 2);
-            table2Empty = false;
-        }
-        else{
-            displayWarningMax2Armies();
-        }
-
-         */
-
-        if (table1Empty){
-            army1ID = armyModel.get(0).getArmyID();
-            fillArmyTable(armyModel.get(0).getFilePath(), 1);
-            table1Empty = false;
-        }
-        else if (table2Empty){
-            army2ID = armyModel.get(0).getArmyID();
-            fillArmyTable(armyModel.get(0).getFilePath(), 2);
+            fillArmyTable(armyModel.get(0).getArmyID(), 2);
             table2Empty = false;
         }
         else{
@@ -219,39 +159,14 @@ public class GoToBattleController<directoryListing> implements Initializable {
 
     }
 
-    public void displayWarningMax2Armies(){
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Warning! Cannot load another army.");
-        alert.setHeaderText(null);
-        alert.setContentText("You have already loaded 2 armies. Please remove one, to add another.");
-        alert.showAndWait();
-    }
-
-    /*
-    public void fillArmyTable(int id, String name, int n){
-        String pathAndName = "src/main/resources/armyRegister/" + name + "-" + id + ".csv";
-        Army army = fileHandler.readFromFile(pathAndName);
-
-
-        //adds models to tableview
-        for (int i = 0; i < army.getArrayWithUnitNames().size(); i++) {
-            UnitModel unitModel = new UnitModel(army.getArrayWithUnitNames().get(i), army.getNumUnitsByType(army.getArrayWithUnitNames().get(i)), getIconByType(army.getArrayWithUnitNames().get(i)));
-            if (n == 1){
-                tableArmy1.getItems().add(unitModel);
-                armyName1.setText(name);
-
-            }
-            else if(n == 2){
-                tableArmy2.getItems().add(unitModel);
-                armyName2.setText(name);
-            }
-        }
-    }
-
+    /**
+     *  fills gui table with data from the selected army.
+     * @param id army id
+     * @param n table number
      */
-
-    public void fillArmyTable(String path, int n){
-        Army army = fileHandler.readFromFile(path);
+    public void fillArmyTable(int id, int n){
+        //Army army = fileHandler.readFromFile(path);
+        Army army = RegistryClient.armyRegister.getArmyByID(id);
 
         IconGetter iconGetter = new IconGetter();
 
@@ -271,18 +186,40 @@ public class GoToBattleController<directoryListing> implements Initializable {
         }
     }
 
+    /**
+     * displays a warning dialog box to the user, indicating that two armies already have been loaded for battle
+     */
+    public void displayWarningMax2Armies(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning! Cannot load another army.");
+        alert.setHeaderText(null);
+        alert.setContentText("You have already loaded 2 armies. Please remove one, to add another.");
+        alert.showAndWait();
+    }
+
+    /**
+     * removes army from the loaded table and sets that the table is empty and ready for new army
+     */
     public void removeArmy1(){
         observableListArmy1.clear();
         table1Empty = true;
         armyName1.setText("");
     }
 
+    /**
+     * removes army from the loaded table and sets that the table is empty and ready for new army
+     */
     public void removeArmy2(){
         observableListArmy2.clear();
         table2Empty = true;
         armyName2.setText("");
     }
 
+    /**
+     * sets army ids in simulation controller to the two armies that will be fighting and loads a new fxml file
+     * @param actionEvent event
+     * @throws IOException exception
+     */
     public void goToSimulation(ActionEvent actionEvent) throws IOException {
         if (checkIfUserCanGoToBattle()){
             SimulationController.setArmyIDs(army1ID, army2ID);
@@ -290,6 +227,11 @@ public class GoToBattleController<directoryListing> implements Initializable {
         }
     }
 
+    /**
+     * checks if user can go to battle page.
+     * checks if two armies are loaded, and if the two armies are unique
+     * @return true if user can go two battle with armies loaded, false if not
+     */
     public boolean checkIfUserCanGoToBattle() {
         if (table1Empty || table2Empty) {
             Alert alert = new Alert(Alert.AlertType.WARNING);

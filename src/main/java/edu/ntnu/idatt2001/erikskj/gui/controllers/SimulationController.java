@@ -14,14 +14,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
 /**
- * Class that handles the interaction between the fxml file "admin-edit-tournament.fxml" and the backend.
+ * Class that handles the interaction between the fxml file "simulation" and the backend.
  * This class houses all the methods and variables needed to perform the tasks
  */
 public class SimulationController implements Initializable {
@@ -53,8 +52,11 @@ public class SimulationController implements Initializable {
     private boolean loggingSpeedChosen = false;
 
 
-
-
+    /**
+     * method that sets armyID. given from goToBattleController
+     * @param id1 army1ID
+     * @param id2 army2ID
+     */
     public static void setArmyIDs(int id1, int id2){
         army1ID = id1;
         army2ID = id2;
@@ -148,7 +150,10 @@ public class SimulationController implements Initializable {
     }
 
 
-    public void setTerrainToHills(ActionEvent actionEvent) {
+    /**
+     * sets the terrain to hill and sets the style of the button to look "pressed"
+     */
+    public void setTerrainToHills() {
         this.terrain = Terrain.HILL;
         this.btnHills.setStyle(
                 "-fx-text-fill: white;" +
@@ -161,7 +166,10 @@ public class SimulationController implements Initializable {
         this.btnForest.setStyle("");
     }
 
-    public void setTerrainToPlains(ActionEvent actionEvent) {
+    /**
+     * sets the terrain to plain and sets the style of the button to look "pressed"
+     */
+    public void setTerrainToPlains() {
         this.terrain = Terrain.PLAINS;
         this.btnHills.setStyle("");
         this.btnPlains.setStyle("-fx-text-fill: white;" +
@@ -172,7 +180,10 @@ public class SimulationController implements Initializable {
         this.btnForest.setStyle("");
     }
 
-    public void setTerrainToForest(ActionEvent actionEvent) {
+    /**
+     * sets the terrain to forest and sets the style of the button to look "pressed"
+     */
+    public void setTerrainToForest() {
         this.terrain = Terrain.FOREST;
         this.btnHills.setStyle("");
         this.btnPlains.setStyle("");
@@ -183,7 +194,10 @@ public class SimulationController implements Initializable {
                 "-fx-underline: false;");
     }
 
-    public void setSpeedToSlow(ActionEvent actionEvent) {
+    /**
+     * sets the sleep time to 1000 and sets the style of the button to look "pressed"
+     */
+    public void setSpeedToSlow() {
         loggingSpeedChosen = true;
         this.sleepTime = 1000;
         this.btnSlow.setStyle(
@@ -198,6 +212,9 @@ public class SimulationController implements Initializable {
         this.btnInstant.setStyle("");
     }
 
+    /**
+     * sets the sleep time to 300 and sets the style of the button to look "pressed"
+     */
     public void setSpeedToMedium(ActionEvent actionEvent) {
         loggingSpeedChosen = true;
         this.sleepTime = 300;
@@ -211,6 +228,9 @@ public class SimulationController implements Initializable {
         this.btnInstant.setStyle("");
     }
 
+    /**
+     * sets the sleep time to 50 and sets the style of the button to look "pressed"
+     */
     public void setSpeedToFast(ActionEvent actionEvent) {
         loggingSpeedChosen = true;
         this.sleepTime = 50;
@@ -224,7 +244,10 @@ public class SimulationController implements Initializable {
         this.btnInstant.setStyle("");
     }
 
-    public void setSpeedToInstant(ActionEvent actionEvent) {
+    /**
+     * sets the sleep time to 0 and sets the style of the button to look "pressed"
+     */
+    public void setSpeedToInstant() {
         loggingSpeedChosen = true;
         this.sleepTime = 0;
         this.btnSlow.setStyle("");
@@ -237,7 +260,11 @@ public class SimulationController implements Initializable {
                 "-fx-underline: false;");
     }
 
-    public void simulate() throws InterruptedException {
+    /**
+     * if battle can start then the Battle object is created and the simulate method is called. Battlelog is printed, and the gui tables are updated
+     * with the new unit statuses
+     */
+    public void simulate() {
         if (checkIfBattleCanStart()){
             this.containerBattleInfo.clear();
             Battle battle = new Battle(RegistryClient.armyRegister.getArmyByID(army1ID),RegistryClient.armyRegister.getArmyByID(army2ID), terrain);
@@ -247,6 +274,11 @@ public class SimulationController implements Initializable {
         }
     }
 
+    /**
+     * method that checks is simulation can start
+     * armies need to have units alive, the terrain needs to be set as well as the logging speed
+     * @return false if both armies do not have units alive and if terrain or logging speed is undefined. otherwise returns true
+     */
     public boolean checkIfBattleCanStart(){
         if (!RegistryClient.armyRegister.getArmyByID(army1ID).hasUnitsAlive() || !RegistryClient.armyRegister.getArmyByID(army2ID).hasUnitsAlive()){
             displayWarningArmyIsDead();
@@ -266,6 +298,9 @@ public class SimulationController implements Initializable {
         }
     }
 
+    /**
+     * displays warning dialouge box prompting that one of the armies does not have any units left
+     */
     public void displayWarningArmyIsDead(){
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning! Cannot start battle!");
@@ -274,6 +309,9 @@ public class SimulationController implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * displays a warning dialouge box prompting that the terrain is not set
+     */
     public void displayWarningTerrainIsNull(){
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning! Cannot start battle!");
@@ -282,6 +320,9 @@ public class SimulationController implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * displays a warning dialouge box prompting that the logging speed is not set
+     */
     public void displayWarningLoggingSpeedNotChosen(){
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning! Cannot start battle!");
@@ -290,6 +331,11 @@ public class SimulationController implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * method responsible for printing the battleinfo at a slowed down rate
+     * this is achieved by creating a thread, and furthermore using sleep method
+     * @param battleInfo String of battleinfo
+     */
     public void printBattleInfo(String battleInfo){
         int sleep = this.sleepTime;
 
@@ -335,16 +381,25 @@ public class SimulationController implements Initializable {
 
     }
 
+    /**
+     * resets army1 and resets the gui table
+     */
     public void resetArmy1(){
         RegistryClient.armyRegister.getArmyByID(army1ID).resetArmy();
         fillAllArmiesTable();
     }
 
+    /**
+     * resets army2 and resets the gui table
+     */
     public void resetArmy2(){
         RegistryClient.armyRegister.getArmyByID(army2ID).resetArmy();
         fillAllArmiesTable();
     }
 
+    /**
+     * resets both armies and resets the gui table
+     */
     public void resetBothArmies(){
         RegistryClient.armyRegister.getArmyByID(army1ID).resetArmy();
         RegistryClient.armyRegister.getArmyByID(army2ID).resetArmy();

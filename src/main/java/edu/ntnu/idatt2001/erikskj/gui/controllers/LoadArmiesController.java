@@ -14,18 +14,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Class that handles the interaction between the fxml file "admin-edit-tournament.fxml" and the backend.
+ * Class that handles the interaction between the fxml file "load-armies" and the backend.
  * This class houses all the methods and variables needed to perform the tasks
  */
 public class LoadArmiesController implements Initializable {
@@ -40,7 +37,6 @@ public class LoadArmiesController implements Initializable {
     @FXML private Stage stage;
     private String pathLoaded;
     private final FileHandler fileHandler = new FileHandler();
-    private String fileName;
     private File armyFile;
 
 
@@ -56,7 +52,7 @@ public class LoadArmiesController implements Initializable {
         pathLoaded = file.getAbsolutePath();
 
 
-        fileName = file.getName();
+        //String fileName = file.getName();
 
         //displays to gui which file has been uploaded as well as file path
         lblFileSelected.setText(pathLoaded);

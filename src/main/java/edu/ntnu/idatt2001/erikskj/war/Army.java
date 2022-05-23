@@ -22,7 +22,7 @@ public class Army {
      * @param name name of army
      */
     public Army(String name){
-        if (name.equals("") || name == null){
+        if (name.equals("")){
             throw new IllegalArgumentException("Army name is not defined");
         }
         this.name = name;
@@ -48,7 +48,7 @@ public class Army {
      * @param units list with units to fill army
      */
     public Army(String name, ArrayList<Unit> units){
-        if (name.equals("") || name == null){
+        if (name.equals("")){
             throw new IllegalArgumentException("Army name is not defined");
         }
         this.name = name;
@@ -61,7 +61,7 @@ public class Army {
      * @param units list with units to fill army
      */
     public Army(String name, ArrayList<Unit> units, boolean isUploaded){
-        if (name.equals("") || name == null){
+        if (name.equals("")){
             throw new IllegalArgumentException("Army name is not defined");
         }
         this.name = name;
@@ -143,6 +143,10 @@ public class Army {
         return units.get(random.nextInt((units.size())));
     }
 
+    /**
+     * gets random alive unit from army
+     * @return random unit that is alive
+     */
     public Unit getRandomAliveUnit(){
         Unit unit = this.getRandom();
         while(!unit.unitIsAlive()){
@@ -156,22 +160,42 @@ public class Army {
         return unit;
     }
 
+    /**
+     * returns units in army
+     * @return arraylist with all units
+     */
     public ArrayList<Unit> getUnits(){
         return this.units;
     }
 
+    /**
+     * list with infantry units
+     * @return arraylist with all infantry units
+     */
     public ArrayList<Unit> getInfantryUnits(){
         return units.stream().filter(unit -> unit instanceof InfantryUnit).collect(Collectors.toCollection(ArrayList::new));
     }
 
+    /**
+     * list with RangedUnit
+     * @return arraylist with all RangedUnit
+     */
     public ArrayList<Unit> getRangedUnits(){
         return units.stream().filter(unit -> unit instanceof RangedUnit).collect(Collectors.toCollection(ArrayList::new));
     }
 
+    /**
+     * list with CavalryUnit
+     * @return arraylist with all CavalryUnit
+     */
     public ArrayList<Unit> getCavalryUnits(){
         return units.stream().filter(unit -> unit instanceof CavalryUnit).collect(Collectors.toCollection(ArrayList::new));
     }
 
+    /**
+     * list with CommanderUnit
+     * @return arraylist with all CommanderUnit
+     */
     public ArrayList<Unit> getCommanderUnits(){
         return units.stream().filter(unit -> unit instanceof CommanderUnit).collect(Collectors.toCollection(ArrayList::new));
     }
@@ -202,6 +226,10 @@ public class Army {
         return (int) units.stream().filter(Unit::unitIsAlive).map(Unit::getUnitType).filter(unit -> unit.equals(type)).count();
     }
 
+    /**
+     * gets list of all units alive
+     * @return arraylist with all units alive
+     */
     public ArrayList<Unit> getListOfUnitsAlive(){
         return this.getUnits().stream().filter(Unit::unitIsAlive).collect(Collectors.toCollection(ArrayList::new));
     }
@@ -219,38 +247,56 @@ public class Army {
     }
 
     /**
-     * gets path of file where army will be saved in project
-     * the filepath consists of the predetermined path plus the army name plus the army id
-     * @return string with filepath
+     * getter for army file
+     * @return file of army
      */
-    public String getFilePathAndName(){
-        return "src/main/resources/armyRegister/" + this.getName() + "-" + this.getArmyID() + ".csv";
-    }
-
     public File getArmyFile(){
         return this.armyFile;
     }
 
+    /**
+     * sets army file
+     * @param file file
+     */
     public void setArmyFile(File file){
         this.armyFile = file;
     }
 
+    /**
+     * returns whether army has a file
+     * @return true if army has a related file
+     */
     public boolean armyHasFile(){
         return this.getArmyFile() != null;
     }
 
+    /**
+     * generates file name for army. consisting of army name and army id
+     * @return
+     */
     public String generateFileName(){
         return this.getName() + "-" + this.armyID;
     }
 
+    /**
+     * getter for whether army is uploaded or created
+     * @return true if army is uploaded
+     */
     public boolean isUploaded(){
-        return this.isUploaded;
+        return !this.isUploaded;
     }
 
+    /**
+     * sets whether army is uploaded
+     * @param isUploaded boolean
+     */
     public void setIsUploaded(boolean isUploaded){
         this.isUploaded = isUploaded;
     }
 
+    /**
+     * resets army by setting each unit's health to their original health
+     */
     public void resetArmy(){
         for (int i = 0; i < this.getUnits().size(); i++) {
             this.getUnits().get(i).setHealth(getUnits().get(i).getTotalHealth());
@@ -300,19 +346,5 @@ public class Army {
             }
         }
         return results;
-    }
-
-
-    /**
-     * @return string with all units in current army
-     */
-    public String toStringTest() {
-        return "Army{" +
-                "armyID=" + armyID +
-                ", name='" + name + '\'' +
-                ", units=" + units +
-                ", armyFile=" + armyFile +
-                ", isUploaded=" + isUploaded +
-                '}';
     }
 }

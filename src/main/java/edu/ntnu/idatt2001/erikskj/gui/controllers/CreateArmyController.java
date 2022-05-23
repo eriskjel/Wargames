@@ -25,8 +25,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
- * Class that handles the interaction between the fxml file "admin-edit-tournament.fxml" and the backend.
- * This class houses all the methods and variables needed to perform the tasks
+ * Class that handles the interaction between the fxml file "create-army" and the backend.
+ * This class houses all the methods and variables needed to perform the tasks on the fxml file
  */
 public class CreateArmyController implements Initializable {
 
@@ -48,12 +48,6 @@ public class CreateArmyController implements Initializable {
     private final UnitFactory unitFactory = new UnitFactory();
 
 
-    /**
-     * clears table
-     */
-    public void clearTable(){
-        tableArmyPreview.getItems().clear();
-    }
 
     /**
      * method that runs as soon as the fxml file is loaded. this particular override initializes the tableview in the gui
@@ -67,7 +61,6 @@ public class CreateArmyController implements Initializable {
         this.colQuantity.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
         this.tableArmyPreview.setItems(observableList);
     }
-
 
     /**
      * calls on the FXMLLoader class to load a new fxml file
@@ -97,6 +90,10 @@ public class CreateArmyController implements Initializable {
         RegistryClient.fxmlLoaderClass.goToLoadArmies(event);
     }
 
+    /**
+     * method that adds all the units inputted from the user in the gui, to the local unit arraylist.
+     * It then calls to reset the input fields and fill the gui table
+     */
     public void addStackOfUnits(){
         if (!inpInfantryName.getText().equals("") && !inpInfantry.getText().equals("")) {
             //adds infantry units
@@ -136,6 +133,13 @@ public class CreateArmyController implements Initializable {
 
         inpCommanderName.setText("");
         inpCommander.setText("");
+    }
+
+    /**
+     * clears table
+     */
+    public void clearTable(){
+        tableArmyPreview.getItems().clear();
     }
 
     /**

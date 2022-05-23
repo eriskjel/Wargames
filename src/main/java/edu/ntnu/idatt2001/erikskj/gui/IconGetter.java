@@ -3,7 +3,15 @@ package edu.ntnu.idatt2001.erikskj.gui;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+/**
+ * class that returns icons based on unit type
+ */
 public class IconGetter {
+    /**
+     * returns the correct icon based on the unit type
+     * @param unitType unit type
+     * @return ImageView of icon based on the unittype
+     */
     public ImageView getIconByType(String unitType){
         switch (unitType) {
             case "Infantry":

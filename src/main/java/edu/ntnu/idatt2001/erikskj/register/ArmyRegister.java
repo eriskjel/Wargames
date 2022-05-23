@@ -2,7 +2,6 @@ package edu.ntnu.idatt2001.erikskj.register;
 
 import edu.ntnu.idatt2001.erikskj.file.FileHandler;
 import edu.ntnu.idatt2001.erikskj.war.Army;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,26 +20,26 @@ public class ArmyRegister {
         this.armies = new ArrayList<>();
     }
 
+    /**
+     * adds army to register. checks if the army is uploaded and if the army has file, if not then it calls to write the army to file
+     * @param army
+     */
     public void add(Army army){
         army.setArmyID(armies.size());
         armies.add(army);
-        if (!army.isUploaded() && !army.armyHasFile()){
-            writeArmyToFile(army);
+        if (army.isUploaded() && !army.armyHasFile()){
+            new FileHandler().writeToFile(army);
         }
     }
 
+    /**
+     * method that sets all the IDs of the armies in the register based on the size of the register
+     */
     public void setArmyIDs(){
         for (int i = 0; i < this.getArmies().size(); i++) {
             this.getArmies().get(i).setArmyID(i);
         }
     }
-
-    public void writeArmyToFile(Army army){
-        FileHandler fileHandler = new FileHandler();
-        //fileHandler.writeToFile(army, army.getFilePathAndName(), armyIsCreated);
-        fileHandler.writeToFile(army);
-    }
-
 
     /**
      * resets directory with every army, and creates a new one with correct army ids
@@ -56,7 +55,7 @@ public class ArmyRegister {
         //FileHandler fileHandler = new FileHandler();
         for (int i = 0; i < this.getArmies().size(); i++) {
             Army army = this.getArmies().get(i);
-            if (!army.isUploaded()){
+            if (army.isUploaded()){
                 //fileHandler.writeToFile(army);
                 new FileHandler().writeToFile(army);
             }
@@ -72,7 +71,7 @@ public class ArmyRegister {
         armies.remove(army);
 
         //gets file path
-        if (!army.isUploaded()){
+        if (army.isUploaded()){
             File file = new File(army.getArmyFile().getPath());
             //tries to delete file
             try{
@@ -82,10 +81,6 @@ public class ArmyRegister {
                 System.err.println(e);
             }
         }
-        /*
-
-
-         */
     }
 
     /**
@@ -107,6 +102,11 @@ public class ArmyRegister {
         new FileHandler().cleanDir();
     }
 
+    /**
+     * finds army in register with desired id and returns this army
+     * @param id army id
+     * @return army in register with matching id
+     */
     public Army getArmyByID(int id){
         for (int i = 0; i < this.getArmies().size(); i++) {
             if (this.getArmies().get(i).getArmyID() == id){
@@ -116,18 +116,25 @@ public class ArmyRegister {
         return null;
     }
 
+    /**
+     * gets a list from filehandler class with all armies from register, and adds these armies to the register
+     * @throws IOException exception
+     */
     public void readArmiesFromDir() throws IOException {
         FileHandler fileHandler = new FileHandler();
         if (!fileHandler.isArmiesDirEmpty()){
             ArrayList<Army> armies = fileHandler.readArmiesFromRegister();
             for(Army army : armies){
-                this.setArmyIDs();
                 this.add(army);
             }
+            this.setArmyIDs();
         }
         this.resetAndWriteArmyToFile();
     }
 
+    /**
+     * resets all armies to original army
+     */
     public void resetAllArmies(){
         for (Army army : armies) {
             army.resetArmy();

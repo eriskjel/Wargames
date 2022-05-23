@@ -107,13 +107,6 @@ public abstract class Unit {
         return totalHealth;
     }
 
-    /**
-     * returns whether unit is alive
-     * @return true if unit has more than health points
-     */
-    public boolean unitIsAlive(){
-        return getHealth() > 0;
-    }
 
     /**
      * Setter for health
@@ -151,6 +144,14 @@ public abstract class Unit {
      */
     public void incrementAttacksReceived(){
         this.numAttacksReceived++;
+    }
+
+    /**
+     * returns whether unit is alive
+     * @return true if unit has more than health points
+     */
+    public boolean unitIsAlive(){
+        return getHealth() > 0;
     }
 
     /**

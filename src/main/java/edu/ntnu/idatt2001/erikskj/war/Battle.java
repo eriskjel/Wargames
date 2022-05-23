@@ -44,9 +44,8 @@ public class Battle {
     /**
      * Method that simulates a battle. There are battles until there is only one army remaining.
      * One random attacker is picked from army one, as well a random victim also from army two. Vice Verca for other army.
-     * Then it is random who gets to attack the other unit first. After each battle, the health of the victim unit is checked
-     * and if dead, the unit is removed from battle. At the end of each while-iteration the program will check if there is a winner
-     * if so, when the program stops and outputs the winners, if not then the battle goes on.
+     * Then it is random who gets to attack the other unit first.
+     * When the while loop breaks, meaning one army has no alive units left, the winner is checked
      */
     public void simulate() {
         while (armyOne.hasUnitsAlive() && armyTwo.hasUnitsAlive()) {
@@ -57,6 +56,7 @@ public class Battle {
             Unit victim1 = armyOne.getRandomAliveUnit();
             Unit victim2 = armyTwo.getRandomAliveUnit();
 
+            //determines who goes first
             if (new Random().nextBoolean()){
                 attack(attacker1, victim2);
             }
@@ -67,6 +67,12 @@ public class Battle {
         checkWinner(armyOne, armyTwo);
     }
 
+    /**
+     * attack method. first checks if attacker will hit a critical hit. after this the battleinfo is updated with
+     * the info about the coming attack, and then the attack method is called on the attacker, with the victim as the argument
+     * @param attacker
+     * @param victim
+     */
     public void attack(Unit attacker, Unit victim) {
         boolean criticalHit = attacker.getCriticalHitBoolean();
         if (criticalHit){
@@ -140,27 +146,5 @@ public class Battle {
 
         //for testing purposes
         System.out.println(result);
-    }
-
-    /**
-     * method that outputs battle info. It will display who attacks who, and the stats of the parts involved
-     * @param attacker attacker unit
-     * @param victim victim unit
-     */
-    public void appendBattleInfoWithFullStats(Unit attacker, Unit victim){
-        System.out.println(attacker.getName() + " with " + attacker.getHealth() + " health has a " + (attacker.getAttack() + attacker.getAttackBonus(terrain)) + " total attack points, and attacks " + victim.getName() +  " with " + victim.getHealth() + " health who has " + (victim.getResistBonus(terrain) + victim.getArmour()) + " total armour points.");
-        battleInfo += attacker.getName() + " with " + attacker.getHealth() + " health has a " + (attacker.getAttack() + attacker.getAttackBonus(terrain)) + " total attack points, and attacks " + victim.getName() +  " with " + victim.getHealth() + " health who has " + (victim.getResistBonus(terrain) + victim.getArmour()) + " total armour points. \n";
-    }
-
-    /**
-     * tostring
-     * @return string with army names
-     */
-    @Override
-    public String toString() {
-        return "Battle{" +
-                "armyOne=" + armyOne +
-                ", armyTwo=" + armyTwo +
-                '}';
     }
 }

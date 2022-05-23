@@ -17,13 +17,10 @@ public class LoadedArmyModel {
     /**
      * uses SimpleString and SimpleInt properties. this is to use the correct format in order to add data to the javafx tableview
      */
-    //private final ImageView icon;
     private SimpleStringProperty armyName;
     private SimpleIntegerProperty totalUnits;
     private SimpleIntegerProperty totalHealth;
-    //private SimpleStringProperty filePath;
     private final int armyID;
-    //private SimpleStringProperty fileName;
     private File armyFile;
 
 
@@ -32,7 +29,6 @@ public class LoadedArmyModel {
         this.armyName = new SimpleStringProperty(armyName);
         this.totalUnits = new SimpleIntegerProperty(totalUnits);
         this.totalHealth = new SimpleIntegerProperty(totalHealth);
-        //this.filePath = new SimpleStringProperty(filePath);
         this.armyFile = armyFile;
         this.armyID = armyID;
     }
