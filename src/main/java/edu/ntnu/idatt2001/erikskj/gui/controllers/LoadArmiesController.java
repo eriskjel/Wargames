@@ -10,12 +10,15 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.commons.io.FilenameUtils;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -35,9 +38,8 @@ public class LoadArmiesController implements Initializable {
     @FXML private Label lblFileSelected;
     @FXML private final ObservableList<UnitModel> observableList = FXCollections.observableArrayList();
     @FXML private Stage stage;
-    private String pathLoaded;
     private final FileHandler fileHandler = new FileHandler();
-    private File armyFile;
+    private File uploadedArmyFile;
 
 
     /**
@@ -48,17 +50,28 @@ public class LoadArmiesController implements Initializable {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         File file = fileChooser.showOpenDialog(stage);
-        armyFile = file;
-        pathLoaded = file.getAbsolutePath();
 
 
-        //String fileName = file.getName();
+        if (!isFileCSV(file)){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning! Cannot upload file!");
+            alert.setHeaderText(null);
+            alert.setContentText("The file you have chosen is not a .CSV file! Please upload a new one.");
+            alert.showAndWait();
+        }
+        else{
+            uploadedArmyFile = file;
 
-        //displays to gui which file has been uploaded as well as file path
-        lblFileSelected.setText(pathLoaded);
-        lblFileSelected.setStyle("-fx-font-weight: bold;");
+            //displays to gui which file has been uploaded as well as file path
+            lblFileSelected.setText(uploadedArmyFile.getAbsolutePath());
+            lblFileSelected.setStyle("-fx-font-weight: bold;");
 
-        fillTable();
+            fillTable();
+        }
+    }
+
+    public boolean isFileCSV(File file){
+        return FilenameUtils.getExtension(file.getName()).equals("csv");
     }
 
     /**
@@ -69,7 +82,7 @@ public class LoadArmiesController implements Initializable {
         IconGetter iconGetter = new IconGetter();
 
         //create army by reading file, with path specified from user input
-        Army army = fileHandler.readFromFile(armyFile);
+        Army army = fileHandler.readFromFile(uploadedArmyFile);
 
         //sets army name above table for display
         lblArmyName.setText(army.getName());
@@ -106,9 +119,6 @@ public class LoadArmiesController implements Initializable {
      */
     public void removeArmy() {
         clearTable();
-
-        pathLoaded = "";
-
         lblFileSelected.setText("No file selected");
     }
 
@@ -119,7 +129,7 @@ public class LoadArmiesController implements Initializable {
      */
     public void saveArmy(ActionEvent actionEvent) throws IOException {
         //creates army
-        Army army = fileHandler.readFromFile(armyFile);
+        Army army = fileHandler.readFromFile(uploadedArmyFile);
         army.setIsUploaded(true);
         //army.setFileName(fileName);
 
