@@ -1,6 +1,5 @@
 package edu.ntnu.idatt2001.erikskj.client;
 
-import edu.ntnu.idatt2001.erikskj.factory.UnitFactory;
 import edu.ntnu.idatt2001.erikskj.file.FileHandler;
 import edu.ntnu.idatt2001.erikskj.war.Army;
 import edu.ntnu.idatt2001.erikskj.war.Battle;
@@ -13,7 +12,7 @@ import edu.ntnu.idatt2001.erikskj.units.RangedUnit;
 public class WarGamesClient {
 
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
         //test data for if project wants to hardcoded armies to fight
         //at the moment, one army is created by code down below, and one by file

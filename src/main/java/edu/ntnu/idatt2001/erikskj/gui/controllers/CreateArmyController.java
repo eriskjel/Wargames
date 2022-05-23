@@ -1,8 +1,6 @@
 package edu.ntnu.idatt2001.erikskj.gui.controllers;
 
 import edu.ntnu.idatt2001.erikskj.factory.UnitFactory;
-import edu.ntnu.idatt2001.erikskj.file.FileHandler;
-import edu.ntnu.idatt2001.erikskj.gui.FXMLLoaderClass;
 import edu.ntnu.idatt2001.erikskj.gui.IconGetter;
 import edu.ntnu.idatt2001.erikskj.gui.models.UnitModel;
 import edu.ntnu.idatt2001.erikskj.register.RegistryClient;
@@ -15,9 +13,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.net.URL;

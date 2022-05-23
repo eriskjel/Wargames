@@ -34,7 +34,7 @@ public class Army {
      * @param name name of army
      */
     public Army(String name, boolean isUploaded){
-        if (name.equals("") || name == null){
+        if (name.equals("")){
             throw new IllegalArgumentException("Army name is not defined");
         }
         this.name = name;
@@ -272,7 +272,7 @@ public class Army {
 
     /**
      * generates file name for army. consisting of army name and army id
-     * @return
+     * @return String with file name for this army
      */
     public String generateFileName(){
         return this.getName() + "-" + this.armyID;

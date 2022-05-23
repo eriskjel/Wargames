@@ -39,7 +39,7 @@ public class InfantryUnitTest {
     @Nested
     public class BonusesInForest{
 
-        Terrain terrain = Terrain.FOREST;
+        final Terrain terrain = Terrain.FOREST;
 
         /**
          * checks if the attack and resist bonus stats are as they should be.

@@ -6,20 +6,15 @@ import edu.ntnu.idatt2001.erikskj.units.RangedUnit;
 import edu.ntnu.idatt2001.erikskj.war.Army;
 import edu.ntnu.idatt2001.erikskj.units.CavalryUnit;
 import edu.ntnu.idatt2001.erikskj.units.CommanderUnit;
-import javafx.stage.FileChooser;
 import org.junit.jupiter.api.Test;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FileHandlerTest {
-
-    private final String armiesDir = "./ArmiesDir/";
 
     /**
      * junit test for reading an army from a file.
@@ -51,7 +46,6 @@ public class FileHandlerTest {
 
     /**
      * tests if file filehandler class throws exception if file to be read is not csv
-     * @throws IOException exception
      */
     @Test
     public void readFromFileNotCSVThrowsException() {
@@ -66,10 +60,9 @@ public class FileHandlerTest {
 
     /**
      * test to check if filehandler throws exception when there are commas in the first line of csv file containing army
-     * @throws IOException exception
      */
     @Test
-    public void readArmyFromFileArmyNameNotFound() throws IOException {
+    public void readArmyFromFileArmyNameNotFound() {
         File file = new File("src/main/resources/csv/TestFiles/armyWithoutName.csv");
 
 
@@ -136,6 +129,7 @@ public class FileHandlerTest {
 
 
         //checks if file exists and if the file has content
+        String armiesDir = "./ArmiesDir/";
         File file = new File(armiesDir);
         assertTrue(file.exists());
         assertNotEquals(0, file.length());

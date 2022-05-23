@@ -21,8 +21,8 @@ public class UnitModel {
 
     /**
      * constructor for armymodel
-     * @param unit
-     * @param quantity
+     * @param unit unit
+     * @param quantity quantity
      */
     public UnitModel(String unit, int quantity, ImageView icon){
         this.unit = new SimpleStringProperty(unit);

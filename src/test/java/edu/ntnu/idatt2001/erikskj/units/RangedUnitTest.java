@@ -42,7 +42,7 @@ public class RangedUnitTest {
     public class BonusesInForest{
 
         //sets terrain as forrest
-        Terrain terrain = Terrain.FOREST;
+        final Terrain terrain = Terrain.FOREST;
 
         /**
          * test for checking if the attack and armour stat are as they should be
@@ -87,7 +87,7 @@ public class RangedUnitTest {
     public class BonusesInHill{
 
         //sets terrain as hills
-        Terrain terrain = Terrain.HILL;
+        final Terrain terrain = Terrain.HILL;
 
         /**
          * test for checking if the attack and armour stat are as they should be
@@ -132,7 +132,7 @@ public class RangedUnitTest {
     public class BonusesInPlains{
 
         //sets terrain as plains
-        Terrain terrain = Terrain.PLAINS;
+        final Terrain terrain = Terrain.PLAINS;
 
         /**
          * test for checking if the attack and armour stat are as they should be

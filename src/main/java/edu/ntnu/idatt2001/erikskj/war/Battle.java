@@ -56,6 +56,7 @@ public class Battle {
             Unit victim1 = armyOne.getRandomAliveUnit();
             Unit victim2 = armyTwo.getRandomAliveUnit();
 
+
             //determines who goes first
             if (new Random().nextBoolean()){
                 attack(attacker1, victim2);
@@ -70,8 +71,8 @@ public class Battle {
     /**
      * attack method. first checks if attacker will hit a critical hit. after this the battleinfo is updated with
      * the info about the coming attack, and then the attack method is called on the attacker, with the victim as the argument
-     * @param attacker
-     * @param victim
+     * @param attacker attacking unit
+     * @param victim victim unit
      */
     public void attack(Unit attacker, Unit victim) {
         boolean criticalHit = attacker.getCriticalHitBoolean();

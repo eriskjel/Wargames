@@ -3,7 +3,6 @@ package edu.ntnu.idatt2001.erikskj.gui.models;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.scene.image.ImageView;
 
 import java.io.File;
 
@@ -106,12 +105,5 @@ public class LoadedArmyModel {
     public String getFileName(){
         return armyFile.getName();
     }
-
-    /*
-    public void setFileName(String fileName){
-        this.fileName = new SimpleStringProperty(fileName);
-    }
-
-     */
 
 }

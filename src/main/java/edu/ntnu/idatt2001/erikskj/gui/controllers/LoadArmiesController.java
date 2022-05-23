@@ -44,9 +44,8 @@ public class LoadArmiesController implements Initializable {
 
     /**
      * opens dialog box to user, prompting user to pick a csv file containing desired army to upload
-     * @param actionEvent
      */
-    public void uploadArmy(ActionEvent actionEvent) {
+    public void uploadArmy() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         File file = fileChooser.showOpenDialog(stage);
@@ -154,8 +153,8 @@ public class LoadArmiesController implements Initializable {
     /**
      * calls on the fxmlloader class to load a new fxml file
      * this particular loads the create-army file
-     * @param actionEvent
-     * @throws IOException
+     * @param actionEvent event
+     * @throws IOException exception
      */
     public void goToCreateArmy(ActionEvent actionEvent) throws IOException {
         RegistryClient.fxmlLoaderClass.goToCreateArmy(actionEvent);

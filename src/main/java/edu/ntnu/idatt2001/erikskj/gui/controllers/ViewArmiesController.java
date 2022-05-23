@@ -1,6 +1,5 @@
 package edu.ntnu.idatt2001.erikskj.gui.controllers;
 
-import edu.ntnu.idatt2001.erikskj.file.FileHandler;
 import edu.ntnu.idatt2001.erikskj.gui.models.LoadedArmyModel;
 import edu.ntnu.idatt2001.erikskj.gui.models.UnitModel;
 import edu.ntnu.idatt2001.erikskj.register.RegistryClient;

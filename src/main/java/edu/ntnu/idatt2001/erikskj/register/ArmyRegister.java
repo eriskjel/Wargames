@@ -22,7 +22,7 @@ public class ArmyRegister {
 
     /**
      * adds army to register. checks if the army is uploaded and if the army has file, if not then it calls to write the army to file
-     * @param army
+     * @param army army
      */
     public void add(Army army){
         army.setArmyID(armies.size());
@@ -46,9 +46,8 @@ public class ArmyRegister {
      * this is needed because when army ID are reset, because register size is changing, the file names
      * does not automatically change.
      * therefore, this method makes sures that the file names have the same id as the corresponding army
-     * @throws IOException exception
      */
-    public void resetAndWriteArmyToFile() throws IOException {
+    public void resetAndWriteArmyToFile() {
 
         new FileHandler().cleanDir();
 
@@ -93,9 +92,8 @@ public class ArmyRegister {
 
     /**
      * removes every army from register, and deletes all files from army register folder
-     * @throws IOException exception
      */
-    public void removeAll() throws IOException {
+    public void removeAll() {
         //clear arraylist
         armies.clear();
 

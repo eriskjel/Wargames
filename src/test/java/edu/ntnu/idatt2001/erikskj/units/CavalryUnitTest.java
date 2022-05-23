@@ -45,7 +45,7 @@ public class CavalryUnitTest {
     @Nested
     public class BonusesInForest{
 
-        Terrain terrain = Terrain.FOREST;
+        final Terrain terrain = Terrain.FOREST;
 
         /**
          * checks if the attack and resist bonus stats are as they should be.
@@ -77,7 +77,7 @@ public class CavalryUnitTest {
     @Nested
     public class BonusesInPlains{
 
-        Terrain terrain = Terrain.PLAINS;
+        final Terrain terrain = Terrain.PLAINS;
 
         /**
          * checks if the attack and resist bonus stats are as they should be.
@@ -109,7 +109,7 @@ public class CavalryUnitTest {
     @Nested
     public class BonusesInHill{
 
-        Terrain terrain = Terrain.HILL;
+        final Terrain terrain = Terrain.HILL;
 
         /**
          * checks if the attack and resist bonus stats are as they should be.

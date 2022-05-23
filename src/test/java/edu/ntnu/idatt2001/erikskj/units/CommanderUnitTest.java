@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class CommanderUnitTest {
 
-    Terrain terrain = Terrain.HILL;
+    final Terrain terrain = Terrain.HILL;
 
     /**
      * test that checks every object variable of unit superclass, and for each csv line, with different illegal values, checks
