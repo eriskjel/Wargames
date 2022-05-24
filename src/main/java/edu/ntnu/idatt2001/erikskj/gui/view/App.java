@@ -22,7 +22,7 @@ public class App extends Application {
      */
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/load-armies.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/create-army.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1300, 680);
         stage.setTitle("Wargames");
         stage.getIcons().add(new Image("file:src/main/resources/img/swords.png"));

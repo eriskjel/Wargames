@@ -6,6 +6,8 @@ import edu.ntnu.idatt2001.erikskj.units.RangedUnit;
 import edu.ntnu.idatt2001.erikskj.war.Army;
 import edu.ntnu.idatt2001.erikskj.units.CavalryUnit;
 import edu.ntnu.idatt2001.erikskj.units.CommanderUnit;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -72,10 +74,7 @@ public class FileHandlerTest {
         });
     }
 
-    /**
-     * test for method writing to file
-     * runs writeToFile method from FileHandler class, and afterwards checks if there is a file with the desired name written in the method
-     */
+
 
     @Test
     public void readArmiesFromRegisterArraylistsAreEqual(){
@@ -111,6 +110,10 @@ public class FileHandlerTest {
     }
 
 
+    /**
+     * test for method writing to file
+     * runs writeToFile method from FileHandler class, and afterwards checks if there is a file with the desired name written in the method
+     */
     @Test
     public void writeToFile(){
 
@@ -137,6 +140,4 @@ public class FileHandlerTest {
         //deletes file after test
         armyOne.getArmyFile().delete();
     }
-
-
 }
