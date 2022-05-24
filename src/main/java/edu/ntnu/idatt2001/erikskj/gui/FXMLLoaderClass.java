@@ -1,5 +1,6 @@
 package edu.ntnu.idatt2001.erikskj.gui;
 
+import edu.ntnu.idatt2001.erikskj.gui.view.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;

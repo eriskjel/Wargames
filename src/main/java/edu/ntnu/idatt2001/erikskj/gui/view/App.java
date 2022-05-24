@@ -1,4 +1,4 @@
-package edu.ntnu.idatt2001.erikskj.gui;
+package edu.ntnu.idatt2001.erikskj.gui.view;
 
 import edu.ntnu.idatt2001.erikskj.file.FileHandler;
 import edu.ntnu.idatt2001.erikskj.register.RegistryClient;

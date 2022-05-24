@@ -25,4 +25,7 @@ module Wargames {
 
     exports edu.ntnu.idatt2001.erikskj.enums;
     opens edu.ntnu.idatt2001.erikskj.enums to javafx.fxml;
+
+    exports edu.ntnu.idatt2001.erikskj.gui.view;
+    opens edu.ntnu.idatt2001.erikskj.gui.view to javafx.fxml;
 }
