@@ -25,7 +25,7 @@ public class ArmyTest {
     }
 
     /**
-     * test to check if its possible to add an arraylist of units to army
+     * test to check if it is possible to add an arraylist of units to army
      */
     @Test
     public void addAllUnits(){
